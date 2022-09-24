@@ -1,15 +1,23 @@
-import React from 'react';
-import getWeatherAPI from './functions/getWeatherAPI';
-
-
+import React, { useEffect, useState } from "react";
+import getWeatherAPI from "./functions/getWeatherAPI";
 
 const App = () => {
-    console.log(getWeatherAPI(-22.90556, -47.06083, 'Campinas, BR'))
-  return (
+  const [apiData, setApiData] = useState<Object>();
 
-    <div>hello</div>
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const data = await getWeatherAPI(-22.90556, -47.06083, "Campinas, BR");
+        setApiData(data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, []);
 
-  )
-}
+  return <p>teste APP</p>;
+};
 
 export default App;
