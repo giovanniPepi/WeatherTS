@@ -19,10 +19,6 @@ interface Ialerts {
   tags: string[] | null;
 }
 
-interface apiDataProps {
-  apiData: IWeatherData;
-}
-
 interface IWeatherDataCurrent {
   clouds: number;
   dew_point: number;
@@ -35,7 +31,7 @@ interface IWeatherDataCurrent {
   temp: number;
   uvi: number;
   visibility: number;
-  weather: ICurrentWeatherArray;
+  weather: CurrentWeather;
   wind_deg: number;
   wind_speed: number;
 }
@@ -104,11 +100,23 @@ interface Iminutely {
   precipitation: number;
 }
 
+interface apiDataProps {
+  apiData: IWeatherData;
+}
+
+interface MinutelyProps {
+  minuteData: Minutely;
+}
+
+
+
+type CurrentWeather = ICurrentWeatherArray[];
 type Daily = IDailyWeather[];
 type Minutely = Iminutely[];
 
 export type {
   IWeatherData,
   apiDataProps,
+  MinutelyProps
 }  
 
