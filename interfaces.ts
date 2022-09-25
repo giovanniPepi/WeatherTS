@@ -15,6 +15,6 @@ interface apiDataProps {
 
 export type {
   IWeatherData,
-  apiDataProps
+  apiDataProps,
 }  
 

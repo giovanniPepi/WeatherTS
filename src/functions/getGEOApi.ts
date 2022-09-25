@@ -9,7 +9,8 @@ const getGeoAPI = async (location: string): Promise<IWeatherData | undefined > =
     }
   );    
     const received = await geoResquest.json();
-    return received;
+    // returns only the first value, for simplicity
+    return received[0];
   } catch (error) {
     console.log(error)
   }

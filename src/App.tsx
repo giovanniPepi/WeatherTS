@@ -15,7 +15,6 @@ const App: React.FC = () => {
       try {
         const data = await getWeatherAPI(-22.90556, -47.06083, "Campinas, BR");
         setApiData(data);
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -30,9 +29,8 @@ const App: React.FC = () => {
 
   // updates APIData when clicking
   const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("Submit clicked", location);
     const newLoc = await getGeoAPI(location);
-    setApiData(newLoc);
+    if (newLoc) setApiData(newLoc);
   };
 
   return (
