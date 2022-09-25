@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import RealTimeData from "./components/RealTimeData";
 import getWeatherAPI from "./functions/getWeatherAPI";
 import type { IWeatherData } from "../interfaces";
@@ -10,9 +10,11 @@ import DailyData from "./components/DailyData";
 const App: React.FC = () => {
   const [apiData, setApiData] = useState<IWeatherData>();
   const [location, setLocation] = useState<string>("Campinas, BR");
+  const [showMinutelyData, setShowMinutelyData] = useState<boolean>(false);
+  const [showDailyData, setShowDailyData] = useState<boolean>(false);
+  const [showHourlyData, setShowHourlyData] = useState<boolean>(false);
 
   // empty dependency array to run only once
-  // change to useMemo?
   useEffect(() => {
     const getData = async () => {
       try {
@@ -36,15 +38,38 @@ const App: React.FC = () => {
     if (newLoc) setApiData(newLoc);
   };
 
+  const toggleMinuteData = () => {
+    setShowMinutelyData((state) => !state);
+  };
+
+  const toggleHourlyData = () => {
+    setShowHourlyData((state) => !state);
+  };
+
+  const toggleDailyData = () => {
+    setShowDailyData((state) => !state);
+  };
+
   return (
     <main>
       {/* Conditional render so we wait for the API data*/}
       {apiData ? <RealTimeData apiData={apiData} /> : null}
-      {apiData?.minutely ? (
+
+      <button onClick={toggleMinuteData}>Minute forecast</button>
+      <button onClick={toggleHourlyData}>Hourly forecast</button>
+      <button onClick={toggleDailyData}>Daily forecast</button>
+
+      {showMinutelyData && apiData?.minutely ? (
         <MinutelyData minuteData={apiData.minutely} />
       ) : null}
-      {apiData?.hourly ? <HourlyData hourlyData={apiData.hourly} /> : null}
-      {apiData?.daily ? <DailyData dailyData={apiData.daily} /> : null}
+
+      {showHourlyData && apiData?.hourly ? (
+        <HourlyData hourlyData={apiData.hourly} />
+      ) : null}
+
+      {showDailyData && apiData?.daily ? (
+        <DailyData dailyData={apiData.daily} />
+      ) : null}
 
       <input placeholder="Search a location..." onChange={handleInputChange} />
       <button onClick={handleClick}>Submit</button>

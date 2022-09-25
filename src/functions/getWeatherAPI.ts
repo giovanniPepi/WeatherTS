@@ -1,8 +1,9 @@
 import { IWeatherData } from "interfaces";
 
 const getWeatherAPI = async (lat: number, lon: number, country: string): Promise<IWeatherData | undefined> => {
+    console.log('Weather API call');
   
-    if (country === 'BR') {
+  if (country === 'BR') {
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&APPID=833c261d19926d13cc578d79528d9d64&units=metric&lang=pt_br`,
       {

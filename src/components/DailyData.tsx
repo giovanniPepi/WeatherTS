@@ -2,7 +2,7 @@ import { v4 } from "uuid";
 import { DailyProps } from "interfaces";
 
 const DailyData: React.FC<DailyProps> = ({ dailyData }) => {
-  // console.log("DAILY component called: ", dailyData);
+  //console.log("DAILY component called: ", dailyData);
 
   return (
     <div>

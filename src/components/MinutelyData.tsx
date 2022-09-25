@@ -2,7 +2,7 @@ import { v4 } from "uuid";
 import { MinutelyProps } from "interfaces";
 
 const MinutelyData: React.FC<MinutelyProps> = ({ minuteData }) => {
-  console.log("MinutelyData component called: ", minuteData);
+  // console.log("MinutelyData component called: ", minuteData);
 
   return (
     <div>
