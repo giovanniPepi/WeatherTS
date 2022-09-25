@@ -5,7 +5,7 @@ interface IWeatherData {
   timezone_offset: number;
   current: IWeatherDataCurrent;
   minutely: Minutely;
-  hourly: IHourlyWeather;
+  hourly: HourlyArray;
   daily: Daily;
   alerts: Ialerts;
 }
@@ -37,9 +37,10 @@ interface IWeatherDataCurrent {
 }
 
 interface ICurrentWeatherArray {
+  description: string;
+  icon: string;
   id: number;
   main: string;
-  description: string;
 }
 
 interface IFeelsLikeDaily {
@@ -83,13 +84,13 @@ interface IHourlyWeather {
   dew_point: number;
   dt: number;
   feels_like: number;
-  humidty: number;
+  humidity: number;
   pop: number;
   pressure: number;
   temp: number;
   uvi: number;
   visibility: number;
-  weather: ICurrentWeatherArray;
+  weather: CurrentWeather;
   wind_deg: number;
   wind_gust: number;
   wind_speed: number;
@@ -108,15 +109,21 @@ interface MinutelyProps {
   minuteData: Minutely;
 }
 
+interface HourlyProps {
+  hourlyData: HourlyArray;
+}
 
 
 type CurrentWeather = ICurrentWeatherArray[];
 type Daily = IDailyWeather[];
 type Minutely = Iminutely[];
+type HourlyArray = IHourlyWeather[];
+
 
 export type {
   IWeatherData,
   apiDataProps,
-  MinutelyProps
+  MinutelyProps,
+  HourlyProps
 }  
 

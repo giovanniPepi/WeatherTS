@@ -1,3 +1,4 @@
+import { v4 } from "uuid";
 import { MinutelyProps } from "interfaces";
 
 const MinutelyData: React.FC<MinutelyProps> = ({ minuteData }) => {
@@ -9,7 +10,7 @@ const MinutelyData: React.FC<MinutelyProps> = ({ minuteData }) => {
       <ul>
         {minuteData.map((minute) => {
           return (
-            <li>
+            <li key={v4()}>
               {minute.dt}:{minute.precipitation}%
             </li>
           );
