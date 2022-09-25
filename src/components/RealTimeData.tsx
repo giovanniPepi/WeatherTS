@@ -1,18 +1,18 @@
-import { apiDataProps } from "interfaces";
+import { RealTimeDataProps } from "interfaces";
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
 
-const RealTimeData: React.FC<apiDataProps> = ({ apiData }) => {
-  //  console.log("realtime component called: ", apiData);
+const RealTimeData: React.FC<RealTimeDataProps> = ({
+  apiData,
+  locationToShow,
+}) => {
+  // console.log("realtime component called: ", apiData);
 
   return (
     <div>
       Current weather
-      <div>
-        Location: {apiData.lon}
-        {apiData.lat}
-      </div>
+      <div>{locationToShow}</div>
       <div>Clouds: {apiData.current.clouds}</div>
       <div>Dew Point: {apiData.current.dew_point}</div>
       <div>Dt: {apiData.current.dt}</div>

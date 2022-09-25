@@ -1,6 +1,6 @@
-import { IWeatherData } from "interfaces";
+import { IGeoApiCall } from "interfaces";
 
-const getGeoAPI = async (location: string): Promise<IWeatherData | undefined> => {
+const getGeoAPI = async (location: string): Promise<IGeoApiCall | undefined> => {
   console.log('GEO API call');
 
   try {

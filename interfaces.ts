@@ -96,13 +96,17 @@ interface IHourlyWeather {
   wind_speed: number;
 }
 
+interface IGeoApiCall  {
+  country: string;
+  lat: number;
+  lon: number;
+  name: string;
+  state: string;
+}
+
 interface Iminutely {
   dt: number;
   precipitation: number;
-}
-
-interface apiDataProps {
-  apiData: IWeatherData;
 }
 
 interface MinutelyProps {
@@ -117,6 +121,11 @@ interface DailyProps {
   dailyData: DailyArray;
 }
 
+interface RealTimeDataProps {
+  apiData: IWeatherData;
+  locationToShow: string;
+}
+
 
 type CurrentWeather = ICurrentWeatherArray[];
 type Daily = IDailyWeather[];
@@ -127,8 +136,7 @@ type DailyArray = IDailyWeather[];
 
 export type {
   IWeatherData,
-  apiDataProps,
   MinutelyProps,
-  HourlyProps, DailyProps
+  HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps
 }  
 
