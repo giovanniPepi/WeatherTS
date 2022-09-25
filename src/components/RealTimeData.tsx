@@ -1,4 +1,5 @@
 import { RealTimeDataProps } from "interfaces";
+import getExactHours from "src/functions/getExactHour";
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
@@ -15,7 +16,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       <div>{locationToShow}</div>
       <div>Clouds: {apiData.current.clouds}</div>
       <div>Dew Point: {apiData.current.dew_point}</div>
-      <div>Dt: {apiData.current.dt}</div>
+      <div>Updated at: {getExactHours(apiData.current.dt)}</div>
       <div>Feels_like: {apiData.current.feels_like}</div>
       <div>Humidity: {apiData.current.humidity}</div>
       <div>Pressure: {apiData.current.pressure}</div>

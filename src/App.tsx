@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import RealTimeData from "./components/RealTimeData";
 import getWeatherAPI from "./functions/getWeatherAPI";
-import type { IGeoApiCall, IWeatherData } from "../interfaces";
+import type { IWeatherData } from "../interfaces";
 import getGeoAPI from "./functions/getGEOApi";
 import MinutelyData from "./components/MinutelyData";
 import HourlyData from "./components/HourlyData";
