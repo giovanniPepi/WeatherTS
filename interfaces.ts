@@ -9,7 +9,12 @@ interface IWeatherData {
   daily: Object;
 }
 
+interface apiDataProps {
+  apiData: IWeatherData;
+}
+
 export type {
-  IWeatherData
+  IWeatherData,
+  apiDataProps
 }  
 

@@ -22,7 +22,12 @@ const App: React.FC = () => {
     getData();
   }, []);
 
-  return <p>app</p>;
+  return (
+    <main>
+      <div> main app</div>
+      {apiData ? <RealTimeData apiData={apiData} /> : null}
+    </main>
+  );
 };
 
 export default App;
