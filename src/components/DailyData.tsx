@@ -1,5 +1,6 @@
 import { v4 } from "uuid";
 import { DailyProps } from "interfaces";
+import getFormattedDate from "src/functions/getFormattedDate";
 
 const DailyData: React.FC<DailyProps> = ({ dailyData }) => {
   //console.log("DAILY component called: ", dailyData);
@@ -11,7 +12,7 @@ const DailyData: React.FC<DailyProps> = ({ dailyData }) => {
         {dailyData.map((day) => {
           return (
             <li key={v4()}>
-              <div>Day: {day.dt}</div>
+              <div>Forecast for {getFormattedDate(day.dt)}</div>
               <div>Clouds: {day.clouds}</div>
               <div>Dew Point: {day.dew_point}</div>
               <div>

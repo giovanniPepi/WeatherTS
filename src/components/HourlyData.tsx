@@ -1,5 +1,6 @@
 import { v4 } from "uuid";
 import { HourlyProps } from "interfaces";
+import getExactHours from "src/functions/getExactHour";
 
 const HourlyData: React.FC<HourlyProps> = ({ hourlyData }) => {
   //  console.log("hourlyData component called: ", hourlyData);
@@ -11,7 +12,7 @@ const HourlyData: React.FC<HourlyProps> = ({ hourlyData }) => {
         {hourlyData.map((hour) => {
           return (
             <li key={v4()}>
-              <div>Day: {hour.dt}</div>
+              <div>Forecast for {getExactHours(hour.dt)}</div>
               <div>Clouds: {hour.clouds}</div>
               <div>Dew Point: {hour.dew_point}</div>
               <div>Feels_like: {hour.feels_like}</div>
