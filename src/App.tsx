@@ -5,6 +5,7 @@ import type { IWeatherData } from "../interfaces";
 import getGeoAPI from "./functions/getGEOApi";
 import MinutelyData from "./components/MinutelyData";
 import HourlyData from "./components/HourlyData";
+import DailyData from "./components/DailyData";
 
 const App: React.FC = () => {
   const [apiData, setApiData] = useState<IWeatherData>();
@@ -43,6 +44,7 @@ const App: React.FC = () => {
         <MinutelyData minuteData={apiData.minutely} />
       ) : null}
       {apiData?.hourly ? <HourlyData hourlyData={apiData.hourly} /> : null}
+      {apiData?.daily ? <DailyData dailyData={apiData.daily} /> : null}
 
       <input placeholder="Search a location..." onChange={handleInputChange} />
       <button onClick={handleClick}>Submit</button>

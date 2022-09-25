@@ -2,7 +2,7 @@ import { v4 } from "uuid";
 import { HourlyProps } from "interfaces";
 
 const HourlyData: React.FC<HourlyProps> = ({ hourlyData }) => {
-  console.log("hourlyData component called: ", hourlyData);
+  //  console.log("hourlyData component called: ", hourlyData);
 
   return (
     <div>

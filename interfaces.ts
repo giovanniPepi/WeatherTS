@@ -73,7 +73,7 @@ interface IDailyWeather {
   temp: ITempDaily;
   uvi: number;
   visibility: number;
-  weather: ICurrentWeatherArray;
+  weather: CurrentWeather;
   wind_deg: number;
   wind_speed: number;
   wind_gust: number;
@@ -113,17 +113,22 @@ interface HourlyProps {
   hourlyData: HourlyArray;
 }
 
+interface DailyProps {
+  dailyData: DailyArray;
+}
+
 
 type CurrentWeather = ICurrentWeatherArray[];
 type Daily = IDailyWeather[];
 type Minutely = Iminutely[];
 type HourlyArray = IHourlyWeather[];
+type DailyArray = IDailyWeather[];
 
 
 export type {
   IWeatherData,
   apiDataProps,
   MinutelyProps,
-  HourlyProps
+  HourlyProps, DailyProps
 }  
 
