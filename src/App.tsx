@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import RealTimeData from "./components/RealTimeData";
 import getWeatherAPI from "./functions/getWeatherAPI";
 import type { IWeatherData } from "../interfaces";
+import getGeoAPI from "./functions/getGEOApi";
 
 const App: React.FC = () => {
   const [apiData, setApiData] = useState<IWeatherData>();
+  const [location, setLocation] = useState<string>("Campinas, BR");
 
   // empty dependency array to run only once
   // change to useMemo?
-
   useEffect(() => {
     const getData = async () => {
       try {
@@ -22,10 +23,25 @@ const App: React.FC = () => {
     getData();
   }, []);
 
+  //https://devtrium.com/posts/react-typescript-events
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setLocation(e.target.value);
+  };
+
+  // updates APIData when clicking
+  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("Submit clicked", location);
+    const newLoc = await getGeoAPI(location);
+    setApiData(newLoc);
+  };
+
   return (
     <main>
       <div> main app</div>
+      {/* Conditional render so we wait for the API data*/}
       {apiData ? <RealTimeData apiData={apiData} /> : null}
+      <input placeholder="Search a location..." onChange={handleInputChange} />
+      <button onClick={handleClick}>Submit</button>
     </main>
   );
 };
