@@ -4,7 +4,7 @@ import { apiDataProps } from "interfaces";
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
 
 const RealTimeData: React.FC<apiDataProps> = ({ apiData }) => {
-  // console.log("realtime component called: ", apiData);
+  console.log("realtime component called: ", apiData);
 
   return (
     <div>
@@ -14,6 +14,7 @@ const RealTimeData: React.FC<apiDataProps> = ({ apiData }) => {
           {apiData.lat}
         </div>
       ) : null}
+      {apiData.current ? <div>{apiData.current.clouds}</div> : null}
     </div>
   );
 };
