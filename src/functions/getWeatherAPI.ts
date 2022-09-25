@@ -1,4 +1,6 @@
-const getWeatherAPI = async (lat: number, lon: number, country: string): Promise<String | undefined> => {
+import { IWeatherData } from "interfaces";
+
+const getWeatherAPI = async (lat: number, lon: number, country: string): Promise<IWeatherData | undefined> => {
   
     if (country === 'BR') {
     const response = await fetch(

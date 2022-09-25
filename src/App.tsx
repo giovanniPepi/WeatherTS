@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
+import RealTimeData from "./components/RealTimeData";
 import getWeatherAPI from "./functions/getWeatherAPI";
+import type { IWeatherData } from "../interfaces";
 
-const App = () => {
-  const [apiData, setApiData] = useState<Object>();
+const App: React.FC = () => {
+  const [apiData, setApiData] = useState<IWeatherData>();
+
+  // empty dependency array to run only once
+  // change to useMemo?
 
   useEffect(() => {
     const getData = async () => {
@@ -17,7 +22,7 @@ const App = () => {
     getData();
   }, []);
 
-  return <p>teste APP</p>;
+  return <p>app</p>;
 };
 
 export default App;
