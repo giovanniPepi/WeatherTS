@@ -1,4 +1,9 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  FormEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import RealTimeData from "./components/RealTimeData";
 import getWeatherAPI from "./functions/getWeatherAPI";
 import type { IWeatherData } from "../interfaces";
@@ -37,7 +42,8 @@ const App: React.FC = () => {
   };
 
   // updates APIData when clicking
-  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
     const newLoc = await getGeoAPI(location);
     console.log(newLoc);
 
@@ -47,7 +53,6 @@ const App: React.FC = () => {
       setLocationToShow(`${newLoc.name}, ${newLoc.country}`);
     }
   };
-
   const toggleMinuteData = () => {
     setShowMinutelyData((state) => !state);
   };
@@ -67,6 +72,14 @@ const App: React.FC = () => {
         <RealTimeData apiData={apiData} locationToShow={locationToShow} />
       ) : null}
 
+      <form onSubmit={handleClick}>
+        <input
+          placeholder="Search a location..."
+          onChange={handleInputChange}
+        />
+      </form>
+      <button onClick={handleClick}>Search</button>
+
       <button onClick={toggleMinuteData}>Minute forecast</button>
       <button onClick={toggleHourlyData}>Hourly forecast</button>
       <button onClick={toggleDailyData}>Daily forecast</button>
@@ -82,9 +95,6 @@ const App: React.FC = () => {
       {showDailyData && apiData?.daily ? (
         <DailyData dailyData={apiData.daily} />
       ) : null}
-
-      <input placeholder="Search a location..." onChange={handleInputChange} />
-      <button onClick={handleClick}>Submit</button>
     </main>
   );
 };
