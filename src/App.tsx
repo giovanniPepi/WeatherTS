@@ -1,7 +1,9 @@
 import React, {
   ChangeEvent,
   FormEventHandler,
+  RefObject,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import RealTimeData from "./components/RealTimeData";
@@ -13,6 +15,7 @@ import HourlyData from "./components/HourlyData";
 import DailyData from "./components/DailyData";
 
 const App: React.FC = () => {
+  //state
   const [apiData, setApiData] = useState<IWeatherData>();
   const [location, setLocation] = useState<string>("");
   // this is the concatenated location returned by the GEO Api
@@ -21,9 +24,15 @@ const App: React.FC = () => {
   const [showDailyData, setShowDailyData] = useState<boolean>(false);
   const [showHourlyData, setShowHourlyData] = useState<boolean>(false);
 
+  //refs
+  const inputRef = useRef<HTMLInputElement>(null);
+
   // empty dependency array to run only once
   useEffect(() => {
     getData(-22.90556, -47.06083, "Campinas, BR");
+
+    //focus on input
+    inputRef.current?.focus();
   }, []);
 
   // calls weather API
@@ -76,6 +85,7 @@ const App: React.FC = () => {
         <input
           placeholder="Search a location..."
           onChange={handleInputChange}
+          ref={inputRef}
         />
       </form>
       <button onClick={handleClick}>Search</button>
