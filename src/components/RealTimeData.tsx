@@ -1,6 +1,5 @@
 import { RealTimeDataProps } from "interfaces";
 import getExactHours from "src/functions/getExactHour";
-import useClickOutside from "src/functions/useClickOutside";
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
