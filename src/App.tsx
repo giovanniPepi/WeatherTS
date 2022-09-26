@@ -11,11 +11,11 @@ const App: React.FC = () => {
   //state
   const [apiData, setApiData] = useState<IWeatherData>();
   const [location, setLocation] = useState<string>("");
-  // this is the concatenated location returned by the GEO Api
+  // the concatenated location returned by the GEO Api
   const [locationToShow, setLocationToShow] = useState<string>("Campinas, BR");
-  const [showMinutelyData, setShowMinutelyData] = useState<boolean>(false);
-  const [showDailyData, setShowDailyData] = useState<boolean>(false);
-  const [showHourlyData, setShowHourlyData] = useState<boolean>(false);
+  const [showMinutelyModal, setShowMinutelyModal] = useState<Boolean>(false);
+  const [showHourlyModal, setShowHourlyModal] = useState<Boolean>(false);
+  const [showDailyModal, setShowDailyModal] = useState<Boolean>(false);
 
   //refs
   const inputRef = useRef<HTMLInputElement>(null);
@@ -56,19 +56,19 @@ const App: React.FC = () => {
     }
   };
   const toggleMinuteData = () => {
-    setShowMinutelyData((state) => !state);
+    setShowMinutelyModal((state) => !state);
   };
 
   const toggleHourlyData = () => {
-    setShowHourlyData((state) => !state);
+    setShowHourlyModal((state) => !state);
   };
 
   const toggleDailyData = () => {
-    setShowDailyData((state) => !state);
+    setShowDailyModal((state) => !state);
   };
 
   return (
-    <main>
+    <main className="app">
       {/* Conditional render so we wait for the API data*/}
       {apiData ? (
         <RealTimeData apiData={apiData} locationToShow={locationToShow} />
@@ -87,15 +87,18 @@ const App: React.FC = () => {
       <button onClick={toggleHourlyData}>Hourly forecast</button>
       <button onClick={toggleDailyData}>Daily forecast</button>
 
-      {showMinutelyData && apiData?.minutely ? (
-        <MinutelyData minuteData={apiData.minutely} />
+      {showMinutelyModal && apiData?.minutely ? (
+        <MinutelyData
+          minuteData={apiData.minutely}
+          setShowMinutelyModal={setShowMinutelyModal}
+        />
       ) : null}
 
-      {showHourlyData && apiData?.hourly ? (
+      {showHourlyModal && apiData?.hourly ? (
         <HourlyData hourlyData={apiData.hourly} />
       ) : null}
 
-      {showDailyData && apiData?.daily ? (
+      {showDailyModal && apiData?.daily ? (
         <DailyData dailyData={apiData.daily} />
       ) : null}
     </main>

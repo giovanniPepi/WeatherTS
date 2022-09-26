@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 interface IWeatherData {
   lat: number;
   lon: number;
@@ -111,6 +113,7 @@ interface Iminutely {
 
 interface MinutelyProps {
   minuteData: Minutely;
+  setShowMinutelyModal: Dispatch<SetStateAction<Boolean>>;
 }
 
 interface HourlyProps {

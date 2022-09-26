@@ -1,5 +1,6 @@
 import { RealTimeDataProps } from "interfaces";
 import getExactHours from "src/functions/getExactHour";
+import useClickOutside from "src/functions/useClickOutside";
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
@@ -11,7 +12,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   // console.log("realtime component called: ", apiData);
 
   return (
-    <div>
+    <section className="realTimeData">
       <div>Updated at: {getExactHours(apiData.current.dt)}</div>
       <div>Current weather for {locationToShow}</div>
       <div>Clouds: {apiData.current.clouds}</div>
@@ -26,7 +27,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       <div>Visibility: {apiData.current.visibility}</div>
       <div>Weather desc: {apiData.current.weather[0].description}</div>
       <div>Weather main desc: {apiData.current.weather[0].main}</div>
-    </div>
+    </section>
   );
 };
 
