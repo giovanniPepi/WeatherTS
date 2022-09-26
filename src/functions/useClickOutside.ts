@@ -6,8 +6,8 @@ const useClickOutside = (handler: React.Dispatch<SetStateAction<Boolean>>) => {
   let domNode = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    let maybeHandler = (event) => {
-      if (!domNode.current?.contains(event.target)) {
+    let maybeHandler = (event: MouseEvent) => {
+      if (!domNode.current?.contains(event.target as HTMLElement)) {
         handler(false);
       }
     };
