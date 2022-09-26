@@ -95,11 +95,17 @@ const App: React.FC = () => {
       ) : null}
 
       {showHourlyModal && apiData?.hourly ? (
-        <HourlyData hourlyData={apiData.hourly} />
+        <HourlyData
+          hourlyData={apiData.hourly}
+          setShowHourlyModal={setShowHourlyModal}
+        />
       ) : null}
 
       {showDailyModal && apiData?.daily ? (
-        <DailyData dailyData={apiData.daily} />
+        <DailyData
+          dailyData={apiData.daily}
+          setShowDailyModal={setShowDailyModal}
+        />
       ) : null}
     </main>
   );

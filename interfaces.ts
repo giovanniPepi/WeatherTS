@@ -113,15 +113,17 @@ interface Iminutely {
 
 interface MinutelyProps {
   minuteData: Minutely;
-  setShowMinutelyModal: Dispatch<SetStateAction<Boolean>>;
+  setShowMinutelyModal: StateChanger;
 }
 
 interface HourlyProps {
   hourlyData: HourlyArray;
+  setShowHourlyModal: StateChanger;
 }
 
 interface DailyProps {
   dailyData: DailyArray;
+  setShowDailyModal: StateChanger;
 }
 
 interface RealTimeDataProps {
@@ -129,21 +131,16 @@ interface RealTimeDataProps {
   locationToShow: string;
 }
 
-interface IStateChanger {
-  setShowMinutelyModal: Dispatch<SetStateAction<Boolean>>;
-
-}
-
 type CurrentWeather = ICurrentWeatherArray[];
 type Daily = IDailyWeather[];
 type Minutely = Iminutely[];
 type HourlyArray = IHourlyWeather[];
 type DailyArray = IDailyWeather[];
-
+type StateChanger = Dispatch<SetStateAction<Boolean>>;
 
 export type {
   IWeatherData,
   MinutelyProps,
-  HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps, IStateChanger
+  HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps
 }  
 
