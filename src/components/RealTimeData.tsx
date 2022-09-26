@@ -1,6 +1,7 @@
 import { RealTimeDataProps } from "interfaces";
 import convertToKm from "src/functions/convertToKm";
 import getExactHours from "src/functions/getExactHour";
+import getWindDir from "src/functions/getWindDir";
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
@@ -26,7 +27,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       <div>Sunrise: {getExactHours(apiData.current.sunrise)}</div>
       <div>Sunset: {getExactHours(apiData.current.sunset)}</div>
       <div>Visibility: {apiData.current.visibility / 1000} km</div>
-      <div>Wind direction: {apiData.current.wind_deg}</div>
+      <div>Wind direction: {getWindDir(apiData.current.wind_deg)}</div>
       <div>Wind speed: {convertToKm(apiData.current.wind_speed)} km/h</div>
     </section>
   );
