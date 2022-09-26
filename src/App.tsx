@@ -72,10 +72,16 @@ const App: React.FC = () => {
   return (
     <motion.div
       className="home"
-      style={{ backgroundImage: `url(${backgroundImg})` }}
+      /* style={{ backgroundImage: `url(${backgroundImg}) ` }} */
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      animate={{
+        opacity: 1,
+      }}
+      transition={{ duration: 0.3 }}
+      exit={{
+        opacity: 0,
+        x: window.innerWidth,
+      }}
     >
       <main className="app">
         {/* Conditional render so we wait for the API data*/}
