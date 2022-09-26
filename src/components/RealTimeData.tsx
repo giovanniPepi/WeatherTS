@@ -14,8 +14,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   return (
     <section className="realTimeData">
       <div>Updated at: {getExactHours(apiData.current.dt)}</div>
-      <div>Current weather for {locationToShow}</div>
-      <div>Clouds: {apiData.current.clouds}</div>
+      <div>{locationToShow}</div>
+      <div>Clouds: {apiData.current.clouds} %</div>
       <div>Dew Point: {apiData.current.dew_point}</div>
       <div>Feels_like: {apiData.current.feels_like}</div>
       <div>Humidity: {apiData.current.humidity}</div>

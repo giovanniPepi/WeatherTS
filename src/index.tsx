@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
-import { Route, Routes } from "react-router";
+import AnimatedRoutes from "./components/AnimatedRoutes";
 import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
@@ -12,9 +11,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}></Route>
-      </Routes>
+      <AnimatedRoutes />
     </BrowserRouter>
+    ;
   </React.StrictMode>
 );
