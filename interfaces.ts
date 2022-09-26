@@ -129,6 +129,10 @@ interface RealTimeDataProps {
   locationToShow: string;
 }
 
+interface IStateChanger {
+  setShowMinutelyModal: Dispatch<SetStateAction<Boolean>>;
+
+}
 
 type CurrentWeather = ICurrentWeatherArray[];
 type Daily = IDailyWeather[];
@@ -140,6 +144,6 @@ type DailyArray = IDailyWeather[];
 export type {
   IWeatherData,
   MinutelyProps,
-  HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps
+  HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps, IStateChanger
 }  
 

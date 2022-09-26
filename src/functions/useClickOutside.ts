@@ -1,14 +1,14 @@
 
-import  { useEffect, useRef } from "react";
+import  React, {  SetStateAction, useEffect, useRef } from "react";
 
 
-const useClickOutside = (handler) => {
-  let domNode = useRef();
+const useClickOutside = (handler: React.Dispatch<SetStateAction<Boolean>>) => {
+  let domNode = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     let maybeHandler = (event) => {
-      if (!domNode.current.contains(event.target)) {
-        handler();
+      if (!domNode.current?.contains(event.target)) {
+        handler(false);
       }
     };
 
