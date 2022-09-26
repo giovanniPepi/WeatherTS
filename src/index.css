@@ -11,19 +11,23 @@ p {
 .app {
   position: relative;
   min-height: 100vh;
-  overflow: scroll;
+  overflow: hidden;
 }
-.minutelyDataOverlay {
+.minutelyDataOverlay,
+.hourlyDataOverlay,
+.dailyDataOverlay {
   position: absolute;
-  top: 0%;
-  left: 0%;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
   background-color: rgba(1, 1, 1, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.minutelyDataModal {
-  position: absolute;
-  top: 0%;
-  left: 30%;
+.minutelyDataModal,
+.hourlyDataModal,
+.dailyDataModal {
   background-color: white;
 }
