@@ -6,6 +6,8 @@ import getGeoAPI from "./functions/getGEOApi";
 import MinutelyData from "./components/MinutelyData";
 import HourlyData from "./components/HourlyData";
 import DailyData from "./components/DailyData";
+import { motion } from "framer-motion";
+import backgroundImg from "./img/background.jpg";
 
 const App: React.FC = () => {
   //state
@@ -68,46 +70,60 @@ const App: React.FC = () => {
   };
 
   return (
-    <main className="app">
-      {/* Conditional render so we wait for the API data*/}
-      {apiData ? (
-        <RealTimeData apiData={apiData} locationToShow={locationToShow} />
-      ) : null}
+    <motion.div
+      className="home"
+      /* style={{ backgroundImage: `url(${backgroundImg}) ` }} */
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1,
+      }}
+      transition={{ duration: 0.3 }}
+      exit={{
+        opacity: 0,
+        x: window.innerWidth,
+      }}
+    >
+      <main className="app">
+        {/* Conditional render so we wait for the API data*/}
+        {apiData ? (
+          <RealTimeData apiData={apiData} locationToShow={locationToShow} />
+        ) : null}
 
-      <form onSubmit={handleClick}>
-        <input
-          placeholder="Search a location..."
-          onChange={handleInputChange}
-          ref={inputRef}
-        />
-      </form>
-      <button onClick={handleClick}>Search</button>
+        <form onSubmit={handleClick}>
+          <input
+            placeholder="Search a location..."
+            onChange={handleInputChange}
+            ref={inputRef}
+          />
+        </form>
+        <button onClick={handleClick}>Search</button>
 
-      <button onClick={toggleMinuteData}>Minute forecast</button>
-      <button onClick={toggleHourlyData}>Hourly forecast</button>
-      <button onClick={toggleDailyData}>Daily forecast</button>
+        <button onClick={toggleMinuteData}>Minute forecast</button>
+        <button onClick={toggleHourlyData}>Hourly forecast</button>
+        <button onClick={toggleDailyData}>Daily forecast</button>
 
-      {showMinutelyModal && apiData?.minutely ? (
-        <MinutelyData
-          minuteData={apiData.minutely}
-          setShowMinutelyModal={setShowMinutelyModal}
-        />
-      ) : null}
+        {showMinutelyModal && apiData?.minutely ? (
+          <MinutelyData
+            minuteData={apiData.minutely}
+            setShowMinutelyModal={setShowMinutelyModal}
+          />
+        ) : null}
 
-      {showHourlyModal && apiData?.hourly ? (
-        <HourlyData
-          hourlyData={apiData.hourly}
-          setShowHourlyModal={setShowHourlyModal}
-        />
-      ) : null}
+        {showHourlyModal && apiData?.hourly ? (
+          <HourlyData
+            hourlyData={apiData.hourly}
+            setShowHourlyModal={setShowHourlyModal}
+          />
+        ) : null}
 
-      {showDailyModal && apiData?.daily ? (
-        <DailyData
-          dailyData={apiData.daily}
-          setShowDailyModal={setShowDailyModal}
-        />
-      ) : null}
-    </main>
+        {showDailyModal && apiData?.daily ? (
+          <DailyData
+            dailyData={apiData.daily}
+            setShowDailyModal={setShowDailyModal}
+          />
+        ) : null}
+      </main>
+    </motion.div>
   );
 };
 
