@@ -1,11 +1,4 @@
-import React, {
-  ChangeEvent,
-  FormEventHandler,
-  RefObject,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import RealTimeData from "./components/RealTimeData";
 import getWeatherAPI from "./functions/getWeatherAPI";
 import type { IWeatherData } from "../interfaces";
