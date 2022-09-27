@@ -152,6 +152,10 @@ interface rainObj {
   '3h': number | string | undefined;
 }
 
+interface NightProps {
+  night: Boolean;
+}
+
 type CurrentWeather = ICurrentWeatherArray[];
 type Daily = IDailyWeather[];
 type Minutely = Iminutely[];
@@ -164,6 +168,6 @@ export type {
   IWeatherData,
   MinutelyProps,
   HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps
-, ExtendedRealTimeDataProps
+, ExtendedRealTimeDataProps, NightProps
 }  
 
