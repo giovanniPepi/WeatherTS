@@ -9,33 +9,35 @@ interface IWeatherData {
   minutely: Minutely;
   hourly: HourlyArray;
   daily: Daily;
-  alerts: Ialerts;
+  alerts: Ialerts[];
 }
 
 interface Ialerts {
-  description: string | null;
-  end: number | null;
-  event: string | null;
-  sender_name: string | null;
-  start: number | null;
-  tags: string[] | null;
+  description: string;
+  end: number;
+  event: string;
+  sender_name: string;
+  start: number;
+  tags: string[];
 }
 
 interface IWeatherDataCurrent {
-  clouds: number;
-  dew_point: number;
-  dt: number;
-  feels_like: number;
-  humidity: number;
-  pressure: number;
-  sunrise: number;
-  sunset: number;
-  temp: number;
-  uvi: number;
-  visibility: number;
+  clouds: number | string;
+  dew_point: number | string;
+  dt: number | string;
+  feels_like: number | string;
+  humidity: number | string;
+  pressure: number | string;
+  rain: rainObj | undefined; 
+  snow: rainObj | undefined;
+  sunrise: number | string;
+  sunset: number | string;
+  temp: number | string;
+  uvi: number | string;
+  visibility: number | string;
   weather: CurrentWeather;
-  wind_deg: number;
-  wind_speed: number;
+  wind_deg: number | string;
+  wind_speed: number | string;
 }
 
 interface ICurrentWeatherArray {
@@ -46,56 +48,61 @@ interface ICurrentWeatherArray {
 }
 
 interface IFeelsLikeDaily {
-  day: number;
-  night: number;
-  eve: number; 
-  morn: number;
+  day: number | string;
+  night: number| string;
+  eve: number| string; 
+  morn: number| string;
 }
  interface ITempDaily {
-  day: number;
-  night: number;
-  eve: number; 
-   morn: number;
-   min: number;
-   max: number;
+  day: number | string;
+  night: number| string;
+  eve: number| string; 
+   morn: number| string;
+   min: number| string;
+   max: number| string;
  }
 
 interface IDailyWeather {
-  clouds: number;
-  dew_point: number;
-  dt: number;
+  clouds: number | string;
+  dew_point: number| string;
+  dt: number| string;
   feels_like: IFeelsLikeDaily;
-  humidity: number;
-  pressure: number;
-  moon_phase: number;
-  moonrise: number;
-  moonset: number;
-  sunrise: number;
-  sunset: number;
+  humidity: number| string;
+  pressure: number| string;
+  moon_phase: number| string;
+  moonrise: number| string;
+  moonset: number| string;
+  sunrise: number| string;
+  sunset: number| string;
   temp: ITempDaily;
-  uvi: number;
+  uvi: number | string;
   visibility: number;
   weather: CurrentWeather;
-  wind_deg: number;
-  wind_speed: number;
-  wind_gust: number;
+  wind_deg: number | string;
+  wind_speed: number| string;
+  wind_gust: number | string;
+  rain: number | string;
+
 }
 
 interface IHourlyWeather {
-  clouds: number;
-  dew_point: number;
-  dt: number;
-  feels_like: number;
-  humidity: number;
-  pop: number;
-  pressure: number;
-  temp: number;
-  uvi: number;
-  visibility: number;
+  clouds: number| string;
+  dew_point: number| string;
+  dt: number| string;
+  feels_like: number| string;
+  humidity: number| string;
+  pop: number| string;
+  pressure: number| string;
+  temp: number| string;
+  uvi: number | string;
+  visibility: number| string;
   weather: CurrentWeather;
-  wind_deg: number;
-  wind_gust: number;
-  wind_speed: number;
+  wind_deg: number| string;
+  wind_gust: number| string;
+  wind_speed: number | string;
+  rain: rainObj | undefined; 
+  snow: rainObj | undefined;
+
 }
 
 interface IGeoApiCall  {
@@ -107,8 +114,8 @@ interface IGeoApiCall  {
 }
 
 interface Iminutely {
-  dt: number;
-  precipitation: number;
+  dt: number | string;
+  precipitation: number | string;
 }
 
 interface MinutelyProps {
@@ -131,17 +138,31 @@ interface RealTimeDataProps {
   locationToShow: string;
 }
 
+interface ExtendedRealTimeDataProps {
+  apiData: IWeatherData;
+  locationToShow: string;
+  setShowExtendedCurrentWeather: StateChangerB;
+}
+
+interface rainObj {
+  '1h': number | string | undefined;
+  '3h': number | string | undefined;
+}
+
 type CurrentWeather = ICurrentWeatherArray[];
 type Daily = IDailyWeather[];
 type Minutely = Iminutely[];
 type HourlyArray = IHourlyWeather[];
 type DailyArray = IDailyWeather[];
 type StateChanger = Dispatch<SetStateAction<Boolean>>;
+type StateChangerB = Dispatch<SetStateAction<boolean>>;
+
 
 
 export type {
   IWeatherData,
   MinutelyProps,
   HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps
+, ExtendedRealTimeDataProps
 }  
 

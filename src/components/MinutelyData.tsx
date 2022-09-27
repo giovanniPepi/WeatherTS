@@ -1,6 +1,5 @@
 import { v4 } from "uuid";
 import { MinutelyProps } from "interfaces";
-import getExactHours from "src/functions/getExactHour";
 import useClickOutside from "src/functions/useClickOutside";
 import { motion } from "framer-motion";
 
@@ -35,7 +34,7 @@ const MinutelyData: React.FC<MinutelyProps> = ({
             {minuteData.map((minute) => {
               return (
                 <li key={v4()}>
-                  {getExactHours(minute.dt)}:{minute.precipitation}%
+                  {minute.dt}: {minute.precipitation}
                 </li>
               );
             })}
