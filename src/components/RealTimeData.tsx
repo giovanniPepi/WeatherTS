@@ -57,21 +57,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       {/* alerts */}
       {apiData.alerts && !showAlerts ? (
         <button onClick={() => setShowAlerts(true)}>
-          <motion.svg
-            className="alertSvg"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            style={{ width: '1.5rem', height: '1.5rem' }}
-            variants={svgVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.path
-              d="M13 14H11V9H13M13 18H11V16H13M1 21H23L12 2L1 21Z"
-              style={{ fill: 'rgb(253, 224, 71)' }}
-              variants={pathVariants}
-            />
-          </motion.svg>
+          <Alert />
 
           {apiData.alerts[0].sender_name}
         </button>
