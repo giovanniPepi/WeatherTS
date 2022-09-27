@@ -43,8 +43,9 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
 
   return (
     <section className="realTimeData">
-      <div>Updated at: {apiData.current.dt}</div>
-      <div>{locationToShow}</div>
+      <div>
+        {locationToShow} - {apiData.current.dt}
+      </div>
       <div>
         {getWeatherIcon(apiData.current.weather[0].main)}
         {apiData.current.weather[0].description}
@@ -65,7 +66,6 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
 
       {showAlerts ? (
         <>
-          {' '}
           {/* Colocar SVGS de acordo com tag? */}
           <div>{apiData.alerts[0].description}</div>
           <button onClick={() => setShowAlerts(false)}>
