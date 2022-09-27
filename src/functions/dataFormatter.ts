@@ -97,7 +97,7 @@ const dataFormatter = (data: IWeatherData | undefined) => {
         day.sunset = `${getExactHours(day.sunset as number)}`;
         day.pressure = `${day.pressure} hPa`;
         day.clouds = `${day.clouds} %`;
-        day.pop = `${day.pop*100} %`;
+        day.pop = `${day.pop as number * 100} %`;
         day.wind_deg = `${getWindDir(
           day.wind_deg as number
         )}`;
