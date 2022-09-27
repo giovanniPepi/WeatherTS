@@ -1,6 +1,5 @@
 import { v4 } from "uuid";
 import { DailyProps } from "interfaces";
-import getFormattedDate from "src/functions/getFormattedDate";
 import useClickOutside from "src/functions/useClickOutside";
 import { motion } from "framer-motion";
 
@@ -32,7 +31,8 @@ const DailyData: React.FC<DailyProps> = ({ dailyData, setShowDailyModal }) => {
             {dailyData.map((day) => {
               return (
                 <li key={v4()}>
-                  <div>Forecast for {getFormattedDate(day.dt)}</div>
+                  <div>Forecast for {day.dt}</div>
+                  <div>Rain {day.pop}</div>
                   <div>Clouds: {day.clouds}</div>
                   <div>Dew Point: {day.dew_point}</div>
                   <div>

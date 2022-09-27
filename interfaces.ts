@@ -82,6 +82,7 @@ interface IDailyWeather {
   wind_speed: number| string;
   wind_gust: number | string;
   rain: number | string;
+  pop: number | string;
 
 }
 
