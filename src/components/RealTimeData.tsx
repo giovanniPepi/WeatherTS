@@ -24,6 +24,15 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       <div>Feels_like: {apiData.current.feels_like}</div>
       <div>Humidity: {apiData.current.humidity}</div>
       <div>UV: {apiData.current.uvi}</div>
+
+      {apiData.alerts ? (
+        <>
+          {/* Colocar SVGS de acordo com tag? */}
+          <div>tipo alerta: {apiData.alerts[0].tags}</div>
+          <div>{apiData.alerts[0].description}</div>
+        </>
+      ) : null}
+
       <button onClick={() => setShowExtendedCurrentWeather(true)}>Complete info</button>
 
       {showExtendedCurrentWeather ? (
@@ -34,13 +43,6 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         />
       ) : null}
 
-      {apiData.alerts ? (
-        <>
-          {/* Colocar SVGS de acordo com tag? */}
-          <div>{apiData.alerts[0].tags}</div>
-          <div>{apiData.alerts[0].description}</div>
-        </>
-      ) : null}
     </section>
   );
 };

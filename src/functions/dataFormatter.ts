@@ -13,11 +13,11 @@ const dataFormatter = (data: IWeatherData | undefined) => {
     data.current.weather[0]['description'] = `${capitalizeFirst(data.current.weather[0]['description'] as string)}`;
 
     data.current.humidity = `${data?.current.humidity} %`;
-    data.current.temp = `${data.current.temp} ºC`;
-    data.current.feels_like = `${data.current.feels_like} ºC`;
+    data.current.temp = `${(data.current.temp as number).toFixed(1)} ºC`;
+    data.current.feels_like = `${(data.current.feels_like as number).toFixed(1)} ºC`;
     data.current.uvi = `${(data.current.uvi as number).toFixed(0)}`;
-    data.current.dew_point = `${data.current.dew_point} ºC`;
-    data.current.visibility = `${data.current.visibility} km`;
+    data.current.dew_point = `${(data.current.dew_point as number).toFixed(1)} ºC`;
+    data.current.visibility = `${(data.current.visibility as number)/1000} km`;
     data.current.sunrise = `${getExactHours(
       data.current.sunrise as number
     )}`;
