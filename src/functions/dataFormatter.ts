@@ -52,6 +52,9 @@ const dataFormatter = (data: IWeatherData | undefined) => {
   if (data?.hourly) {
     data.hourly.forEach((hour) => {
       hour.dt = `${getExactHours(hour.dt as number)}`;
+
+      hour.weather[0]['description'] = `${capitalizeFirst(hour.weather[0]['description'] as string)}`;
+      
       hour.humidity = `${hour.humidity} %`;
       hour.temp = `${hour.temp} ºC`;
       hour.feels_like = `${hour.feels_like} ºC`;
