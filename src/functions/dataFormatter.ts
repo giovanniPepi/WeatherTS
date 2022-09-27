@@ -51,7 +51,7 @@ const dataFormatter = (data: IWeatherData | undefined) => {
       hour.temp = `${hour.temp} ºC`;
       hour.feels_like = `${hour.feels_like} ºC`;
       hour.uvi = `${(hour.uvi as number).toFixed(0)}`;
-      data.current.dew_point = `${data.current.dew_point} ºC`;
+      hour.dew_point = `${hour.dew_point} ºC`;
       hour.visibility = `${convertToKm(hour.visibility as number)} km`;
       hour.pressure = `${hour.pressure} hPa`;
       hour.clouds = `${hour.clouds} %`;
