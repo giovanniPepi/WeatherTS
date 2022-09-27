@@ -2,6 +2,7 @@ import { ExtendedRealTimeDataProps } from "interfaces";
 import useClickOutside from "src/functions/useClickOutside";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import getWeatherIcon from "src/functions/getWeatherIcon";
 
 
 const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
@@ -37,7 +38,7 @@ const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
     <div className="extendedOverlay">
       <div className="extendedModal" ref={domNode}>
       <div>{locationToShow} - {apiData.current.dt}</div>
-      <div>{apiData.current.weather[0].description}</div>
+      <div>{getWeatherIcon(apiData.current.weather[0].main)} {(apiData.current.weather[0].description)}</div>
       <div>Temp: {apiData.current.temp}</div>
       <div>Feels_like: {apiData.current.feels_like}</div>
       <div>Humidity: {apiData.current.humidity}</div>

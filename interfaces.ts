@@ -160,8 +160,6 @@ type DailyArray = IDailyWeather[];
 type StateChanger = Dispatch<SetStateAction<Boolean>>;
 type StateChangerB = Dispatch<SetStateAction<boolean>>;
 
-
-
 export type {
   IWeatherData,
   MinutelyProps,
