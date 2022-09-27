@@ -2,6 +2,7 @@ import { v4 } from "uuid";
 import { DailyProps } from "interfaces";
 import useClickOutside from "src/functions/useClickOutside";
 import { motion } from "framer-motion";
+import getWeatherIcon from "src/functions/getWeatherIcon";
 
 const DailyData: React.FC<DailyProps> = ({ dailyData, setShowDailyModal }) => {
   //console.log("DAILY component called: ", dailyData);
@@ -57,8 +58,7 @@ const DailyData: React.FC<DailyProps> = ({ dailyData, setShowDailyModal }) => {
                     Min: {day.temp.min}
                   </div>
                   <div>UVI: {day.uvi}</div>
-                  <div>Weather desc: {day.weather[0].description}</div>
-                  <div>Weather main desc: {day.weather[0].main}</div>{" "}
+                  <div>{getWeatherIcon(day.weather[0].main)} {day.weather[0].description}</div>
                   <div>
                     Wind deg: {day.wind_deg}
                     Wind gust: {day.wind_gust}

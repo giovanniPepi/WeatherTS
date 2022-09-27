@@ -10,7 +10,6 @@ const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
   setShowExtendedCurrentWeather,
   locationToShow,
 }) => {
-
   //state
   const [showAlerts, setShowAlerts] = useState<Boolean>(false);
 
@@ -18,7 +17,6 @@ const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
   const domNode = useClickOutside(() => {
     setShowExtendedCurrentWeather(false);
   });
-
 
   return (
     <motion.div
