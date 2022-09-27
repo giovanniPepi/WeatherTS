@@ -16,7 +16,8 @@ p {
 .minutelyDataOverlay,
 .hourlyDataOverlay,
 .dailyDataOverlay,
-.extendedOverlay {
+.extendedOverlay,
+.loadingOverlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -32,4 +33,7 @@ p {
 .dailyDataModal,
 .extendedModal {
   background-color: white;
+}
+.loadingOverlay {
+  background-color: rgba(250, 194, 167, 0.05);
 }
