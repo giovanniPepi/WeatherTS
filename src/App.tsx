@@ -1,39 +1,57 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
-import RealTimeData from "./components/RealTimeData";
-import getWeatherAPI from "./functions/getWeatherAPI";
-import type { IWeatherData } from "../interfaces";
-import getGeoAPI from "./functions/getGEOApi";
-import MinutelyData from "./components/MinutelyData";
-import HourlyData from "./components/HourlyData";
-import DailyData from "./components/DailyData";
-import { motion } from "framer-motion";
-import dataFormatter from "./functions/dataFormatter";
+import React, {
+  ChangeEvent,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
+import RealTimeData from './components/RealTimeData';
+import getWeatherAPI from './functions/getWeatherAPI';
+import type { IWeatherData } from '../interfaces';
+import getGeoAPI from './functions/getGEOApi';
+import MinutelyData from './components/MinutelyData';
+import HourlyData from './components/HourlyData';
+import DailyData from './components/DailyData';
+import { motion } from 'framer-motion';
+import dataFormatter from './functions/dataFormatter';
+import Loading from './icons/Loading';
 
 const App: React.FC = () => {
   //state
   const [apiData, setApiData] = useState<IWeatherData>();
   const [rawApiData, setRawApiData] = useState<IWeatherData>();
-  const [location, setLocation] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+  const [loadingSearch, setLoadingSearch] = useState(false);
+  const [location, setLocation] = useState<string>('');
   // the concatenated location returned by the GEO Api
-  const [locationToShow, setLocationToShow] = useState<string>("Campinas, BR");
-  const [showMinutelyModal, setShowMinutelyModal] = useState<Boolean>(false);
-  const [showHourlyModal, setShowHourlyModal] = useState<Boolean>(false);
-  const [showDailyModal, setShowDailyModal] = useState<Boolean>(false);
+  const [locationToShow, setLocationToShow] =
+    useState<string>('Campinas, BR');
+  const [showMinutelyModal, setShowMinutelyModal] =
+    useState<Boolean>(false);
+  const [showHourlyModal, setShowHourlyModal] =
+    useState<Boolean>(false);
+  const [showDailyModal, setShowDailyModal] =
+    useState<Boolean>(false);
 
   //refs
   const inputRef = useRef<HTMLInputElement>(null);
 
   // empty dependency array to run only once
   useEffect(() => {
-    getData(-22.90556, -47.06083, "Campinas, BR");
+    getData(-22.90556, -47.06083, 'Campinas, BR');
     //focus on input
     inputRef.current?.focus();
   }, []);
 
   // calls weather API
-  const getData = async (lat: number, lon: number, country: string) => {
+  const getData = async (
+    lat: number,
+    lon: number,
+    country: string
+  ) => {
     try {
+      setLoading(true);
       const data = await getWeatherAPI(lat, lon, country);
+      setLoading(false);
       // store data as received for grpahics
       setRawApiData(data);
 
@@ -53,7 +71,9 @@ const App: React.FC = () => {
   // updates APIData when clicking
   const handleClick = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    setLoadingSearch(true);
     const newLoc = await getGeoAPI(location);
+    setLoadingSearch(false);
     console.log(newLoc);
 
     // avoids undefined
@@ -80,18 +100,22 @@ const App: React.FC = () => {
       /* style={{ backgroundImage: `url(${backgroundImg}) ` }} */
       initial={{ opacity: 0 }}
       animate={{
-        opacity: 1,
+        opacity: 1
       }}
       transition={{ duration: 0.3 }}
       exit={{
         opacity: 0,
-        x: window.innerWidth,
+        x: window.innerWidth
       }}
     >
       <main className="app">
+        {loading ? <Loading /> : null}
         {/* Conditional render so we wait for the API data*/}
         {apiData ? (
-          <RealTimeData apiData={apiData} locationToShow={locationToShow} />
+          <RealTimeData
+            apiData={apiData}
+            locationToShow={locationToShow}
+          />
         ) : null}
 
         <form onSubmit={handleClick}>
@@ -100,7 +124,9 @@ const App: React.FC = () => {
             onChange={handleInputChange}
             ref={inputRef}
           />
+          {loadingSearch ? <Loading /> : null}
         </form>
+
         <button onClick={handleClick}>Search</button>
 
         <button onClick={toggleMinuteData}>Minute forecast</button>
