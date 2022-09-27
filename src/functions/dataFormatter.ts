@@ -73,6 +73,8 @@ const dataFormatter = (data: IWeatherData | undefined) => {
       data.daily.forEach(day => {
         day.dt = `${getFormattedDate(day.dt as number)}`;
         day.humidity = `${day.humidity} %`;
+        day.rain = `${day.rain as number} mm`
+        day.snow = `${day.snow as number} mm`
 
         // temp array        
         day.temp.day = `${day.temp.day} ºC`;
