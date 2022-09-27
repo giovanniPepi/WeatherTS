@@ -1,5 +1,6 @@
 import Clouds from "src/icons/Clouds";
 import MoonClear from "src/icons/MoonClear";
+import Rain from "src/icons/Rain";
 import Sunny from "src/icons/Sunny";
 
 import isNight from "./isNight";
@@ -15,8 +16,6 @@ const getWeatherIcon = (weatherDesc: string) => {
     switch (weatherDesc) {
       case 'Clear':
       return <MoonClear/>
-      case 'Clouds':
-        return <Clouds night={night} />
     }
   } else {
     switch (weatherDesc) {
@@ -24,6 +23,10 @@ const getWeatherIcon = (weatherDesc: string) => {
       return <Sunny/>
       case 'Clouds':
         return <Clouds night={night} />
+      case 'Rain':
+      case 'Drizzle': 
+        return <Rain night={night}/>
+
     }
   }
 }
