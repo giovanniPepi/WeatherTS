@@ -1,6 +1,7 @@
 import { ExtendedRealTimeDataProps } from "interfaces";
 import useClickOutside from "src/functions/useClickOutside";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 
 const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
@@ -8,9 +9,15 @@ const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
   setShowExtendedCurrentWeather,
   locationToShow,
 }) => {
+
+  //state
+  const [showAlerts, setShowAlerts] = useState<Boolean>(false);
+
+  //clicks 
   const domNode = useClickOutside(() => {
     setShowExtendedCurrentWeather(false);
   });
+
 
   return (
     <motion.div
@@ -47,6 +54,15 @@ const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
 
       <div>{apiData.current.sunrise}</div>
       <div>{apiData.current.sunset}</div>
+
+      
+      {showAlerts? <>
+      <div>
+        {apiData.alerts[0].description}
+      </div>
+      <button onClick={() => setShowAlerts(false)}>Hide Alerts</button>
+      
+      </>: <button onClick={() => setShowAlerts(true)}>Show Alerts</button> }
 
 
       </div>
