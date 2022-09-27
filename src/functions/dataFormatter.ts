@@ -1,4 +1,6 @@
 import { IWeatherData } from "interfaces";
+import DailyData from "src/components/DailyData";
+import capitalizeFirst from "./capitalizeFirst";
 import convertToKm from "./convertToKm";
 import getExactHours from "./getExactHour";
 import getFormattedDate from "./getFormattedDate";
@@ -8,6 +10,9 @@ const dataFormatter = (data: IWeatherData | undefined) => {
 
   if (data?.current) {
     data.current.dt = `${getExactHours(data.current.dt as number)}`;
+
+    data.current.weather[0]['description'] = `${capitalizeFirst(data.current.weather[0]['description'] as string)}`;
+
     data.current.humidity = `${data?.current.humidity} %`;
     data.current.temp = `${data.current.temp} ºC`;
     data.current.feels_like = `${data.current.feels_like} ºC`;
@@ -90,6 +95,9 @@ const dataFormatter = (data: IWeatherData | undefined) => {
         day.feels_like.morn = `${day.feels_like.morn} ºC`;
         day.feels_like.night = `${day.feels_like.night} ºC`;     
 
+        // capitalize first
+        day.weather[0]["description"] = `${capitalizeFirst(day.weather[0]["description"] as string)}`;
+
         day.uvi = `${(day.uvi as number).toFixed(0)}`;
         day.dew_point = `${day.dew_point} ºC`;
 
@@ -100,6 +108,7 @@ const dataFormatter = (data: IWeatherData | undefined) => {
         day.pressure = `${day.pressure} hPa`;
         day.clouds = `${day.clouds} %`;
         day.pop = `${day.pop as number * 100} %`;
+
         day.wind_deg = `${getWindDir(
           day.wind_deg as number
         )}`;
