@@ -1,7 +1,9 @@
 import Clouds from "src/icons/Clouds";
 import MoonClear from "src/icons/MoonClear";
 import Rain from "src/icons/Rain";
+import Snow from "src/icons/Snow";
 import Sunny from "src/icons/Sunny";
+import Thunderstorm from "src/icons/Thunderstorm";
 
 import isNight from "./isNight";
 
@@ -16,6 +18,8 @@ const getWeatherIcon = (weatherDesc: string) => {
     switch (weatherDesc) {
       case 'Clear':
       return <MoonClear/>
+      default: 
+      console.log('Error in weather', weatherDesc, 'check getWeatherIcon');
     }
   } else {
     switch (weatherDesc) {
@@ -26,7 +30,12 @@ const getWeatherIcon = (weatherDesc: string) => {
       case 'Rain':
       case 'Drizzle': 
         return <Rain night={night}/>
-
+      case 'Thunderstorm':
+        return <Thunderstorm night={night}/>
+      case 'Snow':
+        return <Snow night={night}/>
+      default: 
+        console.log('Error in weather', weatherDesc, 'check getWeatherIcon');
     }
   }
 }
