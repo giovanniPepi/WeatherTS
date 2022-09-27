@@ -1,7 +1,6 @@
 import { RealTimeDataProps } from "interfaces";
-import convertToKm from "src/functions/convertToKm";
-import getExactHours from "src/functions/getExactHour";
-import getWindDir from "src/functions/getWindDir";
+import React, { useState } from "react";
+import ExtendedCurrentWeather from "./ExtendedCurrentWeather";
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
@@ -10,25 +9,38 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   apiData,
   locationToShow,
 }) => {
+  const [showExtendedCurrentWeather, setShowExtendedCurrentWeather] =
+    useState(false);
+
   // console.log("realtime component called: ", apiData);
+  // console.log("Alerts", apiData.alerts);
 
   return (
     <section className="realTimeData">
-      <div>Updated at: {getExactHours(apiData.current.dt)}</div>
+      <div>Updated at: {apiData.current.dt}</div>
       <div>{locationToShow}</div>
       <div>{apiData.current.weather[0].description}</div>
       <div>Temp: {apiData.current.temp}</div>
-      <div>Feels_like: {apiData.current.feels_like} ºC</div>
+      <div>Feels_like: {apiData.current.feels_like}</div>
+      <div>Humidity: {apiData.current.humidity}</div>
       <div>UV: {apiData.current.uvi}</div>
-      <div>Clouds: {apiData.current.clouds} %</div>
-      <div>Dew Point: {apiData.current.dew_point} ºC</div>
-      <div>Humidity: {apiData.current.humidity} %</div>
-      <div>Pressure: {apiData.current.pressure} hPa</div>
-      <div>Sunrise: {getExactHours(apiData.current.sunrise)}</div>
-      <div>Sunset: {getExactHours(apiData.current.sunset)}</div>
-      <div>Visibility: {apiData.current.visibility / 1000} km</div>
-      <div>Wind direction: {getWindDir(apiData.current.wind_deg)}</div>
-      <div>Wind speed: {convertToKm(apiData.current.wind_speed)} km/h</div>
+      <button>Complete info</button>
+
+      {showExtendedCurrentWeather ? (
+        <ExtendedCurrentWeather
+          setShowExtendedCurrentWeather={setShowExtendedCurrentWeather}
+          apiData={apiData}
+          locationToShow={locationToShow}
+        />
+      ) : null}
+
+      {apiData.alerts ? (
+        <>
+          {/* Colocar SVGS de acordo com tag? */}
+          <div>{apiData.alerts[0].tags}</div>
+          <div>{apiData.alerts[0].description}</div>
+        </>
+      ) : null}
     </section>
   );
 };

@@ -8,10 +8,12 @@ import HourlyData from "./components/HourlyData";
 import DailyData from "./components/DailyData";
 import { motion } from "framer-motion";
 import backgroundImg from "./img/background.jpg";
+import dataFormatter from "./functions/dataFormatter";
 
 const App: React.FC = () => {
   //state
   const [apiData, setApiData] = useState<IWeatherData>();
+  const [rawApiData, setRawApiData] = useState<IWeatherData>();
   const [location, setLocation] = useState<string>("");
   // the concatenated location returned by the GEO Api
   const [locationToShow, setLocationToShow] = useState<string>("Campinas, BR");
@@ -25,7 +27,6 @@ const App: React.FC = () => {
   // empty dependency array to run only once
   useEffect(() => {
     getData(-22.90556, -47.06083, "Campinas, BR");
-
     //focus on input
     inputRef.current?.focus();
   }, []);
@@ -34,7 +35,12 @@ const App: React.FC = () => {
   const getData = async (lat: number, lon: number, country: string) => {
     try {
       const data = await getWeatherAPI(lat, lon, country);
-      setApiData(data);
+      // store data as received for grpahics
+      setRawApiData(data);
+
+      // data formatting before displaying in components
+      setApiData(dataFormatter(data));
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
