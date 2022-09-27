@@ -54,7 +54,6 @@ const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
       <div>{apiData.current.sunrise}</div>
       <div>{apiData.current.sunset}</div>
 
-      
       {showAlerts? <>
       <div>
         {apiData.alerts[0].description}
