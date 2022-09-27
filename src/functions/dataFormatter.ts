@@ -71,6 +71,13 @@ const dataFormatter = (data: IWeatherData | undefined) => {
       hour.wind_speed = `${convertToKm(
         hour.wind_speed as number
       )} km/h`;
+
+      hour.wind_gust = `${convertToKm(
+        hour.wind_gust as number
+      )} km/h`;
+
+
+
       if (hour.rain) {
         hour.rain["1h"] = `${hour.rain["1h"]} mm`;
         if (hour.rain["3h"])
