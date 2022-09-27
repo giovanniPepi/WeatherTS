@@ -7,7 +7,6 @@ import MinutelyData from "./components/MinutelyData";
 import HourlyData from "./components/HourlyData";
 import DailyData from "./components/DailyData";
 import { motion } from "framer-motion";
-import backgroundImg from "./img/background.jpg";
 import dataFormatter from "./functions/dataFormatter";
 
 const App: React.FC = () => {
