@@ -24,7 +24,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       <div>Feels_like: {apiData.current.feels_like}</div>
       <div>Humidity: {apiData.current.humidity}</div>
       <div>UV: {apiData.current.uvi}</div>
-      <button>Complete info</button>
+      <button onClick={() => setShowExtendedCurrentWeather(true)}>Complete info</button>
 
       {showExtendedCurrentWeather ? (
         <ExtendedCurrentWeather
