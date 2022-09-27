@@ -55,6 +55,8 @@ const dataFormatter = (data: IWeatherData | undefined) => {
 
       hour.weather[0]['description'] = `${capitalizeFirst(hour.weather[0]['description'] as string)}`;
       
+      hour.pop = `${hour.pop as number * 100}%`
+
       hour.humidity = `${hour.humidity} %`;
       hour.temp = `${hour.temp} ºC`;
       hour.feels_like = `${hour.feels_like} ºC`;
