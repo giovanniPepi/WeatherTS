@@ -1,5 +1,4 @@
 import { IWeatherData } from "interfaces";
-import DailyData from "src/components/DailyData";
 import capitalizeFirst from "./capitalizeFirst";
 import convertToKm from "./convertToKm";
 import getExactHours from "./getExactHour";
