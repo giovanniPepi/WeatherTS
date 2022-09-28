@@ -50,18 +50,18 @@ const dataFormatter = (data: IWeatherData | undefined) => {
   }
   if (data?.hourly) {
     data.hourly.forEach((hour) => {
-      hour.dt = `${getExactHours(hour.dt as number)}`;
+      hour.dt = `${getFormattedDate(hour.dt as number)} ${getExactHours(hour.dt as number)}`;
 
       hour.weather[0]['description'] = `${capitalizeFirst(hour.weather[0]['description'] as string)}`;
       
       hour.pop = `${hour.pop as number * 100}%`
 
       hour.humidity = `${hour.humidity} %`;
-      hour.temp = `${hour.temp} ºC`;
-      hour.feels_like = `${hour.feels_like} ºC`;
+      hour.temp = `${(hour.temp as number).toFixed(1)} ºC`;
+      hour.feels_like = `${(hour.feels_like as number).toFixed(1)} ºC`;
       hour.uvi = `${(hour.uvi as number).toFixed(0)}`;
       hour.dew_point = `${hour.dew_point} ºC`;
-      hour.visibility = `${convertToKm(hour.visibility as number)} km`;
+      hour.visibility = `${(hour.visibility as number) / 1000} km`;
       hour.pressure = `${hour.pressure} hPa`;
       hour.clouds = `${hour.clouds} %`;
       hour.wind_deg = `${getWindDir(
