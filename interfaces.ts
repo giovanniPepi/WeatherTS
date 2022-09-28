@@ -114,6 +114,7 @@ interface IGeoApiCall  {
   lon: number;
   name: string;
   state: string;
+
 }
 
 interface Iminutely {
@@ -124,6 +125,10 @@ interface Iminutely {
 interface MinutelyProps {
   minuteData: Minutely;
   setShowMinutelyModal: StateChanger;
+  }
+
+interface MinutelyChartProps {
+  minuteData: Minutely;
 }
 
 interface HourlyProps {
@@ -173,6 +178,6 @@ export type {
   IWeatherData,
   MinutelyProps,
   HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps
-, ExtendedRealTimeDataProps, NightProps, AlertsModalProps
+, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, MinutelyChartProps
 }  
 

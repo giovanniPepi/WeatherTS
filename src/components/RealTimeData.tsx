@@ -41,16 +41,20 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           apiData={apiData}
           setShowAlertsModal={setShowAlertsModal}
         />
-      ) : (
+      ) : null}
+      {apiData.alerts ? (
         <button
           className="alertBtnHome"
           onClick={() => setShowAlertsModal(true)}
         >
-          <Alert /> {apiData.alerts[0].sender_name}
+          <Alert /> {apiData.alerts[0]?.sender_name}
         </button>
-      )}
+      ) : null}
 
-      <button onClick={() => setShowExtendedCurrentWeather(true)}>
+      <button
+        onClick={() => setShowExtendedCurrentWeather(true)}
+        className="completInfoBtn"
+      >
         Complete info
       </button>
 

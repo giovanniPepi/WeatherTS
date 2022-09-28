@@ -1,6 +1,7 @@
 :root {
   --radius: 10px;
   --divPadding: 1rem;
+  --btnPadding: 0.5rem;
 }
 body {
   height: 100vh;
@@ -77,11 +78,15 @@ svg {
 
 /* --------------- END OVERLAY CONFIG----------- */
 
-.alertBtnHome {
+/* ----------------------- HOME UI ELEMENTS */
+.alertBtnHome,
+.completInfoBtn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border: 2px solid black;
+  border: 1px solid black;
+  padding: var(--btnPadding);
   border-radius: var(--radius);
 }
+/* ----------------------- END HOME UI ELEMENTS */
