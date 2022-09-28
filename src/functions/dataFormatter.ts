@@ -6,7 +6,6 @@ import getFormattedDate from "./getFormattedDate";
 import getWindDir from "./getWindDir";
 
 const dataFormatter = (data: IWeatherData | undefined) => {
-
   if (data?.current) {
     data.current.dt = `${getExactHours(data.current.dt as number)}`;
 

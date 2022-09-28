@@ -114,6 +114,7 @@ interface IGeoApiCall  {
   lon: number;
   name: string;
   state: string;
+
 }
 
 interface Iminutely {
@@ -124,7 +125,7 @@ interface Iminutely {
 interface MinutelyProps {
   minuteData: Minutely;
   setShowMinutelyModal: StateChanger;
-}
+  }
 
 interface MinutelyChartProps {
   minuteData: Minutely;

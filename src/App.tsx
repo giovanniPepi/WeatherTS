@@ -18,7 +18,6 @@ import Loading from './icons/Loading';
 const App: React.FC = () => {
   //state
   const [apiData, setApiData] = useState<IWeatherData>();
-  const [rawApiData, setRawApiData] = useState<IWeatherData>();
   const [loading, setLoading] = useState(false);
   const [loadingSearch, setLoadingSearch] = useState(false);
   const [location, setLocation] = useState<string>('');
@@ -52,8 +51,6 @@ const App: React.FC = () => {
       setLoading(true);
       const data = await getWeatherAPI(lat, lon, country);
       setLoading(false);
-      // store data as received for grpahics
-      setRawApiData(data);
 
       // data formatting before displaying in components
       setApiData(dataFormatter(data));
