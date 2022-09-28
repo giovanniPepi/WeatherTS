@@ -27,18 +27,41 @@ const Charts: React.FC<MinutelyChartProps> = ({ minuteData }) => {
 
   return (
     <Line
+      height={400}
+      width={600}
       data={{
         labels: xAxis,
         datasets: [
           {
-            label: 'fucking label',
+            label: 'Probability of rain, %',
             data: pptArray,
-            backgroundColor: ['red', 'blue', 'green']
+            backgroundColor: ['blue']
           }
         ]
       }}
-      height={400}
-      width={600}
+      options={{
+        animations: {
+          tension: {
+            duration: 1000,
+            easing: 'linear',
+            from: 1,
+            to: 0,
+            loop: true
+          }
+        },
+        scales: {
+          y: {
+            grid: {
+              display: false
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            }
+          }
+        }
+      }}
     />
   );
 };

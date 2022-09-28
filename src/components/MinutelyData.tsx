@@ -7,13 +7,9 @@ const MinutelyData: React.FC<MinutelyProps> = ({
   minuteData,
   setShowMinutelyModal
 }) => {
-  // console.log("MinutelyData component called: ", minuteData);
-
   const domNode = useClickOutside(() => {
     setShowMinutelyModal(false);
   });
-
-  console.log(minuteData);
 
   return (
     <section className="minutelyDataOverlay">
