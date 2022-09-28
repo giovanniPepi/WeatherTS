@@ -1,10 +1,13 @@
-import { v4 } from "uuid";
-import { DailyProps } from "interfaces";
-import useClickOutside from "src/functions/useClickOutside";
-import { motion } from "framer-motion";
-import getWeatherIcon from "src/functions/getWeatherIcon";
+import { v4 } from 'uuid';
+import { DailyProps } from 'interfaces';
+import useClickOutside from 'src/functions/useClickOutside';
+import { motion } from 'framer-motion';
+import getWeatherIcon from 'src/functions/getWeatherIcon';
 
-const DailyData: React.FC<DailyProps> = ({ dailyData, setShowDailyModal }) => {
+const DailyData: React.FC<DailyProps> = ({
+  dailyData,
+  setShowDailyModal
+}) => {
   //console.log("DAILY component called: ", dailyData);
 
   const domNode = useClickOutside(() => {
@@ -17,12 +20,12 @@ const DailyData: React.FC<DailyProps> = ({ dailyData, setShowDailyModal }) => {
       /* style={{ backgroundImage: `url(${backgroundImg}) ` }} */
       initial={{ opacity: 0 }}
       animate={{
-        opacity: 1,
+        opacity: 1
       }}
       transition={{ duration: 0.5 }}
       exit={{
         opacity: 0,
-        x: window.innerWidth,
+        x: window.innerWidth
       }}
     >
       <section className="dailyDataOverlay">
@@ -37,8 +40,13 @@ const DailyData: React.FC<DailyProps> = ({ dailyData, setShowDailyModal }) => {
                   <div>Clouds: {day.clouds}</div>
                   <div>Dew Point: {day.dew_point}</div>
                   <div>
-                    Feels_like: Day: {day.feels_like.day}
-                    Eve: {day.feels_like.eve}
+                    Feels_like:
+                    {day.feels_like.day ? (
+                      <div>Day: {day.feels_like.day}</div>
+                    ) : null}
+                    {day.feels_like.eve ? (
+                      <div>Eve: {day.feels_like.eve}</div>
+                    ) : null}
                     Morn: {day.feels_like.morn}
                     Night: {day.feels_like.night}
                   </div>
@@ -58,7 +66,10 @@ const DailyData: React.FC<DailyProps> = ({ dailyData, setShowDailyModal }) => {
                     Min: {day.temp.min}
                   </div>
                   <div>UVI: {day.uvi}</div>
-                  <div>{getWeatherIcon(day.weather[0].main)} {day.weather[0].description}</div>
+                  <div>
+                    {getWeatherIcon(day.weather[0].main)}{' '}
+                    {day.weather[0].description}
+                  </div>
                   <div>
                     Wind deg: {day.wind_deg}
                     Wind gust: {day.wind_gust}

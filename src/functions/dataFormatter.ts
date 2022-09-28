@@ -97,7 +97,7 @@ const dataFormatter = (data: IWeatherData | undefined) => {
         const formattedTemps: string[] = []
         temps.forEach((temp) => {
           // fix to 1 decimal
-          formattedTemps.push((temp as number).toFixed(1));
+          formattedTemps.push(`${(temp as number).toFixed(1)} ºC`);
         })
         const newTempObj = {
           day: formattedTemps[0],
@@ -109,11 +109,26 @@ const dataFormatter = (data: IWeatherData | undefined) => {
         }
         day.temp = newTempObj;
 
-        //feelsLike array
-        day.feels_like.day = `${day.feels_like.day} ºC`;
+        //feelsLike obj
+/*         day.feels_like.day = `${day.feels_like.day} ºC`;
         day.feels_like.eve = `${day.feels_like.eve} ºC`;
         day.feels_like.morn = `${day.feels_like.morn} ºC`;
-        day.feels_like.night = `${day.feels_like.night} ºC`;     
+        day.feels_like.night = `${day.feels_like.night} ºC`;  */
+        const feelsLike = Object.values(day.feels_like);
+        const formattedFeelsLike: string[] = []
+        feelsLike.forEach((feel) => {
+          // fix to 1 decimal and add ºC
+          formattedFeelsLike.push(`${(feel as number).toFixed(1)} ºC`);
+        })
+        const newFeelsLikeObj = {
+          day: formattedFeelsLike[0],
+          min: formattedFeelsLike[1],
+          max: formattedFeelsLike[2],
+          night: formattedFeelsLike[3],
+          eve: formattedFeelsLike[4],
+          morn: formattedFeelsLike[5]
+        }
+        day.feels_like = newFeelsLikeObj;
 
         // capitalize first
         day.weather[0]["description"] = `${capitalizeFirst(day.weather[0]["description"] as string)}`;
