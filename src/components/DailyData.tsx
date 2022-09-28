@@ -40,15 +40,40 @@ const DailyData: React.FC<DailyProps> = ({
                   <div>Clouds: {day.clouds}</div>
                   <div>Dew Point: {day.dew_point}</div>
                   <div>
-                    Feels_like:
-                    {day.feels_like.day ? (
-                      <div>Day: {day.feels_like.day}</div>
+                    Temperature:
+                    {/* Conditional rendering to avoid empty when the api doesn't provide values*/}
+                    {day.temp.morn ? (
+                      <div>
+                        Morning: {day.temp.morn}
+                        {day.feels_like.morn ? (
+                          <> Feels Like {day.feels_like.morn}</>
+                        ) : null}
+                      </div>
                     ) : null}
-                    {day.feels_like.eve ? (
-                      <div>Eve: {day.feels_like.eve}</div>
+                    {day.temp.day ? (
+                      <div>
+                        Day: {day.temp.day}
+                        {day.feels_like.day ? (
+                          <> Feels Like {day.feels_like.day}</>
+                        ) : null}
+                      </div>
                     ) : null}
-                    Morn: {day.feels_like.morn}
-                    Night: {day.feels_like.night}
+                    {day.temp.eve ? (
+                      <div>
+                        Evening: {day.temp.eve}
+                        {day.feels_like.eve ? (
+                          <> Feels Like {day.feels_like.eve}</>
+                        ) : null}
+                      </div>
+                    ) : null}
+                    {day.temp.night ? (
+                      <div>
+                        Night: {day.temp.night}
+                        {day.feels_like.night ? (
+                          <> Feels Like {day.feels_like.night}</>
+                        ) : null}
+                      </div>
+                    ) : null}
                   </div>
                   <div>Humidity: {day.humidity}</div>
                   <div>Moon Phase: {day.moon_phase}</div>
@@ -57,14 +82,7 @@ const DailyData: React.FC<DailyProps> = ({
                   <div>Pressure: {day.pressure}</div>
                   <div>Sunrise: {day.sunrise}</div>
                   <div>Sunset: {day.sunset}</div>
-                  <div>
-                    Morn: {day.temp.morn}
-                    Day: {day.temp.day}
-                    Eve: {day.temp.eve}
-                    Night: {day.temp.night}
-                    Max: {day.temp.max}
-                    Min: {day.temp.min}
-                  </div>
+
                   <div>UVI: {day.uvi}</div>
                   <div>
                     {getWeatherIcon(day.weather[0].main)}{' '}
