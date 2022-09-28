@@ -4,6 +4,8 @@ import getWeatherIcon from 'src/functions/getWeatherIcon';
 import Alert from 'src/icons/Alerts';
 import ExtendedCurrentWeather from './ExtendedCurrentWeather';
 import { motion } from 'framer-motion';
+import getWindDir from 'src/functions/getWindDir';
+import convertToKm from 'src/functions/convertToKm';
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
@@ -16,30 +18,6 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   const [showExtendedCurrentWeather, setShowExtendedCurrentWeather] =
     useState(false);
   const [showAlerts, setShowAlerts] = useState(false);
-
-  //svg animation
-  // https://www.youtube.com/watch?v=ILxNdOtKbNQ
-  const svgVariants = {
-    hidden: { rotate: -90 },
-    visible: {
-      rotate: 0,
-      transition: { duration: 1 }
-    }
-  };
-  const pathVariants = {
-    hidden: {
-      opacity: 0,
-      pathLength: 0
-    },
-    visible: {
-      opacity: 1,
-      pathLength: 1,
-      transition: {
-        duration: 2,
-        ease: 'easeInOut'
-      }
-    }
-  };
 
   return (
     <section className="realTimeData">
@@ -54,6 +32,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       <div>Feels_like: {apiData.current.feels_like}</div>
       <div>Humidity: {apiData.current.humidity}</div>
       <div>UV: {apiData.current.uvi}</div>
+      <div>{apiData.current.wind_deg as number}</div>
+      <div>{apiData.current.wind_speed as number}</div>
 
       {/* alerts */}
       {apiData.alerts && !showAlerts ? (

@@ -3,6 +3,8 @@ import useClickOutside from 'src/functions/useClickOutside';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
+import getWindDir from 'src/functions/getWindDir';
+import convertToKm from 'src/functions/convertToKm';
 
 const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
   apiData,
@@ -45,6 +47,9 @@ const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
           <div>Humidity: {apiData.current.humidity}</div>
           <div>UV: {apiData.current.uvi}</div>
           <div>{apiData.current.clouds}</div>
+          <div>{apiData.current.wind_deg as number}</div>
+          <div>{apiData.current.wind_speed as number}</div>
+
           <div>{apiData.current.dew_point}</div>
           <div>{apiData.current.pressure}</div>
           <div>{apiData.current.visibility}</div>

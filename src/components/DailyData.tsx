@@ -36,11 +36,12 @@ const DailyData: React.FC<DailyProps> = ({
               return (
                 <li key={v4()}>
                   <div>Forecast for {day.dt}</div>
-                  <div>Rain {day.pop}</div>
-                  <div>Clouds: {day.clouds}</div>
-                  <div>Dew Point: {day.dew_point}</div>
                   <div>
-                    Temperature:
+                    {getWeatherIcon(day.weather[0].main)}{' '}
+                    {day.weather[0].description}
+                  </div>
+                  <div>
+                    Temperature
                     {/* Conditional rendering to avoid empty when the api doesn't provide values*/}
                     {day.temp.morn ? (
                       <div>
@@ -76,23 +77,21 @@ const DailyData: React.FC<DailyProps> = ({
                     ) : null}
                   </div>
                   <div>Humidity: {day.humidity}</div>
-                  <div>Moon Phase: {day.moon_phase}</div>
-                  <div>Moonrise: {day.moonrise}</div>
-                  <div>Moonset: {day.moonset}</div>
-                  <div>Pressure: {day.pressure}</div>
-                  <div>Sunrise: {day.sunrise}</div>
-                  <div>Sunset: {day.sunset}</div>
-
-                  <div>UVI: {day.uvi}</div>
-                  <div>
-                    {getWeatherIcon(day.weather[0].main)}{' '}
-                    {day.weather[0].description}
-                  </div>
+                  <div>UVI {day.uvi}</div>
                   <div>
                     Wind deg: {day.wind_deg}
                     Wind gust: {day.wind_gust}
                     Wind speed: {day.wind_speed}
                   </div>
+                  <div>Clouds: {day.clouds}</div>
+                  <div>Dew Point: {day.dew_point}</div>
+                  <div>Pressure: {day.pressure}</div>
+                  <div>Rain {day.pop}</div>
+                  <div>Sunrise: {day.sunrise}</div>
+                  <div>Sunset: {day.sunset}</div>
+                  <div>Moon Phase: {day.moon_phase}</div>
+                  <div>Moonrise: {day.moonrise}</div>
+                  <div>Moonset: {day.moonset}</div>
                 </li>
               );
             })}
