@@ -126,6 +126,10 @@ interface MinutelyProps {
   setShowMinutelyModal: StateChanger;
 }
 
+interface MinutelyChartProps {
+  minuteData: Minutely;
+}
+
 interface HourlyProps {
   hourlyData: HourlyArray;
   setShowHourlyModal: StateChanger;
@@ -173,6 +177,6 @@ export type {
   IWeatherData,
   MinutelyProps,
   HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps
-, ExtendedRealTimeDataProps, NightProps, AlertsModalProps
+, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, MinutelyChartProps
 }  
 

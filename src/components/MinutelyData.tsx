@@ -1,11 +1,12 @@
-import { v4 } from "uuid";
-import { MinutelyProps } from "interfaces";
-import useClickOutside from "src/functions/useClickOutside";
-import { motion } from "framer-motion";
+import { v4 } from 'uuid';
+import { MinutelyProps } from 'interfaces';
+import useClickOutside from 'src/functions/useClickOutside';
+import { motion } from 'framer-motion';
+import Charts from './Charts';
 
 const MinutelyData: React.FC<MinutelyProps> = ({
   minuteData,
-  setShowMinutelyModal,
+  setShowMinutelyModal
 }) => {
   // console.log("MinutelyData component called: ", minuteData);
 
@@ -13,23 +14,25 @@ const MinutelyData: React.FC<MinutelyProps> = ({
     setShowMinutelyModal(false);
   });
 
+  console.log(minuteData);
+
   return (
     <motion.div
       className="minutely"
       /* style={{ backgroundImage: `url(${backgroundImg}) ` }} */
       initial={{ opacity: 0 }}
       animate={{
-        opacity: 1,
+        opacity: 1
       }}
       transition={{ duration: 0.5 }}
       exit={{
         opacity: 0,
-        x: window.innerWidth,
+        x: window.innerWidth
       }}
     >
       <section className="minutelyDataOverlay">
         <div className="minutelyDataModal" ref={domNode}>
-          Minutely:
+          {/*           Minutely:
           <ul>
             {minuteData.map((minute) => {
               return (
@@ -38,8 +41,9 @@ const MinutelyData: React.FC<MinutelyProps> = ({
                 </li>
               );
             })}
-          </ul>
+          </ul> */}
         </div>
+        <Charts minuteData={minuteData} />
       </section>
     </motion.div>
   );

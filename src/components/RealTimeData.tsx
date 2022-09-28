@@ -50,7 +50,10 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         </button>
       )}
 
-      <button onClick={() => setShowExtendedCurrentWeather(true)}>
+      <button
+        onClick={() => setShowExtendedCurrentWeather(true)}
+        className="completInfoBtn"
+      >
         Complete info
       </button>
 
