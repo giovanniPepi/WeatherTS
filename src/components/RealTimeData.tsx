@@ -1,48 +1,68 @@
-import { RealTimeDataProps } from "interfaces";
-import React, { useState } from "react";
-import ExtendedCurrentWeather from "./ExtendedCurrentWeather";
+import { RealTimeDataProps } from 'interfaces';
+import React, { useState } from 'react';
+import getWeatherIcon from 'src/functions/getWeatherIcon';
+import Alert from 'src/icons/Alerts';
+import AlertsModal from './AlertOverlay';
+import ExtendedCurrentWeather from './ExtendedCurrentWeather';
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
 
 const RealTimeData: React.FC<RealTimeDataProps> = ({
   apiData,
-  locationToShow,
+  locationToShow
 }) => {
+  //state
   const [showExtendedCurrentWeather, setShowExtendedCurrentWeather] =
     useState(false);
-
-  // console.log("realtime component called: ", apiData);
-  // console.log("Alerts", apiData.alerts);
+  const [showAlertsModal, setShowAlertsModal] =
+    useState<Boolean>(false);
 
   return (
     <section className="realTimeData">
-      <div>Updated at: {apiData.current.dt}</div>
-      <div>{locationToShow}</div>
-      <div>{apiData.current.weather[0].description}</div>
+      <div>
+        {locationToShow} - {apiData.current.dt}
+      </div>
+      <div>
+        {getWeatherIcon(apiData.current.weather[0].main)}
+        {apiData.current.weather[0].description}
+      </div>
       <div>Temp: {apiData.current.temp}</div>
       <div>Feels_like: {apiData.current.feels_like}</div>
       <div>Humidity: {apiData.current.humidity}</div>
       <div>UV: {apiData.current.uvi}</div>
+      <div>{apiData.current.wind_deg as number}</div>
+      <div>{apiData.current.wind_speed as number}</div>
 
-      {apiData.alerts ? (
-        <>
-          {/* Colocar SVGS de acordo com tag? */}
-          <div>tipo alerta: {apiData.alerts[0].tags}</div>
-          <div>{apiData.alerts[0].description}</div>
-        </>
-      ) : null}
+      {/* alerts */}
 
-      <button onClick={() => setShowExtendedCurrentWeather(true)}>Complete info</button>
+      {apiData.alerts && showAlertsModal ? (
+        <AlertsModal
+          apiData={apiData}
+          setShowAlertsModal={setShowAlertsModal}
+        />
+      ) : (
+        <button
+          className="alertBtnHome"
+          onClick={() => setShowAlertsModal(true)}
+        >
+          <Alert /> {apiData.alerts[0].sender_name}
+        </button>
+      )}
+
+      <button onClick={() => setShowExtendedCurrentWeather(true)}>
+        Complete info
+      </button>
 
       {showExtendedCurrentWeather ? (
         <ExtendedCurrentWeather
-          setShowExtendedCurrentWeather={setShowExtendedCurrentWeather}
+          setShowExtendedCurrentWeather={
+            setShowExtendedCurrentWeather
+          }
           apiData={apiData}
           locationToShow={locationToShow}
         />
       ) : null}
-
     </section>
   );
 };

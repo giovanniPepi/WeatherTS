@@ -1,9 +1,13 @@
-import { v4 } from "uuid";
-import { DailyProps } from "interfaces";
-import useClickOutside from "src/functions/useClickOutside";
-import { motion } from "framer-motion";
+import { v4 } from 'uuid';
+import { DailyProps } from 'interfaces';
+import useClickOutside from 'src/functions/useClickOutside';
+import { motion } from 'framer-motion';
+import getWeatherIcon from 'src/functions/getWeatherIcon';
 
-const DailyData: React.FC<DailyProps> = ({ dailyData, setShowDailyModal }) => {
+const DailyData: React.FC<DailyProps> = ({
+  dailyData,
+  setShowDailyModal
+}) => {
   //console.log("DAILY component called: ", dailyData);
 
   const domNode = useClickOutside(() => {
@@ -16,12 +20,12 @@ const DailyData: React.FC<DailyProps> = ({ dailyData, setShowDailyModal }) => {
       /* style={{ backgroundImage: `url(${backgroundImg}) ` }} */
       initial={{ opacity: 0 }}
       animate={{
-        opacity: 1,
+        opacity: 1
       }}
       transition={{ duration: 0.5 }}
       exit={{
         opacity: 0,
-        x: window.innerWidth,
+        x: window.innerWidth
       }}
     >
       <section className="dailyDataOverlay">
@@ -32,38 +36,62 @@ const DailyData: React.FC<DailyProps> = ({ dailyData, setShowDailyModal }) => {
               return (
                 <li key={v4()}>
                   <div>Forecast for {day.dt}</div>
-                  <div>Rain {day.pop}</div>
-                  <div>Clouds: {day.clouds}</div>
-                  <div>Dew Point: {day.dew_point}</div>
                   <div>
-                    Feels_like: Day: {day.feels_like.day}
-                    Eve: {day.feels_like.eve}
-                    Morn: {day.feels_like.morn}
-                    Night: {day.feels_like.night}
+                    {getWeatherIcon(day.weather[0].main)}{' '}
+                    {day.weather[0].description}
+                  </div>
+                  <div>
+                    Temperature
+                    {/* Conditional rendering to avoid empty when the api doesn't provide values*/}
+                    {day.temp.morn ? (
+                      <div>
+                        Morning: {day.temp.morn}
+                        {day.feels_like.morn ? (
+                          <> Feels Like {day.feels_like.morn}</>
+                        ) : null}
+                      </div>
+                    ) : null}
+                    {day.temp.day ? (
+                      <div>
+                        Day: {day.temp.day}
+                        {day.feels_like.day ? (
+                          <> Feels Like {day.feels_like.day}</>
+                        ) : null}
+                      </div>
+                    ) : null}
+                    {day.temp.eve ? (
+                      <div>
+                        Evening: {day.temp.eve}
+                        {day.feels_like.eve ? (
+                          <> Feels Like {day.feels_like.eve}</>
+                        ) : null}
+                      </div>
+                    ) : null}
+                    {day.temp.night ? (
+                      <div>
+                        Night: {day.temp.night}
+                        {day.feels_like.night ? (
+                          <> Feels Like {day.feels_like.night}</>
+                        ) : null}
+                      </div>
+                    ) : null}
                   </div>
                   <div>Humidity: {day.humidity}</div>
-                  <div>Moon Phase: {day.moon_phase}</div>
-                  <div>Moonrise: {day.moonrise}</div>
-                  <div>Moonset: {day.moonset}</div>
-                  <div>Pressure: {day.pressure}</div>
-                  <div>Sunrise: {day.sunrise}</div>
-                  <div>Sunset: {day.sunset}</div>
-                  <div>
-                    Morn: {day.temp.morn}
-                    Day: {day.temp.day}
-                    Eve: {day.temp.eve}
-                    Night: {day.temp.night}
-                    Max: {day.temp.max}
-                    Min: {day.temp.min}
-                  </div>
-                  <div>UVI: {day.uvi}</div>
-                  <div>Weather desc: {day.weather[0].description}</div>
-                  <div>Weather main desc: {day.weather[0].main}</div>{" "}
+                  <div>UVI {day.uvi}</div>
                   <div>
                     Wind deg: {day.wind_deg}
                     Wind gust: {day.wind_gust}
                     Wind speed: {day.wind_speed}
                   </div>
+                  <div>Clouds: {day.clouds}</div>
+                  <div>Dew Point: {day.dew_point}</div>
+                  <div>Pressure: {day.pressure}</div>
+                  <div>Rain {day.pop}</div>
+                  <div>Sunrise: {day.sunrise}</div>
+                  <div>Sunset: {day.sunset}</div>
+                  <div>Moon Phase: {day.moon_phase}</div>
+                  <div>Moonrise: {day.moonrise}</div>
+                  <div>Moonset: {day.moonset}</div>
                 </li>
               );
             })}

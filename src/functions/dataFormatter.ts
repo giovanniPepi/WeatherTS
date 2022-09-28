@@ -50,18 +50,18 @@ const dataFormatter = (data: IWeatherData | undefined) => {
   }
   if (data?.hourly) {
     data.hourly.forEach((hour) => {
-      hour.dt = `${getExactHours(hour.dt as number)}`;
+      hour.dt = `${getFormattedDate(hour.dt as number)} ${getExactHours(hour.dt as number)}`;
 
       hour.weather[0]['description'] = `${capitalizeFirst(hour.weather[0]['description'] as string)}`;
       
       hour.pop = `${hour.pop as number * 100}%`
 
       hour.humidity = `${hour.humidity} %`;
-      hour.temp = `${hour.temp} ºC`;
-      hour.feels_like = `${hour.feels_like} ºC`;
+      hour.temp = `${(hour.temp as number).toFixed(1)} ºC`;
+      hour.feels_like = `${(hour.feels_like as number).toFixed(1)} ºC`;
       hour.uvi = `${(hour.uvi as number).toFixed(0)}`;
       hour.dew_point = `${hour.dew_point} ºC`;
-      hour.visibility = `${convertToKm(hour.visibility as number)} km`;
+      hour.visibility = `${(hour.visibility as number) / 1000} km`;
       hour.pressure = `${hour.pressure} hPa`;
       hour.clouds = `${hour.clouds} %`;
       hour.wind_deg = `${getWindDir(
@@ -92,19 +92,43 @@ const dataFormatter = (data: IWeatherData | undefined) => {
         day.rain = `${day.rain as number} mm`
         day.snow = `${day.snow as number} mm`
 
-        // temp array        
-        day.temp.day = `${day.temp.day} ºC`;
-        day.temp.eve = `${day.temp.eve} ºC`;
-        day.temp.morn = `${day.temp.morn} ºC`;
-        day.temp.min = `${day.temp.min} ºC`;
-        day.temp.max = `${day.temp.max} ºC`;
-        day.temp.night = `${day.temp.night} ºC`;     
+        // temp obj        
+        const temps = Object.values(day.temp);
+        const formattedTemps: string[] = []
+        temps.forEach((temp) => {
+          // fix to 1 decimal
+          formattedTemps.push(`${(temp as number).toFixed(1)} ºC`);
+        })
+        const newTempObj = {
+          day: formattedTemps[0],
+          min: formattedTemps[1],
+          max: formattedTemps[2],
+          night: formattedTemps[3],
+          eve: formattedTemps[4],
+          morn: formattedTemps[5]
+        }
+        day.temp = newTempObj;
 
-        //feelsLike array
-        day.feels_like.day = `${day.feels_like.day} ºC`;
+        //feelsLike obj
+/*         day.feels_like.day = `${day.feels_like.day} ºC`;
         day.feels_like.eve = `${day.feels_like.eve} ºC`;
         day.feels_like.morn = `${day.feels_like.morn} ºC`;
-        day.feels_like.night = `${day.feels_like.night} ºC`;     
+        day.feels_like.night = `${day.feels_like.night} ºC`;  */
+        const feelsLike = Object.values(day.feels_like);
+        const formattedFeelsLike: string[] = []
+        feelsLike.forEach((feel) => {
+          // fix to 1 decimal and add ºC
+          formattedFeelsLike.push(`${(feel as number).toFixed(1)} ºC`);
+        })
+        const newFeelsLikeObj = {
+          day: formattedFeelsLike[0],
+          min: formattedFeelsLike[1],
+          max: formattedFeelsLike[2],
+          night: formattedFeelsLike[3],
+          eve: formattedFeelsLike[4],
+          morn: formattedFeelsLike[5]
+        }
+        day.feels_like = newFeelsLikeObj;
 
         // capitalize first
         day.weather[0]["description"] = `${capitalizeFirst(day.weather[0]["description"] as string)}`;
