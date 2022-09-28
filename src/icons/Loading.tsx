@@ -1,6 +1,5 @@
 import { mdiLoading } from '@mdi/js';
 import Icon from '@mdi/react';
-
 import { useState } from 'react';
 
 const Loading = () => {
@@ -8,7 +7,7 @@ const Loading = () => {
     path: mdiLoading,
     color: 'lightblue',
     size: 5,
-    spin: 0.4
+    spin: 0.3
   });
 
   const { path, color, size, spin } = iconInfo;
