@@ -8,23 +8,27 @@ const Charts: React.FC<MinutelyChartProps> = ({ minuteData }) => {
 
   // store info in arrays
   const N = 60;
-  const arr = Array.from({ length: N }, (_, index) => index + 1);
-  console.log(arr);
+  const xAxis = Array.from({ length: N }, (_, index) => index + 1);
 
-  const pptArray: string[] = [];
+  const pptArray: number[] = [];
 
   minuteData.forEach((obj) => {
-    //console.log('obj', obj);
-    const values = Object.values(obj);
-    pptArray.push(values[1]);
-  });
+    let values = Object.values(obj);
+    // slices out 'mm'
+    values = values[1].slice(0, -2);
 
-  // console.log('labels', labelsArray, 'ppt', pptArray);
+    // multiply to get percentage, fix decimals, convert to float
+    // instead of string
+    const formatted = parseFloat(
+      ((values as unknown as number) * 100).toFixed(1)
+    );
+    pptArray.push(formatted);
+  });
 
   return (
     <Line
       data={{
-        labels: ['fuck', 'fuck2', 'fuck3'],
+        labels: xAxis,
         datasets: [
           {
             label: 'fucking label',
