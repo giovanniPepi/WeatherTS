@@ -1,12 +1,12 @@
-import { mdiWhiteBalanceSunny } from '@mdi/js'; 
-import Icon from "@mdi/react";
+import { mdiWhiteBalanceSunny } from '@mdi/js';
+import Icon from '@mdi/react';
 
-import { useState } from "react";
+import { useState } from 'react';
 
 const Sunny = () => {
   const [iconInfo] = useState({
     path: mdiWhiteBalanceSunny,
-    color: "orange",
+    color: 'orange',
     size: 1,
     spin: 20
   });
