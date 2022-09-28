@@ -96,5 +96,10 @@ svg {
   border-radius: var(--radius);
   border: 1px solid black;
   padding: var(--btnPadding);
+  position: relative;
+  width: 60vw;
+  height: 90vh;
+  display: flex;
+  align-items: center;
 }
 /* ----------------- ENDMINUTE OVERLAY*/

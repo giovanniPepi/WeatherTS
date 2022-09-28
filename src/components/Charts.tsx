@@ -18,9 +18,7 @@ const Charts: React.FC<MinutelyChartProps> = ({ minuteData }) => {
 
     // multiply to get percentage, fix decimals, convert to float
     // instead of string
-    const formatted = parseFloat(
-      ((values as unknown as number) * 100).toFixed(1)
-    );
+    const formatted = parseFloat(values as unknown as string);
 
     pptArray.push(formatted);
   });
@@ -33,7 +31,7 @@ const Charts: React.FC<MinutelyChartProps> = ({ minuteData }) => {
         labels: timeArray,
         datasets: [
           {
-            label: 'Probability of rain (%) ',
+            label: 'Rain volume, mm ',
             data: pptArray,
             backgroundColor: ['#075985'],
             borderColor: ['#a54608'],
@@ -43,6 +41,7 @@ const Charts: React.FC<MinutelyChartProps> = ({ minuteData }) => {
         ]
       }}
       options={{
+        responsive: true,
         scales: {
           y: {
             beginAtZero: true,
