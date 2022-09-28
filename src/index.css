@@ -90,3 +90,11 @@ svg {
   border-radius: var(--radius);
 }
 /* ----------------------- END HOME UI ELEMENTS */
+
+/* ----------------- MINUTE OVERLAY*/
+.minutelyDataModal {
+  border-radius: var(--radius);
+  border: 1px solid black;
+  padding: var(--btnPadding);
+}
+/* ----------------- ENDMINUTE OVERLAY*/

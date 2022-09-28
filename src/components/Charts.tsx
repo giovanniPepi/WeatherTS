@@ -1,19 +1,18 @@
 import { MinutelyChartProps } from 'interfaces';
 import { Chart as ChartJS, registerables } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 ChartJS.register(...registerables);
 
 const Charts: React.FC<MinutelyChartProps> = ({ minuteData }) => {
-  // console.log('received', minuteData);
-
-  // store info in arrays
-  const N = 60;
-  const xAxis = Array.from({ length: N }, (_, index) => index + 1);
-
+  const timeArray: string[] = [];
   const pptArray: number[] = [];
 
   minuteData.forEach((obj) => {
     let values = Object.values(obj);
+
+    const time = values[0];
+    timeArray.push(time);
+
     // slices out 'mm'
     values = values[1].slice(0, -2);
 
@@ -22,35 +21,31 @@ const Charts: React.FC<MinutelyChartProps> = ({ minuteData }) => {
     const formatted = parseFloat(
       ((values as unknown as number) * 100).toFixed(1)
     );
+
     pptArray.push(formatted);
   });
 
   return (
-    <Line
+    <Bar
       height={400}
       width={600}
       data={{
-        labels: xAxis,
+        labels: timeArray,
         datasets: [
           {
-            label: 'Probability of rain, %',
+            label: 'Probability of rain (%) ',
             data: pptArray,
-            backgroundColor: ['blue']
+            backgroundColor: ['#075985'],
+            borderColor: ['#a54608'],
+            borderWidth: 0.8,
+            borderRadius: 2
           }
         ]
       }}
       options={{
-        animations: {
-          tension: {
-            duration: 1000,
-            easing: 'linear',
-            from: 1,
-            to: 0,
-            loop: true
-          }
-        },
         scales: {
           y: {
+            beginAtZero: true,
             grid: {
               display: false
             }
