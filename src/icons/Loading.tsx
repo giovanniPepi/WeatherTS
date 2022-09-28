@@ -6,16 +6,20 @@ const Loading = () => {
   const [iconInfo] = useState({
     path: mdiLoading,
     color: 'lightblue',
-    size: 5,
     spin: 0.3
   });
 
-  const { path, color, size, spin } = iconInfo;
+  const { path, color, spin } = iconInfo;
 
   return (
     <div className="loadingOverlay">
       <div className="loadingModal">
-        <Icon path={path} color={color} size={size} spin={spin} />
+        <Icon
+          path={path}
+          color={color}
+          spin={spin}
+          className={'loadingIcon'}
+        />
       </div>
     </div>
   );

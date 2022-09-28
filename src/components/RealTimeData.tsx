@@ -2,10 +2,8 @@ import { RealTimeDataProps } from 'interfaces';
 import React, { useState } from 'react';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
 import Alert from 'src/icons/Alerts';
+import AlertsModal from './AlertOverlay';
 import ExtendedCurrentWeather from './ExtendedCurrentWeather';
-import { motion } from 'framer-motion';
-import getWindDir from 'src/functions/getWindDir';
-import convertToKm from 'src/functions/convertToKm';
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
@@ -17,7 +15,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   //state
   const [showExtendedCurrentWeather, setShowExtendedCurrentWeather] =
     useState(false);
-  const [showAlerts, setShowAlerts] = useState(false);
+  const [showAlertsModal, setShowAlertsModal] =
+    useState<Boolean>(false);
 
   return (
     <section className="realTimeData">
@@ -36,23 +35,20 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       <div>{apiData.current.wind_speed as number}</div>
 
       {/* alerts */}
-      {apiData.alerts && !showAlerts ? (
-        <button onClick={() => setShowAlerts(true)}>
-          <Alert />
 
-          {apiData.alerts[0].sender_name}
+      {apiData.alerts && showAlertsModal ? (
+        <AlertsModal
+          apiData={apiData}
+          setShowAlertsModal={setShowAlertsModal}
+        />
+      ) : (
+        <button
+          className="alertBtnHome"
+          onClick={() => setShowAlertsModal(true)}
+        >
+          <Alert /> {apiData.alerts[0].sender_name}
         </button>
-      ) : null}
-
-      {showAlerts ? (
-        <>
-          {/* Colocar SVGS de acordo com tag? */}
-          <div>{apiData.alerts[0].description}</div>
-          <button onClick={() => setShowAlerts(false)}>
-            Hide Alerts
-          </button>
-        </>
-      ) : null}
+      )}
 
       <button onClick={() => setShowExtendedCurrentWeather(true)}>
         Complete info

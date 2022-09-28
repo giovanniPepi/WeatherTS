@@ -141,6 +141,11 @@ interface RealTimeDataProps {
   locationToShow: string;
 }
 
+interface AlertsModalProps {
+  apiData: IWeatherData;
+  setShowAlertsModal: StateChanger
+}
+
 interface ExtendedRealTimeDataProps {
   apiData: IWeatherData;
   locationToShow: string;
@@ -168,6 +173,6 @@ export type {
   IWeatherData,
   MinutelyProps,
   HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps
-, ExtendedRealTimeDataProps, NightProps
+, ExtendedRealTimeDataProps, NightProps, AlertsModalProps
 }  
 

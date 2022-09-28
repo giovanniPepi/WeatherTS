@@ -1,3 +1,7 @@
+:root {
+  --radius: 10px;
+  --divPadding: 1rem;
+}
 body {
   height: 100vh;
   width: 100vw;
@@ -13,11 +17,27 @@ p {
   min-height: 100vh;
   overflow: hidden;
 }
+
+button {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.loadingIcon {
+  height: 15rem;
+  width: 15rem;
+}
+/* --------------- OVERLAY CONFIG----------- */
 .minutelyDataOverlay,
 .hourlyDataOverlay,
 .dailyDataOverlay,
 .extendedOverlay,
-.loadingOverlay {
+.loadingOverlay,
+.alertsOverlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -31,9 +51,37 @@ p {
 .minutelyDataModal,
 .hourlyDataModal,
 .dailyDataModal,
-.extendedModal {
+.extendedModal,
+.alertsModal {
   background-color: white;
 }
+/*Text style for the alerts*/
+.alertsModal {
+  max-width: 50vw;
+  padding: var(--divPadding);
+  border-radius: var(--radius);
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.alertsModal > :nth-child(1) {
+  height: 4rem;
+  width: 4rem;
+}
+
 .loadingOverlay {
   background-color: rgba(250, 194, 167, 0.05);
+}
+
+/* --------------- END OVERLAY CONFIG----------- */
+
+.alertBtnHome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 2px solid black;
+  border-radius: var(--radius);
 }
