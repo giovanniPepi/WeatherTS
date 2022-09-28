@@ -92,13 +92,22 @@ const dataFormatter = (data: IWeatherData | undefined) => {
         day.rain = `${day.rain as number} mm`
         day.snow = `${day.snow as number} mm`
 
-        // temp array        
-        day.temp.day = `${day.temp.day} ºC`;
-        day.temp.eve = `${day.temp.eve} ºC`;
-        day.temp.morn = `${day.temp.morn} ºC`;
-        day.temp.min = `${day.temp.min} ºC`;
-        day.temp.max = `${day.temp.max} ºC`;
-        day.temp.night = `${day.temp.night} ºC`;     
+        // temp obj        
+        const temps = Object.values(day.temp);
+        const formattedTemps: string[] = []
+        temps.forEach((temp) => {
+          // fix to 1 decimal
+          formattedTemps.push((temp as number).toFixed(1));
+        })
+        const newTempObj = {
+          day: formattedTemps[0],
+          min: formattedTemps[1],
+          max: formattedTemps[2],
+          night: formattedTemps[3],
+          eve: formattedTemps[4],
+          morn: formattedTemps[5]
+        }
+        day.temp = newTempObj;
 
         //feelsLike array
         day.feels_like.day = `${day.feels_like.day} ºC`;
