@@ -109,11 +109,7 @@ li {
   align-items: center;
 }
 /* ----------------- HOURLY OVERLAY*/
-.hourlyUl {
-  max-width: 90vw;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-}
+
 .hourlyContainer {
   border-radius: var(--radius);
   border: 1px solid black;
@@ -122,3 +118,32 @@ li {
 .hourlyDataModal {
 }
 /* ----------------- END HOURLY OVERLAY*/
+
+/*-----------------------DESKTOP */
+@media screen and (min-width: 1000px) {
+  .hourlyUl {
+    display: grid;
+    max-width: 90vw;
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+/*-----------------------end DESKTOP */
+/*-----------------------INTERMEDIATE */
+@media screen and (min-width: 550px) and (max-width: 999px) {
+  .hourlyUl {
+    display: grid;
+    max-width: 90vw;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+/*-----------------------end INTERMEDIATE */
+
+/*-----------------------MOBILE */
+@media screen and (max-width: 549px) {
+  .hourlyUl {
+    display: grid;
+    max-width: 90vw;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/*-----------------------end MOBILE */

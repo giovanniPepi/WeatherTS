@@ -26,7 +26,6 @@ const HourlyData: React.FC<HourlyProps> = ({
     if (start > index || start > index - 8) setStart(40);
     if (index > 48) setIndex(48);
     if (index < 48 || start < 40) {
-      console.log('fuck');
       setIndex(index + 8);
       setStart(start + 8);
     }
