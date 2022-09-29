@@ -11,6 +11,10 @@ import UVI from 'src/icons/UVI';
 import Clouds from 'src/icons/Clouds';
 import Previous from 'src/icons/Previous';
 import Next from 'src/icons/Next';
+import DewPoint from 'src/icons/DewPoint';
+import Pressure from 'src/icons/Pressure';
+import Sunrise from 'src/icons/Sunrise';
+import Sunset from 'src/icons/Sunset';
 
 const DailyData: React.FC<DailyProps> = ({
   dailyData,
@@ -144,17 +148,18 @@ const DailyData: React.FC<DailyProps> = ({
                       <Clouds night={false} /> {day.clouds}
                     </div>
                     <div className="dailyDataDiv">
-                      Dew point {day.dew_point}
+                      <DewPoint /> {day.dew_point}
                     </div>
                     <div className="dailyDataDiv">
-                      Pressure: {day.pressure}
+                      <Pressure />
+                      {day.pressure}
                     </div>
 
                     <div className="dailyDataDiv">
-                      Sunrise: {day.sunrise}
+                      <Sunrise /> {day.sunrise}
                     </div>
                     <div className="dailyDataDiv">
-                      Sunset: {day.sunset}
+                      <Sunset /> {day.sunset}
                     </div>
                     <div className="dailyDataDiv">
                       Moon Phase: {day.moon_phase}
