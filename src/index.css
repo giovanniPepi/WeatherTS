@@ -2,6 +2,9 @@
   --radius: 10px;
   --divPadding: 1rem;
   --btnPadding: 0.5rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+    'Helvetica Neue', sans-serif;
 }
 body {
   height: 100vh;
@@ -167,8 +170,8 @@ li {
   border-radius: var(--radius);
   border: 1px solid black;
   padding: var(--btnPadding);
-  width: 450px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -184,6 +187,7 @@ li {
 .dailyDataDiv {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .PreviousSvg,
 .NextSvg {
@@ -192,6 +196,12 @@ li {
 }
 .dailyControlDiv {
   display: flex;
+}
+.moonTimings {
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 /* ----------------- END DAILY OVERLAY*/
 

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-const WaningCrescentMoon = () => {
+const FullMoon = () => {
   const svgVariants = {
     hidden: { rotate: -90 },
     visible: {
@@ -25,7 +25,7 @@ const WaningCrescentMoon = () => {
 
   return (
     <motion.svg
-      className="WaningCrescentMoonSvg"
+      className="FullMoonSvg"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       variants={svgVariants}
@@ -33,11 +33,11 @@ const WaningCrescentMoon = () => {
       animate="visible"
     >
       <motion.path
-        d="M2 12A10 10 0 0 0 15 21.54A10 10 0 0 1 15 2.46A10 10 0 0 0 2 12Z"
+        d="M12 2A10 10 0 1 1 2 12A10 10 0 0 1 12 2Z"
         variants={pathVariants}
       />
     </motion.svg>
   );
 };
 
-export default WaningCrescentMoon;
+export default FullMoon;

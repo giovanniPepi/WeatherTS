@@ -7,7 +7,7 @@ const Sunny = () => {
   const [iconInfo] = useState({
     path: mdiWhiteBalanceSunny,
     color: 'orange',
-    spin: 20
+    spin: 45
   });
 
   const { path, color, spin } = iconInfo;

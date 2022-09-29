@@ -15,6 +15,8 @@ import DewPoint from 'src/icons/DewPoint';
 import Pressure from 'src/icons/Pressure';
 import Sunrise from 'src/icons/Sunrise';
 import Sunset from 'src/icons/Sunset';
+import getMoonPhase from 'src/functions/getMoonPhase';
+import Sunny from 'src/icons/Sunny';
 
 const DailyData: React.FC<DailyProps> = ({
   dailyData,
@@ -154,21 +156,20 @@ const DailyData: React.FC<DailyProps> = ({
                       <Pressure />
                       {day.pressure}
                     </div>
+                    <div className="dailyDataDiv">
+                      <Sunny />
+                      <div className="moonTimings">
+                        <div>Sunrise {day.sunrise}</div>
+                        <div>Sunset {day.sunset}</div>
+                      </div>
+                    </div>
 
                     <div className="dailyDataDiv">
-                      <Sunrise /> {day.sunrise}
-                    </div>
-                    <div className="dailyDataDiv">
-                      <Sunset /> {day.sunset}
-                    </div>
-                    <div className="dailyDataDiv">
-                      Moon Phase: {day.moon_phase}
-                    </div>
-                    <div className="dailyDataDiv">
-                      Moonrise: {day.moonrise}
-                    </div>
-                    <div className="dailyDataDiv">
-                      Moonset: {day.moonset}
+                      {getMoonPhase(day.moon_phase as number)}
+                      <div className="moonTimings">
+                        <div>Moonrise {day.moonrise}</div>
+                        <div>Moonset {day.moonset}</div>
+                      </div>
                     </div>
                   </li>
                 );
