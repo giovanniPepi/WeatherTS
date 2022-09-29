@@ -9,13 +9,13 @@ import Temperature from 'src/icons/Temperature';
 import Humidity from 'src/icons/Humidity';
 import UVI from 'src/icons/UVI';
 import Clouds from 'src/icons/Clouds';
+import Previous from 'src/icons/Previous';
+import Next from 'src/icons/Next';
 
 const DailyData: React.FC<DailyProps> = ({
   dailyData,
   setShowDailyModal
 }) => {
-  //console.log("DAILY component called: ", dailyData);
-
   const domNode = useClickOutside(() => {
     setShowDailyModal(false);
   });
@@ -27,18 +27,20 @@ const DailyData: React.FC<DailyProps> = ({
   const [start, setStart] = useState(0);
 
   const getNextHours = () => {
-    if (start > index || start > index - 2) setStart(2);
+    if (start > index || start > index - 2) setStart(0);
     if (index > 8) setIndex(8);
-    if (index < 2 || start < 0) {
+    if (index < 8 || start < 6) {
       setIndex(index + 2);
       setStart(start + 2);
     }
+
+    console.log(start, index);
   };
 
   const getPreviousHours = () => {
     if (start < index - 2) setStart(0);
     if (index < start || index < 2) setIndex(2);
-    if (index > 8 || start > 0) {
+    if (index > 2 || start > 0) {
       setStart(start - 2);
       setIndex(index - 2);
     }
@@ -51,7 +53,6 @@ const DailyData: React.FC<DailyProps> = ({
 
   useEffect(() => {
     getItemsToRender();
-    console.log(renderedItems, start, index);
   }, [index, start]);
 
   return (
@@ -70,15 +71,19 @@ const DailyData: React.FC<DailyProps> = ({
     >
       <section className="dailyDataOverlay">
         <div className="dailyDataModal" ref={domNode}>
-          Daily forecast
+          <div className="dailyMainTitle">Daily forecast</div>
+          <button onClick={() => getPreviousHours()}>
+            <Previous />
+          </button>
+
           <ul className="dailyUl">
             {renderedItems.map((day) => {
               return (
-                <li key={v4()}>
+                <li key={v4()} className="dailyContainer">
                   <div>Forecast for {day.dt}</div>
                   <div>
                     {getWeatherIcon(day.weather[0].main)}
-                    {day.weather[0].description}
+                    {day.weather[0].description} - {day.pop}
                   </div>
                   <div>
                     <Temperature />
@@ -139,7 +144,7 @@ const DailyData: React.FC<DailyProps> = ({
                   </div>
                   <div>Dew point {day.dew_point}</div>
                   <div>Pressure: {day.pressure}</div>
-                  <div>Rain {day.pop}</div>
+
                   <div>Sunrise: {day.sunrise}</div>
                   <div>Sunset: {day.sunset}</div>
                   <div>Moon Phase: {day.moon_phase}</div>
@@ -149,6 +154,9 @@ const DailyData: React.FC<DailyProps> = ({
               );
             })}
           </ul>
+          <button onClick={() => getNextHours()}>
+            <Next />
+          </button>
         </div>
       </section>
     </motion.div>
