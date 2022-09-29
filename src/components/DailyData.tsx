@@ -89,10 +89,12 @@ const DailyData: React.FC<DailyProps> = ({
                     <div className="dailyDt">
                       <div>Forecast for {day.dt}</div>
                     </div>
+                    <div className="separator"></div>
                     <div className="dailyDataDiv">
                       {getWeatherIcon(day.weather[0].main, false)}
                       {day.weather[0].description}
                     </div>
+                    <div className="separator"></div>
                     <div className="dailyDataDiv">
                       <div className="rainPercentContainer">
                         <Rain night={false} />
@@ -100,6 +102,7 @@ const DailyData: React.FC<DailyProps> = ({
                       </div>
                       {day.pop}
                     </div>
+                    <div className="separator"></div>
                     <div className="dailyDataDiv">
                       <Temperature />
                       <div className="tempContainer">
@@ -140,12 +143,17 @@ const DailyData: React.FC<DailyProps> = ({
                         ) : null}
                       </div>
                     </div>
+                    <div className="separator"></div>
+
                     <div className="dailyDataDiv">
                       <Humidity /> {day.humidity}
                     </div>
+                    <div className="separator"></div>
+
                     <div className="dailyDataDiv">
                       <UVI /> {day.uvi}
                     </div>
+                    <div className="separator"></div>
                     <div className="dailyDataDiv">
                       <Windy />
                       <div className="moonTimings">
@@ -154,16 +162,23 @@ const DailyData: React.FC<DailyProps> = ({
                         <div>Wind speed {day.wind_speed}</div>
                       </div>
                     </div>
+                    <div className="separator"></div>
                     <div className="dailyDataDiv">
                       <Clouds night={false} /> {day.clouds}
                     </div>
+                    <div className="separator"></div>
+
                     <div className="dailyDataDiv">
                       <DewPoint /> {day.dew_point}
                     </div>
+                    <div className="separator"></div>
+
                     <div className="dailyDataDiv">
                       <Pressure />
                       {day.pressure}
                     </div>
+                    <div className="separator"></div>
+
                     <div className="dailyDataDiv">
                       <Sunny />
                       <div className="moonTimings">
@@ -171,6 +186,8 @@ const DailyData: React.FC<DailyProps> = ({
                         <div>Sunset {day.sunset}</div>
                       </div>
                     </div>
+                    <div className="separator"></div>
+
                     <div className="dailyDataDiv">
                       {getMoonPhase(day.moon_phase as number)}
                       <div className="moonTimings">
