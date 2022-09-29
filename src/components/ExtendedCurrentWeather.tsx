@@ -5,6 +5,7 @@ import { useState } from 'react';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
 import getWindDir from 'src/functions/getWindDir';
 import convertToKm from 'src/functions/convertToKm';
+import getMoonPhase from 'src/functions/getMoonPhase';
 
 const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
   apiData,
@@ -38,10 +39,16 @@ const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
           <div>
             {locationToShow} - {apiData.current.dt}
           </div>
-          <div>
-            {getWeatherIcon(apiData.current.weather[0].main)}{' '}
-            {apiData.current.weather[0].description}
-          </div>
+          {/*gets the weather icon through getMoonphase to return the correct phase if it's night */}
+          {apiData.current.weather[0].main === 'Clear' ? (
+            <>
+              {getMoonPhase(apiData.daily[0].moon_phase as number)}
+
+              {apiData.current.weather[0].description}
+            </>
+          ) : (
+            getWeatherIcon(apiData.current.weather[0].main, true)
+          )}
           <div>Temp: {apiData.current.temp}</div>
           <div>Feels_like: {apiData.current.feels_like}</div>
           <div>Humidity: {apiData.current.humidity}</div>

@@ -14,8 +14,6 @@ const getWeatherIcon = (weatherDesc: string, applyTheme: boolean) => {
   if (applyTheme) night = isNight();
   else night = false;
 
-  console.log('night applied? ', night);
-
   if (night && weatherDesc === 'Clear') return <MoonClear />;
 
   switch (weatherDesc) {
