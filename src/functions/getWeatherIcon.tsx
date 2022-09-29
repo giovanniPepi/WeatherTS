@@ -12,39 +12,29 @@ const getWeatherIcon = (weatherDesc: string) => {
   // console.log(weatherDesc);
   const night: Boolean = isNight();
 
-  if (night) {
-    switch (weatherDesc) {
-      case 'Clear':
-        return <MoonClear />;
-      default:
-        console.log(
-          'Error in weather',
-          weatherDesc,
-          'check getWeatherIcon'
-        );
-    }
-  } else {
-    switch (weatherDesc) {
-      case 'Clear':
-        return <Sunny />;
-      case 'Clouds':
-        return <Clouds night={night} />;
-      case 'Rain':
-      case 'Drizzle':
-        return <Rain night={night} />;
-      case 'Thunderstorm':
-        return <Thunderstorm night={night} />;
-      case 'Snow':
-        return <Snow night={night} />;
-      case 'Mist':
-        return <Mist night={night} />;
-      default:
-        console.log(
-          'Error in weather',
-          weatherDesc,
-          'check getWeatherIcon'
-        );
-    }
+  if (night && weatherDesc === 'Clear') return <MoonClear />;
+
+  switch (weatherDesc) {
+    case 'Clear':
+      return <Sunny />;
+    case 'Clouds':
+      return <Clouds night={night} />;
+    case 'Rain':
+    case 'Drizzle':
+      return <Rain night={night} />;
+    case 'Thunderstorm':
+      return <Thunderstorm night={night} />;
+    case 'Snow':
+      return <Snow night={night} />;
+    case 'Mist':
+      return <Mist night={night} />;
+    default:
+      console.log(
+        'Error in weather:',
+        weatherDesc,
+        typeof weatherDesc,
+        'check getWeatherIcon'
+      );
   }
 };
 

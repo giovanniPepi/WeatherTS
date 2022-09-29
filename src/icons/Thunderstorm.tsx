@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
+import { NightProps } from 'interfaces';
 
-const Thunderstorm = () => {
+const Thunderstorm: React.FC<NightProps> = () => {
   //svg animation
   // https://www.youtube.com/watch?v=ILxNdOtKbNQ
   const svgVariants = {
