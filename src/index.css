@@ -115,7 +115,9 @@ li {
   border: 1px solid black;
   padding: var(--btnPadding);
 }
-.hourlyDataModal {
+
+.hourlyControlDiv {
+  display: flex;
 }
 /* ----------------- END HOURLY OVERLAY*/
 
@@ -123,7 +125,7 @@ li {
 @media screen and (min-width: 1000px) {
   .hourlyUl {
     display: grid;
-    max-width: 90vw;
+    width: 90vw;
     grid-template-columns: repeat(8, 1fr);
   }
 }

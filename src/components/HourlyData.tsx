@@ -7,6 +7,8 @@ import Temperature from 'src/icons/Temperature';
 import Humidity from 'src/icons/Humidity';
 import UVI from 'src/icons/UVI';
 import { useEffect, useState } from 'react';
+import Next from 'src/icons/Next';
+import Previous from 'src/icons/Previous';
 
 const HourlyData: React.FC<HourlyProps> = ({
   hourlyData,
@@ -67,33 +69,36 @@ const HourlyData: React.FC<HourlyProps> = ({
         }}
       >
         <div className="hourlyDataModal" ref={domNode}>
-          <h1>Hourly Forecast</h1>
-
-          <ul className="hourlyUl">
-            {renderedItems.map((hour) => {
-              return (
-                <li key={v4()} className="hourlyContainer">
-                  <div className="hourlyDt">{hour.dt}</div>
-                  <div>
-                    {getWeatherIcon(hour.weather[0].main)}
-                    {hour.weather[0].main}
-                  </div>
-                  <div></div>
-                  <Temperature /> {hour.temp}
-                  <div>
-                    <Humidity /> {hour.humidity}
-                  </div>
-                  <div>
-                    <UVI /> {hour.uvi}
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-          <button onClick={() => getPreviousHours()}>
-            Previous 8 hours
-          </button>
-          <button onClick={() => getNextHours()}>Next 8 hours</button>
+          <div>Hourly Forecast</div>
+          <div className="hourlyControlDiv">
+            <button onClick={() => getPreviousHours()}>
+              <Previous />
+            </button>
+            <ul className="hourlyUl">
+              {renderedItems.map((hour) => {
+                return (
+                  <li key={v4()} className="hourlyContainer">
+                    <div className="hourlyDt">{hour.dt}</div>
+                    <div>
+                      {getWeatherIcon(hour.weather[0].main)}
+                      {hour.weather[0].main}
+                    </div>
+                    <div></div>
+                    <Temperature /> {hour.temp}
+                    <div>
+                      <Humidity /> {hour.humidity}
+                    </div>
+                    <div>
+                      <UVI /> {hour.uvi}
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+            <button onClick={() => getNextHours()}>
+              <Next />
+            </button>
+          </div>
         </div>
       </motion.div>
     </section>
