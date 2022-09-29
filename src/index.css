@@ -167,6 +167,11 @@ li {
     gap: 0.5rem;
     grid-template-columns: repeat(8, 1fr);
   }
+  .dailyUl {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 /*-----------------------end DESKTOP */
 /*-----------------------INTERMEDIATE */
@@ -176,6 +181,11 @@ li {
     gap: 0.5rem;
     max-width: 90vw;
     grid-template-columns: repeat(4, 1fr);
+  }
+  .dailyUl {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 /*-----------------------end INTERMEDIATE */
@@ -187,6 +197,11 @@ li {
     gap: 0.3rem;
     max-width: 90vw;
     grid-template-columns: repeat(2, 1fr);
+  }
+  .dailyUl {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 /*-----------------------end MOBILE */

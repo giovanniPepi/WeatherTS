@@ -19,6 +19,7 @@ const HourlyData: React.FC<HourlyProps> = ({
     setShowHourlyModal(false);
   });
 
+  //state
   const [index, setIndex] = useState(8);
   const [renderedItems, setRenderedItems] =
     useState<HourlyArray>(hourlyData);
