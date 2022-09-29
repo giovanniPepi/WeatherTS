@@ -119,7 +119,6 @@ li {
   border: 1px solid black;
   padding: var(--btnPadding);
 }
-.hourlyDt {
-  font-size: 12px;
+.hourlyDataModal {
 }
 /* ----------------- END HOURLY OVERLAY*/

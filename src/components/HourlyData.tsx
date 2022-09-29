@@ -45,32 +45,16 @@ const HourlyData: React.FC<HourlyProps> = ({
                 <li key={v4()} className="hourlyContainer">
                   <div className="hourlyDt">{hour.dt}</div>
                   <div>
-                    {getWeatherIcon(hour.weather[0].main)}{' '}
-                    {hour.weather[0].description}
+                    {getWeatherIcon(hour.weather[0].main)}
+                    {hour.weather[0].main}
                   </div>
                   <div></div>
                   <Temperature /> {hour.temp}
-                  <div>
-                    <FeelsLike />
-                    {hour.feels_like}
-                  </div>
                   <div>
                     <Humidity /> {hour.humidity}
                   </div>
                   <div>
                     <UVI /> {hour.uvi}
-                  </div>
-                  <div>
-                    <Clouds /> {hour.clouds}
-                  </div>
-                  <div>
-                    <DewPoint /> {hour.dew_point}
-                  </div>
-                  <div>
-                    <Pressure /> {hour.pressure}
-                  </div>
-                  <div>
-                    <Visibility /> {hour.visibility}
                   </div>
                 </li>
               );
