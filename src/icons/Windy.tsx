@@ -12,7 +12,14 @@ const Windy = () => {
 
   const { path, color, spin } = iconInfo;
 
-  return <Icon path={path} color={color} spin={spin} />;
+  return (
+    <Icon
+      path={path}
+      color={color}
+      spin={spin}
+      className="windySvg"
+    />
+  );
 };
 
 export default Windy;

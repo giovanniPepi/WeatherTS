@@ -2,6 +2,7 @@ import { AlertsModalProps } from 'interfaces';
 import useClickOutside from 'src/functions/useClickOutside';
 import { motion } from 'framer-motion';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
+import getMoonPhase from 'src/functions/getMoonPhase';
 
 const AlertsModal: React.FC<AlertsModalProps> = ({
   apiData,
@@ -26,7 +27,6 @@ const AlertsModal: React.FC<AlertsModalProps> = ({
     >
       <div className="alertsOverlay">
         <div className="alertsModal" ref={domNode}>
-          {getWeatherIcon(apiData.current.weather[0].main)}
           <div>{apiData.alerts[0].description}</div>
         </div>
       </div>

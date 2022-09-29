@@ -242,6 +242,23 @@ li {
   width: 0.8rem;
 }
 /* ----------------- END DAILY OVERLAY*/
+/* ----------------- START REALTIME OVERLAY*/
+
+.realTimeDataDiv {
+  display: flex;
+  justify-content: space-between;
+}
+
+.windContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+.windySvg {
+  align-self: center;
+}
+/* ----------------- END REALTIME OVERLAY*/
 
 /*-----------------------DESKTOP */
 @media screen and (min-width: 1000px) {
@@ -257,6 +274,7 @@ li {
   }
 }
 /*-----------------------end DESKTOP */
+
 /*-----------------------INTERMEDIATE */
 @media screen and (min-width: 550px) and (max-width: 999px) {
   .hourlyUl {
