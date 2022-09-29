@@ -13,8 +13,6 @@ import Previous from 'src/icons/Previous';
 import Next from 'src/icons/Next';
 import DewPoint from 'src/icons/DewPoint';
 import Pressure from 'src/icons/Pressure';
-import Sunrise from 'src/icons/Sunrise';
-import Sunset from 'src/icons/Sunset';
 import getMoonPhase from 'src/functions/getMoonPhase';
 import Sunny from 'src/icons/Sunny';
 import Windy from 'src/icons/Windy';
@@ -89,10 +87,10 @@ const DailyData: React.FC<DailyProps> = ({
                 return (
                   <li key={v4()} className="dailyContainer">
                     <div className="dailyDt">
-                      Forecast for {day.dt}
+                      <div>Forecast for {day.dt}</div>
                     </div>
                     <div className="dailyDataDiv">
-                      {getWeatherIcon(day.weather[0].main)}
+                      {getWeatherIcon(day.weather[0].main, false)}
                       {day.weather[0].description}
                     </div>
                     <div className="dailyDataDiv">
@@ -104,22 +102,22 @@ const DailyData: React.FC<DailyProps> = ({
                     </div>
                     <div className="dailyDataDiv">
                       <Temperature />
-
-                      <div>
+                      <div className="tempContainer">
                         {day.temp.morn ? (
                           <div>Morning {day.temp.morn}</div>
                         ) : null}
                         {day.temp.day ? (
-                          <div>
+                          <div className="tempHolder">
                             {day.feels_like.day ? (
                               <>
                                 <div>Day {day.temp.day}</div>
-                                <div>
-                                  <FeelsLike /> {day.feels_like.day}
+                                <div className="tempSvgContainer">
+                                  <FeelsLike />
+                                  {day.feels_like.day}
                                 </div>
                               </>
                             ) : (
-                              <>Day {day.temp.day}</>
+                              <div>Day {day.temp.day}</div>
                             )}
                           </div>
                         ) : null}
@@ -127,16 +125,16 @@ const DailyData: React.FC<DailyProps> = ({
                           <div>Evening: {day.temp.eve}</div>
                         ) : null}
                         {day.temp.night ? (
-                          <div>
+                          <div className="tempHolder">
                             {day.feels_like.night ? (
                               <>
                                 <div>Night: {day.temp.night}</div>
-                                <div>
+                                <div className="tempSvgContainer">
                                   <FeelsLike /> {day.feels_like.night}
                                 </div>
                               </>
                             ) : (
-                              <>Night: {day.temp.night}</>
+                              <div>Night: {day.temp.night}</div>
                             )}
                           </div>
                         ) : null}

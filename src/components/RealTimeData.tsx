@@ -24,7 +24,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         {locationToShow} - {apiData.current.dt}
       </div>
       <div>
-        {getWeatherIcon(apiData.current.weather[0].main)}
+        {getWeatherIcon(apiData.current.weather[0].main, true)}
         {apiData.current.weather[0].description}
       </div>
       <div>Temp: {apiData.current.temp}</div>
