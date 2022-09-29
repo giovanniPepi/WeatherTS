@@ -17,6 +17,9 @@ import Sunrise from 'src/icons/Sunrise';
 import Sunset from 'src/icons/Sunset';
 import getMoonPhase from 'src/functions/getMoonPhase';
 import Sunny from 'src/icons/Sunny';
+import Windy from 'src/icons/Windy';
+import Rain from 'src/icons/Rain';
+import Percent from 'src/icons/Percent';
 
 const DailyData: React.FC<DailyProps> = ({
   dailyData,
@@ -90,50 +93,54 @@ const DailyData: React.FC<DailyProps> = ({
                     </div>
                     <div className="dailyDataDiv">
                       {getWeatherIcon(day.weather[0].main)}
-                      {day.weather[0].description} - {day.pop}
+                      {day.weather[0].description}
+                    </div>
+                    <div className="dailyDataDiv">
+                      <div className="rainPercentContainer">
+                        <Rain night={false} />
+                        <Percent />
+                      </div>
+                      {day.pop}
                     </div>
                     <div className="dailyDataDiv">
                       <Temperature />
-                      {day.temp.morn ? (
-                        <div>
-                          Morning: {day.temp.morn}
-                          {day.feels_like.morn ? (
-                            <>
-                              <FeelsLike /> {day.feels_like.morn}
-                            </>
-                          ) : null}
-                        </div>
-                      ) : null}
-                      {day.temp.day ? (
-                        <div>
-                          Day: {day.temp.day}
-                          {day.feels_like.day ? (
-                            <>
-                              <FeelsLike /> {day.feels_like.day}
-                            </>
-                          ) : null}
-                        </div>
-                      ) : null}
-                      {day.temp.eve ? (
-                        <div>
-                          Evening: {day.temp.eve}
-                          {day.feels_like.eve ? (
-                            <>
-                              <FeelsLike /> {day.feels_like.eve}
-                            </>
-                          ) : null}
-                        </div>
-                      ) : null}
-                      {day.temp.night ? (
-                        <div>
-                          Night: {day.temp.night}
-                          {day.feels_like.night ? (
-                            <>
-                              <FeelsLike /> {day.feels_like.night}
-                            </>
-                          ) : null}
-                        </div>
-                      ) : null}
+
+                      <div>
+                        {day.temp.morn ? (
+                          <div>Morning {day.temp.morn}</div>
+                        ) : null}
+                        {day.temp.day ? (
+                          <div>
+                            {day.feels_like.day ? (
+                              <>
+                                <div>Day {day.temp.day}</div>
+                                <div>
+                                  <FeelsLike /> {day.feels_like.day}
+                                </div>
+                              </>
+                            ) : (
+                              <>Day {day.temp.day}</>
+                            )}
+                          </div>
+                        ) : null}
+                        {day.temp.eve ? (
+                          <div>Evening: {day.temp.eve}</div>
+                        ) : null}
+                        {day.temp.night ? (
+                          <div>
+                            {day.feels_like.night ? (
+                              <>
+                                <div>Night: {day.temp.night}</div>
+                                <div>
+                                  <FeelsLike /> {day.feels_like.night}
+                                </div>
+                              </>
+                            ) : (
+                              <>Night: {day.temp.night}</>
+                            )}
+                          </div>
+                        ) : null}
+                      </div>
                     </div>
                     <div className="dailyDataDiv">
                       <Humidity /> {day.humidity}
@@ -142,9 +149,12 @@ const DailyData: React.FC<DailyProps> = ({
                       <UVI /> {day.uvi}
                     </div>
                     <div className="dailyDataDiv">
-                      Wind deg: {day.wind_deg}
-                      Wind gust: {day.wind_gust}
-                      Wind speed: {day.wind_speed}
+                      <Windy />
+                      <div className="moonTimings">
+                        <div>Wind deg {day.wind_deg}</div>
+                        <div>Wind gust {day.wind_gust}</div>
+                        <div>Wind speed {day.wind_speed}</div>
+                      </div>
                     </div>
                     <div className="dailyDataDiv">
                       <Clouds night={false} /> {day.clouds}
@@ -163,7 +173,6 @@ const DailyData: React.FC<DailyProps> = ({
                         <div>Sunset {day.sunset}</div>
                       </div>
                     </div>
-
                     <div className="dailyDataDiv">
                       {getMoonPhase(day.moon_phase as number)}
                       <div className="moonTimings">

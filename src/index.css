@@ -170,8 +170,8 @@ li {
   border-radius: var(--radius);
   border: 1px solid black;
   padding: var(--btnPadding);
-  width: 400px;
-  height: 400px;
+  width: 200px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -201,7 +201,16 @@ li {
   font-size: 0.8rem;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
+}
+.rainPercentContainer {
+  display: flex;
   align-items: center;
+  gap: 0.1rem;
+}
+.PercentSvg {
+  width: 0.8rem;
+  height: 0.8rem;
 }
 /* ----------------- END DAILY OVERLAY*/
 
