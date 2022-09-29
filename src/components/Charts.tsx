@@ -1,9 +1,14 @@
 import { MinutelyChartProps } from 'interfaces';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { useEffect, useState } from 'react';
+import CheckAll from 'src/icons/CheckAll';
 ChartJS.register(...registerables);
 
 const Charts: React.FC<MinutelyChartProps> = ({ minuteData }) => {
+  //state
+  const [hasRainValue, setHasRainValue] = useState(false);
+
   const timeArray: string[] = [];
   const pptArray: number[] = [];
 
@@ -23,40 +28,61 @@ const Charts: React.FC<MinutelyChartProps> = ({ minuteData }) => {
     pptArray.push(formatted);
   });
 
+  useEffect(() => {
+    // checks if there is any rain value
+    const condition: undefined | number = pptArray.find(
+      (e) => e !== 0
+    );
+    if (condition) setHasRainValue(true);
+    else setHasRainValue(false);
+  }, [hasRainValue, pptArray]);
+
   return (
-    <Bar
-      height={400}
-      width={600}
-      data={{
-        labels: timeArray,
-        datasets: [
-          {
-            label: 'Rain volume, mm ',
-            data: pptArray,
-            backgroundColor: ['#075985'],
-            borderColor: ['#a54608'],
-            borderWidth: 0.8,
-            borderRadius: 2
-          }
-        ]
-      }}
-      options={{
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-            grid: {
-              display: false
+    <>
+      {hasRainValue ? (
+        <Bar
+          height={400}
+          width={600}
+          data={{
+            labels: timeArray,
+            datasets: [
+              {
+                label: 'Rain volume, mm ',
+                data: pptArray,
+                backgroundColor: ['#075985'],
+                borderColor: ['#a54608'],
+                borderWidth: 0.8,
+                borderRadius: 2
+              }
+            ]
+          }}
+          options={{
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false
+                }
+              },
+              x: {
+                grid: {
+                  display: false
+                }
+              }
             }
-          },
-          x: {
-            grid: {
-              display: false
-            }
-          }
-        }
-      }}
-    />
+          }}
+        />
+      ) : (
+        <div className="noRain">
+          <CheckAll />
+          <div className="strong">
+            Currently there is no rain forecast for the next 60
+            minutes
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

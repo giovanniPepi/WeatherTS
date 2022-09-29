@@ -38,6 +38,9 @@ li {
   padding: 0;
   list-style-type: none;
 }
+.strong {
+  font-weight: bold;
+}
 /* --------------- OVERLAY CONFIG----------- */
 .minutelyDataOverlay,
 .hourlyDataOverlay,
@@ -108,6 +111,18 @@ li {
   display: flex;
   align-items: center;
 }
+.noRain {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.CheckAllSvg {
+  height: 15rem;
+  width: 15rem;
+}
+
 /* ----------------- HOURLY OVERLAY*/
 
 .hourlyContainer {

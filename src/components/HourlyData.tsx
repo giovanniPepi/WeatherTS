@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import { HourlyArray, HourlyProps, IWeatherData } from 'interfaces';
+import { HourlyArray, HourlyProps } from 'interfaces';
 import useClickOutside from 'src/functions/useClickOutside';
 import { motion } from 'framer-motion';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
@@ -48,7 +48,6 @@ const HourlyData: React.FC<HourlyProps> = ({
   };
 
   useEffect(() => {
-    console.log(start, index);
     getItemsToRender();
   }, [index, start]);
 
