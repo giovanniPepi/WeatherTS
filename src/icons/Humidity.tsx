@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-const Clouds = () => {
+const Humidity = () => {
   const svgVariants = {
     hidden: { rotate: -90 },
     visible: {
@@ -25,7 +25,7 @@ const Clouds = () => {
 
   return (
     <motion.svg
-      className="CloudsSvg"
+      className="HumiditySvg"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       variants={svgVariants}
@@ -33,11 +33,11 @@ const Clouds = () => {
       animate="visible"
     >
       <motion.path
-        d="M19.19 12.07C19.69 11.54 20 10.82 20 10C20 8.3 18.7 6.84 17 6.84H14.2C14.2 4.17 12.03 2 9.36 2C7.31 2 5.56 3.28 4.85 5.08C2.72 5.14 1 6.89 1 9.04C1 11.22 2.78 13 4.96 13H8.1C8.04 13.33 8 13.66 8 14H7.5C5.57 14 4 15.57 4 17.5S5.57 21 7.5 21H18.5C21 21 23 19 23 16.5C23 14.26 21.34 12.41 19.19 12.07M18.5 19H7.5C6.67 19 6 18.33 6 17.5S6.67 16 7.5 16H10V14C10 12.07 11.57 10.5 13.5 10.5S17 12.07 17 14H18.5C19.88 14 21 15.12 21 16.5S19.88 19 18.5 19Z"
+        d="M12,3.25C12,3.25 6,10 6,14C6,17.32 8.69,20 12,20A6,6 0 0,0 18,14C18,10 12,3.25 12,3.25M14.47,9.97L15.53,11.03L9.53,17.03L8.47,15.97M9.75,10A1.25,1.25 0 0,1 11,11.25A1.25,1.25 0 0,1 9.75,12.5A1.25,1.25 0 0,1 8.5,11.25A1.25,1.25 0 0,1 9.75,10M14.25,14.5A1.25,1.25 0 0,1 15.5,15.75A1.25,1.25 0 0,1 14.25,17A1.25,1.25 0 0,1 13,15.75A1.25,1.25 0 0,1 14.25,14.5Z"
         variants={pathVariants}
       />
     </motion.svg>
   );
 };
 
-export default Clouds;
+export default Humidity;

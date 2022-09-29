@@ -3,6 +3,14 @@ import { HourlyProps } from 'interfaces';
 import useClickOutside from 'src/functions/useClickOutside';
 import { motion } from 'framer-motion';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
+import Temperature from 'src/icons/Temperature';
+import FeelsLike from 'src/icons/FeelsLike';
+import Humidity from 'src/icons/Humidity';
+import UVI from 'src/icons/UVI';
+import Clouds from 'src/icons/Clouds';
+import DewPoint from 'src/icons/DewPoint';
+import Pressure from 'src/icons/Pressure';
+import Visibility from 'src/icons/Visibility';
 
 const HourlyData: React.FC<HourlyProps> = ({
   hourlyData,
@@ -30,25 +38,40 @@ const HourlyData: React.FC<HourlyProps> = ({
         }}
       >
         <div className="hourlyDataModal" ref={domNode}>
-          Hourly Forecast
+          <h1>Hourly Forecast</h1>
           <ul className="hourlyUl">
             {hourlyData.map((hour) => {
               return (
                 <li key={v4()} className="hourlyContainer">
-                  <div>{hour.dt}</div>
+                  <div className="hourlyDt">{hour.dt}</div>
                   <div>
                     {getWeatherIcon(hour.weather[0].main)}{' '}
                     {hour.weather[0].description}
                   </div>
+                  <div></div>
+                  <Temperature /> {hour.temp}
                   <div>
-                    Temp: {hour.temp} Feels_like: {hour.feels_like}
+                    <FeelsLike />
+                    {hour.feels_like}
                   </div>
-                  <div>Humidity: {hour.humidity}</div>
-                  <div>UVI: {hour.uvi}</div>
-                  <div>Clouds: {hour.clouds}</div>
-                  <div>Dew Point: {hour.dew_point}</div>
-                  <div>Pressure: {hour.pressure}</div>
-                  <div>Visibility: {hour.visibility}</div>
+                  <div>
+                    <Humidity /> {hour.humidity}
+                  </div>
+                  <div>
+                    <UVI /> {hour.uvi}
+                  </div>
+                  <div>
+                    <Clouds /> {hour.clouds}
+                  </div>
+                  <div>
+                    <DewPoint /> {hour.dew_point}
+                  </div>
+                  <div>
+                    <Pressure /> {hour.pressure}
+                  </div>
+                  <div>
+                    <Visibility /> {hour.visibility}
+                  </div>
                 </li>
               );
             })}

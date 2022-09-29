@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-const Clouds = () => {
+const FeelsLike = () => {
   const svgVariants = {
     hidden: { rotate: -90 },
     visible: {
@@ -25,7 +25,7 @@ const Clouds = () => {
 
   return (
     <motion.svg
-      className="CloudsSvg"
+      className="FeelsLikeSvg"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       variants={svgVariants}
@@ -33,11 +33,11 @@ const Clouds = () => {
       animate="visible"
     >
       <motion.path
-        d="M19.19 12.07C19.69 11.54 20 10.82 20 10C20 8.3 18.7 6.84 17 6.84H14.2C14.2 4.17 12.03 2 9.36 2C7.31 2 5.56 3.28 4.85 5.08C2.72 5.14 1 6.89 1 9.04C1 11.22 2.78 13 4.96 13H8.1C8.04 13.33 8 13.66 8 14H7.5C5.57 14 4 15.57 4 17.5S5.57 21 7.5 21H18.5C21 21 23 19 23 16.5C23 14.26 21.34 12.41 19.19 12.07M18.5 19H7.5C6.67 19 6 18.33 6 17.5S6.67 16 7.5 16H10V14C10 12.07 11.57 10.5 13.5 10.5S17 12.07 17 14H18.5C19.88 14 21 15.12 21 16.5S19.88 19 18.5 19Z"
+        d="M17 3H21V5H17V3M17 7H21V9H17V7M17 11H21V13H17.75L17 12.1V11M21 15V17H19C19 16.31 18.9 15.63 18.71 15H21M7 3V5H3V3H7M7 7V9H3V7H7M7 11V12.1L6.25 13H3V11H7M3 15H5.29C5.1 15.63 5 16.31 5 17H3V15M15 13V5C15 3.34 13.66 2 12 2S9 3.34 9 5V13C6.79 14.66 6.34 17.79 8 20S12.79 22.66 15 21 17.66 16.21 16 14C15.72 13.62 15.38 13.28 15 13M12 4C12.55 4 13 4.45 13 5V8H11V5C11 4.45 11.45 4 12 4Z"
         variants={pathVariants}
       />
     </motion.svg>
   );
 };
 
-export default Clouds;
+export default FeelsLike;

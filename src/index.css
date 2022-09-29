@@ -110,9 +110,16 @@ li {
 }
 /* ----------------- HOURLY OVERLAY*/
 .hourlyUl {
-  display: flex;
   max-width: 90vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
-.hourlyDataModal {
+.hourlyContainer {
+  border-radius: var(--radius);
+  border: 1px solid black;
+  padding: var(--btnPadding);
+}
+.hourlyDt {
+  font-size: 12px;
 }
 /* ----------------- END HOURLY OVERLAY*/
