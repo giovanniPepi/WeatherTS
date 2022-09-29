@@ -33,8 +33,6 @@ const DailyData: React.FC<DailyProps> = ({
       setIndex(index + 2);
       setStart(start + 2);
     }
-
-    console.log(start, index);
   };
 
   const getPreviousHours = () => {
@@ -72,91 +70,109 @@ const DailyData: React.FC<DailyProps> = ({
       <section className="dailyDataOverlay">
         <div className="dailyDataModal" ref={domNode}>
           <div className="dailyMainTitle">Daily forecast</div>
-          <button onClick={() => getPreviousHours()}>
-            <Previous />
-          </button>
+          <div className="dailyControlDiv">
+            <button onClick={() => getPreviousHours()}>
+              <Previous />
+            </button>
 
-          <ul className="dailyUl">
-            {renderedItems.map((day) => {
-              return (
-                <li key={v4()} className="dailyContainer">
-                  <div>Forecast for {day.dt}</div>
-                  <div>
-                    {getWeatherIcon(day.weather[0].main)}
-                    {day.weather[0].description} - {day.pop}
-                  </div>
-                  <div>
-                    <Temperature />
-                    {day.temp.morn ? (
-                      <div>
-                        Morning: {day.temp.morn}
-                        {day.feels_like.morn ? (
-                          <>
-                            <FeelsLike /> {day.feels_like.morn}
-                          </>
-                        ) : null}
-                      </div>
-                    ) : null}
-                    {day.temp.day ? (
-                      <div>
-                        Day: {day.temp.day}
-                        {day.feels_like.day ? (
-                          <>
-                            <FeelsLike /> {day.feels_like.day}
-                          </>
-                        ) : null}
-                      </div>
-                    ) : null}
-                    {day.temp.eve ? (
-                      <div>
-                        Evening: {day.temp.eve}
-                        {day.feels_like.eve ? (
-                          <>
-                            <FeelsLike /> {day.feels_like.eve}
-                          </>
-                        ) : null}
-                      </div>
-                    ) : null}
-                    {day.temp.night ? (
-                      <div>
-                        Night: {day.temp.night}
-                        {day.feels_like.night ? (
-                          <>
-                            <FeelsLike /> {day.feels_like.night}
-                          </>
-                        ) : null}
-                      </div>
-                    ) : null}
-                  </div>
-                  <div>
-                    <Humidity /> {day.humidity}
-                  </div>
-                  <div>
-                    <UVI /> {day.uvi}
-                  </div>
-                  <div>
-                    Wind deg: {day.wind_deg}
-                    Wind gust: {day.wind_gust}
-                    Wind speed: {day.wind_speed}
-                  </div>
-                  <div>
-                    <Clouds night={false} /> {day.clouds}
-                  </div>
-                  <div>Dew point {day.dew_point}</div>
-                  <div>Pressure: {day.pressure}</div>
+            <ul className="dailyUl">
+              {renderedItems.map((day) => {
+                return (
+                  <li key={v4()} className="dailyContainer">
+                    <div className="dailyDt">
+                      Forecast for {day.dt}
+                    </div>
+                    <div className="dailyDataDiv">
+                      {getWeatherIcon(day.weather[0].main)}
+                      {day.weather[0].description} - {day.pop}
+                    </div>
+                    <div className="dailyDataDiv">
+                      <Temperature />
+                      {day.temp.morn ? (
+                        <div>
+                          Morning: {day.temp.morn}
+                          {day.feels_like.morn ? (
+                            <>
+                              <FeelsLike /> {day.feels_like.morn}
+                            </>
+                          ) : null}
+                        </div>
+                      ) : null}
+                      {day.temp.day ? (
+                        <div>
+                          Day: {day.temp.day}
+                          {day.feels_like.day ? (
+                            <>
+                              <FeelsLike /> {day.feels_like.day}
+                            </>
+                          ) : null}
+                        </div>
+                      ) : null}
+                      {day.temp.eve ? (
+                        <div>
+                          Evening: {day.temp.eve}
+                          {day.feels_like.eve ? (
+                            <>
+                              <FeelsLike /> {day.feels_like.eve}
+                            </>
+                          ) : null}
+                        </div>
+                      ) : null}
+                      {day.temp.night ? (
+                        <div>
+                          Night: {day.temp.night}
+                          {day.feels_like.night ? (
+                            <>
+                              <FeelsLike /> {day.feels_like.night}
+                            </>
+                          ) : null}
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="dailyDataDiv">
+                      <Humidity /> {day.humidity}
+                    </div>
+                    <div className="dailyDataDiv">
+                      <UVI /> {day.uvi}
+                    </div>
+                    <div className="dailyDataDiv">
+                      Wind deg: {day.wind_deg}
+                      Wind gust: {day.wind_gust}
+                      Wind speed: {day.wind_speed}
+                    </div>
+                    <div className="dailyDataDiv">
+                      <Clouds night={false} /> {day.clouds}
+                    </div>
+                    <div className="dailyDataDiv">
+                      Dew point {day.dew_point}
+                    </div>
+                    <div className="dailyDataDiv">
+                      Pressure: {day.pressure}
+                    </div>
 
-                  <div>Sunrise: {day.sunrise}</div>
-                  <div>Sunset: {day.sunset}</div>
-                  <div>Moon Phase: {day.moon_phase}</div>
-                  <div>Moonrise: {day.moonrise}</div>
-                  <div>Moonset: {day.moonset}</div>
-                </li>
-              );
-            })}
-          </ul>
-          <button onClick={() => getNextHours()}>
-            <Next />
-          </button>
+                    <div className="dailyDataDiv">
+                      Sunrise: {day.sunrise}
+                    </div>
+                    <div className="dailyDataDiv">
+                      Sunset: {day.sunset}
+                    </div>
+                    <div className="dailyDataDiv">
+                      Moon Phase: {day.moon_phase}
+                    </div>
+                    <div className="dailyDataDiv">
+                      Moonrise: {day.moonrise}
+                    </div>
+                    <div className="dailyDataDiv">
+                      Moonset: {day.moonset}
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+            <button onClick={() => getNextHours()}>
+              <Next />
+            </button>
+          </div>
         </div>
       </section>
     </motion.div>

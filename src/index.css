@@ -161,6 +161,40 @@ li {
 }
 /* ----------------- END HOURLY OVERLAY*/
 
+/* ----------------- START DAILY OVERLAY*/
+
+.dailyContainer {
+  border-radius: var(--radius);
+  border: 1px solid black;
+  padding: var(--btnPadding);
+  width: 450px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+.dailyDt {
+  text-align: center;
+}
+.dailyControlDiv {
+  display: flex;
+}
+.dailyDataDiv {
+  display: flex;
+  justify-content: space-between;
+}
+.PreviousSvg,
+.NextSvg {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+.dailyControlDiv {
+  display: flex;
+}
+/* ----------------- END DAILY OVERLAY*/
+
 /*-----------------------DESKTOP */
 @media screen and (min-width: 1000px) {
   .hourlyUl {
