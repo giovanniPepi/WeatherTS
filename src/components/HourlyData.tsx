@@ -37,7 +37,6 @@ const HourlyData: React.FC<HourlyProps> = ({
     if (start < index - 8) setStart(0);
     if (index < start || index < 8) setIndex(8);
     if (index > 8 || start > 0) {
-      console.log('fuck');
       setStart(start - 8);
       setIndex(index - 8);
     }
@@ -69,7 +68,7 @@ const HourlyData: React.FC<HourlyProps> = ({
         }}
       >
         <div className="hourlyDataModal" ref={domNode}>
-          <div>Hourly Forecast</div>
+          <div className="hourlyMainTitle">Hourly Forecast</div>
           <div className="hourlyControlDiv">
             <button onClick={() => getPreviousHours()}>
               <Previous />
@@ -79,16 +78,18 @@ const HourlyData: React.FC<HourlyProps> = ({
                 return (
                   <li key={v4()} className="hourlyContainer">
                     <div className="hourlyDt">{hour.dt}</div>
-                    <div>
+                    <div className="hourlyDataDiv">
                       {getWeatherIcon(hour.weather[0].main)}
-                      {hour.weather[0].main}
+                      <div>{hour.weather[0].main}</div>
                     </div>
-                    <div></div>
-                    <Temperature /> {hour.temp}
-                    <div>
+                    <div className="hourlyDataDiv">
+                      <Temperature />
+                      {hour.temp}
+                    </div>
+                    <div className="hourlyDataDiv">
                       <Humidity /> {hour.humidity}
                     </div>
-                    <div>
+                    <div className="hourlyDataDiv">
                       <UVI /> {hour.uvi}
                     </div>
                   </li>
