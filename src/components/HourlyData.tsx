@@ -1,26 +1,56 @@
 import { v4 } from 'uuid';
-import { HourlyProps } from 'interfaces';
+import { HourlyArray, HourlyProps, IWeatherData } from 'interfaces';
 import useClickOutside from 'src/functions/useClickOutside';
 import { motion } from 'framer-motion';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
 import Temperature from 'src/icons/Temperature';
-import FeelsLike from 'src/icons/FeelsLike';
 import Humidity from 'src/icons/Humidity';
 import UVI from 'src/icons/UVI';
-import Clouds from 'src/icons/Clouds';
-import DewPoint from 'src/icons/DewPoint';
-import Pressure from 'src/icons/Pressure';
-import Visibility from 'src/icons/Visibility';
+import { useEffect, useState } from 'react';
 
 const HourlyData: React.FC<HourlyProps> = ({
   hourlyData,
   setShowHourlyModal
 }) => {
-  //  console.log("hourlyData component called: ", hourlyData);
-
+  // click outside
   const domNode = useClickOutside(() => {
     setShowHourlyModal(false);
   });
+
+  const [index, setIndex] = useState(8);
+  const [renderedItems, setRenderedItems] =
+    useState<HourlyArray>(hourlyData);
+  const [start, setStart] = useState(0);
+
+  const getNextHours = () => {
+    if (start > index || start > index - 8) setStart(40);
+    if (index > 48) setIndex(48);
+    if (index < 48 || start < 40) {
+      console.log('fuck');
+      setIndex(index + 8);
+      setStart(start + 8);
+    }
+  };
+
+  const getPreviousHours = () => {
+    if (start < index - 8) setStart(0);
+    if (index < start || index < 8) setIndex(8);
+    if (index > 8 || start > 0) {
+      console.log('fuck');
+      setStart(start - 8);
+      setIndex(index - 8);
+    }
+  };
+
+  const getItemsToRender = () => {
+    const newRender: HourlyArray = hourlyData.slice(start, index);
+    setRenderedItems(newRender);
+  };
+
+  useEffect(() => {
+    console.log(start, index);
+    getItemsToRender();
+  }, [index, start]);
 
   return (
     <section className="hourlyDataOverlay">
@@ -39,8 +69,9 @@ const HourlyData: React.FC<HourlyProps> = ({
       >
         <div className="hourlyDataModal" ref={domNode}>
           <h1>Hourly Forecast</h1>
+
           <ul className="hourlyUl">
-            {hourlyData.map((hour) => {
+            {renderedItems.map((hour) => {
               return (
                 <li key={v4()} className="hourlyContainer">
                   <div className="hourlyDt">{hour.dt}</div>
@@ -60,6 +91,10 @@ const HourlyData: React.FC<HourlyProps> = ({
               );
             })}
           </ul>
+          <button onClick={() => getPreviousHours()}>
+            Previous 8 hours
+          </button>
+          <button onClick={() => getNextHours()}>Next 8 hours</button>
         </div>
       </motion.div>
     </section>

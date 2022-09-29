@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
+import { NightProps } from 'interfaces';
 
-const Clouds = () => {
+const Clouds: React.FC<NightProps> = () => {
   const svgVariants = {
     hidden: { rotate: -90 },
     visible: {
