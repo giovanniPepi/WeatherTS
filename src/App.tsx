@@ -14,6 +14,7 @@ import DailyData from './components/DailyData';
 import { motion } from 'framer-motion';
 import dataFormatter from './functions/dataFormatter';
 import Loading from './icons/Loading';
+import getMoonPhase from './functions/getMoonPhase';
 
 const App: React.FC = () => {
   //state
@@ -107,6 +108,7 @@ const App: React.FC = () => {
     >
       <main className="app">
         {loading ? <Loading /> : null}
+
         {/* Conditional render so we wait for the API data*/}
         {apiData ? (
           <RealTimeData
