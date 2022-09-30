@@ -1,8 +1,6 @@
 import { AlertsModalProps } from 'interfaces';
 import useClickOutside from 'src/functions/useClickOutside';
 import { motion } from 'framer-motion';
-import getWeatherIcon from 'src/functions/getWeatherIcon';
-import getMoonPhase from 'src/functions/getMoonPhase';
 
 const AlertsModal: React.FC<AlertsModalProps> = ({
   apiData,

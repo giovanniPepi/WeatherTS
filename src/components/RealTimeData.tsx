@@ -88,6 +88,40 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       </div>
       <div className="separator"></div>
 
+      {/* conditional rendering for rain and snow */}
+      {apiData.current.rain ? (
+        <>
+          <div className="realTimeDataDiv">
+            <Rain night={night} />
+            <div className="moonTimings">
+              <div>{apiData.current.rain['1h']} - last hour</div>
+              <div>
+                {apiData.current.rain['3h']
+                  ? `${apiData.current.rain['3h']} - last 3 hours`
+                  : null}
+              </div>
+            </div>
+          </div>
+          <div className="separator"></div>
+        </>
+      ) : null}
+      {apiData.current.snow ? (
+        <>
+          <div className="realTimeDataDiv">
+            <Snow night={night} />
+            <div className="moonTimings">
+              <div>{apiData.current.snow['1h']} - last hour</div>
+              <div>
+                {apiData.current.snow['3h']
+                  ? `${apiData.current.snow['3h']} - last 3 hours`
+                  : null}
+              </div>
+            </div>
+          </div>
+          <div className="separator"></div>
+        </>
+      ) : null}
+
       <div className="realTimeDataDiv">
         <Windy />
         <div className="windContainer">
@@ -115,32 +149,6 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         {apiData.current.visibility}
       </div>
       <div className="separator"></div>
-
-      {/* conditional rendering for rain and snow */}
-      {apiData.current.rain ? (
-        <>
-          <div className="realTimeDataDiv">
-            <Rain night={night} />
-            <div className="moonTImings">
-              <div>{apiData.current.rain['1h']}</div>
-              <div>{apiData.current.rain['3h']}</div>
-            </div>
-          </div>
-          <div className="separator"></div>
-        </>
-      ) : null}
-      {apiData.current.snow ? (
-        <>
-          <div className="realTimeDataDiv">
-            <Snow night={night} />
-            <div className="moonTImings">
-              <div>{apiData.current.snow['1h']}</div>
-              <div>{apiData.current.snow['3h']}</div>
-            </div>
-          </div>
-          <div className="separator"></div>
-        </>
-      ) : null}
 
       <div className="realTimeDataDiv">
         <Sunny />
