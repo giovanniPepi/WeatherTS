@@ -27,7 +27,7 @@ const AlertsModal: React.FC<AlertsModalProps> = ({
     >
       <div className="alertsOverlay">
         <div className="alertsModal" ref={domNode}>
-          <div>{apiData.alerts[0].description}</div>
+          {apiData.alerts[0].description}
         </div>
       </div>
     </motion.div>

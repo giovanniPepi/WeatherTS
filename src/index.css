@@ -107,6 +107,9 @@ li {
   padding: var(--btnPadding);
   border-radius: var(--radius);
 }
+.alertBtnHome {
+  margin-top: 0.5rem;
+}
 .logo {
   font-size: var(--biggerFont);
   font-weight: bold;
@@ -277,7 +280,7 @@ li {
     justify-items: center;
     align-items: center;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 10vh 10vh 70vh 10vh;
+    grid-template-rows: 10vh 5vh 75vh 10vh;
   }
   .logo {
     grid-row: 1/2;
@@ -294,7 +297,14 @@ li {
   }
   .realTimeData {
     grid-row: 3/4;
-    grid-column: 1/5;
+    grid-column: 2/4;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    width: 20vw;
+    padding: var(--divPadding);
+    border: 1px solid black;
+    border-radius: var(--radius);
   }
   .dataTogglingArea {
     grid-row: 4/5;
@@ -314,6 +324,13 @@ li {
     display: grid;
     gap: 0.5rem;
     grid-template-columns: repeat(2, 1fr);
+  }
+  .alertsModal {
+    display: flex;
+    justify-content: center;
+  }
+  .dailyDt {
+    font-size: var(--biggerFont);
   }
 }
 /*------------------------------------------end DESKTOP */

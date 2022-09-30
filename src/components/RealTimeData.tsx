@@ -46,7 +46,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         x: window.innerWidth
       }}
     >
-      <div className="dailyDt">
+      <div className="dailyDt strong">
         <div>
           {locationToShow} - {apiData.current.dt}
         </div>
