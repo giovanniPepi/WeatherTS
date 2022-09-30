@@ -174,8 +174,7 @@ li {
   border-radius: var(--radius);
   border: 1px solid black;
   padding: var(--btnPadding);
-  width: 230px;
-  height: 500px;
+  width: 35vw;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -200,6 +199,9 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.dailyDataModal {
+  padding: 0.5rem 0.1rem 1.5rem 0.1rem;
 }
 .PreviousSvg,
 .NextSvg {
@@ -269,7 +271,7 @@ li {
 /* ----------------- END REALTIME OVERLAY*/
 
 /*---------------------------------------------DESKTOP */
-@media screen and (min-width: 650px) {
+@media screen and (min-width: 750px) {
   .app {
     display: grid;
     justify-items: center;
@@ -313,10 +315,20 @@ li {
     gap: 0.5rem;
     grid-template-columns: repeat(8, 1fr);
   }
+  .dailyDataModal {
+    max-height: 90vh;
+  }
   .dailyUl {
     display: grid;
     gap: 0.5rem;
     grid-template-columns: repeat(2, 1fr);
+    max-height: 70vh;
+  }
+  .dailyContainer {
+    max-height: 70vh;
+  }
+  .dailyControlDiv {
+    max-height: 75vh;
   }
   .alertsModal {
     display: flex;
@@ -357,7 +369,7 @@ li {
 /*----------------------------------------end INTERMEDIATE */
 
 /*-----------------------------------------------MOBILE */
-@media screen and (max-width: 649px) {
+@media screen and (max-width: 749px) {
   .hourlyUl {
     display: grid;
     gap: 0.3rem;
