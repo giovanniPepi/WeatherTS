@@ -11,10 +11,9 @@ import isNight from './isNight';
 const getWeatherIcon = (weatherDesc: string, applyTheme: boolean) => {
   // console.log(weatherDesc, applyTheme);
   let night;
+
   if (applyTheme) night = isNight();
   else night = false;
-
-  console.log('night applied? ', night);
 
   if (night && weatherDesc === 'Clear') return <MoonClear />;
 

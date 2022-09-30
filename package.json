@@ -4,33 +4,25 @@
   "private": true,
   "dependencies": {
     "@babel/parser": "^7.19.1",
-    "@babel/types": "^7.19.0",
     "@mdi/js": "^7.0.96",
     "@mdi/react": "^1.6.1",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.11.59",
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6",
     "bundle-wizard": "^1.6.1",
     "chart.js": "^3.9.1",
+    "explorer": "^0.0.5",
+    "file-loader": "^6.2.0",
     "firebase": "^9.10.0",
     "framer-motion": "^7.4.0",
-    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0",
     "react-router": "^6.4.1",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
-    "styled-components": "^5.3.6",
-    "typescript": "^4.8.3",
-    "typescript-eslint": "^0.0.1-alpha.0",
-    "uuid": "^9.0.0"
+    "source-map": "^0.7.4",
+    "styled-components": "^5.3.6"
   },
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -51,8 +43,17 @@
     ]
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.186",
+    "@babel/types": "^7.19.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.11.59",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "@types/uuid": "^8.3.4",
-    "file-loader": "^6.2.0"
+    "typescript": "^4.8.3",
+    "typescript-eslint": "^0.0.1-alpha.0",
+    "uuid": "^9.0.0"
   }
 }
