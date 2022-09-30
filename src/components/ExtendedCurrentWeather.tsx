@@ -18,6 +18,7 @@ import Rain from 'src/icons/Rain';
 import Snow from 'src/icons/Snow';
 import Sunny from 'src/icons/Sunny';
 import Sunrise from 'src/icons/Sunrise';
+import { react } from '@babel/types';
 
 const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
   apiData,

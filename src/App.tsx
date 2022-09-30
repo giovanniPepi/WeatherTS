@@ -1,5 +1,6 @@
 import React, {
   ChangeEvent,
+  Suspense,
   useEffect,
   useRef,
   useState
@@ -8,13 +9,12 @@ import RealTimeData from './components/RealTimeData';
 import getWeatherAPI from './functions/getWeatherAPI';
 import type { IWeatherData } from '../interfaces';
 import getGeoAPI from './functions/getGEOApi';
-import MinutelyData from './components/MinutelyData';
-import HourlyData from './components/HourlyData';
-import DailyData from './components/DailyData';
+//import MinutelyData from './components/MinutelyData';
+// import HourlyData from './components/HourlyData';
+// import DailyData from './components/DailyData';
 import { motion } from 'framer-motion';
 import dataFormatter from './functions/dataFormatter';
 import Loading from './icons/Loading';
-import getMoonPhase from './functions/getMoonPhase';
 
 const App: React.FC = () => {
   //state
@@ -31,6 +31,18 @@ const App: React.FC = () => {
     useState<Boolean>(false);
   const [showDailyModal, setShowDailyModal] =
     useState<Boolean>(false);
+
+  // code splitting
+  const MinutelyData = React.lazy(
+    () => import('./components/MinutelyData')
+  );
+  const HourlyData = React.lazy(
+    () => import('./components/HourlyData')
+  );
+
+  const DailyData = React.lazy(
+    () => import('./components/DailyData')
+  );
 
   //refs
   const inputRef = useRef<HTMLInputElement>(null);
@@ -133,24 +145,30 @@ const App: React.FC = () => {
         <button onClick={toggleDailyData}>Daily forecast</button>
 
         {showMinutelyModal && apiData?.minutely ? (
-          <MinutelyData
-            minuteData={apiData.minutely}
-            setShowMinutelyModal={setShowMinutelyModal}
-          />
+          <Suspense fallback={<Loading />}>
+            <MinutelyData
+              minuteData={apiData.minutely}
+              setShowMinutelyModal={setShowMinutelyModal}
+            />
+          </Suspense>
         ) : null}
 
         {showHourlyModal && apiData?.hourly ? (
-          <HourlyData
-            hourlyData={apiData.hourly}
-            setShowHourlyModal={setShowHourlyModal}
-          />
+          <Suspense fallback={<Loading />}>
+            <HourlyData
+              hourlyData={apiData.hourly}
+              setShowHourlyModal={setShowHourlyModal}
+            />
+          </Suspense>
         ) : null}
 
         {showDailyModal && apiData?.daily ? (
-          <DailyData
-            dailyData={apiData.daily}
-            setShowDailyModal={setShowDailyModal}
-          />
+          <Suspense fallback={<Loading />}>
+            <DailyData
+              dailyData={apiData.daily}
+              setShowDailyModal={setShowDailyModal}
+            />
+          </Suspense>
         ) : null}
       </main>
     </motion.div>
