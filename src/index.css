@@ -258,6 +258,11 @@ li {
 .windySvg {
   align-self: center;
 }
+.showAlertsDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* ----------------- END REALTIME OVERLAY*/
 
 /*-----------------------DESKTOP */

@@ -11,6 +11,13 @@ import UVI from 'src/icons/UVI';
 import Clouds from 'src/icons/Clouds';
 import Windy from 'src/icons/Windy';
 import isNight from 'src/functions/isNight';
+import DewPoint from 'src/icons/DewPoint';
+import Pressure from 'src/icons/Pressure';
+import Visibility from 'src/icons/Visibility';
+import Rain from 'src/icons/Rain';
+import Snow from 'src/icons/Snow';
+import Sunny from 'src/icons/Sunny';
+import Sunrise from 'src/icons/Sunrise';
 
 const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
   apiData,
@@ -49,15 +56,17 @@ const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
             </div>
           </div>
           <div className="separator"></div>
-          {/*gets the weather icon through getMoonphase to return the correct phase if it's night */}
-          {apiData.current.weather[0].main === 'Clear' && night ? (
-            <>
-              {getMoonPhase(apiData.daily[0].moon_phase as number)}
-              {apiData.current.weather[0].description}
-            </>
-          ) : (
-            getWeatherIcon(apiData.current.weather[0].main, true)
-          )}
+          <div className="realTimeDataDiv">
+            {/*gets the weather icon through getMoonphase to return the correct phase if it's night */}
+            {apiData.current.weather[0].main === 'Clear' && night ? (
+              <>
+                {getMoonPhase(apiData.daily[0].moon_phase as number)}
+              </>
+            ) : (
+              getWeatherIcon(apiData.current.weather[0].main, true)
+            )}
+            {apiData.current.weather[0].description}
+          </div>
           <div className="separator"></div>
 
           <div className="realTimeDataDiv">
@@ -80,7 +89,7 @@ const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
           <div className="separator"></div>
 
           <div className="realTimeDataDiv">
-            <Clouds />
+            <Clouds night={night} />
             {apiData.current.clouds}
           </div>
           <div className="separator"></div>
@@ -95,63 +104,92 @@ const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
           <div className="realTimeDataDiv"></div>
           <div className="separator"></div>
 
-          <div>{apiData.current.dew_point}</div>
+          <div className="realTimeDataDiv">
+            <DewPoint />
+            {apiData.current.dew_point}
+          </div>
           <div className="separator"></div>
 
-          <div>{apiData.current.pressure}</div>
+          <div className="realTimeDataDiv">
+            <Pressure />
+            {apiData.current.pressure}
+          </div>
           <div className="separator"></div>
 
-          <div>{apiData.current.visibility}</div>
+          <div className="realTimeDataDiv">
+            <Visibility />
+            {apiData.current.visibility}
+          </div>
           <div className="separator"></div>
 
           {/* conditional rendering for rain and snow */}
           {apiData.current.rain ? (
             <>
-              <div>
-                {apiData.current.rain['1h']}
-                {apiData.current.rain['3h']}
+              <div className="realTimeDataDiv">
+                <Rain night={night} />
+                <div className="moonTImings">
+                  <div>{apiData.current.rain['1h']}</div>
+                  <div>{apiData.current.rain['3h']}</div>
+                </div>
               </div>
               <div className="separator"></div>
             </>
           ) : null}
           {apiData.current.snow ? (
             <>
-              <div>
-                {apiData.current.snow['1h']}
-                {apiData.current.snow['3h']}
+              <div className="realTimeDataDiv">
+                <Snow night={night} />
+                <div className="moonTImings">
+                  <div>{apiData.current.snow['1h']}</div>
+                  <div>{apiData.current.snow['3h']}</div>
+                </div>
               </div>
               <div className="separator"></div>
             </>
           ) : null}
 
-          <div>{apiData.current.sunrise}</div>
+          <div className="realTimeDataDiv">
+            <Sunny />
+            <div className="moonTimings">
+              <div>{apiData.current.sunrise}</div>
+              <div>{apiData.current.sunset}</div>
+            </div>
+          </div>
           <div className="separator"></div>
 
-          <div>{apiData.current.sunset}</div>
-          <div className="separator"></div>
-
-          <div>{apiData.daily[0].moonrise}</div>
-          <div className="separator"></div>
-
-          <div>{apiData.daily[0].moonset}</div>
+          <div className="realTimeDataDiv">
+            {getMoonPhase(apiData.daily[0].moon_phase as number)}
+            <div className="moonTimings">
+              <div>{apiData.daily[0].moonrise}</div>
+              <div>{apiData.daily[0].moonset}</div>
+            </div>
+          </div>
           <div className="separator"></div>
 
           {showAlerts ? (
             <>
               <div>{apiData.alerts[0].description}</div>
-              <button onClick={() => setShowAlerts(false)}>
+              <button
+                className="showAlertsBtn"
+                onClick={() => setShowAlerts(false)}
+              >
                 Hide Alerts
               </button>
               <div className="separator"></div>
             </>
-          ) : (
+          ) : apiData.alerts ? (
             <>
-              <button onClick={() => setShowAlerts(true)}>
-                Show Alerts
-              </button>
+              <div className="showAlertsDiv">
+                <button
+                  className="showAlertsBtn"
+                  onClick={() => setShowAlerts(true)}
+                >
+                  Show Alerts
+                </button>
+              </div>
               <div className="separator"></div>
             </>
-          )}
+          ) : null}
         </div>
       </div>
     </motion.div>
