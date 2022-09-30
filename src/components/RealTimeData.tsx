@@ -4,6 +4,11 @@ import getMoonPhase from 'src/functions/getMoonPhase';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
 import isNight from 'src/functions/isNight';
 import Alert from 'src/icons/Alerts';
+import FeelsLike from 'src/icons/FeelsLike';
+import Humidity from 'src/icons/Humidity';
+import Temperature from 'src/icons/Temperature';
+import UVI from 'src/icons/UVI';
+import Windy from 'src/icons/Windy';
 import AlertsModal from './AlertOverlay';
 import ExtendedCurrentWeather from './ExtendedCurrentWeather';
 
@@ -39,12 +44,23 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           getWeatherIcon(apiData.current.weather[0].main, true)
         )}
       </div>
-      <div>Temp: {apiData.current.temp}</div>
-      <div>Feels_like: {apiData.current.feels_like}</div>
-      <div>Humidity: {apiData.current.humidity}</div>
-      <div>UV: {apiData.current.uvi}</div>
-      <div>{apiData.current.wind_deg as number}</div>
-      <div>{apiData.current.wind_speed as number}</div>
+      <div>
+        <Temperature /> {apiData.current.temp}
+      </div>
+      <div>
+        <FeelsLike /> {apiData.current.feels_like}
+      </div>
+      <div>
+        <Humidity /> {apiData.current.humidity}
+      </div>
+      <div>
+        <UVI /> {apiData.current.uvi}
+      </div>
+      <div className="windContainerHome">
+        <Windy />
+        <div>{apiData.current.wind_deg as number}</div>
+        <div>{apiData.current.wind_speed as number}</div>
+      </div>
 
       {/* alerts */}
 

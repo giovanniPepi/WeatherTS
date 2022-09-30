@@ -50,6 +50,7 @@ const App: React.FC = () => {
   // empty dependency array to run only once
   useEffect(() => {
     getData(-22.90556, -47.06083, 'Campinas, BR');
+
     //focus on input
     inputRef.current?.focus();
   }, []);
@@ -61,12 +62,13 @@ const App: React.FC = () => {
     country: string
   ) => {
     try {
-      setLoading(true);
+      // setLoading(true);
       const data = await getWeatherAPI(lat, lon, country);
       setLoading(false);
 
       // data formatting before displaying in components
       setApiData(dataFormatter(data));
+
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -121,6 +123,20 @@ const App: React.FC = () => {
       <main className="app">
         {loading ? <Loading /> : null}
 
+        <header className="logo">Weather</header>
+
+        <div className="searchForm">
+          <form onSubmit={handleClick}>
+            <input
+              placeholder="Search a location..."
+              onChange={handleInputChange}
+              ref={inputRef}
+            />
+            {loadingSearch ? <Loading /> : null}
+          </form>
+          <button onClick={handleClick}>Search</button>
+        </div>
+
         {/* Conditional render so we wait for the API data*/}
         {apiData ? (
           <RealTimeData
@@ -129,20 +145,11 @@ const App: React.FC = () => {
           />
         ) : null}
 
-        <form onSubmit={handleClick}>
-          <input
-            placeholder="Search a location..."
-            onChange={handleInputChange}
-            ref={inputRef}
-          />
-          {loadingSearch ? <Loading /> : null}
-        </form>
-
-        <button onClick={handleClick}>Search</button>
-
-        <button onClick={toggleMinuteData}>Minute forecast</button>
-        <button onClick={toggleHourlyData}>Hourly forecast</button>
-        <button onClick={toggleDailyData}>Daily forecast</button>
+        <div className="dataTogglingArea">
+          <button onClick={toggleMinuteData}>Minute forecast</button>
+          <button onClick={toggleHourlyData}>Hourly forecast</button>
+          <button onClick={toggleDailyData}>Daily forecast</button>
+        </div>
 
         {showMinutelyModal && apiData?.minutely ? (
           <Suspense fallback={<Loading />}>
