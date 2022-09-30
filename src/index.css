@@ -114,6 +114,9 @@ li {
   font-size: var(--biggerFont);
   font-weight: bold;
 }
+.sunnySvg {
+  align-self: center;
+}
 /* ----------------------- END HOME UI ELEMENTS */
 
 /* ----------------- MINUTE OVERLAY*/
@@ -301,6 +304,7 @@ li {
     border: 1px solid black;
     border-radius: var(--radius);
   }
+
   .dataTogglingArea {
     grid-row: 4/5;
     display: flex;
