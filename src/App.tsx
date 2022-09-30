@@ -15,6 +15,7 @@ import getGeoAPI from './functions/getGEOApi';
 import { motion } from 'framer-motion';
 import dataFormatter from './functions/dataFormatter';
 import Loading from './icons/Loading';
+import Search from './icons/Search';
 
 const App: React.FC = () => {
   //state
@@ -123,8 +124,6 @@ const App: React.FC = () => {
       <main className="app">
         {loading ? <Loading /> : null}
 
-        <header className="logo">Weather</header>
-
         <div className="searchForm">
           <form onSubmit={handleClick}>
             <input
@@ -132,7 +131,9 @@ const App: React.FC = () => {
               onChange={handleInputChange}
               ref={inputRef}
             />
-            <button onClick={handleClick}>Search</button>
+            <button onClick={handleClick} className="searchBtn">
+              <Search />
+            </button>
             {loadingSearch ? <Loading /> : null}
           </form>
         </div>
