@@ -3,8 +3,6 @@ import useClickOutside from 'src/functions/useClickOutside';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
-import getWindDir from 'src/functions/getWindDir';
-import convertToKm from 'src/functions/convertToKm';
 import getMoonPhase from 'src/functions/getMoonPhase';
 import Temperature from 'src/icons/Temperature';
 import FeelsLike from 'src/icons/FeelsLike';
@@ -12,6 +10,7 @@ import Humidity from 'src/icons/Humidity';
 import UVI from 'src/icons/UVI';
 import Clouds from 'src/icons/Clouds';
 import Windy from 'src/icons/Windy';
+import isNight from 'src/functions/isNight';
 
 const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
   apiData,
@@ -25,6 +24,8 @@ const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
   const domNode = useClickOutside(() => {
     setShowExtendedCurrentWeather(false);
   });
+
+  const night = isNight();
 
   return (
     <motion.div
@@ -49,10 +50,9 @@ const ExtendedCurrentWeather: React.FC<ExtendedRealTimeDataProps> = ({
           </div>
           <div className="separator"></div>
           {/*gets the weather icon through getMoonphase to return the correct phase if it's night */}
-          {apiData.current.weather[0].main === 'Clear' ? (
+          {apiData.current.weather[0].main === 'Clear' && night ? (
             <>
               {getMoonPhase(apiData.daily[0].moon_phase as number)}
-
               {apiData.current.weather[0].description}
             </>
           ) : (

@@ -2,6 +2,7 @@ import { RealTimeDataProps } from 'interfaces';
 import React, { useState } from 'react';
 import getMoonPhase from 'src/functions/getMoonPhase';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
+import isNight from 'src/functions/isNight';
 import Alert from 'src/icons/Alerts';
 import AlertsModal from './AlertOverlay';
 import ExtendedCurrentWeather from './ExtendedCurrentWeather';
@@ -19,6 +20,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   const [showAlertsModal, setShowAlertsModal] =
     useState<Boolean>(false);
 
+  const night = isNight();
+
   return (
     <section className="realTimeData">
       <div>
@@ -26,7 +29,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       </div>
       <div>
         {/*gets the weather icon through getMoonphase to return the correct phase if it's night */}
-        {apiData.current.weather[0].main === 'Clear' ? (
+        {apiData.current.weather[0].main === 'Clear' && night ? (
           <>
             {getMoonPhase(apiData.daily[0].moon_phase as number)}
 
