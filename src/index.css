@@ -166,11 +166,6 @@ li {
   font-weight: bold;
   padding: var(--btnPadding);
 }
-.PreviousSvg,
-.NextSvg {
-  height: 2.5rem;
-  width: 2.5rem;
-}
 /* ----------------- END HOURLY OVERLAY*/
 
 /* ----------------- START DAILY OVERLAY*/
@@ -274,7 +269,7 @@ li {
 /* ----------------- END REALTIME OVERLAY*/
 
 /*---------------------------------------------DESKTOP */
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 650px) {
   .app {
     display: grid;
     justify-items: center;
@@ -291,9 +286,7 @@ li {
     grid-column: 1/5;
     width: 40vw;
     display: flex;
-  }
-  .searchForm > input {
-    width: 100%;
+    justify-content: space-between;
   }
   .realTimeData {
     grid-row: 3/4;
@@ -332,11 +325,23 @@ li {
   .dailyDt {
     font-size: var(--biggerFont);
   }
+  .hourlyUl {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .hourlyDataModal {
+    padding: 0.5rem 0.1rem 1.5rem 0.1rem;
+  }
+  .PreviousSvg,
+  .NextSvg {
+    height: 3rem;
+    width: 3rem;
+  }
 }
 /*------------------------------------------end DESKTOP */
 
 /*------------------------------------------INTERMEDIATE */
-@media screen and (min-width: 550px) and (max-width: 999px) {
+/* @media screen and (min-width: 550px) and (max-width: 999px) {
   .hourlyUl {
     display: grid;
     gap: 0.5rem;
@@ -348,11 +353,11 @@ li {
     gap: 0.5rem;
     grid-template-columns: repeat(2, 1fr);
   }
-}
+} */
 /*----------------------------------------end INTERMEDIATE */
 
 /*-----------------------------------------------MOBILE */
-@media screen and (max-width: 549px) {
+@media screen and (max-width: 649px) {
   .hourlyUl {
     display: grid;
     gap: 0.3rem;
@@ -363,6 +368,12 @@ li {
     display: grid;
     gap: 0.5rem;
     grid-template-columns: repeat(1, 1fr);
+  }
+
+  .PreviousSvg,
+  .NextSvg {
+    height: 2.5rem;
+    width: 2.5rem;
   }
 }
 /*---------------------------------------------end MOBILE */

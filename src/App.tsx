@@ -49,7 +49,7 @@ const App: React.FC = () => {
 
   // empty dependency array to run only once
   useEffect(() => {
-    getData(-22.90556, -47.06083, 'Campinas, BR');
+    getData(-22.854103, -47.048331, 'Campinas, BR');
 
     //focus on input
     inputRef.current?.focus();
@@ -132,9 +132,9 @@ const App: React.FC = () => {
               onChange={handleInputChange}
               ref={inputRef}
             />
+            <button onClick={handleClick}>Search</button>
             {loadingSearch ? <Loading /> : null}
           </form>
-          <button onClick={handleClick}>Search</button>
         </div>
 
         {/* Conditional render so we wait for the API data*/}

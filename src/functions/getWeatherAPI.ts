@@ -11,9 +11,7 @@ const getWeatherAPI = async (lat: number, lon: number, country: string): Promise
           mode: 'cors'
         }
       );
-      alert(response);
       const receivedData = await response.json();
-      alert('GOT DATA, RETURNING TO APP')
       return receivedData;
     } catch (error) {
       alert(error);
