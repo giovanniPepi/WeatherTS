@@ -32,7 +32,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
     useState<Boolean>(false);
 
   const night = isNight();
-  const title = `${locationToShow} - ${apiData.current.dt}`;
+  const hour = new Date().getHours();
+  const minutes = new Date().getMinutes();
 
   return (
     <motion.div
@@ -48,8 +49,11 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       }}
     >
       <div className="dailyDt strong">
-        <div>
-          <TextAnimation title={title as string} />
+        <div>{locationToShow}</div>
+        <div className="tickingTime">
+          {hour}
+          <TextAnimation />
+          {minutes}
         </div>
       </div>
       <div className="separator"></div>

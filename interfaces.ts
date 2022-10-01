@@ -168,7 +168,7 @@ interface NightProps {
 }
 
 interface Ititle {
-  title: string;
+  time: string;
 }
 
 type CurrentWeather = ICurrentWeatherArray[];

@@ -4,28 +4,29 @@ import styled, { keyframes } from 'styled-components';
 // yes, this needs to go outside...
 // https://medium.com/geekculture/you-may-see-this-warning-because-youve-called-styled-inside-another-component-styled-components-7766b4740b22
 const animation = keyframes`
-0% {opacity: 0;}
-25%{opacity: 1;} 
-50%{opacity: 1;}
-100% {opacity: 0}`;
+0% {opacity: 0; }
+25%{opacity: 1; } 
+50%{opacity: 1; }
+100% {opacity: 0;}`;
 
-const Wrapper = styled.span`
+const Wrapper = styled.div`
   opacity: 0;
   animation-name: ${animation};
-  animation-duration: 5s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
 `;
 
-const Title = styled.h1`
+const Title = styled.div`
+  display: inline-block;
   text-align: center;
   color: '';
 `;
 
-const TextAnimation: React.FC<Ititle> = ({ title }) => {
+const TextAnimation: React.FC = () => {
   return (
     <Wrapper>
-      <Title className="dailyDt strong">{title}</Title>
+      <Title className="twoDots">:</Title>
     </Wrapper>
   );
 };

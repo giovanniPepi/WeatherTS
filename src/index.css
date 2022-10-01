@@ -352,8 +352,16 @@ li {
     display: flex;
     justify-content: center;
   }
+  .tickingTime {
+    display: flex;
+    align-items: center;
+  }
+  .twoDots {
+    align-self: center;
+  }
   .dailyDt {
     font-size: var(--biggerFont);
+    flex-direction: column;
   }
   .hourlyUl {
     display: grid;
