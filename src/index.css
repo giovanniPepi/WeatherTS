@@ -44,6 +44,10 @@ li {
   padding: 0;
   list-style-type: none;
 }
+/*Shows whitespaces on spans*/
+span {
+  white-space: pre;
+}
 .strong {
   font-weight: bold;
 }

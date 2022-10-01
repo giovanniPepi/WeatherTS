@@ -144,6 +144,7 @@ interface DailyProps {
 interface RealTimeDataProps {
   apiData: IWeatherData;
   locationToShow: string;
+  loading: boolean
 }
 
 

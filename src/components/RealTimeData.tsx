@@ -28,7 +28,8 @@ import getMinute from 'src/functions/getMinute';
 
 const RealTimeData: React.FC<RealTimeDataProps> = ({
   apiData,
-  locationToShow
+  locationToShow,
+  loading
 }) => {
   //state
   const [showAlertsModal, setShowAlertsModal] =
@@ -53,7 +54,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
     >
       <div className="dailyDt strong">
         <div>
-          <TitleAnimation title={locationToShow} />
+          {loading ? null : <TitleAnimation title={locationToShow} />}
         </div>
         <div className="tickingTime">
           {hour}
