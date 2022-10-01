@@ -23,7 +23,7 @@ const Title = styled.div`
   color: '';
 `;
 
-const TextAnimation: React.FC = () => {
+const TickingOneSecond: React.FC = () => {
   return (
     <Wrapper>
       <Title className="twoDots">:</Title>
@@ -31,4 +31,4 @@ const TextAnimation: React.FC = () => {
   );
 };
 
-export default TextAnimation;
+export default TickingOneSecond;

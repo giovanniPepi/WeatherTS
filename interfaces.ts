@@ -170,6 +170,9 @@ interface NightProps {
 interface Ititle {
   time: string;
 }
+interface ITitleAnimation {
+  title: string;
+}
 
 type CurrentWeather = ICurrentWeatherArray[];
 type Daily = IDailyWeather[];
@@ -183,6 +186,6 @@ export type {
   IWeatherData,
   MinutelyProps,
   HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps
-, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, MinutelyChartProps, HourlyArray, DailyArray, Ititle
+, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, MinutelyChartProps, HourlyArray, DailyArray, Ititle, ITitleAnimation
 }  
 
