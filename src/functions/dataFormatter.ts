@@ -1,7 +1,7 @@
 import { IWeatherData } from "interfaces";
 import capitalizeFirst from "./capitalizeFirst";
 import convertToKm from "./convertToKm";
-import getExactHours from "./getExactHour";
+import getExactHours from "./getExactHours";
 import getFormattedDate from "./getFormattedDate";
 import getWindDir from "./getWindDir";
 

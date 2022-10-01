@@ -51,7 +51,6 @@ const App: React.FC = () => {
   // empty dependency array to run only once
   useEffect(() => {
     getData(-22.854103, -47.048331, 'Campinas, BR');
-
     //focus on input
     inputRef.current?.focus();
   }, []);
@@ -63,7 +62,7 @@ const App: React.FC = () => {
     country: string
   ) => {
     try {
-      // setLoading(true);
+      setLoading(true);
       const data = await getWeatherAPI(lat, lon, country);
       setLoading(false);
 
@@ -143,6 +142,7 @@ const App: React.FC = () => {
           <RealTimeData
             apiData={apiData}
             locationToShow={locationToShow}
+            loading={loading}
           />
         ) : null}
 

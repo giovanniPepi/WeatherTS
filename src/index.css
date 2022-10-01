@@ -44,6 +44,10 @@ li {
   padding: 0;
   list-style-type: none;
 }
+/*Shows whitespaces on spans*/
+span {
+  white-space: pre;
+}
 .strong {
   font-weight: bold;
 }
@@ -352,8 +356,16 @@ li {
     display: flex;
     justify-content: center;
   }
+  .tickingTime {
+    display: flex;
+    align-items: center;
+  }
+  .twoDots {
+    align-self: center;
+  }
   .dailyDt {
     font-size: var(--biggerFont);
+    flex-direction: column;
   }
   .hourlyUl {
     display: grid;

@@ -144,6 +144,7 @@ interface DailyProps {
 interface RealTimeDataProps {
   apiData: IWeatherData;
   locationToShow: string;
+  loading: boolean
 }
 
 
@@ -168,6 +169,9 @@ interface NightProps {
 }
 
 interface Ititle {
+  time: string;
+}
+interface ITitleAnimation {
   title: string;
 }
 
@@ -183,6 +187,6 @@ export type {
   IWeatherData,
   MinutelyProps,
   HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps
-, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, MinutelyChartProps, HourlyArray, DailyArray, Ititle
+, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, MinutelyChartProps, HourlyArray, DailyArray, Ititle, ITitleAnimation
 }  
 
