@@ -12,7 +12,7 @@ const animation = keyframes`
 const Wrapper = styled.span`
   opacity: 0;
   animation-name: ${animation};
-  animation-duration: 4s;
+  animation-duration: 5s;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
 `;
