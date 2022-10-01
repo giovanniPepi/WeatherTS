@@ -18,6 +18,7 @@ import Snow from 'src/icons/Snow';
 import Sunny from 'src/icons/Sunny';
 import UVI from 'src/icons/UVI';
 import AlertsModal from './AlertOverlay';
+import TextAnimation from 'src/functions/TextAnimation';
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
@@ -31,16 +32,16 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
     useState<Boolean>(false);
 
   const night = isNight();
+  const title = `${locationToShow} - ${apiData.current.dt}`;
 
   return (
     <motion.div
       className="realTimeData"
-      /* style={{ backgroundImage: `url(${backgroundImg}) ` }} */
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1
       }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 2 }}
       exit={{
         opacity: 0,
         x: window.innerWidth
@@ -48,7 +49,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
     >
       <div className="dailyDt strong">
         <div>
-          {locationToShow} - {apiData.current.dt}
+          <TextAnimation title={title as string} />
         </div>
       </div>
       <div className="separator"></div>

@@ -146,6 +146,7 @@ interface RealTimeDataProps {
   locationToShow: string;
 }
 
+
 interface AlertsModalProps {
   apiData: IWeatherData;
   setShowAlertsModal: StateChanger
@@ -166,6 +167,10 @@ interface NightProps {
   night: Boolean;
 }
 
+interface Ititle {
+  title: string;
+}
+
 type CurrentWeather = ICurrentWeatherArray[];
 type Daily = IDailyWeather[];
 type Minutely = Iminutely[];
@@ -178,6 +183,6 @@ export type {
   IWeatherData,
   MinutelyProps,
   HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps
-, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, MinutelyChartProps, HourlyArray, DailyArray
+, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, MinutelyChartProps, HourlyArray, DailyArray, Ititle
 }  
 
