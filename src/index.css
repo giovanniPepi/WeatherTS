@@ -316,7 +316,7 @@ input {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-  width: 20vw;
+  min-width: 20vw;
   padding: var(--divPadding);
   border: 1px solid black;
   border-radius: var(--radius);
