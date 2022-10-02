@@ -16,6 +16,8 @@ import { motion } from 'framer-motion';
 import dataFormatter from './functions/dataFormatter';
 import Loading from './icons/Loading';
 import Search from './icons/Search';
+import getWeatherBackground from './functions/getWeatherBackground';
+import isNight from './functions/isNight';
 
 const App: React.FC = () => {
   //state
@@ -32,6 +34,7 @@ const App: React.FC = () => {
     useState<Boolean>(false);
   const [showDailyModal, setShowDailyModal] =
     useState<Boolean>(false);
+  const [backgroundImg, setBackgroundImg] = useState();
 
   // code splitting
   const MinutelyData = React.lazy(
@@ -53,6 +56,12 @@ const App: React.FC = () => {
     getData(-22.854103, -47.048331, 'Campinas, BR');
     //focus on input
     inputRef.current?.focus();
+    const bg = getWeatherBackground(
+      apiData?.current.weather[0],
+      isNight()
+    );
+
+    setBackgroundImg(bg);
   }, []);
 
   // calls weather API
@@ -120,7 +129,10 @@ const App: React.FC = () => {
         x: window.innerWidth
       }}
     >
-      <main className="app">
+      <main
+        className="app"
+        style={{ backgroundImage: `url(${backgroundImg}` }}
+      >
         {loading ? <Loading /> : null}
 
         <div className="searchForm">

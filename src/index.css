@@ -22,7 +22,8 @@ p {
   position: relative;
   min-height: 100vh;
   /*   overflow: hidden; */
-  background-color: #e2e8f0;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 button {
@@ -320,9 +321,9 @@ input {
   padding: var(--divPadding);
   border: 1px solid black;
   border-radius: var(--radius);
-  background-color: white;
+  backdrop-filter: blur(20px);
+  background-color: rgba(255, 255, 255, 0.15);
 }
-
 .dataTogglingArea {
   grid-row: 3/4;
   display: flex;
