@@ -125,7 +125,10 @@ interface Iminutely {
 interface MinutelyProps {
   minuteData: Minutely;
   setShowMinutelyModal: StateChanger;
-  }
+  night: boolean;
+  UIColor: string;
+  modalUIColor: string;
+}
 
 interface MinutelyChartProps {
   minuteData: Minutely;
@@ -134,11 +137,17 @@ interface MinutelyChartProps {
 interface HourlyProps {
   hourlyData: HourlyArray;
   setShowHourlyModal: StateChanger;
+  night: boolean;
+  UIColor: string;
+  modalUIColor: string;
 }
 
 interface DailyProps {
   dailyData: DailyArray;
   setShowDailyModal: StateChanger;
+    night: boolean;
+  UIColor: string;
+  modalUIColor: string;
 }
 
 interface RealTimeDataProps {
@@ -187,6 +196,6 @@ export type {
   IWeatherData,
   MinutelyProps,
   HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps
-, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, MinutelyChartProps, HourlyArray, DailyArray, Ititle, ITitleAnimation
+, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, MinutelyChartProps, HourlyArray, DailyArray, Ititle, ITitleAnimation, ICurrentWeatherArray
 }  
 
