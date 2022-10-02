@@ -43,6 +43,7 @@ const App: React.FC = () => {
   const [UIColor, setUIColor] = useState('white');
   const [modalUIColor, setModalUIColor] = useState('white');
   const [showRealTimeModal, setShowRealTimeModal] = useState(true);
+  const [showSearchModal, setShowSearchModal] = useState(true);
 
   //REF
   const inputRef = useRef<HTMLInputElement>(null);
@@ -85,6 +86,7 @@ const App: React.FC = () => {
     setShowRealTimeModal(false);
     setShowHourlyModal(false);
     setShowDailyModal(false);
+    setShowSearchModal(false);
   };
 
   const toggleHourlyData = () => {
@@ -92,6 +94,7 @@ const App: React.FC = () => {
     setShowMinutelyModal(false);
     setShowRealTimeModal(false);
     setShowDailyModal(false);
+    setShowSearchModal(false);
   };
 
   const toggleDailyData = () => {
@@ -99,12 +102,14 @@ const App: React.FC = () => {
     setShowHourlyModal(false);
     setShowMinutelyModal(false);
     setShowRealTimeModal(false);
+    setShowSearchModal(false);
   };
   const toggleRealTimeData = () => {
     setShowRealTimeModal(true);
     setShowDailyModal(false);
     setShowHourlyModal(false);
     setShowMinutelyModal(false);
+    setShowSearchModal(true);
   };
 
   useEffect(() => {
@@ -179,38 +184,12 @@ const App: React.FC = () => {
           color: `${UIColor}`
         }}
       >
-        {/*Loading SVG*/}
-        {loading ? <Loading /> : null}
-
-        <div className="searchForm">
-          <form onSubmit={handleClick}>
-            <input
-              placeholder="Search a location..."
-              onChange={handleInputChange}
-              ref={inputRef}
-            />
-            <button onClick={handleClick} className="searchBtn">
-              <Search />
-            </button>
-            {loadingSearch ? <Loading /> : null}
-          </form>
-        </div>
-
-        {/* Conditional render so we wait for the API data*/}
-        {apiData && showRealTimeModal ? (
-          <RealTimeData
-            apiData={apiData}
-            locationToShow={locationToShow}
-            loading={loading}
-          />
-        ) : null}
-
         <div className="dataTogglingArea">
           <button
             onClick={toggleRealTimeData}
             style={{ color: `${UIColor}` }}
           >
-            Current Weather
+            Home/Current Weather
           </button>
 
           <button
@@ -232,6 +211,34 @@ const App: React.FC = () => {
             Daily forecast
           </button>
         </div>
+
+        {/*Loading SVG*/}
+        {loading ? <Loading /> : null}
+
+        {showSearchModal ? (
+          <div className="searchForm">
+            <form onSubmit={handleClick}>
+              <input
+                placeholder="Search a location..."
+                onChange={handleInputChange}
+                ref={inputRef}
+              />
+              <button onClick={handleClick} className="searchBtn">
+                <Search />
+              </button>
+              {loadingSearch ? <Loading /> : null}
+            </form>
+          </div>
+        ) : null}
+
+        {/* Conditional render so we wait for the API data*/}
+        {apiData && showRealTimeModal ? (
+          <RealTimeData
+            apiData={apiData}
+            locationToShow={locationToShow}
+            loading={loading}
+          />
+        ) : null}
 
         {showMinutelyModal && apiData?.minutely ? (
           <Suspense fallback={<Loading />}>
