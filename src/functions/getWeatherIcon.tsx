@@ -16,26 +16,65 @@ const getWeatherIcon = (weatherDesc: string, applyTheme: boolean) => {
   if (applyTheme) night = isNight();
   else night = false;
 
-  if (night && weatherDesc === 'Clear') return <MoonClear />;
+  if (night && weatherDesc === 'Clear')
+    return (
+      <Tooltip title="Clear sky" placement="left-start">
+        <div>
+          <MoonClear />
+        </div>
+      </Tooltip>
+    );
 
   switch (weatherDesc) {
     case 'Clear':
       return (
-        <Tooltip title="fuckthisshit" placement="left-start">
-          <Sunny />
+        <Tooltip title="Clear sky" placement="left-start">
+          <div>
+            <Sunny />
+          </div>
         </Tooltip>
       );
     case 'Clouds':
-      return <Clouds night={night} />;
+      return (
+        <Tooltip title="Clouds" placement="left-start">
+          <div>
+            <Clouds night={night} />
+          </div>
+        </Tooltip>
+      );
     case 'Rain':
     case 'Drizzle':
-      return <Rain night={night} />;
+      return (
+        <Tooltip title="Rain" placement="left-start">
+          <div>
+            <Rain night={night} />
+          </div>
+        </Tooltip>
+      );
     case 'Thunderstorm':
-      return <Thunderstorm night={night} />;
+      return (
+        <Tooltip title="Thunderstorm" placement="left-start">
+          <div>
+            <Thunderstorm night={night} />
+          </div>
+        </Tooltip>
+      );
     case 'Snow':
-      return <Snow night={night} />;
+      return (
+        <Tooltip title="Snow" placement="left-start">
+          <div>
+            <Snow night={night} />
+          </div>
+        </Tooltip>
+      );
     case 'Mist':
-      return <Mist night={night} />;
+      return (
+        <Tooltip title="Mist" placement="left-start">
+          <div>
+            <Mist night={night} />
+          </div>
+        </Tooltip>
+      );
     default:
       console.log(
         'Error in weather:',

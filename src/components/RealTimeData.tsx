@@ -68,9 +68,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       }}
     >
       <div className="dailyDt strong">
-        <div>
-          {loading ? null : <TitleAnimation title={locationToShow} />}
-        </div>
+        <div>{loading ? null : locationToShow}</div>
         <div className="tickingTime">
           {hour}
           <TickingOneSecond />
@@ -85,7 +83,11 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         ) : (
           getWeatherIcon(apiData.current.weather[0].main, true)
         )}
-        {apiData.current.weather[0].description}
+        {loading ? null : (
+          <TitleAnimation
+            title={apiData.current.weather[0].description}
+          />
+        )}
       </div>
       <div className="separator"></div>
 
