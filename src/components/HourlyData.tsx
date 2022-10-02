@@ -1,6 +1,5 @@
 import { v4 } from 'uuid';
 import { HourlyArray, HourlyProps } from 'interfaces';
-import useClickOutside from 'src/functions/useClickOutside';
 import { motion } from 'framer-motion';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
 import Temperature from 'src/icons/Temperature';
@@ -13,15 +12,8 @@ import Previous from 'src/icons/Previous';
 const HourlyData: React.FC<HourlyProps> = ({
   hourlyData,
   setShowHourlyModal,
-  night,
-  UIColor,
-  modalUIColor
+  night
 }) => {
-  // click outside
-  const domNode = useClickOutside(() => {
-    setShowHourlyModal(false);
-  });
-
   //state
   const [index, setIndex] = useState(8);
   const [renderedItems, setRenderedItems] =
@@ -56,60 +48,53 @@ const HourlyData: React.FC<HourlyProps> = ({
   }, [index, start]);
 
   return (
-    <section className="hourlyDataOverlay">
-      <motion.div
-        className="hourly"
-        /* style={{ backgroundImage: `url(${backgroundImg}) ` }} */
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1
-        }}
-        transition={{ duration: 0.5 }}
-        exit={{
-          opacity: 0,
-          x: window.innerWidth
-        }}
-      >
-        <div
-          className="hourlyDataModal"
-          ref={domNode}
-          style={{ color: UIColor, backgroundColor: modalUIColor }}
-        >
-          <div className="hourlyMainTitle">Hourly Forecast</div>
-          <div className="hourlyControlDiv">
-            <button onClick={() => getPreviousHours()}>
-              <Previous />
-            </button>
-            <ul className="hourlyUl">
-              {renderedItems.map((hour) => {
-                return (
-                  <li key={v4()} className="hourlyContainer">
-                    <div className="hourlyDt">{hour.dt}</div>
-                    <div className="hourlyDataDiv">
-                      {getWeatherIcon(hour.weather[0].main)}
-                      <div>{hour.weather[0].main}</div>
-                    </div>
-                    <div className="hourlyDataDiv">
-                      <Temperature />
-                      {hour.temp}
-                    </div>
-                    <div className="hourlyDataDiv">
-                      <Humidity /> {hour.humidity}
-                    </div>
-                    <div className="hourlyDataDiv">
-                      <UVI /> {hour.uvi}
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-            <button onClick={() => getNextHours()}>
-              <Next />
-            </button>
-          </div>
+    <motion.div
+      className="hourlyDataModal"
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1
+      }}
+      transition={{ duration: 0.5 }}
+      exit={{
+        opacity: 0,
+        x: window.innerWidth
+      }}
+    >
+      <div>
+        <div className="hourlyMainTitle">Hourly Forecast</div>
+        <div className="hourlyControlDiv">
+          <button onClick={() => getPreviousHours()}>
+            <Previous />
+          </button>
+          <ul className="hourlyUl">
+            {renderedItems.map((hour) => {
+              return (
+                <li key={v4()} className="hourlyContainer">
+                  <div className="hourlyDt">{hour.dt}</div>
+                  <div className="hourlyDataDiv">
+                    {getWeatherIcon(hour.weather[0].main, night)}
+                    <div>{hour.weather[0].main}</div>
+                  </div>
+                  <div className="hourlyDataDiv">
+                    <Temperature />
+                    {hour.temp}
+                  </div>
+                  <div className="hourlyDataDiv">
+                    <Humidity /> {hour.humidity}
+                  </div>
+                  <div className="hourlyDataDiv">
+                    <UVI /> {hour.uvi}
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+          <button onClick={() => getNextHours()}>
+            <Next />
+          </button>
         </div>
-      </motion.div>
-    </section>
+      </div>
+    </motion.div>
   );
 };
 

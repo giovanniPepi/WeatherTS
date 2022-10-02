@@ -42,6 +42,7 @@ const App: React.FC = () => {
   const [night, setNight] = useState(false);
   const [UIColor, setUIColor] = useState('white');
   const [modalUIColor, setModalUIColor] = useState('white');
+  const [showRealTimeModal, setShowRealTimeModal] = useState(true);
 
   //REF
   const inputRef = useRef<HTMLInputElement>(null);
@@ -80,15 +81,30 @@ const App: React.FC = () => {
   };
 
   const toggleMinuteData = () => {
-    setShowMinutelyModal((state) => !state);
+    setShowMinutelyModal(true);
+    setShowRealTimeModal(false);
+    setShowHourlyModal(false);
+    setShowDailyModal(false);
   };
 
   const toggleHourlyData = () => {
-    setShowHourlyModal((state) => !state);
+    setShowHourlyModal(true);
+    setShowMinutelyModal(false);
+    setShowRealTimeModal(false);
+    setShowDailyModal(false);
   };
 
   const toggleDailyData = () => {
-    setShowDailyModal((state) => !state);
+    setShowDailyModal(true);
+    setShowHourlyModal(false);
+    setShowMinutelyModal(false);
+    setShowRealTimeModal(false);
+  };
+  const toggleRealTimeData = () => {
+    setShowRealTimeModal(true);
+    setShowDailyModal(false);
+    setShowHourlyModal(false);
+    setShowMinutelyModal(false);
   };
 
   useEffect(() => {
@@ -163,6 +179,7 @@ const App: React.FC = () => {
           color: `${UIColor}`
         }}
       >
+        {/*Loading SVG*/}
         {loading ? <Loading /> : null}
 
         <div className="searchForm">
@@ -180,7 +197,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Conditional render so we wait for the API data*/}
-        {apiData ? (
+        {apiData && showRealTimeModal ? (
           <RealTimeData
             apiData={apiData}
             locationToShow={locationToShow}
@@ -189,6 +206,13 @@ const App: React.FC = () => {
         ) : null}
 
         <div className="dataTogglingArea">
+          <button
+            onClick={toggleRealTimeData}
+            style={{ color: `${UIColor}` }}
+          >
+            Current Weather
+          </button>
+
           <button
             onClick={toggleMinuteData}
             style={{ color: `${UIColor}` }}
