@@ -24,6 +24,7 @@ import getHour from 'src/functions/getHour';
 import getMinute from 'src/functions/getMinute';
 import Tooltip from '@material-ui/core/Tooltip';
 import WeatherDescAnimation from 'src/functions/WeatherDescAnimation';
+import NetworkError from 'src/icons/NetworkError';
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
@@ -55,6 +56,28 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
     };
   }, []);
 
+  if (apiData.current === undefined)
+    return (
+      <motion.div
+        className="realTimeData"
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1
+        }}
+        transition={{ duration: 2 }}
+        exit={{
+          opacity: 0,
+          x: window.innerWidth
+        }}
+      >
+        <NetworkError />
+        <div>
+          Couldn't get API data. Check your connection or try again
+          later.
+        </div>
+      </motion.div>
+    );
+
   return (
     <motion.div
       className="realTimeData"
@@ -81,7 +104,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       <div className="separator"></div>
       <div className="realTimeDataDiv">
         {/*gets the weather icon through getMoonphase to return the correct phase if it's night */}
-        {apiData.current.weather[0].main === 'Clear' && night ? (
+        {apiData?.current!.weather![0]!.main! === 'Clear' && night ? (
           <>{getMoonPhase(apiData.daily[0].moon_phase as number)}</>
         ) : (
           getWeatherIcon(apiData.current.weather[0].main, true)

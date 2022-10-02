@@ -49,6 +49,9 @@ li {
 span {
   white-space: pre;
 }
+.NetworkErrorSvg {
+  align-self: center;
+}
 .strong {
   font-weight: bold;
 }

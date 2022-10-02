@@ -24,6 +24,10 @@ const App: React.FC = () => {
   const [apiData, setApiData] = useState<IWeatherData>();
   const [loading, setLoading] = useState(false);
   const [loadingSearch, setLoadingSearch] = useState(false);
+  const [latForAPI, setLatForApi] = useState(-22.854103);
+  const [longForAPI, setLonForApi] = useState(-47.048331);
+  const [locationForAPI, setLocationForApi] =
+    useState('Campinas, BR');
   const [location, setLocation] = useState<string>('');
   // the concatenated location returned by the GEO Api
   const [locationToShow, setLocationToShow] =
@@ -36,21 +40,8 @@ const App: React.FC = () => {
     useState<Boolean>(false);
   const [backgroundImg, setBackgroundImg] = useState();
 
-  // empty dependency array to run only once
-  useEffect(() => {
-    getData(-22.854103, -47.048331, 'Campinas, BR');
-
-    //focus on input
-    inputRef.current?.focus();
-
-    if (apiData) {
-      const bg = getWeatherBackground(
-        apiData?.current.weather[0],
-        isNight()
-      );
-      setBackgroundImg(bg);
-    }
-  }, []);
+  //REF
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // code splitting
   const MinutelyData = React.lazy(
@@ -59,33 +50,9 @@ const App: React.FC = () => {
   const HourlyData = React.lazy(
     () => import('./components/HourlyData')
   );
-
   const DailyData = React.lazy(
     () => import('./components/DailyData')
   );
-
-  //refs
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  // calls weather API
-  const getData = async (
-    lat: number,
-    lon: number,
-    country: string
-  ) => {
-    try {
-      setLoading(true);
-      const data = await getWeatherAPI(lat, lon, country);
-      setLoading(false);
-
-      // data formatting before displaying in components
-      setApiData(dataFormatter(data));
-
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   //https://devtrium.com/posts/react-typescript-events
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -102,10 +69,13 @@ const App: React.FC = () => {
 
     // avoids undefined
     if (newLoc) {
-      getData(newLoc.lat, newLoc.lon, newLoc.country);
+      setLatForApi(newLoc.lat);
+      setLonForApi(newLoc.lon);
+      setLocationForApi(newLoc.country);
       setLocationToShow(`${newLoc.name}, ${newLoc.country}`);
     }
   };
+
   const toggleMinuteData = () => {
     setShowMinutelyModal((state) => !state);
   };
@@ -117,6 +87,45 @@ const App: React.FC = () => {
   const toggleDailyData = () => {
     setShowDailyModal((state) => !state);
   };
+
+  useEffect(() => {
+    // calls weather API
+    const getData = async (
+      lat: number,
+      lon: number,
+      country: string
+    ) => {
+      try {
+        setLoading(true);
+
+        const data = await getWeatherAPI(lat, lon, country);
+
+        // changes background:
+        const bg = getWeatherBackground(
+          data?.current.weather[0],
+          isNight()
+        );
+        setBackgroundImg(bg);
+
+        console.log(data);
+
+        // data formatting before displaying in components
+        setApiData(dataFormatter(data));
+
+        // end loading
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    // initial condition
+    // getData(-22.854103, -47.048331, 'Campinas, BR');
+    getData(latForAPI, longForAPI, locationForAPI);
+
+    // focus on input
+    inputRef.current?.focus();
+  }, [latForAPI, locationForAPI, longForAPI]);
 
   return (
     <motion.div
