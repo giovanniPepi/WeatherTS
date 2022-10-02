@@ -23,6 +23,7 @@ import TitleAnimation from 'src/functions/TitleAnimation';
 import getHour from 'src/functions/getHour';
 import getMinute from 'src/functions/getMinute';
 import Tooltip from '@material-ui/core/Tooltip';
+import WeatherDescAnimation from 'src/functions/WeatherDescAnimation';
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
@@ -68,7 +69,9 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       }}
     >
       <div className="dailyDt strong">
-        <div>{loading ? null : locationToShow}</div>
+        <div>
+          {loading ? null : <TitleAnimation title={locationToShow} />}
+        </div>
         <div className="tickingTime">
           {hour}
           <TickingOneSecond />
@@ -84,7 +87,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           getWeatherIcon(apiData.current.weather[0].main, true)
         )}
         {loading ? null : (
-          <TitleAnimation
+          <WeatherDescAnimation
             title={apiData.current.weather[0].description}
           />
         )}
