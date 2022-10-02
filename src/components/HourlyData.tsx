@@ -60,39 +60,37 @@ const HourlyData: React.FC<HourlyProps> = ({
         x: window.innerWidth
       }}
     >
-      <div>
-        <div className="hourlyMainTitle">Hourly Forecast</div>
-        <div className="hourlyControlDiv">
-          <button onClick={() => getPreviousHours()}>
-            <Previous />
-          </button>
-          <ul className="hourlyUl">
-            {renderedItems.map((hour) => {
-              return (
-                <li key={v4()} className="hourlyContainer">
-                  <div className="hourlyDt">{hour.dt}</div>
-                  <div className="hourlyDataDiv">
-                    {getWeatherIcon(hour.weather[0].main, night)}
-                    <div>{hour.weather[0].main}</div>
-                  </div>
-                  <div className="hourlyDataDiv">
-                    <Temperature />
-                    {hour.temp}
-                  </div>
-                  <div className="hourlyDataDiv">
-                    <Humidity /> {hour.humidity}
-                  </div>
-                  <div className="hourlyDataDiv">
-                    <UVI /> {hour.uvi}
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-          <button onClick={() => getNextHours()}>
-            <Next />
-          </button>
-        </div>
+      <div className="hourlyMainTitle">Hourly Forecast</div>
+      <div className="hourlyControlDiv">
+        <button onClick={() => getPreviousHours()}>
+          <Previous />
+        </button>
+        <ul className="hourlyUl">
+          {renderedItems.map((hour) => {
+            return (
+              <li key={v4()} className="hourlyContainer">
+                <div className="hourlyDt">{hour.dt}</div>
+                <div className="hourlyDataDiv">
+                  {getWeatherIcon(hour.weather[0].main, night)}
+                  <div>{hour.weather[0].main}</div>
+                </div>
+                <div className="hourlyDataDiv">
+                  <Temperature />
+                  {hour.temp}
+                </div>
+                <div className="hourlyDataDiv">
+                  <Humidity /> {hour.humidity}
+                </div>
+                <div className="hourlyDataDiv">
+                  <UVI /> {hour.uvi}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+        <button onClick={() => getNextHours()}>
+          <Next />
+        </button>
       </div>
     </motion.div>
   );

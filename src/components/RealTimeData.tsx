@@ -32,12 +32,12 @@ import NetworkError from 'src/icons/NetworkError';
 const RealTimeData: React.FC<RealTimeDataProps> = ({
   apiData,
   locationToShow,
-  loading
+  loading,
+  night
 }) => {
   //state
   const [showAlertsModal, setShowAlertsModal] =
     useState<Boolean>(false);
-  const [night, setNight] = useState<boolean>(false);
   const [minutes, setMinutes] = useState<number>(0);
   const [hour, sethour] = useState<number>(0);
 
@@ -45,9 +45,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
     const myInterval = setInterval(() => {
       const currentMinute = getMinute();
       const currentHour = getHour();
-      const currentNight = isNight();
 
-      setNight(currentNight);
       sethour(currentHour as number);
       setMinutes(currentMinute as number);
     }, 1000);

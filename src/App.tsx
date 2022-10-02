@@ -121,8 +121,7 @@ const App: React.FC = () => {
       setUIColor('rgb(235, 235, 235');
       setModalUIColor('#241F31');
     } else {
-      setUIColor('white');
-      setModalUIColor('white');
+      isNight();
     }
 
     // calls weather API
@@ -237,6 +236,7 @@ const App: React.FC = () => {
             apiData={apiData}
             locationToShow={locationToShow}
             loading={loading}
+            night={night}
           />
         ) : null}
 

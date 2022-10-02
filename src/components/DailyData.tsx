@@ -69,134 +69,132 @@ const DailyData: React.FC<DailyProps> = ({
         x: window.innerWidth
       }}
     >
-      <div>
-        <div className="dailyMainTitle">Daily forecast</div>
-        <div className="dailyControlDiv">
-          <button onClick={() => getPreviousHours()}>
-            <Previous />
-          </button>
+      <div className="dailyMainTitle">Daily forecast</div>
+      <div className="dailyControlDiv">
+        <button onClick={() => getPreviousHours()}>
+          <Previous />
+        </button>
 
-          <ul className="dailyUl">
-            {renderedItems.map((day) => {
-              return (
-                <li key={v4()} className="dailyContainer">
-                  <div className="dailyDt">
-                    <div>Forecast for {day.dt}</div>
+        <ul className="dailyUl">
+          {renderedItems.map((day) => {
+            return (
+              <li key={v4()} className="dailyContainer">
+                <div className="dailyDt">
+                  <div>Forecast for {day.dt}</div>
+                </div>
+                <div className="separator"></div>
+                <div className="dailyDataDiv">
+                  {getWeatherIcon(day.weather[0].main, false)}
+                  {day.weather[0].description}
+                </div>
+                <div className="separator"></div>
+                <div className="dailyDataDiv">
+                  <div className="rainPercentContainer">
+                    <Rain night={false} />
+                    <Percent />
                   </div>
-                  <div className="separator"></div>
-                  <div className="dailyDataDiv">
-                    {getWeatherIcon(day.weather[0].main, false)}
-                    {day.weather[0].description}
-                  </div>
-                  <div className="separator"></div>
-                  <div className="dailyDataDiv">
-                    <div className="rainPercentContainer">
-                      <Rain night={false} />
-                      <Percent />
-                    </div>
-                    {day.pop}
-                  </div>
-                  <div className="separator"></div>
-                  <div className="dailyDataDiv">
-                    <Temperature />
-                    <div className="tempContainer">
-                      {day.temp.morn ? (
-                        <div>Morning {day.temp.morn}</div>
-                      ) : null}
-                      {day.temp.day ? (
-                        <div className="tempHolder">
-                          {day.feels_like.day ? (
-                            <>
-                              <div>Day {day.temp.day}</div>
-                              <div className="tempSvgContainer">
-                                <FeelsLike />
-                                {day.feels_like.day}
-                              </div>
-                            </>
-                          ) : (
+                  {day.pop}
+                </div>
+                <div className="separator"></div>
+                <div className="dailyDataDiv">
+                  <Temperature />
+                  <div className="tempContainer">
+                    {day.temp.morn ? (
+                      <div>Morning {day.temp.morn}</div>
+                    ) : null}
+                    {day.temp.day ? (
+                      <div className="tempHolder">
+                        {day.feels_like.day ? (
+                          <>
                             <div>Day {day.temp.day}</div>
-                          )}
-                        </div>
-                      ) : null}
-                      {day.temp.eve ? (
-                        <div>Evening: {day.temp.eve}</div>
-                      ) : null}
-                      {day.temp.night ? (
-                        <div className="tempHolder">
-                          {day.feels_like.night ? (
-                            <>
-                              <div>Night: {day.temp.night}</div>
-                              <div className="tempSvgContainer">
-                                <FeelsLike /> {day.feels_like.night}
-                              </div>
-                            </>
-                          ) : (
+                            <div className="tempSvgContainer">
+                              <FeelsLike />
+                              {day.feels_like.day}
+                            </div>
+                          </>
+                        ) : (
+                          <div>Day {day.temp.day}</div>
+                        )}
+                      </div>
+                    ) : null}
+                    {day.temp.eve ? (
+                      <div>Evening: {day.temp.eve}</div>
+                    ) : null}
+                    {day.temp.night ? (
+                      <div className="tempHolder">
+                        {day.feels_like.night ? (
+                          <>
                             <div>Night: {day.temp.night}</div>
-                          )}
-                        </div>
-                      ) : null}
-                    </div>
+                            <div className="tempSvgContainer">
+                              <FeelsLike /> {day.feels_like.night}
+                            </div>
+                          </>
+                        ) : (
+                          <div>Night: {day.temp.night}</div>
+                        )}
+                      </div>
+                    ) : null}
                   </div>
-                  <div className="separator"></div>
+                </div>
+                <div className="separator"></div>
 
-                  <div className="dailyDataDiv">
-                    <Humidity /> {day.humidity}
-                  </div>
-                  <div className="separator"></div>
+                <div className="dailyDataDiv">
+                  <Humidity /> {day.humidity}
+                </div>
+                <div className="separator"></div>
 
-                  <div className="dailyDataDiv">
-                    <UVI /> {day.uvi}
+                <div className="dailyDataDiv">
+                  <UVI /> {day.uvi}
+                </div>
+                <div className="separator"></div>
+                <div className="dailyDataDiv">
+                  <Windy />
+                  <div className="moonTimings">
+                    <div>Wind deg {day.wind_deg}</div>
+                    <div>Wind gust {day.wind_gust}</div>
+                    <div>Wind speed {day.wind_speed}</div>
                   </div>
-                  <div className="separator"></div>
-                  <div className="dailyDataDiv">
-                    <Windy />
-                    <div className="moonTimings">
-                      <div>Wind deg {day.wind_deg}</div>
-                      <div>Wind gust {day.wind_gust}</div>
-                      <div>Wind speed {day.wind_speed}</div>
-                    </div>
-                  </div>
-                  <div className="separator"></div>
-                  <div className="dailyDataDiv">
-                    <Clouds night={false} /> {day.clouds}
-                  </div>
-                  <div className="separator"></div>
+                </div>
+                <div className="separator"></div>
+                <div className="dailyDataDiv">
+                  <Clouds night={false} /> {day.clouds}
+                </div>
+                <div className="separator"></div>
 
-                  <div className="dailyDataDiv">
-                    <DewPoint /> {day.dew_point}
-                  </div>
-                  <div className="separator"></div>
+                <div className="dailyDataDiv">
+                  <DewPoint /> {day.dew_point}
+                </div>
+                <div className="separator"></div>
 
-                  <div className="dailyDataDiv">
-                    <Pressure />
-                    {day.pressure}
-                  </div>
-                  <div className="separator"></div>
+                <div className="dailyDataDiv">
+                  <Pressure />
+                  {day.pressure}
+                </div>
+                <div className="separator"></div>
 
-                  <div className="dailyDataDiv">
-                    <Sunny />
-                    <div className="moonTimings">
-                      <div>Sunrise {day.sunrise}</div>
-                      <div>Sunset {day.sunset}</div>
-                    </div>
+                <div className="dailyDataDiv">
+                  <Sunny />
+                  <div className="moonTimings">
+                    <div>Sunrise {day.sunrise}</div>
+                    <div>Sunset {day.sunset}</div>
                   </div>
-                  <div className="separator"></div>
+                </div>
+                <div className="separator"></div>
 
-                  <div className="dailyDataDiv">
-                    {getMoonPhase(day.moon_phase as number)}
-                    <div className="moonTimings">
-                      <div>Moonrise {day.moonrise}</div>
-                      <div>Moonset {day.moonset}</div>
-                    </div>
+                <div className="dailyDataDiv">
+                  {getMoonPhase(day.moon_phase as number)}
+                  <div className="moonTimings">
+                    <div>Moonrise {day.moonrise}</div>
+                    <div>Moonset {day.moonset}</div>
                   </div>
-                </li>
-              );
-            })}
-          </ul>
-          <button onClick={() => getNextHours()}>
-            <Next />
-          </button>
-        </div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+        <button onClick={() => getNextHours()}>
+          <Next />
+        </button>
       </div>
     </motion.div>
   );

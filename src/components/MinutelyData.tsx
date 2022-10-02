@@ -19,9 +19,7 @@ const MinutelyData: React.FC<MinutelyProps> = ({
         x: window.innerWidth
       }}
     >
-      <div>
-        <Charts minuteData={minuteData} />
-      </div>
+      <Charts minuteData={minuteData} />
     </motion.div>
   );
 };
