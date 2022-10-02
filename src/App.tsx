@@ -39,6 +39,8 @@ const App: React.FC = () => {
   const [showDailyModal, setShowDailyModal] =
     useState<Boolean>(false);
   const [backgroundImg, setBackgroundImg] = useState();
+  const [night, setNight] = useState(false);
+  const [UIColor, setUIColor] = useState('white');
 
   //REF
   const inputRef = useRef<HTMLInputElement>(null);
@@ -89,6 +91,12 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
+    // verifies night
+    setNight(isNight());
+
+    // changes UI color at night
+    if (night) setUIColor('rgb(235, 235, 235');
+
     // calls weather API
     const getData = async (
       lat: number,
@@ -103,7 +111,7 @@ const App: React.FC = () => {
         // changes background:
         const bg = getWeatherBackground(
           data?.current.weather[0],
-          isNight()
+          night
         );
         setBackgroundImg(bg);
 
@@ -125,7 +133,7 @@ const App: React.FC = () => {
 
     // focus on input
     inputRef.current?.focus();
-  }, [latForAPI, locationForAPI, longForAPI]);
+  }, [latForAPI, locationForAPI, longForAPI, night]);
 
   return (
     <motion.div
@@ -143,7 +151,10 @@ const App: React.FC = () => {
     >
       <main
         className="app"
-        style={{ backgroundImage: `url(${backgroundImg}` }}
+        style={{
+          backgroundImage: `url(${backgroundImg}`,
+          color: `${UIColor}`
+        }}
       >
         {loading ? <Loading /> : null}
 
@@ -171,9 +182,24 @@ const App: React.FC = () => {
         ) : null}
 
         <div className="dataTogglingArea">
-          <button onClick={toggleMinuteData}>Minute forecast</button>
-          <button onClick={toggleHourlyData}>Hourly forecast</button>
-          <button onClick={toggleDailyData}>Daily forecast</button>
+          <button
+            onClick={toggleMinuteData}
+            style={{ color: `${UIColor}` }}
+          >
+            Minute forecast
+          </button>
+          <button
+            onClick={toggleHourlyData}
+            style={{ color: `${UIColor}` }}
+          >
+            Hourly forecast
+          </button>
+          <button
+            onClick={toggleDailyData}
+            style={{ color: `${UIColor}` }}
+          >
+            Daily forecast
+          </button>
         </div>
 
         {showMinutelyModal && apiData?.minutely ? (
