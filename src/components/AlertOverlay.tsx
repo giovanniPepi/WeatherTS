@@ -12,7 +12,7 @@ const AlertsModal: React.FC<AlertsModalProps> = ({
 
   return (
     <motion.div
-      className="alertsMotionDiv"
+      className="alertsOverlay"
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1
@@ -23,10 +23,8 @@ const AlertsModal: React.FC<AlertsModalProps> = ({
         x: window.innerWidth
       }}
     >
-      <div className="alertsOverlay">
-        <div className="alertsModal" ref={domNode}>
-          {apiData.alerts[0].description}
-        </div>
+      <div className="alertsModal" ref={domNode}>
+        {apiData.alerts[0].description}
       </div>
     </motion.div>
   );

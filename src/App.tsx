@@ -56,12 +56,14 @@ const App: React.FC = () => {
     getData(-22.854103, -47.048331, 'Campinas, BR');
     //focus on input
     inputRef.current?.focus();
-    const bg = getWeatherBackground(
-      apiData?.current.weather[0],
-      isNight()
-    );
 
-    setBackgroundImg(bg);
+    if (apiData) {
+      const bg = getWeatherBackground(
+        apiData?.current.weather[0],
+        isNight()
+      );
+      setBackgroundImg(bg);
+    }
   }, []);
 
   // calls weather API

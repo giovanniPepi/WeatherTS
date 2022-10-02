@@ -5,6 +5,7 @@ import Rain from 'src/icons/Rain';
 import Snow from 'src/icons/Snow';
 import Sunny from 'src/icons/Sunny';
 import Thunderstorm from 'src/icons/Thunderstorm';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import isNight from './isNight';
 
@@ -19,7 +20,11 @@ const getWeatherIcon = (weatherDesc: string, applyTheme: boolean) => {
 
   switch (weatherDesc) {
     case 'Clear':
-      return <Sunny />;
+      return (
+        <Tooltip title="fuckthisshit" placement="left-start">
+          <Sunny />
+        </Tooltip>
+      );
     case 'Clouds':
       return <Clouds night={night} />;
     case 'Rain':
