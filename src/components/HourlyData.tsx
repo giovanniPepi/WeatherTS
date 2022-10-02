@@ -12,7 +12,10 @@ import Previous from 'src/icons/Previous';
 
 const HourlyData: React.FC<HourlyProps> = ({
   hourlyData,
-  setShowHourlyModal
+  setShowHourlyModal,
+  night,
+  UIColor,
+  modalUIColor
 }) => {
   // click outside
   const domNode = useClickOutside(() => {
@@ -67,7 +70,11 @@ const HourlyData: React.FC<HourlyProps> = ({
           x: window.innerWidth
         }}
       >
-        <div className="hourlyDataModal" ref={domNode}>
+        <div
+          className="hourlyDataModal"
+          ref={domNode}
+          style={{ color: UIColor, backgroundColor: modalUIColor }}
+        >
           <div className="hourlyMainTitle">Hourly Forecast</div>
           <div className="hourlyControlDiv">
             <button onClick={() => getPreviousHours()}>

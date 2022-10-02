@@ -41,6 +41,7 @@ const App: React.FC = () => {
   const [backgroundImg, setBackgroundImg] = useState();
   const [night, setNight] = useState(false);
   const [UIColor, setUIColor] = useState('white');
+  const [modalUIColor, setModalUIColor] = useState('white');
 
   //REF
   const inputRef = useRef<HTMLInputElement>(null);
@@ -95,7 +96,13 @@ const App: React.FC = () => {
     setNight(isNight());
 
     // changes UI color at night
-    if (night) setUIColor('rgb(235, 235, 235');
+    if (night) {
+      setUIColor('rgb(235, 235, 235');
+      setModalUIColor('#241F31');
+    } else {
+      setUIColor('white');
+      setModalUIColor('white');
+    }
 
     // calls weather API
     const getData = async (
@@ -207,6 +214,9 @@ const App: React.FC = () => {
             <MinutelyData
               minuteData={apiData.minutely}
               setShowMinutelyModal={setShowMinutelyModal}
+              night={night}
+              UIColor={UIColor}
+              modalUIColor={modalUIColor}
             />
           </Suspense>
         ) : null}
@@ -216,6 +226,9 @@ const App: React.FC = () => {
             <HourlyData
               hourlyData={apiData.hourly}
               setShowHourlyModal={setShowHourlyModal}
+              night={night}
+              UIColor={UIColor}
+              modalUIColor={modalUIColor}
             />
           </Suspense>
         ) : null}
@@ -225,6 +238,9 @@ const App: React.FC = () => {
             <DailyData
               dailyData={apiData.daily}
               setShowDailyModal={setShowDailyModal}
+              night={night}
+              UIColor={UIColor}
+              modalUIColor={modalUIColor}
             />
           </Suspense>
         ) : null}

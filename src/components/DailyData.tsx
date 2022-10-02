@@ -21,7 +21,10 @@ import Percent from 'src/icons/Percent';
 
 const DailyData: React.FC<DailyProps> = ({
   dailyData,
-  setShowDailyModal
+  setShowDailyModal,
+  night,
+  UIColor,
+  modalUIColor
 }) => {
   const domNode = useClickOutside(() => {
     setShowDailyModal(false);
@@ -75,7 +78,11 @@ const DailyData: React.FC<DailyProps> = ({
       }}
     >
       <section className="dailyDataOverlay">
-        <div className="dailyDataModal" ref={domNode}>
+        <div
+          className="dailyDataModal"
+          ref={domNode}
+          style={{ color: UIColor, backgroundColor: modalUIColor }}
+        >
           <div className="dailyMainTitle">Daily forecast</div>
           <div className="dailyControlDiv">
             <button onClick={() => getPreviousHours()}>

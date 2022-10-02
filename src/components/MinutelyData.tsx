@@ -5,7 +5,10 @@ import Charts from './Charts';
 
 const MinutelyData: React.FC<MinutelyProps> = ({
   minuteData,
-  setShowMinutelyModal
+  setShowMinutelyModal,
+  night,
+  UIColor,
+  modalUIColor
 }) => {
   const domNode = useClickOutside(() => {
     setShowMinutelyModal(false);
@@ -15,7 +18,6 @@ const MinutelyData: React.FC<MinutelyProps> = ({
     <section className="minutelyDataOverlay">
       <motion.div
         className="minutely"
-        /* style={{ backgroundImage: `url(${backgroundImg}) ` }} */
         initial={{ opacity: 0 }}
         animate={{
           opacity: 1
@@ -26,7 +28,11 @@ const MinutelyData: React.FC<MinutelyProps> = ({
           x: window.innerWidth
         }}
       >
-        <div className="minutelyDataModal" ref={domNode}>
+        <div
+          className="minutelyDataModal"
+          ref={domNode}
+          style={{ color: UIColor, backgroundColor: modalUIColor }}
+        >
           <Charts minuteData={minuteData} />
         </div>
       </motion.div>
