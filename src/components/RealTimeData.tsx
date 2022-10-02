@@ -1,5 +1,5 @@
 import { RealTimeDataProps } from 'interfaces';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Alert from 'src/icons/Alerts';
 import { motion } from 'framer-motion';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
@@ -34,10 +34,24 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   //state
   const [showAlertsModal, setShowAlertsModal] =
     useState<Boolean>(false);
+  const [night, setNight] = useState<boolean>(false);
+  const [minutes, setMinutes] = useState<number>(0);
+  const [hour, sethour] = useState<number>(0);
 
-  const night = isNight();
-  const hour = getHour();
-  const minutes = getMinute();
+  useEffect(() => {
+    const myInterval = setInterval(() => {
+      const currentMinute = getMinute();
+      const currentHour = getHour();
+      const currentNight = isNight();
+
+      setNight(currentNight);
+      sethour(currentHour as number);
+      setMinutes(currentMinute as number);
+    }, 1000);
+    return () => {
+      clearInterval(myInterval);
+    };
+  }, []);
 
   return (
     <motion.div
