@@ -36,6 +36,22 @@ const App: React.FC = () => {
     useState<Boolean>(false);
   const [backgroundImg, setBackgroundImg] = useState();
 
+  // empty dependency array to run only once
+  useEffect(() => {
+    getData(-22.854103, -47.048331, 'Campinas, BR');
+
+    //focus on input
+    inputRef.current?.focus();
+
+    if (apiData) {
+      const bg = getWeatherBackground(
+        apiData?.current.weather[0],
+        isNight()
+      );
+      setBackgroundImg(bg);
+    }
+  }, []);
+
   // code splitting
   const MinutelyData = React.lazy(
     () => import('./components/MinutelyData')
@@ -50,21 +66,6 @@ const App: React.FC = () => {
 
   //refs
   const inputRef = useRef<HTMLInputElement>(null);
-
-  // empty dependency array to run only once
-  useEffect(() => {
-    getData(-22.854103, -47.048331, 'Campinas, BR');
-    //focus on input
-    inputRef.current?.focus();
-
-    if (apiData) {
-      const bg = getWeatherBackground(
-        apiData?.current.weather[0],
-        isNight()
-      );
-      setBackgroundImg(bg);
-    }
-  }, []);
 
   // calls weather API
   const getData = async (

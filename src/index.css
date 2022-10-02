@@ -294,7 +294,10 @@ span {
   grid-row: 1/2;
   grid-column: 1/5;
   width: 60vw;
-  opacity: 0.5;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  padding: 0.3rem;
+  border-radius: var(--radius);
 }
 form {
   display: flex;
@@ -304,7 +307,6 @@ form {
   height: 1.3rem;
   border-radius: 0.5rem;
   border: none;
-  background-color: grey;
   padding: 0.4rem 0.4rem 0.6rem 0.4rem;
 }
 input {
