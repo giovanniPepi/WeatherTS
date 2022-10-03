@@ -1,6 +1,5 @@
 import Clouds from 'src/icons/Clouds';
 import Mist from 'src/icons/Mist';
-import MoonClear from 'src/icons/MoonClear';
 import Rain from 'src/icons/Rain';
 import Snow from 'src/icons/Snow';
 import Sunny from 'src/icons/Sunny';
@@ -11,7 +10,8 @@ import getMoonPhase from './getMoonPhase';
 const getWeatherIcon = (
   weatherDesc: string,
   night: boolean,
-  moonPhase: number
+  moonPhase: number,
+  svgColors: string
 ) => {
   // console.log(weatherDesc, 'night?', night, 'moonphase?', moonPhase);
 
@@ -34,7 +34,7 @@ const getWeatherIcon = (
       return (
         <Tooltip title="Main weather: Clouds" placement="left-start">
           <div>
-            <Clouds night={night} />
+            <Clouds svgColors={svgColors} />
           </div>
         </Tooltip>
       );
@@ -43,7 +43,7 @@ const getWeatherIcon = (
       return (
         <Tooltip title="Main weather: Rain" placement="left-start">
           <div>
-            <Rain night={night} />
+            <Rain svgColors={svgColors} />
           </div>
         </Tooltip>
       );
@@ -54,7 +54,7 @@ const getWeatherIcon = (
           placement="left-start"
         >
           <div>
-            <Thunderstorm night={night} />
+            <Thunderstorm svgColors={svgColors} />
           </div>
         </Tooltip>
       );
@@ -62,7 +62,7 @@ const getWeatherIcon = (
       return (
         <Tooltip title="Main weather: Snow" placement="left-start">
           <div>
-            <Snow night={night} />
+            <Snow svgColors={svgColors} />
           </div>
         </Tooltip>
       );
@@ -70,7 +70,7 @@ const getWeatherIcon = (
       return (
         <Tooltip title="Main weather: Mist" placement="left-start">
           <div>
-            <Mist night={night} />
+            <Mist svgColors={svgColors} />
           </div>
         </Tooltip>
       );

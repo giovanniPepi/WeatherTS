@@ -9,7 +9,6 @@ import FeelsLike from 'src/icons/FeelsLike';
 import Humidity from 'src/icons/Humidity';
 import Clouds from 'src/icons/Clouds';
 import Windy from 'src/icons/Windy';
-import isNight from 'src/functions/isNight';
 import DewPoint from 'src/icons/DewPoint';
 import Pressure from 'src/icons/Pressure';
 import Visibility from 'src/icons/Visibility';
@@ -35,7 +34,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   locationToShow,
   loading,
   night,
-  moonPhase
+  moonPhase,
+  svgColors
 }) => {
   //state
   const [showAlertsModal, setShowAlertsModal] =
@@ -70,7 +70,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           x: window.innerWidth
         }}
       >
-        <NetworkError />
+        <NetworkError svgColors={svgColors} />
         <div>
           Couldn't get API data. Check your connection or try again
           later.
@@ -108,7 +108,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         {getWeatherIcon(
           apiData.current.weather[0].main,
           night,
-          moonPhase
+          moonPhase,
+          svgColors
         )}
 
         {loading ? null : (
@@ -120,28 +121,29 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       <div className="separator"></div>
 
       <div className="realTimeDataDiv">
-        <Temperature />
+        <Temperature svgColors={svgColors} />
         {apiData.current.temp}
       </div>
 
       <div className="realTimeDataDiv">
-        <FeelsLike /> {apiData.current.feels_like}
+        <FeelsLike svgColors={svgColors} />
+        {apiData.current.feels_like}
       </div>
       <div className="separator"></div>
 
       <div className="realTimeDataDiv">
-        <Humidity /> {apiData.current.humidity}
+        <Humidity svgColors={svgColors} /> {apiData.current.humidity}
       </div>
 
       <div className="separator"></div>
 
       <div className="realTimeDataDiv">
-        <UVI /> {apiData.current.uvi}
+        <UVI svgColors={svgColors} /> {apiData.current.uvi}
       </div>
       <div className="separator"></div>
 
       <div className="realTimeDataDiv">
-        <Clouds night={night} />
+        <Clouds svgColors={svgColors} />
         {apiData.current.clouds}
       </div>
       <div className="separator"></div>
@@ -150,7 +152,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       {apiData.current.rain ? (
         <>
           <div className="realTimeDataDiv">
-            <Rain night={night} />
+            <Rain svgColors={svgColors} />
             <div className="moonTimings">
               <Tooltip title="Rain volume" placement="left-start">
                 <div>{apiData.current.rain['1h']} - last hour</div>
@@ -170,7 +172,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       {apiData.current.snow ? (
         <>
           <div className="realTimeDataDiv">
-            <Snow night={night} />
+            <Snow svgColors={svgColors} />
             <div className="moonTimings">
               <Tooltip title="Snow volume" placement="left-start">
                 <div>{apiData.current.snow['1h']} - last hour</div>
@@ -190,7 +192,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       ) : null}
 
       <div className="realTimeDataDiv">
-        <Windy />
+        <Windy svgColors={svgColors} />
         <div className="windContainer">
           <div>{apiData.current.wind_deg as number}</div>
           <div>{apiData.current.wind_speed as number}</div>
@@ -199,19 +201,19 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       <div className="separator"></div>
 
       <div className="realTimeDataDiv">
-        <DewPoint />
+        <DewPoint svgColors={svgColors} />
         {apiData.current.dew_point}
       </div>
       <div className="separator"></div>
 
       <div className="realTimeDataDiv">
-        <Pressure />
+        <Pressure svgColors={svgColors} />
         {apiData.current.pressure}
       </div>
       <div className="separator"></div>
 
       <div className="realTimeDataDiv">
-        <Visibility />
+        <Visibility svgColors={svgColors} />
         {apiData.current.visibility}
       </div>
       <div className="separator"></div>
@@ -232,7 +234,10 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         placement="left-start"
       >
         <div className="realTimeDataDiv">
-          {getMoonPhase(apiData.daily[0].moon_phase as number)}
+          {getMoonPhase(
+            apiData.daily[0].moon_phase as number,
+            svgColors
+          )}
           <div className="moonTimings">
             <div>{apiData.daily[0].moonrise}</div>
             <div>{apiData.daily[0].moonset}</div>

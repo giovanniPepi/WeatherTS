@@ -141,6 +141,8 @@ interface HourlyProps {
   UIColor: string;
   modalUIColor: string;
   moonPhase: number
+  svgColors: string;
+
 }
 
 interface DailyProps {
@@ -150,6 +152,8 @@ interface DailyProps {
   UIColor: string;
   modalUIColor: string;
   moonPhase: number;
+  svgColors: string;
+
 }
 
 interface RealTimeDataProps {
@@ -158,6 +162,7 @@ interface RealTimeDataProps {
   loading: boolean;
   night: boolean;
   moonPhase: number;
+  svgColors: string;
 }
 
 
@@ -188,6 +193,10 @@ interface ITitleAnimation {
   title: string;
 }
 
+interface ISvgColors {
+  svgColors: string;
+}
+
 type CurrentWeather = ICurrentWeatherArray[];
 type Daily = IDailyWeather[];
 type Minutely = Iminutely[];
@@ -200,6 +209,6 @@ export type {
   IWeatherData,
   MinutelyProps,
   HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps
-, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, MinutelyChartProps, HourlyArray, DailyArray, Ititle, ITitleAnimation, ICurrentWeatherArray
+, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, MinutelyChartProps, HourlyArray, DailyArray, Ititle, ITitleAnimation, ICurrentWeatherArray, ISvgColors
 }  
 

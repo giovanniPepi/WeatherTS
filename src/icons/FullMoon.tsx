@@ -1,7 +1,8 @@
 import { Tooltip } from '@material-ui/core';
 import { motion } from 'framer-motion';
+import { ISvgColors } from 'interfaces';
 
-const FullMoon = () => {
+const FullMoon: React.FC<ISvgColors> = ({ svgColors }) => {
   const svgVariants = {
     hidden: { rotate: -90 },
     visible: {
@@ -17,6 +18,7 @@ const FullMoon = () => {
     visible: {
       opacity: 1,
       pathLength: 1,
+      fill: svgColors,
       transition: {
         duration: 2,
         ease: 'easeInOut'

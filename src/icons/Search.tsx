@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
+import { ISvgColors } from 'interfaces';
 
-const Search = () => {
+const Search: React.FC<ISvgColors> = ({ svgColors }) => {
   const svgVariants = {
     hidden: { rotate: -90 },
     visible: {
@@ -16,6 +17,7 @@ const Search = () => {
     visible: {
       opacity: 1,
       pathLength: 1,
+      fill: svgColors,
       transition: {
         duration: 2,
         ease: 'easeInOut'

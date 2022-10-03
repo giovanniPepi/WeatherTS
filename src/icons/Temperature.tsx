@@ -1,7 +1,10 @@
 import { Tooltip } from '@material-ui/core';
-import { motion, transform } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { ISvgColors } from 'interfaces';
 
-const Temperature = () => {
+const Temperature: React.FC<ISvgColors> = ({ svgColors }) => {
+  console.log(svgColors);
+
   const svgVariants = {
     hidden: { rotate: -90 },
     visible: {
@@ -17,6 +20,7 @@ const Temperature = () => {
     visible: {
       opacity: 1,
       pathLength: 1,
+      fill: svgColors,
       transition: {
         duration: 2,
         ease: 'easeInOut'

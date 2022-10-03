@@ -14,7 +14,8 @@ const HourlyData: React.FC<HourlyProps> = ({
   hourlyData,
   setShowHourlyModal,
   night,
-  moonPhase
+  moonPhase,
+  svgColors
 }) => {
   //state
   const [index, setIndex] = useState(8);
@@ -63,7 +64,7 @@ const HourlyData: React.FC<HourlyProps> = ({
           x: window.innerWidth
         }}
       >
-        <NetworkError />
+        <NetworkError svgColors={svgColors} />
         <div>
           Couldn't get API data. Check your connection or try again
           later.
@@ -88,7 +89,7 @@ const HourlyData: React.FC<HourlyProps> = ({
       <div className="hourlyMainTitle">Hourly Forecast</div>
       <div className="hourlyControlDiv">
         <button onClick={() => getPreviousHours()}>
-          <Previous />
+          <Previous svgColors={svgColors} />
         </button>
         <ul className="hourlyUl">
           {renderedItems.map((hour) => {
@@ -99,26 +100,27 @@ const HourlyData: React.FC<HourlyProps> = ({
                   {getWeatherIcon(
                     hour.weather[0].main,
                     night,
-                    moonPhase
+                    moonPhase,
+                    svgColors
                   )}
                   <div>{hour.weather[0].main}</div>
                 </div>
                 <div className="hourlyDataDiv">
-                  <Temperature />
+                  <Temperature svgColors={svgColors} />
                   {hour.temp}
                 </div>
                 <div className="hourlyDataDiv">
-                  <Humidity /> {hour.humidity}
+                  <Humidity svgColors={svgColors} /> {hour.humidity}
                 </div>
                 <div className="hourlyDataDiv">
-                  <UVI /> {hour.uvi}
+                  <UVI svgColors={svgColors} /> {hour.uvi}
                 </div>
               </li>
             );
           })}
         </ul>
         <button onClick={() => getNextHours()}>
-          <Next />
+          <Next svgColors={svgColors} />
         </button>
       </div>
     </motion.div>
