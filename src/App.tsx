@@ -38,13 +38,15 @@ const App: React.FC = () => {
     useState<Boolean>(false);
   const [showDailyModal, setShowDailyModal] =
     useState<Boolean>(false);
+  const [showRealTimeModal, setShowRealTimeModal] = useState(true);
+  const [showSearchModal, setShowSearchModal] = useState(true);
+  // GUI changers
   const [backgroundImg, setBackgroundImg] = useState();
   const [night, setNight] = useState(false);
   const [UIColor, setUIColor] = useState('black');
   const [modalUIColor, setModalUIColor] = useState('white');
-  const [showRealTimeModal, setShowRealTimeModal] = useState(true);
-  const [showSearchModal, setShowSearchModal] = useState(true);
   const [moonPhase, setMoonPhase] = useState(0);
+  const [svgColors, setSvgColors] = useState('rgb(255, 255, 255)');
 
   //REF
   const inputRef = useRef<HTMLInputElement>(null);
@@ -123,6 +125,7 @@ const App: React.FC = () => {
     if (night) {
       setUIColor('rgb(235, 235, 235');
       setModalUIColor('#241F31');
+      setSvgColors('#a3e635');
     } else {
       isNight();
     }
@@ -147,6 +150,7 @@ const App: React.FC = () => {
 
         // data formatting before displaying in components
         setApiData(dataFormatter(data));
+        console.log(data);
 
         //sets moonphase for every component
         setMoonPhase(data?.daily[0].moon_phase as number);
@@ -226,7 +230,7 @@ const App: React.FC = () => {
                 ref={inputRef}
               />
               <button onClick={handleClick} className="searchBtn">
-                <Search />
+                <Search svgColors={svgColors} />
               </button>
               {loadingSearch ? <Loading /> : null}
             </form>
@@ -241,6 +245,7 @@ const App: React.FC = () => {
             loading={loading}
             night={night}
             moonPhase={moonPhase}
+            svgColors={svgColors}
           />
         ) : null}
 
@@ -265,6 +270,7 @@ const App: React.FC = () => {
               UIColor={UIColor}
               modalUIColor={modalUIColor}
               moonPhase={moonPhase}
+              svgColors={svgColors}
             />
           </Suspense>
         ) : null}
@@ -278,6 +284,7 @@ const App: React.FC = () => {
               UIColor={UIColor}
               modalUIColor={modalUIColor}
               moonPhase={moonPhase}
+              svgColors={svgColors}
             />
           </Suspense>
         ) : null}

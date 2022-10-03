@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
-import { NightProps } from 'interfaces';
+import { ISvgColors } from 'interfaces';
 
-const NetworkError: React.FC = () => {
+const NetworkError: React.FC<ISvgColors> = ({ svgColors }) => {
   //svg animation
   // https://www.youtube.com/watch?v=ILxNdOtKbNQ
   const svgVariants = {
@@ -19,6 +19,7 @@ const NetworkError: React.FC = () => {
     visible: {
       opacity: 1,
       pathLength: 1,
+      fill: svgColors,
       transition: {
         duration: 2,
         ease: 'easeInOut'

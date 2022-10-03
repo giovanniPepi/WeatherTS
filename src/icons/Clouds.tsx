@@ -1,8 +1,8 @@
 import { Tooltip } from '@material-ui/core';
 import { motion } from 'framer-motion';
-import { NightProps } from 'interfaces';
+import { ISvgColors } from 'interfaces';
 
-const Clouds: React.FC<NightProps> = () => {
+const Clouds: React.FC<ISvgColors> = ({ svgColors }) => {
   const svgVariants = {
     hidden: { rotate: -90 },
     visible: {
@@ -18,6 +18,7 @@ const Clouds: React.FC<NightProps> = () => {
     visible: {
       opacity: 1,
       pathLength: 1,
+      fill: svgColors,
       transition: {
         duration: 2,
         ease: 'easeInOut'

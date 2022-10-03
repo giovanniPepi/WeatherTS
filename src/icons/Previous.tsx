@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
+import { ISvgColors } from 'interfaces';
 
-const Previous = () => {
+const Previous: React.FC<ISvgColors> = ({ svgColors }) => {
   const svgVariants = {
     hidden: { rotate: -180 },
     visible: {
@@ -16,6 +17,7 @@ const Previous = () => {
     visible: {
       opacity: 1,
       pathLength: 1,
+      fill: svgColors,
       transition: {
         duration: 2,
         ease: 'easeInOut'

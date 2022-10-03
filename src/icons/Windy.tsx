@@ -1,13 +1,14 @@
 import { Tooltip } from '@material-ui/core';
 import { mdiTurbine } from '@mdi/js';
 import Icon from '@mdi/react';
+import { ISvgColors } from 'interfaces';
 
 import { useState } from 'react';
 
-const Windy = () => {
+const Windy: React.FC<ISvgColors> = ({ svgColors }) => {
   const [iconInfo] = useState({
     path: mdiTurbine,
-    color: '',
+    color: svgColors,
     spin: 8
   });
 

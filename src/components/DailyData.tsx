@@ -24,7 +24,8 @@ const DailyData: React.FC<DailyProps> = ({
   dailyData,
   setShowDailyModal,
   night,
-  moonPhase
+  moonPhase,
+  svgColors
 }) => {
   //state
   const [index, setIndex] = useState(2);
@@ -73,7 +74,7 @@ const DailyData: React.FC<DailyProps> = ({
           x: window.innerWidth
         }}
       >
-        <NetworkError />
+        <NetworkError svgColors={svgColors} />
         <div>
           Couldn't get API data. Check your connection or try again
           later.
@@ -98,7 +99,7 @@ const DailyData: React.FC<DailyProps> = ({
       <div className="dailyMainTitle">Daily forecast</div>
       <div className="dailyControlDiv">
         <button onClick={() => getPreviousHours()}>
-          <Previous />
+          <Previous svgColors={svgColors} />
         </button>
 
         <ul className="dailyUl">
@@ -114,7 +115,8 @@ const DailyData: React.FC<DailyProps> = ({
                   {getWeatherIcon(
                     day.weather[0].main,
                     false,
-                    day.moon_phase as number
+                    day.moon_phase as number,
+                    svgColors
                   )}
                   {day.weather[0].description}
                 </div>
@@ -123,8 +125,8 @@ const DailyData: React.FC<DailyProps> = ({
                 <div className="dailyDataDiv">
                   <Tooltip title="Rain probability">
                     <div className="rainPercentContainer">
-                      <Rain night={false} />
-                      <Percent />
+                      <Rain svgColors={svgColors} />
+                      <Percent svgColors={svgColors} />
                     </div>
                   </Tooltip>
                   {day.pop}
@@ -132,7 +134,7 @@ const DailyData: React.FC<DailyProps> = ({
                 <div className="separator"></div>
 
                 <div className="dailyDataDiv">
-                  <Temperature />
+                  <Temperature svgColors={svgColors} />
                   <div className="tempContainer">
                     {day.temp.morn ? (
                       <div>Morning {day.temp.morn}</div>
@@ -143,7 +145,7 @@ const DailyData: React.FC<DailyProps> = ({
                           <>
                             <div>Day {day.temp.day}</div>
                             <div className="tempSvgContainer">
-                              <FeelsLike />
+                              <FeelsLike svgColors={svgColors} />
                               {day.feels_like.day}
                             </div>
                           </>
@@ -161,7 +163,8 @@ const DailyData: React.FC<DailyProps> = ({
                           <>
                             <div>Night: {day.temp.night}</div>
                             <div className="tempSvgContainer">
-                              <FeelsLike /> {day.feels_like.night}
+                              <FeelsLike svgColors={svgColors} />{' '}
+                              {day.feels_like.night}
                             </div>
                           </>
                         ) : (
@@ -174,16 +177,16 @@ const DailyData: React.FC<DailyProps> = ({
                 <div className="separator"></div>
 
                 <div className="dailyDataDiv">
-                  <Humidity /> {day.humidity}
+                  <Humidity svgColors={svgColors} /> {day.humidity}
                 </div>
                 <div className="separator"></div>
 
                 <div className="dailyDataDiv">
-                  <UVI /> {day.uvi}
+                  <UVI svgColors={svgColors} /> {day.uvi}
                 </div>
                 <div className="separator"></div>
                 <div className="dailyDataDiv">
-                  <Windy />
+                  <Windy svgColors={svgColors} />
                   <div className="moonTimings">
                     <div>Wind deg {day.wind_deg}</div>
                     <div>Wind gust {day.wind_gust}</div>
@@ -192,17 +195,17 @@ const DailyData: React.FC<DailyProps> = ({
                 </div>
                 <div className="separator"></div>
                 <div className="dailyDataDiv">
-                  <Clouds night={false} /> {day.clouds}
+                  <Clouds svgColors={svgColors} /> {day.clouds}
                 </div>
                 <div className="separator"></div>
 
                 <div className="dailyDataDiv">
-                  <DewPoint /> {day.dew_point}
+                  <DewPoint svgColors={svgColors} /> {day.dew_point}
                 </div>
                 <div className="separator"></div>
 
                 <div className="dailyDataDiv">
-                  <Pressure />
+                  <Pressure svgColors={svgColors} />
                   {day.pressure}
                 </div>
                 <div className="separator"></div>
@@ -217,7 +220,7 @@ const DailyData: React.FC<DailyProps> = ({
                 <div className="separator"></div>
 
                 <div className="dailyDataDiv">
-                  {getMoonPhase(day.moon_phase as number)}
+                  {getMoonPhase(day.moon_phase as number, svgColors)}
                   <div className="moonTimings">
                     <div>Moonrise {day.moonrise}</div>
                     <div>Moonset {day.moonset}</div>
@@ -228,7 +231,7 @@ const DailyData: React.FC<DailyProps> = ({
           })}
         </ul>
         <button onClick={() => getNextHours()}>
-          <Next />
+          <Next svgColors={svgColors} />
         </button>
       </div>
     </motion.div>
