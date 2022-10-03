@@ -15,7 +15,8 @@ const HourlyData: React.FC<HourlyProps> = ({
   setShowHourlyModal,
   night,
   moonPhase,
-  svgColors
+  svgColors,
+  modalUIColor
 }) => {
   //state
   const [index, setIndex] = useState(8);
@@ -77,6 +78,7 @@ const HourlyData: React.FC<HourlyProps> = ({
     <motion.div
       className="hourlyDataModal"
       initial={{ opacity: 0 }}
+      style={{ backgroundColor: modalUIColor }}
       animate={{
         opacity: 1
       }}

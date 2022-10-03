@@ -36,6 +36,7 @@ const MinutelyData: React.FC<MinutelyProps> = ({
   return (
     <motion.div
       className="minutelyDataModal"
+      style={{ backgroundColor: modalUIColor }}
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1

@@ -35,7 +35,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   loading,
   night,
   moonPhase,
-  svgColors
+  svgColors,
+  modalUIColor
 }) => {
   //state
   const [showAlertsModal, setShowAlertsModal] =
@@ -61,6 +62,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       <motion.div
         className="realTimeData"
         initial={{ opacity: 0 }}
+        style={{ backgroundColor: modalUIColor }}
         animate={{
           opacity: 1
         }}

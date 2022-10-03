@@ -44,7 +44,9 @@ const App: React.FC = () => {
   const [backgroundImg, setBackgroundImg] = useState();
   const [night, setNight] = useState(false);
   const [UIColor, setUIColor] = useState('black');
-  const [modalUIColor, setModalUIColor] = useState('white');
+  const [modalUIColor, setModalUIColor] = useState(
+    'rgba(109, 40, 217, 0.75)'
+  );
   const [moonPhase, setMoonPhase] = useState(0);
   const [svgColors, setSvgColors] = useState('rgb(255, 255, 255)');
 
@@ -123,8 +125,8 @@ const App: React.FC = () => {
 
     // changes UI color at night
     if (night) {
-      setUIColor('rgb(235, 235, 235');
-      setModalUIColor('#241F31');
+      setUIColor('#a3e635');
+      setModalUIColor('rgb(180, 21, 82, 0.1)');
       setSvgColors('#a3e635');
     } else {
       isNight();
@@ -190,16 +192,18 @@ const App: React.FC = () => {
           color: `${UIColor}`
         }}
       >
-        <div className="dataTogglingArea strong">
+        <div className="dataTogglingArea">
           <button
             onClick={toggleRealTimeData}
             style={{ color: `${UIColor}` }}
+            className="strong"
           >
             Home/Current Weather |
           </button>
 
           <button
             onClick={toggleMinuteData}
+            className="strong"
             style={{ color: `${UIColor}` }}
           >
             Minute forecast |
@@ -207,12 +211,14 @@ const App: React.FC = () => {
           <button
             onClick={toggleHourlyData}
             style={{ color: `${UIColor}` }}
+            className="strong"
           >
             Hourly forecast |
           </button>
           <button
             onClick={toggleDailyData}
             style={{ color: `${UIColor}` }}
+            className="strong"
           >
             Daily forecast
           </button>
@@ -246,6 +252,7 @@ const App: React.FC = () => {
             night={night}
             moonPhase={moonPhase}
             svgColors={svgColors}
+            modalUIColor={modalUIColor}
           />
         ) : null}
 

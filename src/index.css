@@ -165,6 +165,7 @@ svg:hover {
 /* ----------------- START DAILY OVERLAY*/
 
 .dailyContainer {
+  box-shadow: var(--boxShadow);
   border-radius: var(--radius);
   padding: var(--btnPadding);
   width: 35vw;
@@ -194,7 +195,7 @@ svg:hover {
   align-items: center;
 }
 .dailyDataModal {
-  padding: 0.5rem 0.1rem 1.5rem 0.1rem;
+  padding: 0.5rem 0.1rem 2rem 0.1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -306,6 +307,7 @@ input {
 .dailyDataModal,
 .extendedModal,
 .alertsModal {
+  box-shadow: var(--boxShadow);
   border-radius: var(--radius);
   backdrop-filter: blur(10px);
   background-color: var(--strongAccentColor);
