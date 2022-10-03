@@ -81,6 +81,7 @@ const App: React.FC = () => {
     }
   };
 
+  // toggles - handle open/closing modals
   const toggleMinuteData = () => {
     setShowMinutelyModal(true);
     setShowRealTimeModal(false);
@@ -104,6 +105,7 @@ const App: React.FC = () => {
     setShowRealTimeModal(false);
     setShowSearchModal(false);
   };
+
   const toggleRealTimeData = () => {
     setShowRealTimeModal(true);
     setShowDailyModal(false);
@@ -155,7 +157,6 @@ const App: React.FC = () => {
     };
 
     // initial condition
-    // getData(-22.854103, -47.048331, 'Campinas, BR');
     getData(latForAPI, longForAPI, locationForAPI);
 
     // focus on input
@@ -188,20 +189,20 @@ const App: React.FC = () => {
             onClick={toggleRealTimeData}
             style={{ color: `${UIColor}` }}
           >
-            Home/Current Weather
+            Home/Current Weather |
           </button>
 
           <button
             onClick={toggleMinuteData}
             style={{ color: `${UIColor}` }}
           >
-            Minute forecast
+            Minute forecast |
           </button>
           <button
             onClick={toggleHourlyData}
             style={{ color: `${UIColor}` }}
           >
-            Hourly forecast
+            Hourly forecast |
           </button>
           <button
             onClick={toggleDailyData}
