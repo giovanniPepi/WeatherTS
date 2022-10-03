@@ -65,21 +65,6 @@ span {
   background-color: white;
   border-radius: var(--radius);
 }
-/*Text style for the alerts*/
-.alertsModal {
-  max-width: 50vw;
-  padding: var(--divPadding);
-  border-radius: var(--radius);
-  border: 1px solid black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.alertsModal > :nth-child(1) {
-  height: 4rem;
-  width: 4rem;
-}
 
 .loadingOverlay {
   background-color: rgba(250, 194, 167, 0.05);
@@ -383,6 +368,34 @@ input {
 .NextSvg {
   height: 3rem;
   width: 3rem;
+}
+.alertsOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(1, 1, 1, 0.75);
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius);
+  justify-content: center;
+}
+/*Text style for the alerts*/
+.alertsModal {
+  min-width: 80vw;
+  padding: var(--divPadding);
+  border-radius: var(--radius);
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(50px);
+}
+.alertsModal > :nth-child(1) {
+  height: 4rem;
+  width: 4rem;
 }
 /* } */
 /*------------------------------------------end DESKTOP */

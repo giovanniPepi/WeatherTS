@@ -25,6 +25,7 @@ import getMinute from 'src/functions/getMinute';
 import Tooltip from '@material-ui/core/Tooltip';
 import WeatherDescAnimation from 'src/functions/WeatherDescAnimation';
 import NetworkError from 'src/icons/NetworkError';
+import AlertAnimation from 'src/functions/AlertAnimation';
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
@@ -282,7 +283,10 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
             className="alertBtnHome"
             onClick={() => setShowAlertsModal(true)}
           >
-            <Alert /> {apiData.alerts[0]?.sender_name}
+            <Alert />
+            <AlertAnimation
+              title={`${apiData.alerts[0].sender_name}`}
+            />
           </button>
         </Tooltip>
       ) : null}
