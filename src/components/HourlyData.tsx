@@ -13,7 +13,8 @@ import NetworkError from 'src/icons/NetworkError';
 const HourlyData: React.FC<HourlyProps> = ({
   hourlyData,
   setShowHourlyModal,
-  night
+  night,
+  moonPhase
 }) => {
   //state
   const [index, setIndex] = useState(8);
@@ -95,7 +96,11 @@ const HourlyData: React.FC<HourlyProps> = ({
               <li key={v4()} className="hourlyContainer">
                 <div className="hourlyDt">{hour.dt}</div>
                 <div className="hourlyDataDiv">
-                  {getWeatherIcon(hour.weather[0].main, night)}
+                  {getWeatherIcon(
+                    hour.weather[0].main,
+                    night,
+                    moonPhase
+                  )}
                   <div>{hour.weather[0].main}</div>
                 </div>
                 <div className="hourlyDataDiv">

@@ -34,7 +34,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   apiData,
   locationToShow,
   loading,
-  night
+  night,
+  moonPhase
 }) => {
   //state
   const [showAlertsModal, setShowAlertsModal] =
@@ -104,11 +105,12 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       <div className="separator"></div>
       <div className="realTimeDataDiv">
         {/*gets the weather icon through getMoonphase to return the correct phase if it's night */}
-        {apiData?.current!.weather![0]!.main! === 'Clear' && night ? (
-          <>{getMoonPhase(apiData.daily[0].moon_phase as number)}</>
-        ) : (
-          getWeatherIcon(apiData.current.weather[0].main, night)
+        {getWeatherIcon(
+          apiData.current.weather[0].main,
+          night,
+          moonPhase
         )}
+
         {loading ? null : (
           <WeatherDescAnimation
             title={apiData.current.weather[0].description}
@@ -117,131 +119,101 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       </div>
       <div className="separator"></div>
 
-      <Tooltip title="Current Temperature" placement="left-start">
-        <div className="realTimeDataDiv">
-          <Temperature />
-          {apiData.current.temp}
-        </div>
-      </Tooltip>
+      <div className="realTimeDataDiv">
+        <Temperature />
+        {apiData.current.temp}
+      </div>
 
-      <Tooltip
-        title="This temperature parameter accounts for the human perception of weather using other paramethers like relative humidity"
-        placement="left-start"
-      >
-        <div className="realTimeDataDiv">
-          <FeelsLike /> {apiData.current.feels_like}
-        </div>
-      </Tooltip>
+      <div className="realTimeDataDiv">
+        <FeelsLike /> {apiData.current.feels_like}
+      </div>
       <div className="separator"></div>
 
-      <Tooltip title="Relative Humidity" placement="left-start">
-        <div className="realTimeDataDiv">
-          <Humidity /> {apiData.current.humidity}
-        </div>
-      </Tooltip>
+      <div className="realTimeDataDiv">
+        <Humidity /> {apiData.current.humidity}
+      </div>
 
       <div className="separator"></div>
 
-      <Tooltip title="Current UV index" placement="left-start">
-        <div className="realTimeDataDiv">
-          <UVI /> {apiData.current.uvi}
-        </div>
-      </Tooltip>
+      <div className="realTimeDataDiv">
+        <UVI /> {apiData.current.uvi}
+      </div>
       <div className="separator"></div>
 
-      <Tooltip title="Cloud coverage" placement="left-start">
-        <div className="realTimeDataDiv">
-          <Clouds night={night} />
-          {apiData.current.clouds}
-        </div>
-      </Tooltip>
-
+      <div className="realTimeDataDiv">
+        <Clouds night={night} />
+        {apiData.current.clouds}
+      </div>
       <div className="separator"></div>
 
       {/* conditional rendering for rain and snow */}
       {apiData.current.rain ? (
         <>
-          <Tooltip title="Rain volume" placement="left-start">
-            <div className="realTimeDataDiv">
-              <Rain night={night} />
-              <div className="moonTimings">
+          <div className="realTimeDataDiv">
+            <Rain night={night} />
+            <div className="moonTimings">
+              <Tooltip title="Rain volume" placement="left-start">
                 <div>{apiData.current.rain['1h']} - last hour</div>
+              </Tooltip>
+              <Tooltip title="Rain volume" placement="left-start">
                 <div>
                   {apiData.current.rain['3h']
                     ? `${apiData.current.rain['3h']} - last 3 hours`
                     : null}
                 </div>
-              </div>
+              </Tooltip>
             </div>
-          </Tooltip>
+          </div>
           <div className="separator"></div>
         </>
       ) : null}
       {apiData.current.snow ? (
         <>
-          <Tooltip title="Snow volume" placement="left-start">
-            <div className="realTimeDataDiv">
-              <Snow night={night} />
-              <div className="moonTimings">
+          <div className="realTimeDataDiv">
+            <Snow night={night} />
+            <div className="moonTimings">
+              <Tooltip title="Snow volume" placement="left-start">
                 <div>{apiData.current.snow['1h']} - last hour</div>
+              </Tooltip>
+              <Tooltip title="Snow volume" placement="left-start">
                 <div>
                   {apiData.current.snow['3h']
                     ? `${apiData.current.snow['3h']} - last 3 hours`
                     : null}
                 </div>
-              </div>
+              </Tooltip>
             </div>
-          </Tooltip>
+          </div>
 
           <div className="separator"></div>
         </>
       ) : null}
 
-      <Tooltip
-        title="Wind direction and speed"
-        placement="left-start"
-      >
-        <div className="realTimeDataDiv">
-          <Windy />
-          <div className="windContainer">
-            <div>{apiData.current.wind_deg as number}</div>
-            <div>{apiData.current.wind_speed as number}</div>
-          </div>
+      <div className="realTimeDataDiv">
+        <Windy />
+        <div className="windContainer">
+          <div>{apiData.current.wind_deg as number}</div>
+          <div>{apiData.current.wind_speed as number}</div>
         </div>
-      </Tooltip>
+      </div>
       <div className="separator"></div>
 
-      <Tooltip
-        title="Atmospheric temperature (varying according to pressure and humidity) below which water droplets begin to condense and dew can form"
-        placement="left-start"
-      >
-        <div className="realTimeDataDiv">
-          <DewPoint />
-          {apiData.current.dew_point}
-        </div>
-      </Tooltip>
+      <div className="realTimeDataDiv">
+        <DewPoint />
+        {apiData.current.dew_point}
+      </div>
       <div className="separator"></div>
 
-      <Tooltip
-        title="Atmospheric pressure on the sea level"
-        placement="left-start"
-      >
-        <div className="realTimeDataDiv">
-          <Pressure />
-          {apiData.current.pressure}
-        </div>
-      </Tooltip>
+      <div className="realTimeDataDiv">
+        <Pressure />
+        {apiData.current.pressure}
+      </div>
       <div className="separator"></div>
 
-      <Tooltip
-        title="Average visibility, metres. The maximum value of the visibility is 10km"
-        placement="left-start"
-      >
-        <div className="realTimeDataDiv">
-          <Visibility />
-          {apiData.current.visibility}
-        </div>
-      </Tooltip>
+      <div className="realTimeDataDiv">
+        <Visibility />
+        {apiData.current.visibility}
+      </div>
       <div className="separator"></div>
 
       <Tooltip title="Sunrise and sunset time" placement="left-start">

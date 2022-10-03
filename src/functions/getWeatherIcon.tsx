@@ -6,27 +6,23 @@ import Snow from 'src/icons/Snow';
 import Sunny from 'src/icons/Sunny';
 import Thunderstorm from 'src/icons/Thunderstorm';
 import Tooltip from '@material-ui/core/Tooltip';
+import getMoonPhase from './getMoonPhase';
 
-const getWeatherIcon = (weatherDesc: string, night: boolean) => {
-  // console.log(weatherDesc, applyTheme);
+const getWeatherIcon = (
+  weatherDesc: string,
+  night: boolean,
+  moonPhase: number
+) => {
+  // console.log(weatherDesc, 'night?', night, 'moonphase?', moonPhase);
 
-  if (night && weatherDesc === 'Clear')
-    return (
-      <Tooltip
-        title="Current weather: Clear sky"
-        placement="left-start"
-      >
-        <div>
-          <MoonClear />
-        </div>
-      </Tooltip>
-    );
+  if (night === true && weatherDesc === 'Clear')
+    return <div>{getMoonPhase(moonPhase)}</div>;
 
   switch (weatherDesc) {
     case 'Clear':
       return (
         <Tooltip
-          title="Current weather: Clear sky"
+          title="Main weather: Clear sky"
           placement="left-start"
         >
           <div>
@@ -36,10 +32,7 @@ const getWeatherIcon = (weatherDesc: string, night: boolean) => {
       );
     case 'Clouds':
       return (
-        <Tooltip
-          title="Current weather: Clouds"
-          placement="left-start"
-        >
+        <Tooltip title="Main weather: Clouds" placement="left-start">
           <div>
             <Clouds night={night} />
           </div>
@@ -48,7 +41,7 @@ const getWeatherIcon = (weatherDesc: string, night: boolean) => {
     case 'Rain':
     case 'Drizzle':
       return (
-        <Tooltip title="Current weather: Rain" placement="left-start">
+        <Tooltip title="Main weather: Rain" placement="left-start">
           <div>
             <Rain night={night} />
           </div>
@@ -57,7 +50,7 @@ const getWeatherIcon = (weatherDesc: string, night: boolean) => {
     case 'Thunderstorm':
       return (
         <Tooltip
-          title="Current weather: Thunderstorm"
+          title="Main weather: Thunderstorm"
           placement="left-start"
         >
           <div>
@@ -67,7 +60,7 @@ const getWeatherIcon = (weatherDesc: string, night: boolean) => {
       );
     case 'Snow':
       return (
-        <Tooltip title="Current weather: Snow" placement="left-start">
+        <Tooltip title="Main weather: Snow" placement="left-start">
           <div>
             <Snow night={night} />
           </div>
@@ -75,7 +68,7 @@ const getWeatherIcon = (weatherDesc: string, night: boolean) => {
       );
     case 'Mist':
       return (
-        <Tooltip title="Current weather: Mist" placement="left-start">
+        <Tooltip title="Main weather: Mist" placement="left-start">
           <div>
             <Mist night={night} />
           </div>

@@ -1,3 +1,4 @@
+import { Tooltip } from '@material-ui/core';
 import { mdiTurbine } from '@mdi/js';
 import Icon from '@mdi/react';
 
@@ -13,12 +14,14 @@ const Windy = () => {
   const { path, color, spin } = iconInfo;
 
   return (
-    <Icon
-      path={path}
-      color={color}
-      spin={spin}
-      className="windySvg"
-    />
+    <Tooltip title="Wind info" placement="left-start">
+      <Icon
+        path={path}
+        color={color}
+        spin={spin}
+        className="windySvg"
+      />
+    </Tooltip>
   );
 };
 

@@ -44,6 +44,7 @@ const App: React.FC = () => {
   const [modalUIColor, setModalUIColor] = useState('white');
   const [showRealTimeModal, setShowRealTimeModal] = useState(true);
   const [showSearchModal, setShowSearchModal] = useState(true);
+  const [moonPhase, setMoonPhase] = useState(0);
 
   //REF
   const inputRef = useRef<HTMLInputElement>(null);
@@ -144,10 +145,11 @@ const App: React.FC = () => {
         );
         setBackgroundImg(bg);
 
-        console.log(data);
-
         // data formatting before displaying in components
         setApiData(dataFormatter(data));
+
+        //sets moonphase for every component
+        setMoonPhase(data?.daily[0].moon_phase as number);
 
         // end loading
         setLoading(false);
@@ -238,6 +240,7 @@ const App: React.FC = () => {
             locationToShow={locationToShow}
             loading={loading}
             night={night}
+            moonPhase={moonPhase}
           />
         ) : null}
 
@@ -261,6 +264,7 @@ const App: React.FC = () => {
               night={night}
               UIColor={UIColor}
               modalUIColor={modalUIColor}
+              moonPhase={moonPhase}
             />
           </Suspense>
         ) : null}
@@ -273,6 +277,7 @@ const App: React.FC = () => {
               night={night}
               UIColor={UIColor}
               modalUIColor={modalUIColor}
+              moonPhase={moonPhase}
             />
           </Suspense>
         ) : null}
