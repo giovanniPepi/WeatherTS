@@ -5,7 +5,9 @@ import NetworkError from 'src/icons/NetworkError';
 
 const MinutelyData: React.FC<MinutelyProps> = ({
   minuteData,
-  setShowMinutelyModal
+  setShowMinutelyModal,
+  UIColor,
+  modalUIColor
 }) => {
   if (minuteData === undefined) {
     return (
@@ -43,7 +45,7 @@ const MinutelyData: React.FC<MinutelyProps> = ({
         x: window.innerWidth
       }}
     >
-      <Charts minuteData={minuteData} />
+      <Charts minuteData={minuteData} UIColor={UIColor} />
     </motion.div>
   );
 };

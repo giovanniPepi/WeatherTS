@@ -3,8 +3,6 @@ import { motion } from 'framer-motion';
 import { ISvgColors } from 'interfaces';
 
 const Temperature: React.FC<ISvgColors> = ({ svgColors }) => {
-  console.log(svgColors);
-
   const svgVariants = {
     hidden: { rotate: -90 },
     visible: {

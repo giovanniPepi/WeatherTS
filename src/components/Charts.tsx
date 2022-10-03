@@ -5,12 +5,18 @@ import { useEffect, useState } from 'react';
 import CheckAll from 'src/icons/CheckAll';
 ChartJS.register(...registerables);
 
-const Charts: React.FC<MinutelyChartProps> = ({ minuteData }) => {
+const Charts: React.FC<MinutelyChartProps> = ({
+  minuteData,
+  UIColor
+}) => {
   //state
   const [hasRainValue, setHasRainValue] = useState(false);
 
   const timeArray: string[] = [];
   const pptArray: number[] = [];
+
+  // changes Color UI
+  ChartJS.defaults.color = UIColor;
 
   minuteData.forEach((obj) => {
     let values = Object.values(obj);
@@ -48,9 +54,11 @@ const Charts: React.FC<MinutelyChartProps> = ({ minuteData }) => {
             datasets: [
               {
                 label: 'Rain volume, mm ',
+
                 data: pptArray,
-                backgroundColor: ['#075985'],
-                borderColor: ['#a54608'],
+
+                backgroundColor: ['#6d28d9'],
+                borderColor: ['#a78bfa'],
                 borderWidth: 0.8,
                 borderRadius: 2
               }
@@ -61,6 +69,7 @@ const Charts: React.FC<MinutelyChartProps> = ({ minuteData }) => {
             scales: {
               y: {
                 beginAtZero: true,
+
                 grid: {
                   display: false
                 }

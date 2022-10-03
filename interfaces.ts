@@ -132,6 +132,7 @@ interface MinutelyProps {
 
 interface MinutelyChartProps {
   minuteData: Minutely;
+  UIColor: string
 }
 
 interface HourlyProps {
