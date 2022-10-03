@@ -154,6 +154,7 @@ interface RealTimeDataProps {
   apiData: IWeatherData;
   locationToShow: string;
   loading: boolean
+  night: boolean
 }
 
 

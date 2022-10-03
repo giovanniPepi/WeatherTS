@@ -12,15 +12,13 @@ const Loading = () => {
   const { path, color, spin } = iconInfo;
 
   return (
-    <div className="loadingOverlay">
-      <div className="loadingModal">
-        <Icon
-          path={path}
-          color={color}
-          spin={spin}
-          className={'loadingIcon'}
-        />
-      </div>
+    <div className="loadingSvg">
+      <Icon
+        path={path}
+        color={color}
+        spin={spin}
+        className={'loadingIcon'}
+      />
     </div>
   );
 };

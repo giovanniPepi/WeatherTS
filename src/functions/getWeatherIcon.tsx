@@ -9,12 +9,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import isNight from './isNight';
 
-const getWeatherIcon = (weatherDesc: string, applyTheme: boolean) => {
+const getWeatherIcon = (weatherDesc: string, night: boolean) => {
   // console.log(weatherDesc, applyTheme);
-  let night;
-
-  if (applyTheme) night = isNight();
-  else night = false;
 
   if (night && weatherDesc === 'Clear')
     return (
