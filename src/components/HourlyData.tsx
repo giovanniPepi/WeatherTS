@@ -8,6 +8,7 @@ import UVI from 'src/icons/UVI';
 import { useEffect, useState } from 'react';
 import Next from 'src/icons/Next';
 import Previous from 'src/icons/Previous';
+import NetworkError from 'src/icons/NetworkError';
 
 const HourlyData: React.FC<HourlyProps> = ({
   hourlyData,
@@ -46,6 +47,29 @@ const HourlyData: React.FC<HourlyProps> = ({
   useEffect(() => {
     getItemsToRender();
   }, [index, start]);
+
+  if (hourlyData === undefined) {
+    return (
+      <motion.div
+        className="realTimeData"
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1
+        }}
+        transition={{ duration: 2 }}
+        exit={{
+          opacity: 0,
+          x: window.innerWidth
+        }}
+      >
+        <NetworkError />
+        <div>
+          Couldn't get API data. Check your connection or try again
+          later.
+        </div>
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div

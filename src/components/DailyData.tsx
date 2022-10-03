@@ -57,7 +57,7 @@ const DailyData: React.FC<DailyProps> = ({
     getItemsToRender();
   }, [index, start]);
 
-  if (dailyData === undefined)
+  if (dailyData === undefined) {
     return (
       <motion.div
         className="realTimeData"
@@ -78,6 +78,7 @@ const DailyData: React.FC<DailyProps> = ({
         </div>
       </motion.div>
     );
+  }
 
   return (
     <motion.div

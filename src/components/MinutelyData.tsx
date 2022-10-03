@@ -7,7 +7,7 @@ const MinutelyData: React.FC<MinutelyProps> = ({
   minuteData,
   setShowMinutelyModal
 }) => {
-  if (minuteData === undefined)
+  if (minuteData === undefined) {
     return (
       <motion.div
         className="realTimeData"
@@ -28,6 +28,7 @@ const MinutelyData: React.FC<MinutelyProps> = ({
         </div>
       </motion.div>
     );
+  }
 
   return (
     <motion.div
