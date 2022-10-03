@@ -17,6 +17,7 @@ import Sunny from 'src/icons/Sunny';
 import Windy from 'src/icons/Windy';
 import Rain from 'src/icons/Rain';
 import Percent from 'src/icons/Percent';
+import NetworkError from 'src/icons/NetworkError';
 
 const DailyData: React.FC<DailyProps> = ({
   dailyData,
@@ -56,6 +57,28 @@ const DailyData: React.FC<DailyProps> = ({
     getItemsToRender();
   }, [index, start]);
 
+  if (dailyData === undefined)
+    return (
+      <motion.div
+        className="realTimeData"
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1
+        }}
+        transition={{ duration: 2 }}
+        exit={{
+          opacity: 0,
+          x: window.innerWidth
+        }}
+      >
+        <NetworkError />
+        <div>
+          Couldn't get API data. Check your connection or try again
+          later.
+        </div>
+      </motion.div>
+    );
+
   return (
     <motion.div
       className="dailyDataModal"
@@ -80,7 +103,7 @@ const DailyData: React.FC<DailyProps> = ({
             return (
               <li key={v4()} className="dailyContainer">
                 <div className="dailyDt">
-                  <div>Forecast for {day.dt}</div>
+                  <div>{day.dt}</div>
                 </div>
                 <div className="separator"></div>
                 <div className="dailyDataDiv">
