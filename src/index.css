@@ -49,6 +49,10 @@ li {
 span {
   white-space: pre;
 }
+svg:hover {
+  transform: scale(1.1);
+}
+
 .NetworkErrorSvg {
   align-self: center;
 }

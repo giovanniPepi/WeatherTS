@@ -31,6 +31,8 @@ const LastQuarterMoon = () => {
       variants={svgVariants}
       initial="hidden"
       animate="visible"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
     >
       <motion.path
         d="M12 2A10 10 0 0 0 12 22Z"

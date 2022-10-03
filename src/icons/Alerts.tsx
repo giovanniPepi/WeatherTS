@@ -33,6 +33,8 @@ const Alert = () => {
       variants={svgVariants}
       initial="hidden"
       animate="visible"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
     >
       <motion.path
         d="M13 14H11V9H13M13 18H11V16H13M1 21H23L12 2L1 21Z"

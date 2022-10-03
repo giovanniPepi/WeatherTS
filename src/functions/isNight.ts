@@ -9,7 +9,6 @@ const isNight = ():boolean => {
   
   const night = condition;
 
-  console.log('IS IT NIGHT? ', night, 'BECAUSE time is', timeNow)
   return night;
 };
 export default isNight;
