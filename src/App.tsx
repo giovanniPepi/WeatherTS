@@ -42,7 +42,7 @@ const App: React.FC = () => {
   const [showSearchModal, setShowSearchModal] = useState(true);
   // GUI changers
   const [backgroundImg, setBackgroundImg] = useState();
-  const [night, setNight] = useState(false);
+  const [night, setNight] = useState(isNight());
   const [UIColor, setUIColor] = useState('black');
   const [modalUIColor, setModalUIColor] = useState(
     'rgba(109, 40, 217, 0.75)'
@@ -120,9 +120,6 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    // verifies night
-    setNight(isNight());
-
     // changes UI color at night
     if (night) {
       setUIColor('#a3e635');
