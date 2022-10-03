@@ -1,3 +1,4 @@
+import { Tooltip } from '@material-ui/core';
 import { motion } from 'framer-motion';
 
 const LastQuarterMoon = () => {
@@ -24,19 +25,23 @@ const LastQuarterMoon = () => {
   };
 
   return (
-    <motion.svg
-      className="LastQuarterMoonSvg"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      variants={svgVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      <motion.path
-        d="M12 2A10 10 0 0 0 12 22Z"
-        variants={pathVariants}
-      />
-    </motion.svg>
+    <Tooltip title="Moon phase: Last Quarter" placement="left-start">
+      <motion.svg
+        className="LastQuarterMoonSvg"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        variants={svgVariants}
+        initial="hidden"
+        animate="visible"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <motion.path
+          d="M12 2A10 10 0 0 0 12 22Z"
+          variants={pathVariants}
+        />
+      </motion.svg>
+    </Tooltip>
   );
 };
 

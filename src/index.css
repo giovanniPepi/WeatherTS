@@ -49,6 +49,10 @@ li {
 span {
   white-space: pre;
 }
+svg:hover {
+  transform: scale(1.1);
+}
+
 .NetworkErrorSvg {
   align-self: center;
 }
@@ -266,7 +270,7 @@ span {
   justify-items: center;
   align-items: center;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 10vh 85vh 5vh;
+  grid-template-rows: 10vh 80vh 10vh;
 }
 .searchForm {
   margin-top: 0.9rem;
@@ -286,7 +290,7 @@ form {
   height: 1.3rem;
   border-radius: 0.5rem;
   border: none;
-  padding: 0.4rem 0.4rem 0.6rem 0.4rem;
+  padding: 0.2rem 0.2rem 0.3rem 0.2rem;
 }
 input {
   all: unset;
@@ -319,6 +323,9 @@ input {
   grid-row: 3/4;
   display: flex;
   grid-column: 1/5;
+  backdrop-filter: blur(10px);
+  padding: var(--btnPadding);
+  border-radius: var(--radius);
 }
 .windContainerHome {
   display: flex;

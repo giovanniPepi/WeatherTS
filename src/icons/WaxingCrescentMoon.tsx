@@ -1,3 +1,4 @@
+import { Tooltip } from '@material-ui/core';
 import { motion } from 'framer-motion';
 
 const WaxingCrescentMoon = () => {
@@ -24,19 +25,26 @@ const WaxingCrescentMoon = () => {
   };
 
   return (
-    <motion.svg
-      className="WaxingCrescentMoonSvg"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      variants={svgVariants}
-      initial="hidden"
-      animate="visible"
+    <Tooltip
+      title="Moon phase: Waxing Crescent"
+      placement="left-start"
     >
-      <motion.path
-        d="M12 2A9.91 9.91 0 0 0 9 2.46A10 10 0 0 1 9 21.54A10 10 0 1 0 12 2Z"
-        variants={pathVariants}
-      />
-    </motion.svg>
+      <motion.svg
+        className="WaxingCrescentMoonSvg"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        variants={svgVariants}
+        initial="hidden"
+        animate="visible"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <motion.path
+          d="M12 2A9.91 9.91 0 0 0 9 2.46A10 10 0 0 1 9 21.54A10 10 0 1 0 12 2Z"
+          variants={pathVariants}
+        />
+      </motion.svg>
+    </Tooltip>
   );
 };
 

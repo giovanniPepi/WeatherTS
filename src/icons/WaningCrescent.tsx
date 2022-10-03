@@ -1,3 +1,4 @@
+import { Tooltip } from '@material-ui/core';
 import { motion } from 'framer-motion';
 
 const FullMoon = () => {
@@ -24,19 +25,26 @@ const FullMoon = () => {
   };
 
   return (
-    <motion.svg
-      className="FullMoonSvg"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      variants={svgVariants}
-      initial="hidden"
-      animate="visible"
+    <Tooltip
+      title="Moon phase: Waning Creacent"
+      placement="left-start"
     >
-      <motion.path
-        d="M12 2A10 10 0 1 1 2 12A10 10 0 0 1 12 2Z"
-        variants={pathVariants}
-      />
-    </motion.svg>
+      <motion.svg
+        className="FullMoonSvg"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        variants={svgVariants}
+        initial="hidden"
+        animate="visible"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <motion.path
+          d="M12 2A10 10 0 1 1 2 12A10 10 0 0 1 12 2Z"
+          variants={pathVariants}
+        />
+      </motion.svg>
+    </Tooltip>
   );
 };
 

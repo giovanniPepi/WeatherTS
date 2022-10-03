@@ -40,10 +40,11 @@ const App: React.FC = () => {
     useState<Boolean>(false);
   const [backgroundImg, setBackgroundImg] = useState();
   const [night, setNight] = useState(false);
-  const [UIColor, setUIColor] = useState('white');
+  const [UIColor, setUIColor] = useState('black');
   const [modalUIColor, setModalUIColor] = useState('white');
   const [showRealTimeModal, setShowRealTimeModal] = useState(true);
   const [showSearchModal, setShowSearchModal] = useState(true);
+  const [moonPhase, setMoonPhase] = useState(0);
 
   //REF
   const inputRef = useRef<HTMLInputElement>(null);
@@ -81,6 +82,7 @@ const App: React.FC = () => {
     }
   };
 
+  // toggles - handle open/closing modals
   const toggleMinuteData = () => {
     setShowMinutelyModal(true);
     setShowRealTimeModal(false);
@@ -104,6 +106,7 @@ const App: React.FC = () => {
     setShowRealTimeModal(false);
     setShowSearchModal(false);
   };
+
   const toggleRealTimeData = () => {
     setShowRealTimeModal(true);
     setShowDailyModal(false);
@@ -142,10 +145,11 @@ const App: React.FC = () => {
         );
         setBackgroundImg(bg);
 
-        console.log(data);
-
         // data formatting before displaying in components
         setApiData(dataFormatter(data));
+
+        //sets moonphase for every component
+        setMoonPhase(data?.daily[0].moon_phase as number);
 
         // end loading
         setLoading(false);
@@ -155,7 +159,6 @@ const App: React.FC = () => {
     };
 
     // initial condition
-    // getData(-22.854103, -47.048331, 'Campinas, BR');
     getData(latForAPI, longForAPI, locationForAPI);
 
     // focus on input
@@ -183,25 +186,25 @@ const App: React.FC = () => {
           color: `${UIColor}`
         }}
       >
-        <div className="dataTogglingArea">
+        <div className="dataTogglingArea strong">
           <button
             onClick={toggleRealTimeData}
             style={{ color: `${UIColor}` }}
           >
-            Home/Current Weather
+            Home/Current Weather |
           </button>
 
           <button
             onClick={toggleMinuteData}
             style={{ color: `${UIColor}` }}
           >
-            Minute forecast
+            Minute forecast |
           </button>
           <button
             onClick={toggleHourlyData}
             style={{ color: `${UIColor}` }}
           >
-            Hourly forecast
+            Hourly forecast |
           </button>
           <button
             onClick={toggleDailyData}
@@ -237,6 +240,7 @@ const App: React.FC = () => {
             locationToShow={locationToShow}
             loading={loading}
             night={night}
+            moonPhase={moonPhase}
           />
         ) : null}
 
@@ -260,6 +264,7 @@ const App: React.FC = () => {
               night={night}
               UIColor={UIColor}
               modalUIColor={modalUIColor}
+              moonPhase={moonPhase}
             />
           </Suspense>
         ) : null}
@@ -272,6 +277,7 @@ const App: React.FC = () => {
               night={night}
               UIColor={UIColor}
               modalUIColor={modalUIColor}
+              moonPhase={moonPhase}
             />
           </Suspense>
         ) : null}

@@ -140,6 +140,7 @@ interface HourlyProps {
   night: boolean;
   UIColor: string;
   modalUIColor: string;
+  moonPhase: number
 }
 
 interface DailyProps {
@@ -148,13 +149,15 @@ interface DailyProps {
     night: boolean;
   UIColor: string;
   modalUIColor: string;
+  moonPhase: number;
 }
 
 interface RealTimeDataProps {
   apiData: IWeatherData;
   locationToShow: string;
-  loading: boolean
-  night: boolean
+  loading: boolean;
+  night: boolean;
+  moonPhase: number;
 }
 
 

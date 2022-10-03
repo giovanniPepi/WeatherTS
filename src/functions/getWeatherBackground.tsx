@@ -1,15 +1,15 @@
 import { ICurrentWeatherArray } from 'interfaces';
-import clearDayBg from '../img/clearDayBg.png';
-import clearNightBg from '../img/clearNightBg.png';
-import cloudsDayBg from '../img/cloudsDayBg.png';
-import cloudsNightBg from '../img/cloudsNightBg.png';
-import rainDayBg from '../img/rainDayBg.png';
-import rainNightBg from '../img/rainNightBg.png';
+import clearDayBg from '../img/day/clearDayBg.png';
+import clearNightBg from '../img/night/clearNightBg.png';
+import cloudsDayBg from '../img/day/cloudsDayBg.png';
+import cloudsNightBg from '../img/night/cloudsNightBg.png';
+import rainDayBg from '../img/day/rainDayBg.png';
+import rainNightBg from '../img/night/rainNightBg.png';
 import thunderstormBg from '../img/thunderstormBg.png';
-import fogDayBg from '../img/fogDayBg.png';
-import fogNightBg from '../img/fogNightBg.png';
-import snowDayBg from '../img/snowDayBg.png';
-import snowNightBg from '../img/snowNightBg.png';
+import fogDayBg from '../img/day/fogDayBg.png';
+import fogNightBg from '../img/night/fogNightBg.png';
+import snowDayBg from '../img/day/snowDayBg.png';
+import snowNightBg from '../img/night/snowNightBg.png';
 
 const getWeatherBackground = (
   weatherArray: ICurrentWeatherArray | undefined,

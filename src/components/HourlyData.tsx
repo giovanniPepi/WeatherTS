@@ -8,11 +8,13 @@ import UVI from 'src/icons/UVI';
 import { useEffect, useState } from 'react';
 import Next from 'src/icons/Next';
 import Previous from 'src/icons/Previous';
+import NetworkError from 'src/icons/NetworkError';
 
 const HourlyData: React.FC<HourlyProps> = ({
   hourlyData,
   setShowHourlyModal,
-  night
+  night,
+  moonPhase
 }) => {
   //state
   const [index, setIndex] = useState(8);
@@ -47,6 +49,29 @@ const HourlyData: React.FC<HourlyProps> = ({
     getItemsToRender();
   }, [index, start]);
 
+  if (hourlyData === undefined) {
+    return (
+      <motion.div
+        className="realTimeData"
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1
+        }}
+        transition={{ duration: 2 }}
+        exit={{
+          opacity: 0,
+          x: window.innerWidth
+        }}
+      >
+        <NetworkError />
+        <div>
+          Couldn't get API data. Check your connection or try again
+          later.
+        </div>
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
       className="hourlyDataModal"
@@ -71,7 +96,11 @@ const HourlyData: React.FC<HourlyProps> = ({
               <li key={v4()} className="hourlyContainer">
                 <div className="hourlyDt">{hour.dt}</div>
                 <div className="hourlyDataDiv">
-                  {getWeatherIcon(hour.weather[0].main, night)}
+                  {getWeatherIcon(
+                    hour.weather[0].main,
+                    night,
+                    moonPhase
+                  )}
                   <div>{hour.weather[0].main}</div>
                 </div>
                 <div className="hourlyDataDiv">

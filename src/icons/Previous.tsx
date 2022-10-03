@@ -31,6 +31,8 @@ const Previous = () => {
       variants={svgVariants}
       initial="hidden"
       animate="visible"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
     >
       <motion.path
         d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"
