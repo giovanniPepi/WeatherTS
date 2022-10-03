@@ -106,7 +106,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         {apiData?.current!.weather![0]!.main! === 'Clear' && night ? (
           <>{getMoonPhase(apiData.daily[0].moon_phase as number)}</>
         ) : (
-          getWeatherIcon(apiData.current.weather[0].main, true)
+          getWeatherIcon(apiData.current.weather[0].main, night)
         )}
         {loading ? null : (
           <WeatherDescAnimation

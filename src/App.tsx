@@ -40,7 +40,7 @@ const App: React.FC = () => {
     useState<Boolean>(false);
   const [backgroundImg, setBackgroundImg] = useState();
   const [night, setNight] = useState(false);
-  const [UIColor, setUIColor] = useState('white');
+  const [UIColor, setUIColor] = useState('black');
   const [modalUIColor, setModalUIColor] = useState('white');
   const [showRealTimeModal, setShowRealTimeModal] = useState(true);
   const [showSearchModal, setShowSearchModal] = useState(true);
@@ -184,7 +184,7 @@ const App: React.FC = () => {
           color: `${UIColor}`
         }}
       >
-        <div className="dataTogglingArea">
+        <div className="dataTogglingArea strong">
           <button
             onClick={toggleRealTimeData}
             style={{ color: `${UIColor}` }}

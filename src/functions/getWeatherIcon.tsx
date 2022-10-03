@@ -7,8 +7,6 @@ import Sunny from 'src/icons/Sunny';
 import Thunderstorm from 'src/icons/Thunderstorm';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import isNight from './isNight';
-
 const getWeatherIcon = (weatherDesc: string, night: boolean) => {
   // console.log(weatherDesc, applyTheme);
 
