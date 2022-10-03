@@ -128,6 +128,7 @@ interface MinutelyProps {
   night: boolean;
   UIColor: string;
   modalUIColor: string;
+  svgColors: string
 }
 
 interface MinutelyChartProps {

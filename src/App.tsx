@@ -257,6 +257,7 @@ const App: React.FC = () => {
               night={night}
               UIColor={UIColor}
               modalUIColor={modalUIColor}
+              svgColors={svgColors}
             />
           </Suspense>
         ) : null}

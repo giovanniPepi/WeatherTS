@@ -7,9 +7,12 @@
     'Helvetica Neue', sans-serif;
   --smallerFont: 0.8rem;
   --biggerFont: 1.4rem;
-  --strongAccentColor: rgb(109, 40, 217, 0.1);
+  --strongAccentColor: rgb(109, 40, 217, 0.03);
+  --strongAccentColor2: rgb(109, 40, 217, 0.08);
   --strongAccentColorSeparator: rgb(109, 40, 217, 0.75);
   --accentColor: #8b5cf6;
+  --boxShadow: rgba(24, 32, 79, 0.25) 0px 40px 80px,
+    rgba(255, 255, 255, 0.5) 0px 0px 0px 0.5px inset;
 }
 body {
   height: 100vh;
@@ -130,7 +133,6 @@ svg:hover {
 
 .hourlyContainer {
   border-radius: var(--radius);
-  border: 1px solid var(--accentColor);
   padding: var(--btnPadding);
   width: 100px;
   height: 150px;
@@ -139,6 +141,7 @@ svg:hover {
   align-content: center;
   justify-content: center;
   gap: 0.2rem;
+  box-shadow: var(--boxShadow);
 }
 .hourlyDt {
   text-align: center;
@@ -163,7 +166,6 @@ svg:hover {
 
 .dailyContainer {
   border-radius: var(--radius);
-  border: 1px solid var(--accentColor);
   padding: var(--btnPadding);
   width: 35vw;
   display: flex;
@@ -174,7 +176,7 @@ svg:hover {
 }
 .separator {
   width: 100%;
-  border: 1px solid var(--strongAccentColorSeparator);
+  border: 1px solid black;
   border-radius: 20%;
 }
 .dailyDt {
@@ -280,8 +282,8 @@ svg:hover {
   grid-row: 1/2;
   grid-column: 1/5;
   min-width: 25vw;
-  background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(5px);
+  background-color: var(--strongAccentColor);
+  backdrop-filter: blur(10px);
   padding: 0.3rem;
   border-radius: var(--radius);
 }
@@ -319,6 +321,7 @@ input {
   border-radius: var(--radius);
   backdrop-filter: blur(10px);
   background-color: var(--strongAccentColor);
+  box-shadow: var(--boxShadow);
 }
 .dataTogglingArea {
   grid-row: 3/4;
@@ -327,6 +330,7 @@ input {
   backdrop-filter: blur(10px);
   padding: var(--btnPadding);
   border-radius: var(--radius);
+  background-color: var(--strongAccentColor);
 }
 .windContainerHome {
   display: flex;

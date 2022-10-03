@@ -7,7 +7,8 @@ const MinutelyData: React.FC<MinutelyProps> = ({
   minuteData,
   setShowMinutelyModal,
   UIColor,
-  modalUIColor
+  modalUIColor,
+  svgColors
 }) => {
   if (minuteData === undefined) {
     return (
@@ -23,7 +24,7 @@ const MinutelyData: React.FC<MinutelyProps> = ({
           x: window.innerWidth
         }}
       >
-        <NetworkError />
+        <NetworkError svgColors={svgColors} />
         <div>
           Couldn't get API data. Check your connection or try again
           later.
