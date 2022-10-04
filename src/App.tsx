@@ -18,7 +18,6 @@ import Loading from './icons/Loading';
 import Search from './icons/Search';
 import getWeatherBackground from './functions/getWeatherBackground';
 import isNight from './functions/isNight';
-import { randomUUID } from 'crypto';
 
 const App: React.FC = () => {
   //state
@@ -50,6 +49,8 @@ const App: React.FC = () => {
   );
   const [moonPhase, setMoonPhase] = useState(0);
   const [svgColors, setSvgColors] = useState('#f2a708');
+  // forces rerendering to apply themes
+  const [updateRealTime, setUpdateRealTime] = useState(0);
 
   //REF
   const inputRef = useRef<HTMLInputElement>(null);
@@ -140,10 +141,18 @@ const App: React.FC = () => {
         setMoonPhase(data?.daily[0].moon_phase as number);
 
         // changes UI color at night
+        console.log('isnight app? ', night);
+
         if (night) {
           setUIColor('#a3e635');
           setModalUIColor('rgb(59, 18, 146, 0.03)');
           setSvgColors('rgb(123, 81, 247)');
+          setUpdateRealTime((state) => state + 1);
+        } else {
+          setUIColor('rgb(255, 255, 255)');
+          setModalUIColor('rgba(109, 40, 217, 0.18)');
+          setSvgColors('#f2a708');
+          setUpdateRealTime((state) => state + 1);
         }
 
         // changes background:
@@ -168,6 +177,8 @@ const App: React.FC = () => {
 
     // focus on input
     inputRef.current?.focus();
+
+    console.log(updateRealTime);
   }, [latForAPI, locationForAPI, longForAPI, night]);
 
   return (
@@ -268,6 +279,7 @@ const App: React.FC = () => {
             moonPhase={moonPhase}
             svgColors={svgColors}
             modalUIColor={modalUIColor}
+            key={updateRealTime}
           />
         ) : null}
 
