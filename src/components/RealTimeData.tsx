@@ -36,18 +36,9 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   night,
   moonPhase,
   svgColors,
-  modalUIColor
+  modalUIColor,
+  separatorColor
 }) => {
-  console.log(
-    'realtime: ',
-    apiData,
-    locationToShow,
-    loading,
-    night,
-    moonPhase,
-    svgColors,
-    modalUIColor
-  );
   //state
   const [showAlertsModal, setShowAlertsModal] =
     useState<Boolean>(false);
@@ -66,7 +57,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
     };
   }, [apiData]);
 
-  if (apiData.current === undefined) {
+  if (apiData === undefined) {
     return (
       <motion.div
         className="realTimeData"
@@ -114,7 +105,10 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           {minutes}
         </div>
       </div>
-      <div className="separator"></div>
+      <div
+        className="separator"
+        style={{ border: `1px solid ${separatorColor}` }}
+      ></div>
       <div className="realTimeDataDiv">
         {/*gets the weather icon through getMoonphase to return the correct phase if it's night */}
         {getWeatherIcon(
@@ -129,35 +123,51 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           />
         )}
       </div>
-      <div className="separator"></div>
+      <div
+        className="separator"
+        style={{ border: `1px solid ${separatorColor}` }}
+      ></div>
 
       <div className="realTimeDataDiv">
         <Temperature svgColors={svgColors} />
-        {apiData.current.temp}
+        <div>{apiData.current.temp}</div>
       </div>
 
       <div className="realTimeDataDiv">
         <FeelsLike svgColors={svgColors} />
-        {apiData.current.feels_like}
+        <div>{apiData.current.feels_like}</div>
       </div>
-      <div className="separator"></div>
+      <div
+        className="separator"
+        style={{ border: `1px solid ${separatorColor}` }}
+      ></div>
 
       <div className="realTimeDataDiv">
-        <Humidity svgColors={svgColors} /> {apiData.current.humidity}
+        <Humidity svgColors={svgColors} />
+        <div>{apiData.current.humidity}</div>
       </div>
 
-      <div className="separator"></div>
+      <div
+        className="separator"
+        style={{ border: `1px solid ${separatorColor}` }}
+      ></div>
 
       <div className="realTimeDataDiv">
-        <UVI svgColors={svgColors} /> {apiData.current.uvi}
+        <UVI svgColors={svgColors} /> <div>{apiData.current.uvi}</div>
       </div>
-      <div className="separator"></div>
+      <div
+        className="separator"
+        style={{ border: `1px solid ${separatorColor}` }}
+      ></div>
 
       <div className="realTimeDataDiv">
         <Clouds svgColors={svgColors} />
-        {apiData.current.clouds}
+        <div>{apiData.current.clouds}</div>
       </div>
-      <div className="separator"></div>
+      <div
+        className="separator"
+        style={{ border: `1px solid ${separatorColor}` }}
+      ></div>
 
       {/* conditional rendering for rain and snow */}
       {apiData.current.rain ? (
@@ -177,7 +187,10 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
               </Tooltip>
             </div>
           </div>
-          <div className="separator"></div>
+          <div
+            className="separator"
+            style={{ border: `1px solid ${separatorColor}` }}
+          ></div>
         </>
       ) : null}
       {apiData.current.snow ? (
@@ -198,7 +211,10 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
             </div>
           </div>
 
-          <div className="separator"></div>
+          <div
+            className="separator"
+            style={{ border: `1px solid ${separatorColor}` }}
+          ></div>
         </>
       ) : null}
 
@@ -209,25 +225,37 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           <div>{apiData.current.wind_speed as number}</div>
         </div>
       </div>
-      <div className="separator"></div>
+      <div
+        className="separator"
+        style={{ border: `1px solid ${separatorColor}` }}
+      ></div>
 
       <div className="realTimeDataDiv">
         <DewPoint svgColors={svgColors} />
-        {apiData.current.dew_point}
+        <div>{apiData.current.dew_point}</div>
       </div>
-      <div className="separator"></div>
+      <div
+        className="separator"
+        style={{ border: `1px solid ${separatorColor}` }}
+      ></div>
 
       <div className="realTimeDataDiv">
         <Pressure svgColors={svgColors} />
-        {apiData.current.pressure}
+        <div>{apiData.current.pressure}</div>
       </div>
-      <div className="separator"></div>
+      <div
+        className="separator"
+        style={{ border: `1px solid ${separatorColor}` }}
+      ></div>
 
       <div className="realTimeDataDiv">
         <Visibility svgColors={svgColors} />
-        {apiData.current.visibility}
+        <div>{apiData.current.visibility}</div>
       </div>
-      <div className="separator"></div>
+      <div
+        className="separator"
+        style={{ border: `1px solid ${separatorColor}` }}
+      ></div>
 
       <Tooltip title="Sunrise and sunset time" placement="left-start">
         <div className="realTimeDataDiv">
@@ -238,7 +266,10 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           </div>
         </div>
       </Tooltip>
-      <div className="separator"></div>
+      <div
+        className="separator"
+        style={{ border: `1px solid ${separatorColor}` }}
+      ></div>
 
       <div className="realTimeDataDiv">
         {getMoonPhase(
@@ -250,7 +281,10 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           <div>{apiData.daily[0].moonset}</div>
         </div>
       </div>
-      <div className="separator"></div>
+      <div
+        className="separator"
+        style={{ border: `1px solid ${separatorColor}` }}
+      ></div>
 
       {apiData.alerts && showAlertsModal ? (
         <AlertsModal

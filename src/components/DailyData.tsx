@@ -26,40 +26,48 @@ const DailyData: React.FC<DailyProps> = ({
   night,
   moonPhase,
   svgColors,
-  modalUIColor
+  modalUIColor,
+  separatorColor
 }) => {
   //state
-  const [index, setIndex] = useState(2);
+  const [index, setIndex] = useState(1);
   const [renderedItems, setRenderedItems] =
     useState<DailyArray>(dailyData);
   const [start, setStart] = useState(0);
+  const [daysToShow, setDaysToShow] = useState(1);
 
-  const getNextHours = () => {
-    if (start > index || start > index - 2) setStart(0);
+  const getNextDays = () => {
+    if (start > index || start > index - daysToShow) setStart(0);
     if (index > 8) setIndex(8);
-    if (index < 8 || start < 6) {
-      setIndex(index + 2);
-      setStart(start + 2);
+    if (index < 8 || start < 8 - daysToShow) {
+      setIndex(index + daysToShow);
+      setStart(start + daysToShow);
     }
   };
 
-  const getPreviousHours = () => {
-    if (start < index - 2) setStart(0);
-    if (index < start || index < 2) setIndex(2);
-    if (index > 2 || start > 0) {
-      setStart(start - 2);
-      setIndex(index - 2);
+  const getPreviousDays = () => {
+    if (start < index - daysToShow) setStart(0);
+    if (index < start || index < daysToShow) setIndex(daysToShow);
+    if (index > daysToShow || start > 0) {
+      setStart(start - daysToShow);
+      setIndex(index - daysToShow);
     }
-  };
-
-  const getItemsToRender = () => {
-    const newRender: DailyArray = dailyData.slice(start, index);
-    setRenderedItems(newRender);
   };
 
   useEffect(() => {
+    if (window.screen.availWidth > 749) {
+      setDaysToShow(2);
+    } else if (window.screen.availWidth < 750) {
+      setDaysToShow(1);
+    }
+
+    const getItemsToRender = () => {
+      const newRender: DailyArray = dailyData.slice(start, index);
+      setRenderedItems(newRender);
+    };
+
     getItemsToRender();
-  }, [index, start]);
+  }, [dailyData, daysToShow, start, index]);
 
   if (dailyData === undefined) {
     return (
@@ -101,7 +109,7 @@ const DailyData: React.FC<DailyProps> = ({
     >
       <div className="dailyMainTitle">Daily forecast</div>
       <div className="dailyControlDiv">
-        <button onClick={() => getPreviousHours()}>
+        <button onClick={() => getPreviousDays()}>
           <Previous svgColors={svgColors} />
         </button>
 
@@ -112,7 +120,10 @@ const DailyData: React.FC<DailyProps> = ({
                 <div className="dailyDt">
                   <div>{day.dt}</div>
                 </div>
-                <div className="separator"></div>
+                <div
+                  className="separator"
+                  style={{ border: `1px solid ${separatorColor}` }}
+                ></div>
 
                 <div className="dailyDataDiv">
                   {getWeatherIcon(
@@ -123,7 +134,10 @@ const DailyData: React.FC<DailyProps> = ({
                   )}
                   {day.weather[0].description}
                 </div>
-                <div className="separator"></div>
+                <div
+                  className="separator"
+                  style={{ border: `1px solid ${separatorColor}` }}
+                ></div>
 
                 <div className="dailyDataDiv">
                   <Tooltip title="Rain probability">
@@ -134,7 +148,10 @@ const DailyData: React.FC<DailyProps> = ({
                   </Tooltip>
                   {day.pop}
                 </div>
-                <div className="separator"></div>
+                <div
+                  className="separator"
+                  style={{ border: `1px solid ${separatorColor}` }}
+                ></div>
 
                 <div className="dailyDataDiv">
                   <Temperature svgColors={svgColors} />
@@ -177,17 +194,26 @@ const DailyData: React.FC<DailyProps> = ({
                     ) : null}
                   </div>
                 </div>
-                <div className="separator"></div>
+                <div
+                  className="separator"
+                  style={{ border: `1px solid ${separatorColor}` }}
+                ></div>
 
                 <div className="dailyDataDiv">
                   <Humidity svgColors={svgColors} /> {day.humidity}
                 </div>
-                <div className="separator"></div>
+                <div
+                  className="separator"
+                  style={{ border: `1px solid ${separatorColor}` }}
+                ></div>
 
                 <div className="dailyDataDiv">
                   <UVI svgColors={svgColors} /> {day.uvi}
                 </div>
-                <div className="separator"></div>
+                <div
+                  className="separator"
+                  style={{ border: `1px solid ${separatorColor}` }}
+                ></div>
                 <div className="dailyDataDiv">
                   <Windy svgColors={svgColors} />
                   <div className="moonTimings">
@@ -196,22 +222,34 @@ const DailyData: React.FC<DailyProps> = ({
                     <div>Wind speed {day.wind_speed}</div>
                   </div>
                 </div>
-                <div className="separator"></div>
+                <div
+                  className="separator"
+                  style={{ border: `1px solid ${separatorColor}` }}
+                ></div>
                 <div className="dailyDataDiv">
                   <Clouds svgColors={svgColors} /> {day.clouds}
                 </div>
-                <div className="separator"></div>
+                <div
+                  className="separator"
+                  style={{ border: `1px solid ${separatorColor}` }}
+                ></div>
 
                 <div className="dailyDataDiv">
                   <DewPoint svgColors={svgColors} /> {day.dew_point}
                 </div>
-                <div className="separator"></div>
+                <div
+                  className="separator"
+                  style={{ border: `1px solid ${separatorColor}` }}
+                ></div>
 
                 <div className="dailyDataDiv">
                   <Pressure svgColors={svgColors} />
                   {day.pressure}
                 </div>
-                <div className="separator"></div>
+                <div
+                  className="separator"
+                  style={{ border: `1px solid ${separatorColor}` }}
+                ></div>
 
                 <div className="dailyDataDiv">
                   <Sunny />
@@ -220,7 +258,10 @@ const DailyData: React.FC<DailyProps> = ({
                     <div>Sunset {day.sunset}</div>
                   </div>
                 </div>
-                <div className="separator"></div>
+                <div
+                  className="separator"
+                  style={{ border: `1px solid ${separatorColor}` }}
+                ></div>
 
                 <div className="dailyDataDiv">
                   {getMoonPhase(day.moon_phase as number, svgColors)}
@@ -233,7 +274,7 @@ const DailyData: React.FC<DailyProps> = ({
             );
           })}
         </ul>
-        <button onClick={() => getNextHours()}>
+        <button onClick={() => getNextDays()}>
           <Next svgColors={svgColors} />
         </button>
       </div>

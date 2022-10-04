@@ -15,7 +15,7 @@ const getWeatherBackground = (
   weatherArray: ICurrentWeatherArray | undefined,
   night: boolean
 ) => {
-  console.log('weather', weatherArray?.main, 'night:', night);
+  // console.log('weather', weatherArray?.main, 'night:', night);
 
   if (!night) {
     switch (weatherArray?.main) {

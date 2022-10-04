@@ -46,42 +46,44 @@ const Charts: React.FC<MinutelyChartProps> = ({
   return (
     <>
       {hasRainValue ? (
-        <Bar
-          height={400}
-          width={600}
-          data={{
-            labels: timeArray,
-            datasets: [
-              {
-                label: 'Rain volume, mm ',
+        <div className="chart">
+          <Bar
+            height={400}
+            width={600}
+            data={{
+              labels: timeArray,
+              datasets: [
+                {
+                  label: 'Rain volume, mm ',
 
-                data: pptArray,
+                  data: pptArray,
 
-                backgroundColor: ['#6d28d9'],
-                borderColor: ['#a78bfa'],
-                borderWidth: 0.8,
-                borderRadius: 2
-              }
-            ]
-          }}
-          options={{
-            responsive: true,
-            scales: {
-              y: {
-                beginAtZero: true,
-
-                grid: {
-                  display: false
+                  backgroundColor: ['#6d28d9'],
+                  borderColor: ['#a78bfa'],
+                  borderWidth: 0.8,
+                  borderRadius: 2
                 }
-              },
-              x: {
-                grid: {
-                  display: false
+              ]
+            }}
+            options={{
+              responsive: true,
+              scales: {
+                y: {
+                  beginAtZero: true,
+
+                  grid: {
+                    display: false
+                  }
+                },
+                x: {
+                  grid: {
+                    display: false
+                  }
                 }
               }
-            }
-          }}
-        />
+            }}
+          />
+        </div>
       ) : (
         <div className="noRain">
           <CheckAll />

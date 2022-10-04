@@ -33,7 +33,7 @@ const Search: React.FC<ISvgColors> = ({ svgColors }) => {
       variants={svgVariants}
       initial="hidden"
       animate="visible"
-      whileHover={{ scale: 1.1 }}
+      whileHover={{ scale: 1.2 }}
       whileTap={{ scale: 0.9 }}
     >
       <motion.path
