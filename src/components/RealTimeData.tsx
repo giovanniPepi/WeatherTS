@@ -38,16 +38,6 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   svgColors,
   modalUIColor
 }) => {
-  console.log(
-    'realtime: ',
-    apiData,
-    locationToShow,
-    loading,
-    night,
-    moonPhase,
-    svgColors,
-    modalUIColor
-  );
   //state
   const [showAlertsModal, setShowAlertsModal] =
     useState<Boolean>(false);

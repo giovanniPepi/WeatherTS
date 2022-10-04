@@ -7,13 +7,16 @@
     'Helvetica Neue', sans-serif;
   --smallerFont: 0.8rem;
   --biggerFont: 1.4rem;
-  --strongAccentColor: rgb(109, 40, 217, 0.03);
+  --strongAccentColor: rgba(109, 40, 217, 0.18);
   --strongAccentColor2: rgb(109, 40, 217, 0.08);
   --strongAccentColorSeparator: rgba(109, 40, 217, 0.75);
   --complementaryAccent: rgb(52, 19, 135);
   --accentColor: #8b5cf6;
-  --boxShadow: rgba(24, 32, 79, 0.25) 0px 10px 10px,
-    rgba(255, 255, 255, 0.2) 0px 0px 0px 0.1px inset;
+  --boxShadow: rgba(24, 32, 79, 0.25) 0px 20px 20px,
+    rgba(255, 255, 255, 0.3) 0px 0px 0px 0.1px inset;
+  --boxShadowInside: rgba(109, 40, 217, 0.15) 0px 15px 15px,
+    rgba(109, 40, 217, 0.15) 0px 0px 0px 0.1px inset;
+  --modalBlur: blur(35px);
 }
 body {
   height: 100vh;
@@ -55,6 +58,10 @@ li {
 /*Shows whitespaces on spans*/
 span {
   white-space: pre;
+  font-weight: bold;
+}
+div {
+  font-weight: bold;
 }
 svg:hover {
   transform: scale(1.1);
@@ -111,6 +118,7 @@ svg:hover {
   max-height: 85vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   grid-row: 1/3;
   grid-column: 2/4;
   display: flex;
@@ -133,15 +141,15 @@ svg:hover {
 
 .hourlyContainer {
   border-radius: var(--radius);
-  padding: var(--btnPadding);
-  width: 100px;
-  height: 150px;
+  padding: var(--divPadding);
+  width: 13vw;
+  height: 20vh;
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
   gap: 0.2rem;
-  box-shadow: var(--boxShadow);
+  box-shadow: var(--boxShadowInside);
 }
 .hourlyDt {
   text-align: center;
@@ -284,7 +292,7 @@ svg:hover {
   grid-column: 1/5;
   min-width: 25vw;
   background-color: var(--strongAccentColor);
-  backdrop-filter: blur(10px);
+  backdrop-filter: var(--modalBlur);
   padding: 0.3rem;
   border-radius: var(--radius);
 }
@@ -308,7 +316,7 @@ input {
 .extendedModal,
 .alertsModal {
   border-radius: var(--radius);
-  backdrop-filter: blur(12px);
+  backdrop-filter: var(--modalBlur);
   background-color: var(--strongAccentColor);
 }
 .realTimeData {
@@ -320,7 +328,7 @@ input {
   min-width: 25vw;
   padding: var(--divPadding);
   border-radius: var(--radius);
-  backdrop-filter: blur(10px);
+  backdrop-filter: var(--modalBlur);
   background-color: var(--strongAccentColor);
   box-shadow: var(--boxShadow);
 }
@@ -328,7 +336,7 @@ input {
   grid-row: 3/4;
   display: flex;
   grid-column: 1/5;
-  backdrop-filter: blur(10px);
+  backdrop-filter: var(--modalBlur);
   padding: var(--btnPadding);
   border-radius: var(--radius);
   background-color: var(--strongAccentColor);

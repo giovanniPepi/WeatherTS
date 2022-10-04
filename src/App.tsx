@@ -44,12 +44,12 @@ const App: React.FC = () => {
   // GUI changers
   const [backgroundImg, setBackgroundImg] = useState();
   const [night, setNight] = useState(false);
-  const [UIColor, setUIColor] = useState('black');
+  const [UIColor, setUIColor] = useState('rgb(255, 255, 255)');
   const [modalUIColor, setModalUIColor] = useState(
-    'rgba(109, 40, 217, 0.75)'
+    'rgba(109, 40, 217, 0.18)'
   );
   const [moonPhase, setMoonPhase] = useState(0);
-  const [svgColors, setSvgColors] = useState('rgb(255, 255, 255)');
+  const [svgColors, setSvgColors] = useState('#f2a708');
 
   //REF
   const inputRef = useRef<HTMLInputElement>(null);
@@ -191,7 +191,10 @@ const App: React.FC = () => {
           color: `${UIColor}`
         }}
       >
-        <div className="dataTogglingArea">
+        <div
+          className="dataTogglingArea"
+          style={{ backgroundColor: modalUIColor }}
+        >
           <button
             onClick={toggleRealTimeData}
             style={{ color: `${UIColor}` }}
@@ -227,7 +230,10 @@ const App: React.FC = () => {
         {loading ? <Loading /> : null}
 
         {showSearchModal ? (
-          <div className="searchForm">
+          <div
+            className="searchForm"
+            style={{ backgroundColor: modalUIColor }}
+          >
             <form onSubmit={handleClick}>
               <input
                 placeholder="Search a location..."
@@ -252,8 +258,6 @@ const App: React.FC = () => {
             moonPhase={moonPhase}
             svgColors={svgColors}
             modalUIColor={modalUIColor}
-            /*forces re-rendering to properly apply all themes*/
-            key={Date.now()}
           />
         ) : null}
 
