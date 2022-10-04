@@ -158,13 +158,18 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         style={{ border: `1px solid ${separatorColor}` }}
       ></div>
 
-      <div className="realTimeDataDiv">
-        <UVI svgColors={svgColors} /> <div>{apiData.current.uvi}</div>
-      </div>
-      <div
-        className="separator"
-        style={{ border: `1px solid ${separatorColor}` }}
-      ></div>
+      {typeof apiData.current.uvi === 'string' ? (
+        <>
+          <div className="realTimeDataDiv">
+            <UVI svgColors={svgColors} />
+            <div>{apiData.current.uvi}</div>
+          </div>
+          <div
+            className="separator"
+            style={{ border: `1px solid ${separatorColor}` }}
+          ></div>
+        </>
+      ) : null}
 
       <div className="realTimeDataDiv">
         <Clouds svgColors={svgColors} />
