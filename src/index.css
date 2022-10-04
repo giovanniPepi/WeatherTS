@@ -10,7 +10,10 @@
   --strongAccentColor: rgb(109, 40, 217, 0.03);
   --strongAccentColor2: rgb(109, 40, 217, 0.08);
   --strongAccentColorSeparator: rgba(109, 40, 217, 0.75);
+  --complementaryAccent: rgb(52, 19, 135);
   --accentColor: #8b5cf6;
+  --boxShadow: rgba(24, 32, 79, 0.25) 0px 10px 10px,
+    rgba(255, 255, 255, 0.2) 0px 0px 0px 0.1px inset;
 }
 body {
   height: 100vh;
@@ -36,8 +39,8 @@ button {
   cursor: pointer;
 }
 svg {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.8rem;
+  height: 1.8rem;
 }
 .loadingIcon {
   height: 12rem;
@@ -304,9 +307,8 @@ input {
 .dailyDataModal,
 .extendedModal,
 .alertsModal {
-  box-shadow: var(--boxShadow);
   border-radius: var(--radius);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   background-color: var(--strongAccentColor);
 }
 .realTimeData {

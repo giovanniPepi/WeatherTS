@@ -9,7 +9,7 @@ const Windy: React.FC<ISvgColors> = ({ svgColors }) => {
   const [iconInfo] = useState({
     path: mdiTurbine,
     color: svgColors,
-    spin: 8
+    spin: 3
   });
 
   const { path, color, spin } = iconInfo;

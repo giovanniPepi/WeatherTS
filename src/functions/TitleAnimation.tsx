@@ -4,10 +4,10 @@ import styled, { keyframes } from 'styled-components';
 // yes, this needs to go outside...
 // https://medium.com/geekculture/you-may-see-this-warning-because-youve-called-styled-inside-another-component-styled-components-7766b4740b22
 const animation = keyframes`
-0% {opacity: 0.8; transform: translateX(-2px) skewY(2deg) skewX(2deg) rotateZ(2deg); filter: blur(0px);}
+0% {opacity: 0.8; transform: translateX(-3px) skewY(3deg) skewX(3deg) rotateZ(3deg); filter: blur(0px);}
 50%{opacity: 1; transform: translateX(0px) skewY(0deg) skewX(0deg) rotateZ(0deg); filter: blur(0px);} 
 70%{opacity: 1; transform: translateX(0px) skewY(0deg) skewX(0deg) rotateZ(0deg); filter: blur(0px);}
-100% {opacity: 0.8; transform: translateX(-2px) skewY(2deg) skewX(2deg) rotateZ(2deg); filter: blur(0px);}`;
+100% {opacity: 0.8; transform: translateX(-3px) skewY(2deg) skewX(3deg) rotateZ(3deg); filter: blur(0px);}`;
 
 const Wrapper = styled.div`
   display: inline-block;

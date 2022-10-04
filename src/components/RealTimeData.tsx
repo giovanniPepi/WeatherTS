@@ -230,21 +230,16 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       </Tooltip>
       <div className="separator"></div>
 
-      <Tooltip
-        title="Current moon phase, moonrise and moonset"
-        placement="left-start"
-      >
-        <div className="realTimeDataDiv">
-          {getMoonPhase(
-            apiData.daily[0].moon_phase as number,
-            svgColors
-          )}
-          <div className="moonTimings">
-            <div>{apiData.daily[0].moonrise}</div>
-            <div>{apiData.daily[0].moonset}</div>
-          </div>
+      <div className="realTimeDataDiv">
+        {getMoonPhase(
+          apiData.daily[0].moon_phase as number,
+          svgColors
+        )}
+        <div className="moonTimings">
+          <div>{apiData.daily[0].moonrise}</div>
+          <div>{apiData.daily[0].moonset}</div>
         </div>
-      </Tooltip>
+      </div>
       <div className="separator"></div>
 
       {apiData.alerts && showAlertsModal ? (
