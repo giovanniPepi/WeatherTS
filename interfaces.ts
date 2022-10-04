@@ -128,7 +128,8 @@ interface MinutelyProps {
   night: boolean;
   UIColor: string;
   modalUIColor: string;
-  svgColors: string
+  svgColors: string;
+  boxShadow: string;
 }
 
 interface MinutelyChartProps {
@@ -145,9 +146,8 @@ interface HourlyProps {
   moonPhase: number
   svgColors: string;
   hoursToRender: number;
-
+  boxShadow: string
 }
-
 
 interface DailyProps {
   dailyData: DailyArray | undefined;
@@ -159,6 +159,7 @@ interface DailyProps {
   svgColors: string;
   separatorColor: string;
   daysToRender: number;
+  boxShadow: string
 }
 
 interface RealTimeDataProps {
@@ -169,9 +170,9 @@ interface RealTimeDataProps {
   moonPhase: number;
   svgColors: string;
   modalUIColor: string;
-  separatorColor: string
+  separatorColor: string;
+  boxShadow: string
 }
-
 
 interface AlertsModalProps {
   apiData: IWeatherData;

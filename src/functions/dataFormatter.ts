@@ -3,19 +3,28 @@ import capitalizeFirst from "./capitalizeFirst";
 import convertToKm from "./convertToKm";
 import getExactHours from "./getExactHours";
 import getFormattedDate from "./getFormattedDate";
+import getHour from "./getHour";
+import getUVSeverity from "./getUVSeverity";
 import getWindDir from "./getWindDir";
 
 const dataFormatter = (data: IWeatherData | undefined) => {
 
   if (data?.current) {
-    // data.current.dt = `${getExactHours(data.current.dt as number)}`;
 
+      /*format to check UV*/ 
+    const exactHour = getHour(data.timezone);
+    console.log(exactHour)
+    
     data.current.weather[0]['description'] = `${capitalizeFirst(data.current.weather[0]['description'] as string)}`;
 
     data.current.humidity = `${(data?.current.humidity as number).toFixed(0)} %`;
     data.current.temp = `${(data.current.temp as number).toFixed(1)} ºC`;
     data.current.feels_like = `${(data.current.feels_like as number).toFixed(1)} ºC`;
-    data.current.uvi = `${(data.current.uvi as number).toFixed(0)}`;
+
+    // return UV only at sunlight
+    if (exactHour >= 5 && exactHour <= 19)        
+      data.current.uvi = `${(data.current.uvi as number).toFixed(0)} ${getUVSeverity(data.current.uvi as number)}`;        
+
     data.current.dew_point = `${(data.current.dew_point as number).toFixed(1)} ºC`;
     data.current.visibility = `${(data.current.visibility as number)/1000} km`;
     data.current.sunrise = `${getExactHours(
@@ -52,6 +61,9 @@ const dataFormatter = (data: IWeatherData | undefined) => {
 
     data.hourly.forEach((hour) => {
 
+      /*format to check UV*/ 
+      const exactHour = new Date(hour.dt as unknown as number * 1000).getHours();
+      
       hour.dt = [hour.dt as unknown as number, `${getFormattedDate(hour.dt as unknown as number)} ${getExactHours(hour.dt as unknown as number)}`];
 
       hour.weather[0]['description'] = `${capitalizeFirst(hour.weather[0]['description'] as string)}`;
@@ -61,7 +73,12 @@ const dataFormatter = (data: IWeatherData | undefined) => {
       hour.humidity = `${(hour.humidity as number).toFixed(0)} %`;
       hour.temp = `${(hour.temp as number).toFixed(1)} ºC`;
       hour.feels_like = `${(hour.feels_like as number).toFixed(1)} ºC`;
-      hour.uvi = `${(hour.uvi as number).toFixed(0)}`;
+
+      /*only return UV at day*/ 
+      if (exactHour >= 5 && exactHour <= 19)
+        hour.uvi = `${(hour.uvi as number).toFixed(0)} ${getUVSeverity
+          (hour.uvi as number)}`;
+      
       hour.dew_point = `${hour.dew_point} ºC`;
       hour.visibility = `${(hour.visibility as number) / 1000} km`;
       hour.pressure = `${hour.pressure} hPa`;
@@ -128,7 +145,9 @@ const dataFormatter = (data: IWeatherData | undefined) => {
         // capitalize first
         day.weather[0]["description"] = `${capitalizeFirst(day.weather[0]["description"] as string)}`;
 
-        day.uvi = `${(day.uvi as number).toFixed(0)}`;
+ day.uvi = `${(day.uvi as number).toFixed(0)} ${getUVSeverity
+          (day.uvi as number)}`;
+
         day.dew_point = `${day.dew_point} ºC`;
 
         day.sunrise = `${getExactHours(

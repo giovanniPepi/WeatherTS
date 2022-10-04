@@ -18,10 +18,9 @@ const HourlyData: React.FC<HourlyProps> = ({
   moonPhase,
   svgColors,
   modalUIColor,
-  hoursToRender
+  hoursToRender,
+  boxShadow
 }) => {
-  console.log(hourlyData);
-
   //state
   const [index, setIndex] = useState(hoursToRender);
   const [renderedItems, setRenderedItems] = useState<HourlyArray>(
@@ -62,7 +61,10 @@ const HourlyData: React.FC<HourlyProps> = ({
       <motion.div
         className="realTimeData"
         initial={{ opacity: 0 }}
-        style={{ backgroundColor: modalUIColor }}
+        style={{
+          backgroundColor: modalUIColor,
+          boxShadow: boxShadow
+        }}
         animate={{
           opacity: 1
         }}
@@ -122,9 +124,11 @@ const HourlyData: React.FC<HourlyProps> = ({
                 <div className="hourlyDataDiv">
                   <Humidity svgColors={svgColors} /> {hour.humidity}
                 </div>
-                <div className="hourlyDataDiv">
-                  <UVI svgColors={svgColors} /> {hour.uvi}
-                </div>
+                {typeof hour.uvi === 'string' ? (
+                  <div className="hourlyDataDiv">
+                    <UVI svgColors={svgColors} /> {hour.uvi}
+                  </div>
+                ) : null}
               </li>
             );
           })}

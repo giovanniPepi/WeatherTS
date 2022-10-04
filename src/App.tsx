@@ -53,6 +53,10 @@ const App: React.FC = () => {
   const [separatorColor, setSeparatorColor] = useState(
     'rgba(55, 6, 135, 0.75)'
   );
+  const [boxShadow, setBoxShadow] =
+    useState(`rgba(24, 32, 79, 0.25) 0px 20px 20px, 
+    rgba(255, 255, 255, 0.3) 0px 0px 0px 0.1px inset`);
+
   const [svgColors, setSvgColors] = useState('#f2a708');
   // Updates number of info per screen size
   const [daysToRender, setDaysToRender] = useState(0);
@@ -156,6 +160,7 @@ const App: React.FC = () => {
           setModalUIColor('rgb(59, 18, 146, 0.03)');
           setSvgColors('rgb(123, 81, 247)');
           setSeparatorColor('rgb(163, 230, 53, 0.3');
+          setBoxShadow('none');
           setUpdateRealTime((state) => state + 1);
         } else {
           // resets to initial state
@@ -163,6 +168,8 @@ const App: React.FC = () => {
           setModalUIColor('rgba(109, 40, 217, 0.18)');
           setSvgColors('#f2a708');
           setSeparatorColor('rgba(55, 6, 135, 0.75)');
+          setBoxShadow(`rgba(24, 32, 79, 0.25) 0px 20px 20px, 
+    rgba(255, 255, 255, 0.3) 0px 0px 0px 0.1px inset`);
           setUpdateRealTime((state) => state + 1);
         }
 
@@ -217,7 +224,10 @@ const App: React.FC = () => {
       >
         <div
           className="dataTogglingArea"
-          style={{ backgroundColor: modalUIColor }}
+          style={{
+            backgroundColor: modalUIColor,
+            boxShadow: boxShadow
+          }}
         >
           <button
             onClick={toggleRealTimeData}
@@ -266,7 +276,10 @@ const App: React.FC = () => {
         {showSearchModal ? (
           <div
             className="searchForm"
-            style={{ backgroundColor: modalUIColor }}
+            style={{
+              backgroundColor: modalUIColor,
+              boxShadow: boxShadow
+            }}
           >
             <form onSubmit={handleClick}>
               <input
@@ -274,7 +287,11 @@ const App: React.FC = () => {
                 onChange={handleInputChange}
                 ref={inputRef}
               />
-              <button onClick={handleClick} className="searchBtn">
+              <button
+                onClick={handleClick}
+                className="searchBtn"
+                key={updateRealTime}
+              >
                 <Search svgColors={svgColors} />
               </button>
               {loadingSearch ? <Loading /> : null}
@@ -294,6 +311,7 @@ const App: React.FC = () => {
             modalUIColor={modalUIColor}
             key={updateRealTime}
             separatorColor={separatorColor}
+            boxShadow={boxShadow}
           />
         ) : null}
 
@@ -306,6 +324,7 @@ const App: React.FC = () => {
               UIColor={UIColor}
               modalUIColor={modalUIColor}
               svgColors={svgColors}
+              boxShadow={boxShadow}
             />
           </Suspense>
         ) : null}
@@ -322,6 +341,7 @@ const App: React.FC = () => {
               svgColors={svgColors}
               hoursToRender={hoursToRender}
               key={updateHourly}
+              boxShadow={boxShadow}
             />
           </Suspense>
         ) : null}
@@ -338,6 +358,7 @@ const App: React.FC = () => {
               svgColors={svgColors}
               separatorColor={separatorColor}
               daysToRender={daysToRender}
+              boxShadow={boxShadow}
             />
           </Suspense>
         ) : null}

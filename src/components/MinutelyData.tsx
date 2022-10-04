@@ -8,7 +8,8 @@ const MinutelyData: React.FC<MinutelyProps> = ({
   setShowMinutelyModal,
   UIColor,
   modalUIColor,
-  svgColors
+  svgColors,
+  boxShadow
 }) => {
   if (minuteData === undefined) {
     return (
@@ -18,7 +19,10 @@ const MinutelyData: React.FC<MinutelyProps> = ({
         animate={{
           opacity: 1
         }}
-        style={{ backgroundColor: modalUIColor }}
+        style={{
+          backgroundColor: modalUIColor,
+          boxShadow: boxShadow
+        }}
         transition={{ duration: 2 }}
         exit={{
           opacity: 0,
@@ -37,7 +41,7 @@ const MinutelyData: React.FC<MinutelyProps> = ({
   return (
     <motion.div
       className="minutelyDataModal"
-      style={{ backgroundColor: modalUIColor }}
+      style={{ backgroundColor: modalUIColor, boxShadow: boxShadow }}
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1
