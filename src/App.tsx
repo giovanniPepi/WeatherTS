@@ -43,11 +43,14 @@ const App: React.FC = () => {
   // GUI changers
   const [backgroundImg, setBackgroundImg] = useState();
   const [night, setNight] = useState(false);
+  const [moonPhase, setMoonPhase] = useState(0);
   const [UIColor, setUIColor] = useState('rgb(255, 255, 255)');
   const [modalUIColor, setModalUIColor] = useState(
     'rgba(109, 40, 217, 0.18)'
   );
-  const [moonPhase, setMoonPhase] = useState(0);
+  const [separatorColor, setSeparatorColor] = useState(
+    'rgba(55, 6, 135, 0.85)'
+  );
   const [svgColors, setSvgColors] = useState('#f2a708');
   // forces rerendering to apply themes
   const [updateRealTime, setUpdateRealTime] = useState(0);
@@ -147,11 +150,14 @@ const App: React.FC = () => {
           setUIColor('#a3e635');
           setModalUIColor('rgb(59, 18, 146, 0.03)');
           setSvgColors('rgb(123, 81, 247)');
+          setSeparatorColor('rgb(59, 18, 146, 0.03)');
           setUpdateRealTime((state) => state + 1);
         } else {
+          // resets to initial state
           setUIColor('rgb(255, 255, 255)');
           setModalUIColor('rgba(109, 40, 217, 0.18)');
           setSvgColors('#f2a708');
+          setSeparatorColor('rgba(55, 6, 135, 0.85)');
           setUpdateRealTime((state) => state + 1);
         }
 
@@ -280,6 +286,7 @@ const App: React.FC = () => {
             svgColors={svgColors}
             modalUIColor={modalUIColor}
             key={updateRealTime}
+            separatorColor={separatorColor}
           />
         ) : null}
 
@@ -320,6 +327,7 @@ const App: React.FC = () => {
               modalUIColor={modalUIColor}
               moonPhase={moonPhase}
               svgColors={svgColors}
+              separatorColor={separatorColor}
             />
           </Suspense>
         ) : null}
