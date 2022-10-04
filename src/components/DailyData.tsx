@@ -25,7 +25,8 @@ const DailyData: React.FC<DailyProps> = ({
   setShowDailyModal,
   night,
   moonPhase,
-  svgColors
+  svgColors,
+  modalUIColor
 }) => {
   //state
   const [index, setIndex] = useState(2);
@@ -65,6 +66,7 @@ const DailyData: React.FC<DailyProps> = ({
       <motion.div
         className="realTimeData"
         initial={{ opacity: 0 }}
+        style={{ backgroundColor: modalUIColor }}
         animate={{
           opacity: 1
         }}
@@ -87,6 +89,7 @@ const DailyData: React.FC<DailyProps> = ({
     <motion.div
       className="dailyDataModal"
       initial={{ opacity: 0 }}
+      style={{ backgroundColor: modalUIColor }}
       animate={{
         opacity: 1
       }}

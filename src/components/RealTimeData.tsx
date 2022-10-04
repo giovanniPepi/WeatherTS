@@ -35,8 +35,19 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   loading,
   night,
   moonPhase,
-  svgColors
+  svgColors,
+  modalUIColor
 }) => {
+  console.log(
+    'realtime: ',
+    apiData,
+    locationToShow,
+    loading,
+    night,
+    moonPhase,
+    svgColors,
+    modalUIColor
+  );
   //state
   const [showAlertsModal, setShowAlertsModal] =
     useState<Boolean>(false);
@@ -45,22 +56,22 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
 
   useEffect(() => {
     const myInterval = setInterval(() => {
-      const currentMinute = getMinute();
-      const currentHour = getHour();
-
+      const currentMinute = getMinute(apiData?.timezone);
+      const currentHour = getHour(apiData?.timezone);
       sethour(currentHour as number);
       setMinutes(currentMinute as number);
     }, 1000);
     return () => {
       clearInterval(myInterval);
     };
-  }, []);
+  }, [apiData]);
 
   if (apiData.current === undefined) {
     return (
       <motion.div
         className="realTimeData"
         initial={{ opacity: 0 }}
+        style={{ backgroundColor: modalUIColor }}
         animate={{
           opacity: 1
         }}
@@ -83,6 +94,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
     <motion.div
       className="realTimeData"
       initial={{ opacity: 0 }}
+      style={{ backgroundColor: modalUIColor }}
       animate={{
         opacity: 1
       }}
@@ -111,7 +123,6 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           moonPhase,
           svgColors
         )}
-
         {loading ? null : (
           <WeatherDescAnimation
             title={apiData.current.weather[0].description}
@@ -229,21 +240,16 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       </Tooltip>
       <div className="separator"></div>
 
-      <Tooltip
-        title="Current moon phase, moonrise and moonset"
-        placement="left-start"
-      >
-        <div className="realTimeDataDiv">
-          {getMoonPhase(
-            apiData.daily[0].moon_phase as number,
-            svgColors
-          )}
-          <div className="moonTimings">
-            <div>{apiData.daily[0].moonrise}</div>
-            <div>{apiData.daily[0].moonset}</div>
-          </div>
+      <div className="realTimeDataDiv">
+        {getMoonPhase(
+          apiData.daily[0].moon_phase as number,
+          svgColors
+        )}
+        <div className="moonTimings">
+          <div>{apiData.daily[0].moonrise}</div>
+          <div>{apiData.daily[0].moonset}</div>
         </div>
-      </Tooltip>
+      </div>
       <div className="separator"></div>
 
       {apiData.alerts && showAlertsModal ? (

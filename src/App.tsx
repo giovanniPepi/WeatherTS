@@ -18,6 +18,7 @@ import Loading from './icons/Loading';
 import Search from './icons/Search';
 import getWeatherBackground from './functions/getWeatherBackground';
 import isNight from './functions/isNight';
+import { randomUUID } from 'crypto';
 
 const App: React.FC = () => {
   //state
@@ -44,7 +45,9 @@ const App: React.FC = () => {
   const [backgroundImg, setBackgroundImg] = useState();
   const [night, setNight] = useState(false);
   const [UIColor, setUIColor] = useState('black');
-  const [modalUIColor, setModalUIColor] = useState('white');
+  const [modalUIColor, setModalUIColor] = useState(
+    'rgba(109, 40, 217, 0.75)'
+  );
   const [moonPhase, setMoonPhase] = useState(0);
   const [svgColors, setSvgColors] = useState('rgb(255, 255, 255)');
 
@@ -118,18 +121,6 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    // verifies night
-    setNight(isNight());
-
-    // changes UI color at night
-    if (night) {
-      setUIColor('rgb(235, 235, 235');
-      setModalUIColor('#241F31');
-      setSvgColors('#a3e635');
-    } else {
-      isNight();
-    }
-
     // calls weather API
     const getData = async (
       lat: number,
@@ -140,6 +131,20 @@ const App: React.FC = () => {
         setLoading(true);
 
         const data = await getWeatherAPI(lat, lon, country);
+        console.log(data);
+
+        // sets night based in timezone
+        setNight(isNight(data?.timezone as string));
+
+        //sets moonphase for every component
+        setMoonPhase(data?.daily[0].moon_phase as number);
+
+        // changes UI color at night
+        if (night) {
+          setUIColor('#a3e635');
+          setModalUIColor('rgb(59, 18, 146, 0.03)');
+          setSvgColors('#a78bfa');
+        }
 
         // changes background:
         const bg = getWeatherBackground(
@@ -148,12 +153,8 @@ const App: React.FC = () => {
         );
         setBackgroundImg(bg);
 
-        // data formatting before displaying in components
+        //finally, sets API data for other components
         setApiData(dataFormatter(data));
-        console.log(data);
-
-        //sets moonphase for every component
-        setMoonPhase(data?.daily[0].moon_phase as number);
 
         // end loading
         setLoading(false);
@@ -190,16 +191,18 @@ const App: React.FC = () => {
           color: `${UIColor}`
         }}
       >
-        <div className="dataTogglingArea strong">
+        <div className="dataTogglingArea">
           <button
             onClick={toggleRealTimeData}
             style={{ color: `${UIColor}` }}
+            className="strong"
           >
             Home/Current Weather |
           </button>
 
           <button
             onClick={toggleMinuteData}
+            className="strong"
             style={{ color: `${UIColor}` }}
           >
             Minute forecast |
@@ -207,12 +210,14 @@ const App: React.FC = () => {
           <button
             onClick={toggleHourlyData}
             style={{ color: `${UIColor}` }}
+            className="strong"
           >
             Hourly forecast |
           </button>
           <button
             onClick={toggleDailyData}
             style={{ color: `${UIColor}` }}
+            className="strong"
           >
             Daily forecast
           </button>
@@ -246,6 +251,9 @@ const App: React.FC = () => {
             night={night}
             moonPhase={moonPhase}
             svgColors={svgColors}
+            modalUIColor={modalUIColor}
+            /*forces re-rendering to properly apply all themes*/
+            key={Date.now()}
           />
         ) : null}
 
@@ -257,6 +265,7 @@ const App: React.FC = () => {
               night={night}
               UIColor={UIColor}
               modalUIColor={modalUIColor}
+              svgColors={svgColors}
             />
           </Suspense>
         ) : null}

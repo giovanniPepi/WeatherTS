@@ -5,7 +5,10 @@ import NetworkError from 'src/icons/NetworkError';
 
 const MinutelyData: React.FC<MinutelyProps> = ({
   minuteData,
-  setShowMinutelyModal
+  setShowMinutelyModal,
+  UIColor,
+  modalUIColor,
+  svgColors
 }) => {
   if (minuteData === undefined) {
     return (
@@ -15,13 +18,14 @@ const MinutelyData: React.FC<MinutelyProps> = ({
         animate={{
           opacity: 1
         }}
+        style={{ backgroundColor: modalUIColor }}
         transition={{ duration: 2 }}
         exit={{
           opacity: 0,
           x: window.innerWidth
         }}
       >
-        <NetworkError />
+        <NetworkError svgColors={svgColors} />
         <div>
           Couldn't get API data. Check your connection or try again
           later.
@@ -33,6 +37,7 @@ const MinutelyData: React.FC<MinutelyProps> = ({
   return (
     <motion.div
       className="minutelyDataModal"
+      style={{ backgroundColor: modalUIColor }}
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1
@@ -43,7 +48,7 @@ const MinutelyData: React.FC<MinutelyProps> = ({
         x: window.innerWidth
       }}
     >
-      <Charts minuteData={minuteData} />
+      <Charts minuteData={minuteData} UIColor={UIColor} />
     </motion.div>
   );
 };
