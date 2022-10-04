@@ -18,6 +18,8 @@ import Loading from './icons/Loading';
 import Search from './icons/Search';
 import getWeatherBackground from './functions/getWeatherBackground';
 import isNight from './functions/isNight';
+import getDaysToRender from './functions/getDaysToRender';
+import getHoursToRender from './functions/getHoursToRender';
 
 const App: React.FC = () => {
   //state
@@ -52,8 +54,13 @@ const App: React.FC = () => {
     'rgba(55, 6, 135, 0.75)'
   );
   const [svgColors, setSvgColors] = useState('#f2a708');
+  // Updates number of info per screen size
+  const [daysToRender, setDaysToRender] = useState(0);
+  const [hoursToRender, setHoursToRender] = useState(0);
+
   // forces rerendering to apply themes
   const [updateRealTime, setUpdateRealTime] = useState(0);
+  const [updateHourly, setUpdateHourlyTime] = useState(0);
 
   //REF
   const inputRef = useRef<HTMLInputElement>(null);
@@ -144,8 +151,6 @@ const App: React.FC = () => {
         setMoonPhase(data?.daily[0].moon_phase as number);
 
         // changes UI color at night
-        console.log('isnight app? ', night);
-
         if (night) {
           setUIColor('#a3e635');
           setModalUIColor('rgb(59, 18, 146, 0.03)');
@@ -178,13 +183,15 @@ const App: React.FC = () => {
       }
     };
 
+    setDaysToRender(getDaysToRender());
+    setHoursToRender(getHoursToRender());
+    setUpdateHourlyTime(updateHourly + 1);
+
     // initial condition
     getData(latForAPI, longForAPI, locationForAPI);
 
     // focus on input
     inputRef.current?.focus();
-
-    console.log(updateRealTime);
   }, [latForAPI, locationForAPI, longForAPI, night]);
 
   return (
@@ -313,6 +320,8 @@ const App: React.FC = () => {
               modalUIColor={modalUIColor}
               moonPhase={moonPhase}
               svgColors={svgColors}
+              hoursToRender={hoursToRender}
+              key={updateHourly}
             />
           </Suspense>
         ) : null}
@@ -328,6 +337,7 @@ const App: React.FC = () => {
               moonPhase={moonPhase}
               svgColors={svgColors}
               separatorColor={separatorColor}
+              daysToRender={daysToRender}
             />
           </Suspense>
         ) : null}

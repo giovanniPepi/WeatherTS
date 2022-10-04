@@ -144,6 +144,7 @@ interface HourlyProps {
   modalUIColor: string;
   moonPhase: number
   svgColors: string;
+  hoursToRender: number;
 
 }
 
@@ -157,6 +158,7 @@ interface DailyProps {
   moonPhase: number;
   svgColors: string;
   separatorColor: string;
+  daysToRender: number;
 }
 
 interface RealTimeDataProps {

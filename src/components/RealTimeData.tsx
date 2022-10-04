@@ -130,13 +130,15 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
 
       <div className="realTimeDataDiv">
         <Temperature svgColors={svgColors} />
-        <div>{apiData.current.temp}</div>
+        <div className="tempContainer">
+          {apiData.current.temp}
+          <div className="feelsLike">
+            <FeelsLike svgColors={svgColors} />
+            {apiData.current.feels_like}
+          </div>
+        </div>
       </div>
 
-      <div className="realTimeDataDiv">
-        <FeelsLike svgColors={svgColors} />
-        <div>{apiData.current.feels_like}</div>
-      </div>
       <div
         className="separator"
         style={{ border: `1px solid ${separatorColor}` }}

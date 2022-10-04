@@ -14,7 +14,7 @@ const isNight = (timezone: string): boolean => {
   
   const night = condition;
 
-  console.log(night, hours);
+  // console.log(night, hours);
   return night;
 };
 export default isNight;
