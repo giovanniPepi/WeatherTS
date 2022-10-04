@@ -7,7 +7,7 @@ import getWindDir from "./getWindDir";
 
 const dataFormatter = (data: IWeatherData | undefined) => {
   if (data?.current) {
-    data.current.dt = `${getExactHours(data.current.dt as number)}`;
+    // data.current.dt = `${getExactHours(data.current.dt as number)}`;
 
     data.current.weather[0]['description'] = `${capitalizeFirst(data.current.weather[0]['description'] as string)}`;
 
@@ -108,11 +108,6 @@ const dataFormatter = (data: IWeatherData | undefined) => {
         }
         day.temp = newTempObj;
 
-        //feelsLike obj
-/*         day.feels_like.day = `${day.feels_like.day} ºC`;
-        day.feels_like.eve = `${day.feels_like.eve} ºC`;
-        day.feels_like.morn = `${day.feels_like.morn} ºC`;
-        day.feels_like.night = `${day.feels_like.night} ºC`;  */
         const feelsLike = Object.values(day.feels_like);
         const formattedFeelsLike: string[] = []
         feelsLike.forEach((feel) => {

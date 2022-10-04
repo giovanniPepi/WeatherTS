@@ -38,6 +38,16 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   svgColors,
   modalUIColor
 }) => {
+  console.log(
+    'realtime: ',
+    apiData,
+    locationToShow,
+    loading,
+    night,
+    moonPhase,
+    svgColors,
+    modalUIColor
+  );
   //state
   const [showAlertsModal, setShowAlertsModal] =
     useState<Boolean>(false);
@@ -46,15 +56,15 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
 
   useEffect(() => {
     const myInterval = setInterval(() => {
-      const currentMinute = getMinute();
-      const currentHour = getHour();
+      const currentMinute = getMinute(apiData?.timezone);
+      const currentHour = getHour(apiData?.timezone);
       sethour(currentHour as number);
       setMinutes(currentMinute as number);
     }, 1000);
     return () => {
       clearInterval(myInterval);
     };
-  }, []);
+  }, [apiData]);
 
   if (apiData.current === undefined) {
     return (

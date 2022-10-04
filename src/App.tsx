@@ -18,6 +18,7 @@ import Loading from './icons/Loading';
 import Search from './icons/Search';
 import getWeatherBackground from './functions/getWeatherBackground';
 import isNight from './functions/isNight';
+import { randomUUID } from 'crypto';
 
 const App: React.FC = () => {
   //state
@@ -42,7 +43,7 @@ const App: React.FC = () => {
   const [showSearchModal, setShowSearchModal] = useState(true);
   // GUI changers
   const [backgroundImg, setBackgroundImg] = useState();
-  const [night, setNight] = useState(isNight());
+  const [night, setNight] = useState(false);
   const [UIColor, setUIColor] = useState('black');
   const [modalUIColor, setModalUIColor] = useState(
     'rgba(109, 40, 217, 0.75)'
@@ -120,15 +121,6 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    // changes UI color at night
-    if (night) {
-      setUIColor('#a3e635');
-      setModalUIColor('rgb(59, 18, 146, 0.03)');
-      setSvgColors('#a78bfa');
-    } else {
-      isNight();
-    }
-
     // calls weather API
     const getData = async (
       lat: number,
@@ -139,6 +131,20 @@ const App: React.FC = () => {
         setLoading(true);
 
         const data = await getWeatherAPI(lat, lon, country);
+        console.log(data);
+
+        // sets night based in timezone
+        setNight(isNight(data?.timezone as string));
+
+        //sets moonphase for every component
+        setMoonPhase(data?.daily[0].moon_phase as number);
+
+        // changes UI color at night
+        if (night) {
+          setUIColor('#a3e635');
+          setModalUIColor('rgb(59, 18, 146, 0.03)');
+          setSvgColors('#a78bfa');
+        }
 
         // changes background:
         const bg = getWeatherBackground(
@@ -147,12 +153,8 @@ const App: React.FC = () => {
         );
         setBackgroundImg(bg);
 
-        // data formatting before displaying in components
+        //finally, sets API data for other components
         setApiData(dataFormatter(data));
-        console.log(data);
-
-        //sets moonphase for every component
-        setMoonPhase(data?.daily[0].moon_phase as number);
 
         // end loading
         setLoading(false);
@@ -250,6 +252,8 @@ const App: React.FC = () => {
             moonPhase={moonPhase}
             svgColors={svgColors}
             modalUIColor={modalUIColor}
+            /*forces re-rendering to properly apply all themes*/
+            key={Date.now()}
           />
         ) : null}
 
