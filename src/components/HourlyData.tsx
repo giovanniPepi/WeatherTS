@@ -18,7 +18,8 @@ const HourlyData: React.FC<HourlyProps> = ({
   moonPhase,
   svgColors,
   modalUIColor,
-  hoursToRender
+  hoursToRender,
+  boxShadow
 }) => {
   console.log(hourlyData);
 
@@ -62,7 +63,10 @@ const HourlyData: React.FC<HourlyProps> = ({
       <motion.div
         className="realTimeData"
         initial={{ opacity: 0 }}
-        style={{ backgroundColor: modalUIColor }}
+        style={{
+          backgroundColor: modalUIColor,
+          boxShadow: boxShadow
+        }}
         animate={{
           opacity: 1
         }}
