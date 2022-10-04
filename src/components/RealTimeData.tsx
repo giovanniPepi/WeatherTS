@@ -230,33 +230,6 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         style={{ border: `1px solid ${separatorColor}` }}
       ></div>
 
-      <div className="realTimeDataDiv">
-        <DewPoint svgColors={svgColors} />
-        <div>{apiData.current.dew_point}</div>
-      </div>
-      <div
-        className="separator"
-        style={{ border: `1px solid ${separatorColor}` }}
-      ></div>
-
-      <div className="realTimeDataDiv">
-        <Pressure svgColors={svgColors} />
-        <div>{apiData.current.pressure}</div>
-      </div>
-      <div
-        className="separator"
-        style={{ border: `1px solid ${separatorColor}` }}
-      ></div>
-
-      <div className="realTimeDataDiv">
-        <Visibility svgColors={svgColors} />
-        <div>{apiData.current.visibility}</div>
-      </div>
-      <div
-        className="separator"
-        style={{ border: `1px solid ${separatorColor}` }}
-      ></div>
-
       <Tooltip title="Sunrise and sunset time" placement="left-start">
         <div className="realTimeDataDiv">
           <Sunny />
@@ -280,6 +253,32 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           <div>{apiData.daily[0].moonrise}</div>
           <div>{apiData.daily[0].moonset}</div>
         </div>
+      </div>
+      <div
+        className="separator"
+        style={{ border: `1px solid ${separatorColor}` }}
+      ></div>
+      <div className="realTimeDataDiv">
+        <DewPoint svgColors={svgColors} />
+        <div>{apiData.current.dew_point}</div>
+      </div>
+      <div
+        className="separator"
+        style={{ border: `1px solid ${separatorColor}` }}
+      ></div>
+
+      <div className="realTimeDataDiv">
+        <Pressure svgColors={svgColors} />
+        <div>{apiData.current.pressure}</div>
+      </div>
+      <div
+        className="separator"
+        style={{ border: `1px solid ${separatorColor}` }}
+      ></div>
+
+      <div className="realTimeDataDiv">
+        <Visibility svgColors={svgColors} />
+        <div>{apiData.current.visibility}</div>
       </div>
       <div
         className="separator"

@@ -123,7 +123,7 @@ interface Iminutely {
 }
 
 interface MinutelyProps {
-  minuteData: Minutely;
+  minuteData: Minutely | undefined;
   setShowMinutelyModal: StateChanger;
   night: boolean;
   UIColor: string;
@@ -137,7 +137,7 @@ interface MinutelyChartProps {
 }
 
 interface HourlyProps {
-  hourlyData: HourlyArray;
+  hourlyData: HourlyArray | undefined;
   setShowHourlyModal: StateChanger;
   night: boolean;
   UIColor: string;
@@ -149,7 +149,7 @@ interface HourlyProps {
 
 
 interface DailyProps {
-  dailyData: DailyArray;
+  dailyData: DailyArray | undefined;
   setShowDailyModal: StateChanger;
     night: boolean;
   UIColor: string;

@@ -220,7 +220,7 @@ const App: React.FC = () => {
             }}
             className="strong"
           >
-            Home/Current Weather |
+            Home/Current
           </button>
 
           <button
@@ -229,7 +229,7 @@ const App: React.FC = () => {
             className="strong"
             style={{ color: `${UIColor}` }}
           >
-            Minute forecast |
+            Minutely
           </button>
           <button
             onClick={toggleHourlyData}
@@ -237,7 +237,7 @@ const App: React.FC = () => {
             style={{ color: `${UIColor}` }}
             className="strong"
           >
-            Hourly forecast |
+            Hourly
           </button>
           <button
             onClick={toggleDailyData}
@@ -245,7 +245,7 @@ const App: React.FC = () => {
             style={{ color: `${UIColor}` }}
             className="strong"
           >
-            Daily forecast
+            Daily
           </button>
         </div>
 
@@ -293,7 +293,7 @@ const App: React.FC = () => {
         {showMinutelyModal ? (
           <Suspense fallback={<Loading />}>
             <MinutelyData
-              minuteData={apiData!.minutely}
+              minuteData={apiData?.minutely}
               setShowMinutelyModal={setShowMinutelyModal}
               night={night}
               UIColor={UIColor}
@@ -306,7 +306,7 @@ const App: React.FC = () => {
         {showHourlyModal ? (
           <Suspense fallback={<Loading />}>
             <HourlyData
-              hourlyData={apiData!.hourly}
+              hourlyData={apiData?.hourly}
               setShowHourlyModal={setShowHourlyModal}
               night={night}
               UIColor={UIColor}
@@ -320,7 +320,7 @@ const App: React.FC = () => {
         {showDailyModal ? (
           <Suspense fallback={<Loading />}>
             <DailyData
-              dailyData={apiData!.daily}
+              dailyData={apiData?.daily}
               setShowDailyModal={setShowDailyModal}
               night={night}
               UIColor={UIColor}

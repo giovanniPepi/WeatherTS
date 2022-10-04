@@ -11,7 +11,6 @@ import Clouds from 'src/icons/Clouds';
 import Previous from 'src/icons/Previous';
 import Next from 'src/icons/Next';
 import DewPoint from 'src/icons/DewPoint';
-import Pressure from 'src/icons/Pressure';
 import getMoonPhase from 'src/functions/getMoonPhase';
 import Sunny from 'src/icons/Sunny';
 import Windy from 'src/icons/Windy';
@@ -159,37 +158,12 @@ const DailyData: React.FC<DailyProps> = ({
                     {day.temp.morn ? (
                       <div>Morning {day.temp.morn}</div>
                     ) : null}
-                    {day.temp.day ? (
-                      <div className="tempHolder">
-                        {day.feels_like.day ? (
-                          <>
-                            <div>Day {day.temp.day}</div>
-                            <div className="tempSvgContainer">
-                              <FeelsLike svgColors={svgColors} />
-                              {day.feels_like.day}
-                            </div>
-                          </>
-                        ) : (
-                          <div>Day {day.temp.day}</div>
-                        )}
-                      </div>
-                    ) : null}
                     {day.temp.eve ? (
                       <div>Evening: {day.temp.eve}</div>
                     ) : null}
                     {day.temp.night ? (
                       <div className="tempHolder">
-                        {day.feels_like.night ? (
-                          <>
-                            <div>Night: {day.temp.night}</div>
-                            <div className="tempSvgContainer">
-                              <FeelsLike svgColors={svgColors} />{' '}
-                              {day.feels_like.night}
-                            </div>
-                          </>
-                        ) : (
-                          <div>Night: {day.temp.night}</div>
-                        )}
+                        <div>Night: {day.temp.night}</div>
                       </div>
                     ) : null}
                   </div>
@@ -202,6 +176,15 @@ const DailyData: React.FC<DailyProps> = ({
                 <div className="dailyDataDiv">
                   <Humidity svgColors={svgColors} /> {day.humidity}
                 </div>
+                <div
+                  className="separator"
+                  style={{ border: `1px solid ${separatorColor}` }}
+                ></div>
+
+                <div className="dailyDataDiv">
+                  <Clouds svgColors={svgColors} /> {day.clouds}
+                </div>
+
                 <div
                   className="separator"
                   style={{ border: `1px solid ${separatorColor}` }}
@@ -221,30 +204,6 @@ const DailyData: React.FC<DailyProps> = ({
                     <div>Wind gust {day.wind_gust}</div>
                     <div>Wind speed {day.wind_speed}</div>
                   </div>
-                </div>
-                <div
-                  className="separator"
-                  style={{ border: `1px solid ${separatorColor}` }}
-                ></div>
-                <div className="dailyDataDiv">
-                  <Clouds svgColors={svgColors} /> {day.clouds}
-                </div>
-                <div
-                  className="separator"
-                  style={{ border: `1px solid ${separatorColor}` }}
-                ></div>
-
-                <div className="dailyDataDiv">
-                  <DewPoint svgColors={svgColors} /> {day.dew_point}
-                </div>
-                <div
-                  className="separator"
-                  style={{ border: `1px solid ${separatorColor}` }}
-                ></div>
-
-                <div className="dailyDataDiv">
-                  <Pressure svgColors={svgColors} />
-                  {day.pressure}
                 </div>
                 <div
                   className="separator"

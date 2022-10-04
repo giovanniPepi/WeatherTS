@@ -25,26 +25,20 @@ const getWeatherIcon = (
           title="Main weather: Clear sky"
           placement="left-start"
         >
-          <div>
-            <Sunny />
-          </div>
+          <Sunny />
         </Tooltip>
       );
     case 'Clouds':
       return (
         <Tooltip title="Main weather: Clouds" placement="left-start">
-          <div>
-            <Clouds svgColors={svgColors} />
-          </div>
+          <Clouds svgColors={svgColors} />
         </Tooltip>
       );
     case 'Rain':
     case 'Drizzle':
       return (
         <Tooltip title="Main weather: Rain" placement="left-start">
-          <div>
-            <Rain svgColors={svgColors} />
-          </div>
+          <Rain svgColors={svgColors} />
         </Tooltip>
       );
     case 'Thunderstorm':
@@ -53,25 +47,19 @@ const getWeatherIcon = (
           title="Main weather: Thunderstorm"
           placement="left-start"
         >
-          <div>
-            <Thunderstorm svgColors={svgColors} />
-          </div>
+          <Thunderstorm svgColors={svgColors} />
         </Tooltip>
       );
     case 'Snow':
       return (
         <Tooltip title="Main weather: Snow" placement="left-start">
-          <div>
-            <Snow svgColors={svgColors} />
-          </div>
+          <Snow svgColors={svgColors} />
         </Tooltip>
       );
     case 'Mist':
       return (
         <Tooltip title="Main weather: Mist" placement="left-start">
-          <div>
-            <Mist svgColors={svgColors} />
-          </div>
+          <Mist svgColors={svgColors} />
         </Tooltip>
       );
     default:
