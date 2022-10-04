@@ -143,7 +143,7 @@ const App: React.FC = () => {
         if (night) {
           setUIColor('#a3e635');
           setModalUIColor('rgb(59, 18, 146, 0.03)');
-          setSvgColors('rgb(123, 81, 247');
+          setSvgColors('rgb(123, 81, 247)');
         }
 
         // changes background:
@@ -197,7 +197,9 @@ const App: React.FC = () => {
         >
           <button
             onClick={toggleRealTimeData}
-            style={{ color: `${UIColor}` }}
+            style={{
+              color: UIColor
+            }}
             className="strong"
           >
             Home/Current Weather |

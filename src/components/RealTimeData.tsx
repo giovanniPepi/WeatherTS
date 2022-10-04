@@ -123,29 +123,30 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
 
       <div className="realTimeDataDiv">
         <Temperature svgColors={svgColors} />
-        {apiData.current.temp}
+        <div>{apiData.current.temp}</div>
       </div>
 
       <div className="realTimeDataDiv">
         <FeelsLike svgColors={svgColors} />
-        {apiData.current.feels_like}
+        <div>{apiData.current.feels_like}</div>
       </div>
       <div className="separator"></div>
 
       <div className="realTimeDataDiv">
-        <Humidity svgColors={svgColors} /> {apiData.current.humidity}
+        <Humidity svgColors={svgColors} />
+        <div>{apiData.current.humidity}</div>
       </div>
 
       <div className="separator"></div>
 
       <div className="realTimeDataDiv">
-        <UVI svgColors={svgColors} /> {apiData.current.uvi}
+        <UVI svgColors={svgColors} /> <div>{apiData.current.uvi}</div>
       </div>
       <div className="separator"></div>
 
       <div className="realTimeDataDiv">
         <Clouds svgColors={svgColors} />
-        {apiData.current.clouds}
+        <div>{apiData.current.clouds}</div>
       </div>
       <div className="separator"></div>
 
@@ -203,19 +204,19 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
 
       <div className="realTimeDataDiv">
         <DewPoint svgColors={svgColors} />
-        {apiData.current.dew_point}
+        <div>{apiData.current.dew_point}</div>
       </div>
       <div className="separator"></div>
 
       <div className="realTimeDataDiv">
         <Pressure svgColors={svgColors} />
-        {apiData.current.pressure}
+        <div>{apiData.current.pressure}</div>
       </div>
       <div className="separator"></div>
 
       <div className="realTimeDataDiv">
         <Visibility svgColors={svgColors} />
-        {apiData.current.visibility}
+        <div>{apiData.current.visibility}</div>
       </div>
       <div className="separator"></div>
 

@@ -17,8 +17,7 @@ const getWeatherBackground = (
 ) => {
   // console.log('weather', weatherArray?.main, 'night:', night);
 
-  return rainNightBg;
-  /* if (!night) {
+  if (!night) {
     switch (weatherArray?.main) {
       case 'Clouds':
         return cloudsDayBg;
@@ -54,7 +53,7 @@ const getWeatherBackground = (
       default:
         return clearNightBg;
     }
-  } */
+  }
 };
 
 export default getWeatherBackground;

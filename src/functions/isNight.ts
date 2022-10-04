@@ -1,7 +1,7 @@
 
 const isNight = (timezone: string): boolean => {
   
-/*   if (!timezone) return false;
+  if (!timezone) return false;
   
   const localHour = new Date(
     new Date().toLocaleString('en-US', { timeZone: `${timezone}` })
@@ -15,8 +15,6 @@ const isNight = (timezone: string): boolean => {
   const night = condition;
 
   console.log(night, hours);
-  return night; */
-
-  return true;
+  return night;
 };
 export default isNight;

@@ -37,7 +37,7 @@ p {
 }
 
 button {
-  background-color: inherit;
+  background: unset;
   border: none;
   cursor: pointer;
 }
@@ -295,16 +295,23 @@ svg:hover {
   backdrop-filter: var(--modalBlur);
   padding: 0.3rem;
   border-radius: var(--radius);
+  box-shadow: var(--boxShadow);
 }
 form {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   padding: 0.4rem;
   height: 1.3rem;
   border-radius: 0.5rem;
   border: none;
   padding: 0.2rem 0.2rem 0.3rem 0.2rem;
+}
+.SearchSvg {
+  margin-top: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 input {
   all: unset;
@@ -339,7 +346,7 @@ input {
   backdrop-filter: var(--modalBlur);
   padding: var(--btnPadding);
   border-radius: var(--radius);
-  background-color: var(--strongAccentColor);
+  box-shadow: var(--boxShadow);
 }
 .windContainerHome {
   display: flex;
@@ -461,3 +468,15 @@ input {
   }
 }
 /*---------------------------------------------end MOBILE */
+
+/* ----------------------- HOVERING */
+.realTimeDataDiv > div > *:hover {
+  transform: scale(1.1);
+}
+.realTimeDataDiv > div:hover {
+  transform: scale(1.1);
+}
+.tickingTime:hover,
+.dailyDt:hover {
+  transform: scale(1.1);
+}
