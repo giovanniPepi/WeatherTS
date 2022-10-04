@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import Next from 'src/icons/Next';
 import Previous from 'src/icons/Previous';
 import NetworkError from 'src/icons/NetworkError';
+import getForecastHourNight from 'src/functions/getForecastHourNight';
 
 const HourlyData: React.FC<HourlyProps> = ({
   hourlyData,
@@ -19,7 +20,8 @@ const HourlyData: React.FC<HourlyProps> = ({
   modalUIColor,
   hoursToRender
 }) => {
-  console.log('hourly', hoursToRender);
+  console.log(hourlyData);
+
   //state
   const [index, setIndex] = useState(hoursToRender);
   const [renderedItems, setRenderedItems] = useState<HourlyArray>(
@@ -52,8 +54,6 @@ const HourlyData: React.FC<HourlyProps> = ({
   };
 
   useEffect(() => {
-    console.log(start, index);
-
     getItemsToRender();
   }, [hourlyData, index, start, hoursToRender]);
 
@@ -104,11 +104,12 @@ const HourlyData: React.FC<HourlyProps> = ({
           {renderedItems.map((hour) => {
             return (
               <li key={v4()} className="hourlyContainer">
-                <div className="hourlyDt">{hour.dt}</div>
+                <div className="hourlyDt">{hour.dt[1]}</div>
+
                 <div className="hourlyDataDiv">
                   {getWeatherIcon(
                     hour.weather[0].main,
-                    night,
+                    getForecastHourNight(hour.dt[0] as number),
                     moonPhase,
                     svgColors
                   )}

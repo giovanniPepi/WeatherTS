@@ -91,7 +91,7 @@ interface IDailyWeather {
 interface IHourlyWeather {
   clouds: number| string;
   dew_point: number| string;
-  dt: number| string;
+  dt: (string | number)[] ;
   feels_like: number| string;
   humidity: number| string;
   pop: number| string;

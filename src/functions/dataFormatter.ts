@@ -6,6 +6,7 @@ import getFormattedDate from "./getFormattedDate";
 import getWindDir from "./getWindDir";
 
 const dataFormatter = (data: IWeatherData | undefined) => {
+
   if (data?.current) {
     // data.current.dt = `${getExactHours(data.current.dt as number)}`;
 
@@ -48,8 +49,10 @@ const dataFormatter = (data: IWeatherData | undefined) => {
     })
   }
   if (data?.hourly) {
+
     data.hourly.forEach((hour) => {
-      hour.dt = `${getFormattedDate(hour.dt as number)} ${getExactHours(hour.dt as number)}`;
+
+      hour.dt = [hour.dt as unknown as number, `${getFormattedDate(hour.dt as unknown as number)} ${getExactHours(hour.dt as unknown as number)}`];
 
       hour.weather[0]['description'] = `${capitalizeFirst(hour.weather[0]['description'] as string)}`;
       
@@ -73,8 +76,6 @@ const dataFormatter = (data: IWeatherData | undefined) => {
       hour.wind_gust = `${convertToKm(
         hour.wind_gust as number
       )} km/h`;
-
-
 
       if (hour.rain) {
         hour.rain["1h"] = `${hour.rain["1h"]} mm`;
