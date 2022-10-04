@@ -15,9 +15,10 @@ const getWeatherBackground = (
   weatherArray: ICurrentWeatherArray | undefined,
   night: boolean
 ) => {
-  console.log('weather', weatherArray?.main, 'night:', night);
+  // console.log('weather', weatherArray?.main, 'night:', night);
 
-  if (!night) {
+  return rainNightBg;
+  /* if (!night) {
     switch (weatherArray?.main) {
       case 'Clouds':
         return cloudsDayBg;
@@ -53,7 +54,7 @@ const getWeatherBackground = (
       default:
         return clearNightBg;
     }
-  }
+  } */
 };
 
 export default getWeatherBackground;

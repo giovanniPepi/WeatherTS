@@ -16,7 +16,7 @@
     rgba(255, 255, 255, 0.3) 0px 0px 0px 0.1px inset;
   --boxShadowInside: rgba(109, 40, 217, 0.15) 0px 15px 15px,
     rgba(109, 40, 217, 0.15) 0px 0px 0px 0.1px inset;
-  --modalBlur: blur(35px);
+  --modalBlur: blur(40px);
 }
 body {
   height: 100vh;

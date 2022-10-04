@@ -143,7 +143,7 @@ const App: React.FC = () => {
         if (night) {
           setUIColor('#a3e635');
           setModalUIColor('rgb(59, 18, 146, 0.03)');
-          setSvgColors('#a78bfa');
+          setSvgColors('rgb(123, 81, 247');
         }
 
         // changes background:
