@@ -19,37 +19,44 @@ const HourlyData: React.FC<HourlyProps> = ({
   modalUIColor
 }) => {
   //state
-  const [index, setIndex] = useState(8);
+  const [index, setIndex] = useState(2);
   const [renderedItems, setRenderedItems] =
     useState<HourlyArray>(hourlyData);
   const [start, setStart] = useState(0);
+  const [hoursToShow, setHoursToShow] = useState(2);
 
   const getNextHours = () => {
-    if (start > index || start > index - 8) setStart(40);
+    if (start > index || start > index - hoursToShow) setStart(0);
     if (index > 48) setIndex(48);
-    if (index < 48 || start < 40) {
-      setIndex(index + 8);
-      setStart(start + 8);
+    if (index < 48 || start < hoursToShow) {
+      setIndex(index + hoursToShow);
+      setStart(start + hoursToShow);
     }
   };
 
   const getPreviousHours = () => {
-    if (start < index - 8) setStart(0);
-    if (index < start || index < 8) setIndex(8);
-    if (index > 8 || start > 0) {
-      setStart(start - 8);
-      setIndex(index - 8);
+    if (start < index - hoursToShow) setStart(0);
+    if (index < start || index < hoursToShow) setIndex(hoursToShow);
+    if (index > hoursToShow || start > 0) {
+      setStart(start - hoursToShow);
+      setIndex(index - hoursToShow);
     }
   };
 
-  const getItemsToRender = () => {
-    const newRender: HourlyArray = hourlyData.slice(start, index);
-    setRenderedItems(newRender);
-  };
-
   useEffect(() => {
+    if (window.screen.availWidth > 749) {
+      setHoursToShow(8);
+    } else if (window.screen.availWidth < 750) {
+      setHoursToShow(2);
+    }
+
+    const getItemsToRender = () => {
+      const newRender: HourlyArray = hourlyData.slice(start, index);
+      setRenderedItems(newRender);
+    };
+
     getItemsToRender();
-  }, [index, start]);
+  }, [hourlyData, hoursToShow, index, start]);
 
   if (hourlyData === undefined) {
     return (

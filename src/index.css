@@ -149,7 +149,7 @@ svg:hover {
   align-content: center;
   justify-content: center;
   gap: 0.2rem;
-  box-shadow: var(--boxShadowInside);
+  box-shadow: var(--boxShadow);
 }
 .hourlyDt {
   text-align: center;
@@ -471,6 +471,62 @@ input {
   }
   .realTimeData {
     width: 60vw;
+  }
+
+  .dataTogglingArea {
+    max-width: 80vw;
+  }
+
+  .searchForm {
+    grid-row: 1/2;
+    margin-top: 1.6rem;
+  }
+  .app {
+  }
+  .minutelyDataModal {
+    min-width: 80vw;
+  }
+  .noRain > .strong {
+    text-align: center;
+  }
+  .dailyDataModal {
+    min-width: 85vw;
+    max-height: 80vh;
+  }
+  .hourlyDataModal {
+    min-height: 60vh;
+    min-width: 85vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .dailyControlDiv,
+  .hourlyControlDiv {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .dailyUl {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .dailyContainer {
+    width: 100%;
+  }
+  .hourlyContainer {
+    width: unset;
+    height: unset;
+  }
+  .hourlyUl {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }
 }
 /*---------------------------------------------end MOBILE */

@@ -49,7 +49,7 @@ const App: React.FC = () => {
     'rgba(109, 40, 217, 0.18)'
   );
   const [separatorColor, setSeparatorColor] = useState(
-    'rgba(55, 6, 135, 0.85)'
+    'rgba(55, 6, 135, 0.75)'
   );
   const [svgColors, setSvgColors] = useState('#f2a708');
   // forces rerendering to apply themes
@@ -157,7 +157,7 @@ const App: React.FC = () => {
           setUIColor('rgb(255, 255, 255)');
           setModalUIColor('rgba(109, 40, 217, 0.18)');
           setSvgColors('#f2a708');
-          setSeparatorColor('rgba(55, 6, 135, 0.85)');
+          setSeparatorColor('rgba(55, 6, 135, 0.75)');
           setUpdateRealTime((state) => state + 1);
         }
 

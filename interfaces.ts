@@ -147,6 +147,7 @@ interface HourlyProps {
 
 }
 
+
 interface DailyProps {
   dailyData: DailyArray;
   setShowDailyModal: StateChanger;
