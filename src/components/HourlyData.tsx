@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import Next from 'src/icons/Next';
 import Previous from 'src/icons/Previous';
 import NetworkError from 'src/icons/NetworkError';
+import getForecastHourNight from 'src/functions/getForecastHourNight';
 
 const HourlyData: React.FC<HourlyProps> = ({
   hourlyData,
@@ -16,47 +17,45 @@ const HourlyData: React.FC<HourlyProps> = ({
   night,
   moonPhase,
   svgColors,
-  modalUIColor
+  modalUIColor,
+  hoursToRender
 }) => {
+  console.log(hourlyData);
+
   //state
-  const [index, setIndex] = useState(2);
-  const [renderedItems, setRenderedItems] =
-    useState<HourlyArray>(hourlyData);
+  const [index, setIndex] = useState(hoursToRender);
+  const [renderedItems, setRenderedItems] = useState<HourlyArray>(
+    hourlyData!
+  );
   const [start, setStart] = useState(0);
-  const [hoursToShow, setHoursToShow] = useState(2);
 
   const getNextHours = () => {
-    if (start > index || start > index - hoursToShow) setStart(0);
+    if (start > index || start > index - hoursToRender) setStart(40);
     if (index > 48) setIndex(48);
-    if (index < 48 || start < hoursToShow) {
-      setIndex(index + hoursToShow);
-      setStart(start + hoursToShow);
+    if (index < 48 || start < 48 - hoursToRender) {
+      setIndex(index + hoursToRender);
+      setStart(start + hoursToRender);
     }
   };
 
   const getPreviousHours = () => {
-    if (start < index - hoursToShow) setStart(0);
-    if (index < start || index < hoursToShow) setIndex(hoursToShow);
-    if (index > hoursToShow || start > 0) {
-      setStart(start - hoursToShow);
-      setIndex(index - hoursToShow);
+    if (start < index - hoursToRender) setStart(0);
+    if (index < start || index < hoursToRender)
+      setIndex(hoursToRender);
+    if (index > hoursToRender || start > 0) {
+      setStart(start - hoursToRender);
+      setIndex(index - hoursToRender);
     }
   };
 
+  const getItemsToRender = () => {
+    const newRender: HourlyArray = hourlyData!.slice(start, index);
+    setRenderedItems(newRender);
+  };
+
   useEffect(() => {
-    if (window.screen.availWidth > 749) {
-      setHoursToShow(8);
-    } else if (window.screen.availWidth < 750) {
-      setHoursToShow(2);
-    }
-
-    const getItemsToRender = () => {
-      const newRender: HourlyArray = hourlyData.slice(start, index);
-      setRenderedItems(newRender);
-    };
-
     getItemsToRender();
-  }, [hourlyData, hoursToShow, index, start]);
+  }, [hourlyData, index, start, hoursToRender]);
 
   if (hourlyData === undefined) {
     return (
@@ -105,11 +104,12 @@ const HourlyData: React.FC<HourlyProps> = ({
           {renderedItems.map((hour) => {
             return (
               <li key={v4()} className="hourlyContainer">
-                <div className="hourlyDt">{hour.dt}</div>
+                <div className="hourlyDt">{hour.dt[1]}</div>
+
                 <div className="hourlyDataDiv">
                   {getWeatherIcon(
                     hour.weather[0].main,
-                    night,
+                    getForecastHourNight(hour.dt[0] as number),
                     moonPhase,
                     svgColors
                   )}

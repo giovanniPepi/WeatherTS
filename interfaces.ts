@@ -91,7 +91,7 @@ interface IDailyWeather {
 interface IHourlyWeather {
   clouds: number| string;
   dew_point: number| string;
-  dt: number| string;
+  dt: (string | number)[] ;
   feels_like: number| string;
   humidity: number| string;
   pop: number| string;
@@ -123,7 +123,7 @@ interface Iminutely {
 }
 
 interface MinutelyProps {
-  minuteData: Minutely;
+  minuteData: Minutely | undefined;
   setShowMinutelyModal: StateChanger;
   night: boolean;
   UIColor: string;
@@ -137,19 +137,20 @@ interface MinutelyChartProps {
 }
 
 interface HourlyProps {
-  hourlyData: HourlyArray;
+  hourlyData: HourlyArray | undefined;
   setShowHourlyModal: StateChanger;
   night: boolean;
   UIColor: string;
   modalUIColor: string;
   moonPhase: number
   svgColors: string;
+  hoursToRender: number;
 
 }
 
 
 interface DailyProps {
-  dailyData: DailyArray;
+  dailyData: DailyArray | undefined;
   setShowDailyModal: StateChanger;
     night: boolean;
   UIColor: string;
@@ -157,6 +158,7 @@ interface DailyProps {
   moonPhase: number;
   svgColors: string;
   separatorColor: string;
+  daysToRender: number;
 }
 
 interface RealTimeDataProps {

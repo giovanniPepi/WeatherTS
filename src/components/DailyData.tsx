@@ -3,15 +3,12 @@ import { DailyArray, DailyProps } from 'interfaces';
 import { motion } from 'framer-motion';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
 import { useEffect, useState } from 'react';
-import FeelsLike from 'src/icons/FeelsLike';
 import Temperature from 'src/icons/Temperature';
 import Humidity from 'src/icons/Humidity';
 import UVI from 'src/icons/UVI';
 import Clouds from 'src/icons/Clouds';
 import Previous from 'src/icons/Previous';
 import Next from 'src/icons/Next';
-import DewPoint from 'src/icons/DewPoint';
-import Pressure from 'src/icons/Pressure';
 import getMoonPhase from 'src/functions/getMoonPhase';
 import Sunny from 'src/icons/Sunny';
 import Windy from 'src/icons/Windy';
@@ -27,47 +24,42 @@ const DailyData: React.FC<DailyProps> = ({
   moonPhase,
   svgColors,
   modalUIColor,
-  separatorColor
+  separatorColor,
+  daysToRender
 }) => {
   //state
-  const [index, setIndex] = useState(1);
-  const [renderedItems, setRenderedItems] =
-    useState<DailyArray>(dailyData);
+  const [index, setIndex] = useState(daysToRender);
+  const [renderedItems, setRenderedItems] = useState<DailyArray>(
+    dailyData!
+  );
   const [start, setStart] = useState(0);
-  const [daysToShow, setDaysToShow] = useState(1);
 
   const getNextDays = () => {
-    if (start > index || start > index - daysToShow) setStart(0);
+    if (start > index || start > index - daysToRender) setStart(0);
     if (index > 8) setIndex(8);
-    if (index < 8 || start < 8 - daysToShow) {
-      setIndex(index + daysToShow);
-      setStart(start + daysToShow);
+    if (index < 8 || start < 8 - daysToRender) {
+      setIndex(index + daysToRender);
+      setStart(start + daysToRender);
     }
   };
 
   const getPreviousDays = () => {
-    if (start < index - daysToShow) setStart(0);
-    if (index < start || index < daysToShow) setIndex(daysToShow);
-    if (index > daysToShow || start > 0) {
-      setStart(start - daysToShow);
-      setIndex(index - daysToShow);
+    if (start < index - daysToRender) setStart(0);
+    if (index < start || index < daysToRender) setIndex(daysToRender);
+    if (index > daysToRender || start > 0) {
+      setStart(start - daysToRender);
+      setIndex(index - daysToRender);
     }
   };
 
   useEffect(() => {
-    if (window.screen.availWidth > 749) {
-      setDaysToShow(2);
-    } else if (window.screen.availWidth < 750) {
-      setDaysToShow(1);
-    }
-
     const getItemsToRender = () => {
-      const newRender: DailyArray = dailyData.slice(start, index);
+      const newRender: DailyArray = dailyData!.slice(start, index);
       setRenderedItems(newRender);
     };
 
     getItemsToRender();
-  }, [dailyData, daysToShow, start, index]);
+  }, [dailyData, daysToRender, start, index]);
 
   if (dailyData === undefined) {
     return (
@@ -159,37 +151,12 @@ const DailyData: React.FC<DailyProps> = ({
                     {day.temp.morn ? (
                       <div>Morning {day.temp.morn}</div>
                     ) : null}
-                    {day.temp.day ? (
-                      <div className="tempHolder">
-                        {day.feels_like.day ? (
-                          <>
-                            <div>Day {day.temp.day}</div>
-                            <div className="tempSvgContainer">
-                              <FeelsLike svgColors={svgColors} />
-                              {day.feels_like.day}
-                            </div>
-                          </>
-                        ) : (
-                          <div>Day {day.temp.day}</div>
-                        )}
-                      </div>
-                    ) : null}
                     {day.temp.eve ? (
                       <div>Evening: {day.temp.eve}</div>
                     ) : null}
                     {day.temp.night ? (
                       <div className="tempHolder">
-                        {day.feels_like.night ? (
-                          <>
-                            <div>Night: {day.temp.night}</div>
-                            <div className="tempSvgContainer">
-                              <FeelsLike svgColors={svgColors} />{' '}
-                              {day.feels_like.night}
-                            </div>
-                          </>
-                        ) : (
-                          <div>Night: {day.temp.night}</div>
-                        )}
+                        <div>Night: {day.temp.night}</div>
                       </div>
                     ) : null}
                   </div>
@@ -202,6 +169,15 @@ const DailyData: React.FC<DailyProps> = ({
                 <div className="dailyDataDiv">
                   <Humidity svgColors={svgColors} /> {day.humidity}
                 </div>
+                <div
+                  className="separator"
+                  style={{ border: `1px solid ${separatorColor}` }}
+                ></div>
+
+                <div className="dailyDataDiv">
+                  <Clouds svgColors={svgColors} /> {day.clouds}
+                </div>
+
                 <div
                   className="separator"
                   style={{ border: `1px solid ${separatorColor}` }}
@@ -221,30 +197,6 @@ const DailyData: React.FC<DailyProps> = ({
                     <div>Wind gust {day.wind_gust}</div>
                     <div>Wind speed {day.wind_speed}</div>
                   </div>
-                </div>
-                <div
-                  className="separator"
-                  style={{ border: `1px solid ${separatorColor}` }}
-                ></div>
-                <div className="dailyDataDiv">
-                  <Clouds svgColors={svgColors} /> {day.clouds}
-                </div>
-                <div
-                  className="separator"
-                  style={{ border: `1px solid ${separatorColor}` }}
-                ></div>
-
-                <div className="dailyDataDiv">
-                  <DewPoint svgColors={svgColors} /> {day.dew_point}
-                </div>
-                <div
-                  className="separator"
-                  style={{ border: `1px solid ${separatorColor}` }}
-                ></div>
-
-                <div className="dailyDataDiv">
-                  <Pressure svgColors={svgColors} />
-                  {day.pressure}
                 </div>
                 <div
                   className="separator"
