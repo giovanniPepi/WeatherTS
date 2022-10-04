@@ -150,7 +150,7 @@ const App: React.FC = () => {
           setUIColor('#a3e635');
           setModalUIColor('rgb(59, 18, 146, 0.03)');
           setSvgColors('rgb(123, 81, 247)');
-          setSeparatorColor('rgb(59, 18, 146, 0.03)');
+          setSeparatorColor('rgb(163, 230, 53, 0.3');
           setUpdateRealTime((state) => state + 1);
         } else {
           // resets to initial state
