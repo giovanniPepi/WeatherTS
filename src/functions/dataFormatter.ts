@@ -11,7 +11,7 @@ const dataFormatter = (data: IWeatherData | undefined) => {
 
     data.current.weather[0]['description'] = `${capitalizeFirst(data.current.weather[0]['description'] as string)}`;
 
-    data.current.humidity = `${data?.current.humidity} %`;
+    data.current.humidity = `${(data?.current.humidity as number).toFixed(0)} %`;
     data.current.temp = `${(data.current.temp as number).toFixed(1)} ºC`;
     data.current.feels_like = `${(data.current.feels_like as number).toFixed(1)} ºC`;
     data.current.uvi = `${(data.current.uvi as number).toFixed(0)}`;
@@ -53,9 +53,9 @@ const dataFormatter = (data: IWeatherData | undefined) => {
 
       hour.weather[0]['description'] = `${capitalizeFirst(hour.weather[0]['description'] as string)}`;
       
-      hour.pop = `${hour.pop as number * 100}%`
+      hour.pop = `${(hour.pop as number * 100).toFixed(0)}%`
 
-      hour.humidity = `${hour.humidity} %`;
+      hour.humidity = `${(hour.humidity as number).toFixed(0)} %`;
       hour.temp = `${(hour.temp as number).toFixed(1)} ºC`;
       hour.feels_like = `${(hour.feels_like as number).toFixed(1)} ºC`;
       hour.uvi = `${(hour.uvi as number).toFixed(0)}`;
@@ -87,7 +87,7 @@ const dataFormatter = (data: IWeatherData | undefined) => {
   if (data?.daily) {
       data.daily.forEach(day => {
         day.dt = `${getFormattedDate(day.dt as number)}`;
-        day.humidity = `${day.humidity} %`;
+        day.humidity = `${(day.humidity as number).toFixed(0)} %`;
         day.rain = `${day.rain as number} mm`
         day.snow = `${day.snow as number} mm`
 
@@ -136,7 +136,7 @@ const dataFormatter = (data: IWeatherData | undefined) => {
         day.sunset = `${getExactHours(day.sunset as number)}`;
         day.pressure = `${day.pressure} hPa`;
         day.clouds = `${day.clouds} %`;
-        day.pop = `${day.pop as number * 100} %`;
+        day.pop = `${(day.pop as number * 100).toFixed(0)} %`;
 
         day.wind_deg = `${getWindDir(
           day.wind_deg as number

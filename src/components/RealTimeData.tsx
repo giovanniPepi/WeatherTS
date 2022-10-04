@@ -56,7 +56,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
     };
   }, [apiData]);
 
-  if (apiData.current === undefined) {
+  if (apiData === undefined) {
     return (
       <motion.div
         className="realTimeData"

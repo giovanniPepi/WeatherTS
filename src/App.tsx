@@ -197,6 +197,7 @@ const App: React.FC = () => {
         >
           <button
             onClick={toggleRealTimeData}
+            onMouseEnter={toggleRealTimeData}
             style={{
               color: UIColor
             }}
@@ -207,6 +208,7 @@ const App: React.FC = () => {
 
           <button
             onClick={toggleMinuteData}
+            onMouseEnter={toggleMinuteData}
             className="strong"
             style={{ color: `${UIColor}` }}
           >
@@ -214,6 +216,7 @@ const App: React.FC = () => {
           </button>
           <button
             onClick={toggleHourlyData}
+            onMouseEnter={toggleHourlyData}
             style={{ color: `${UIColor}` }}
             className="strong"
           >
@@ -221,6 +224,7 @@ const App: React.FC = () => {
           </button>
           <button
             onClick={toggleDailyData}
+            onMouseEnter={toggleDailyData}
             style={{ color: `${UIColor}` }}
             className="strong"
           >
@@ -231,6 +235,10 @@ const App: React.FC = () => {
         {/*Loading SVG*/}
         {loading ? <Loading /> : null}
 
+        <div
+          className="hiddenSearch"
+          onMouseEnter={toggleRealTimeData}
+        ></div>
         {showSearchModal ? (
           <div
             className="searchForm"
