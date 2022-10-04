@@ -48,7 +48,6 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
     const myInterval = setInterval(() => {
       const currentMinute = getMinute();
       const currentHour = getHour();
-
       sethour(currentHour as number);
       setMinutes(currentMinute as number);
     }, 1000);
@@ -85,6 +84,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
     <motion.div
       className="realTimeData"
       initial={{ opacity: 0 }}
+      style={{ backgroundColor: modalUIColor }}
       animate={{
         opacity: 1
       }}
@@ -113,7 +113,6 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           moonPhase,
           svgColors
         )}
-
         {loading ? null : (
           <WeatherDescAnimation
             title={apiData.current.weather[0].description}

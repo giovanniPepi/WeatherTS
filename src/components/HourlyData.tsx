@@ -56,6 +56,7 @@ const HourlyData: React.FC<HourlyProps> = ({
       <motion.div
         className="realTimeData"
         initial={{ opacity: 0 }}
+        style={{ backgroundColor: modalUIColor }}
         animate={{
           opacity: 1
         }}

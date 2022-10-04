@@ -123,8 +123,8 @@ const App: React.FC = () => {
     // changes UI color at night
     if (night) {
       setUIColor('#a3e635');
-      setModalUIColor('rgb(180, 21, 82, 0.1)');
-      setSvgColors('#a3e635');
+      setModalUIColor('rgb(180, 21, 82, 0.03)');
+      setSvgColors('rgb(180, 21, 82)');
     } else {
       isNight();
     }

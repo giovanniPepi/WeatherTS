@@ -16,7 +16,7 @@ const getWeatherIcon = (
   // console.log(weatherDesc, 'night?', night, 'moonphase?', moonPhase);
 
   if (night === true && weatherDesc === 'Clear')
-    return <div>{getMoonPhase(moonPhase)}</div>;
+    return <div>{getMoonPhase(moonPhase, svgColors)}</div>;
 
   switch (weatherDesc) {
     case 'Clear':

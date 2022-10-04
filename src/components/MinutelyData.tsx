@@ -18,6 +18,7 @@ const MinutelyData: React.FC<MinutelyProps> = ({
         animate={{
           opacity: 1
         }}
+        style={{ backgroundColor: modalUIColor }}
         transition={{ duration: 2 }}
         exit={{
           opacity: 0,

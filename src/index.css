@@ -9,10 +9,8 @@
   --biggerFont: 1.4rem;
   --strongAccentColor: rgb(109, 40, 217, 0.03);
   --strongAccentColor2: rgb(109, 40, 217, 0.08);
-  --strongAccentColorSeparator: rgb(109, 40, 217, 0.75);
+  --strongAccentColorSeparator: rgba(109, 40, 217, 0.75);
   --accentColor: #8b5cf6;
-  --boxShadow: rgba(24, 32, 79, 0.25) 0px 40px 80px,
-    rgba(255, 255, 255, 0.2) 0px 0px 0px 0px inset;
 }
 body {
   height: 100vh;
