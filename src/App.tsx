@@ -251,9 +251,9 @@ const App: React.FC = () => {
         ) : null}
 
         {/* Conditional render so we wait for the API data*/}
-        {apiData && showRealTimeModal ? (
+        {showRealTimeModal ? (
           <RealTimeData
-            apiData={apiData}
+            apiData={apiData!}
             locationToShow={locationToShow}
             loading={loading}
             night={night}
@@ -263,10 +263,10 @@ const App: React.FC = () => {
           />
         ) : null}
 
-        {showMinutelyModal && apiData?.minutely ? (
+        {showMinutelyModal ? (
           <Suspense fallback={<Loading />}>
             <MinutelyData
-              minuteData={apiData.minutely}
+              minuteData={apiData!.minutely}
               setShowMinutelyModal={setShowMinutelyModal}
               night={night}
               UIColor={UIColor}
@@ -276,10 +276,10 @@ const App: React.FC = () => {
           </Suspense>
         ) : null}
 
-        {showHourlyModal && apiData?.hourly ? (
+        {showHourlyModal ? (
           <Suspense fallback={<Loading />}>
             <HourlyData
-              hourlyData={apiData.hourly}
+              hourlyData={apiData!.hourly}
               setShowHourlyModal={setShowHourlyModal}
               night={night}
               UIColor={UIColor}
@@ -290,10 +290,10 @@ const App: React.FC = () => {
           </Suspense>
         ) : null}
 
-        {showDailyModal && apiData?.daily ? (
+        {showDailyModal ? (
           <Suspense fallback={<Loading />}>
             <DailyData
-              dailyData={apiData.daily}
+              dailyData={apiData!.daily}
               setShowDailyModal={setShowDailyModal}
               night={night}
               UIColor={UIColor}
