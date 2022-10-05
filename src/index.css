@@ -74,8 +74,8 @@ svg:hover {
 }
 .loadingSvg {
   position: absolute;
-  top: 45%;
-  left: 45%; /* 
+  top: 40%;
+  left: 40%; /*
   grid-row: 2/3;
   grid-column: 2/4; */
 }
@@ -325,6 +325,7 @@ svg:hover {
   width: 1rem;
 }
 .dataTogglingArea {
+  position: relative;
   width: 60vw;
   grid-row: 1/2;
   display: flex;

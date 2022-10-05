@@ -5,8 +5,6 @@ const getHoursToRender = (): number => {
   if (screenWidth < 650) HoursToRender = 2;
   else if (screenWidth > 650) HoursToRender = 8;
 
-  console.log('getting hours to render: ', HoursToRender);
-
   return HoursToRender;
 };
 

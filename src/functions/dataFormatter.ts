@@ -13,7 +13,6 @@ const dataFormatter = (data: IWeatherData | undefined) => {
 
       /*format to check UV*/ 
     const exactHour = getHour(data.timezone);
-    console.log(exactHour)
     
     data.current.weather[0]['description'] = `${capitalizeFirst(data.current.weather[0]['description'] as string)}`;
 
