@@ -20,6 +20,7 @@ import getWeatherBackground from './functions/getWeatherBackground';
 import isNight from './functions/isNight';
 import getDaysToRender from './functions/getDaysToRender';
 import getHoursToRender from './functions/getHoursToRender';
+import LoadingAbsolute from './icons/LoadingAbsolute';
 
 const App: React.FC = () => {
   //state
@@ -93,15 +94,14 @@ const App: React.FC = () => {
     e.preventDefault();
     setLoadingSearch(true);
     const newLoc = await getGeoAPI(location);
-    setLoadingSearch(false);
     console.log(newLoc);
-
     // avoids undefined
     if (newLoc) {
       setLatForApi(newLoc.lat);
       setLonForApi(newLoc.lon);
       setLocationForApi(newLoc.country);
       setLocationToShow(`${newLoc.name}, ${newLoc.country}`);
+      setLoadingSearch(false);
     }
   };
 
@@ -202,8 +202,6 @@ const App: React.FC = () => {
 
     // focus on input
     inputRef.current?.focus();
-
-    setShouldReloadAPI(false);
   }, [latForAPI, locationForAPI, longForAPI, night, shouldReloadAPI]);
 
   return (
@@ -272,11 +270,11 @@ const App: React.FC = () => {
         </div>
 
         <>
-          {' '}
           {/*Loading SVG*/}
-          {console.log(svgColors)}
           {loading ? <Loading svgColors={svgColors} /> : null}
-          {loadingSearch ? <Loading svgColors={svgColors} /> : null}
+          {loadingSearch ? (
+            <LoadingAbsolute svgColors={svgColors} />
+          ) : null}
         </>
 
         <div

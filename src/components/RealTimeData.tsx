@@ -51,15 +51,31 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   const [showReloadSpinner, setShowReloadSpinner] = useState(false);
 
   useEffect(() => {
-    const myInterval = setInterval(() => {
-      const currentMinute = getMinute(apiData?.timezone);
-      const currentHour = getHour(apiData?.timezone);
-      sethour(currentHour as number);
-      setMinutes(currentMinute as number);
-    }, 1000);
-    return () => {
-      clearInterval(myInterval);
+    const getRealTime = () => {
+      const myInterval = setInterval(() => {
+        const currentMinute = getMinute(apiData?.timezone);
+        const currentHour = getHour(apiData?.timezone);
+        sethour(currentHour as number);
+        setMinutes(currentMinute as number);
+      }, 1000);
+      return () => {
+        clearInterval(myInterval);
+      };
     };
+
+    // updates API every 20 mins if open
+    const updateAPI = () => {
+      const updateInterval = setInterval(() => {
+        console.log('...updating api after 1200000secs');
+        setShouldReloadAPI(true);
+      }, 1200000);
+      return () => {
+        clearInterval(updateInterval);
+      };
+    };
+
+    getRealTime();
+    updateAPI();
   }, [apiData]);
 
   if (apiData === undefined) {
@@ -123,6 +139,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
               onTouchEnd={(e) => {
                 // prevents mobile keyboard from opening up
                 e.preventDefault();
+
                 setShowReloadSpinner(true);
                 setShouldReloadAPI(true);
               }}

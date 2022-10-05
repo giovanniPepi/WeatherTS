@@ -63,11 +63,23 @@ svg:hover {
 }
 
 .loadingSvg,
+.loadingIcon .loadingSvgAbsolute,
+.loadingIconAbsolute {
+  width: 5rem;
+  height: 5rem;
+}
+.loadingSvg,
 .loadingIcon {
   width: 5rem;
   height: 5rem;
   grid-row: 3/4;
   grid-column: 2/4;
+}
+.loadingSvgAbsolute,
+.loadingIconAbsolute {
+  position: absolute;
+  top: 15%;
+  left: 50%;
 }
 
 .ReloadSvg {
@@ -575,6 +587,14 @@ input {
   }
   .hiddenSearch {
     display: none;
+  }
+
+  .loadingSvgAbsolute,
+  .loadingIconAbsolute,
+  .loadingSvg,
+  .loadingIcon {
+    width: 2rem;
+    height: 2rem;
   }
 }
 /*---------------------------------------------end MOBILE */
