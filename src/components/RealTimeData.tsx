@@ -57,6 +57,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   // react-collapse
   const [isOpenedSun, setIsOpenedSun] = useState(false);
   const [isClosedSun, setIsClosedSun] = useState(true);
+  const [isOpenedMoon, setIsOpenedMoon] = useState(false);
+  const [isClosedMoon, setIsClosedMoon] = useState(true);
 
   useEffect(() => {
     const getRealTime = () => {
@@ -320,7 +322,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           <Less svgColors={svgColors} />
           <Tooltip
             title="Sunrise and sunset time"
-            placement="left-start"
+            placement="right-start"
           >
             <div className="realTimeDataDiv">
               <Sunny />
@@ -332,21 +334,55 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           </Tooltip>
         </div>
       </UnmountClosed>
-
       <div
         className="separator"
         style={{ border: `1px solid ${separatorColor}` }}
       ></div>
-      <div className="realTimeDataDiv">
-        {getMoonPhase(
-          apiData.daily[0].moon_phase as number,
-          svgColors
-        )}
-        <div className="moonTimings">
-          <div>{apiData.daily[0].moonrise}</div>
-          <div>{apiData.daily[0].moonset}</div>
+
+      <UnmountClosed isOpened={isClosedMoon}>
+        <div
+          className="realTimeDataDiv"
+          onClick={() => {
+            setIsClosedMoon((state) => !state);
+            setIsOpenedMoon((state) => !state);
+          }}
+        >
+          <More svgColors={svgColors} />
+          <div className="moonTimings">
+            {getMoonPhase(
+              apiData.daily[0].moon_phase as number,
+              svgColors
+            )}
+          </div>
         </div>
-      </div>
+      </UnmountClosed>
+      <UnmountClosed isOpened={isOpenedMoon}>
+        <div
+          onClick={() => {
+            setIsClosedMoon((state) => !state);
+            setIsOpenedMoon((state) => !state);
+          }}
+        >
+          <Less svgColors={svgColors} />
+
+          <Tooltip
+            title="Moonrise and moonset time"
+            placement="right-start"
+          >
+            <div className="realTimeDataDiv">
+              {getMoonPhase(
+                apiData.daily[0].moon_phase as number,
+                svgColors
+              )}
+              <div className="moonTimings">
+                <div>{apiData.daily[0].moonrise}</div>
+                <div>{apiData.daily[0].moonset}</div>
+              </div>
+            </div>
+          </Tooltip>
+        </div>
+      </UnmountClosed>
+
       <div
         className="separator"
         style={{ border: `1px solid ${separatorColor}` }}
