@@ -57,8 +57,9 @@ const getWeatherIcon = (
         </Tooltip>
       );
     case 'Mist':
+    case 'Haze':
       return (
-        <Tooltip title="Main weather: Mist" placement="left-start">
+        <Tooltip title="Main weather" placement="left-start">
           <Mist svgColors={svgColors} />
         </Tooltip>
       );

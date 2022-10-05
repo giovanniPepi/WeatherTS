@@ -27,6 +27,7 @@ const getWeatherBackground = (
       case 'Thunderstorm':
         return thunderstormBg;
       case 'Fog':
+      case 'Haze':
         return fogDayBg;
       case 'Snow':
         return snowDayBg;
@@ -45,13 +46,18 @@ const getWeatherBackground = (
       case 'Thunderstorm':
         return thunderstormBg;
       case 'Fog':
+      case 'Haze':
         return fogNightBg;
       case 'Snow':
         return snowNightBg;
       case 'Clear':
         return clearNightBg;
       default:
-        return clearNightBg;
+        return console.log(
+          'diff weather, checl getWeatherBackground',
+          weatherArray?.main,
+          night
+        );
     }
   }
 };
