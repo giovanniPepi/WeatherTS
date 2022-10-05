@@ -65,6 +65,8 @@ const App: React.FC = () => {
   // forces rerendering to apply themes
   const [updateRealTime, setUpdateRealTime] = useState(0);
   const [updateHourly, setUpdateHourlyTime] = useState(0);
+  // API reloading without F5'ing
+  const [shouldReloadAPI, setShouldReloadAPI] = useState(false);
 
   //REF
   const inputRef = useRef<HTMLInputElement>(null);
@@ -159,7 +161,7 @@ const App: React.FC = () => {
           setUIColor('#a3e635');
           setModalUIColor('rgb(59, 18, 146, 0.03)');
           setSvgColors('rgb(123, 81, 247)');
-          setSeparatorColor('rgb(163, 230, 53, 0.3');
+          setSeparatorColor('rgba(163, 230, 53, 0.3)');
           setBoxShadow('none');
           setUpdateRealTime((state) => state + 1);
         } else {
@@ -199,7 +201,9 @@ const App: React.FC = () => {
 
     // focus on input
     inputRef.current?.focus();
-  }, [latForAPI, locationForAPI, longForAPI, night]);
+
+    setShouldReloadAPI(false);
+  }, [latForAPI, locationForAPI, longForAPI, night, shouldReloadAPI]);
 
   return (
     <motion.div
@@ -312,6 +316,7 @@ const App: React.FC = () => {
             key={updateRealTime}
             separatorColor={separatorColor}
             boxShadow={boxShadow}
+            setShouldReloadAPI={setShouldReloadAPI}
           />
         ) : null}
 
