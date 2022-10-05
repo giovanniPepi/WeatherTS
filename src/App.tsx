@@ -317,6 +317,7 @@ const App: React.FC = () => {
               night={night}
               moonPhase={moonPhase}
               svgColors={svgColors}
+              UIColor={UIColor}
               modalUIColor={modalUIColor}
               key={updateRealTime}
               separatorColor={separatorColor}

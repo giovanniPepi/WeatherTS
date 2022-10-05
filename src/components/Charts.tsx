@@ -87,7 +87,7 @@ const Charts: React.FC<MinutelyChartProps> = ({
       ) : (
         <div className="noRain">
           <CheckAll />
-          <div className="strong">
+          <div className="noRainMsg strong">
             Currently there is no rain forecast for the next 60
             minutes
           </div>

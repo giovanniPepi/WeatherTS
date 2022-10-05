@@ -28,6 +28,7 @@ const getWeatherBackground = (
         return thunderstormBg;
       case 'Fog':
       case 'Haze':
+      case 'Mist':
         return fogDayBg;
       case 'Snow':
         return snowDayBg;
@@ -47,6 +48,7 @@ const getWeatherBackground = (
         return thunderstormBg;
       case 'Fog':
       case 'Haze':
+      case 'Mist':
         return fogNightBg;
       case 'Snow':
         return snowNightBg;
