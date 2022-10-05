@@ -25,6 +25,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import WeatherDescAnimation from 'src/functions/WeatherDescAnimation';
 import NetworkError from 'src/icons/NetworkError';
 import AlertAnimation from 'src/functions/AlertAnimation';
+import Reload from 'src/icons/Reload';
+import ReloadSpinning from 'src/icons/ReloadSpinning';
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
@@ -38,24 +40,42 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   svgColors,
   modalUIColor,
   separatorColor,
-  boxShadow
+  boxShadow,
+  setShouldReloadAPI
 }) => {
   //state
   const [showAlertsModal, setShowAlertsModal] =
     useState<Boolean>(false);
   const [minutes, setMinutes] = useState<number>(0);
   const [hour, sethour] = useState<number>(0);
+  const [showReloadSpinner, setShowReloadSpinner] = useState(false);
 
   useEffect(() => {
-    const myInterval = setInterval(() => {
-      const currentMinute = getMinute(apiData?.timezone);
-      const currentHour = getHour(apiData?.timezone);
-      sethour(currentHour as number);
-      setMinutes(currentMinute as number);
-    }, 1000);
-    return () => {
-      clearInterval(myInterval);
+    const getRealTime = () => {
+      const myInterval = setInterval(() => {
+        const currentMinute = getMinute(apiData?.timezone);
+        const currentHour = getHour(apiData?.timezone);
+        sethour(currentHour as number);
+        setMinutes(currentMinute as number);
+      }, 1000);
+      return () => {
+        clearInterval(myInterval);
+      };
     };
+
+    // updates API every 20 mins if open
+    const updateAPI = () => {
+      const updateInterval = setInterval(() => {
+        console.log('...updating api after 1200000secs');
+        setShouldReloadAPI(true);
+      }, 1200000);
+      return () => {
+        clearInterval(updateInterval);
+      };
+    };
+
+    getRealTime();
+    updateAPI();
   }, [apiData]);
 
   if (apiData === undefined) {
@@ -107,6 +127,27 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           {hour}
           <TickingOneSecond />
           {minutes}
+
+          {showReloadSpinner ? (
+            <ReloadSpinning svgColors={svgColors} />
+          ) : (
+            <button
+              onClick={() => {
+                setShowReloadSpinner(true);
+                setShouldReloadAPI(true);
+              }}
+              onTouchEnd={(e) => {
+                // prevents mobile keyboard from opening up
+                e.preventDefault();
+
+                setShowReloadSpinner(true);
+                setShouldReloadAPI(true);
+              }}
+              className="apiReloader"
+            >
+              <Reload svgColors={svgColors} />
+            </button>
+          )}
         </div>
       </div>
       <div

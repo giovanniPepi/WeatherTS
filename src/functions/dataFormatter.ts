@@ -8,12 +8,11 @@ import getUVSeverity from "./getUVSeverity";
 import getWindDir from "./getWindDir";
 
 const dataFormatter = (data: IWeatherData | undefined) => {
-
+  
   if (data?.current) {
 
       /*format to check UV*/ 
     const exactHour = getHour(data.timezone);
-    console.log(exactHour)
     
     data.current.weather[0]['description'] = `${capitalizeFirst(data.current.weather[0]['description'] as string)}`;
 
@@ -172,6 +171,9 @@ const dataFormatter = (data: IWeatherData | undefined) => {
     
     });
   }
+
+
+
 
   return data;  
 }

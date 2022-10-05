@@ -171,7 +171,8 @@ interface RealTimeDataProps {
   svgColors: string;
   modalUIColor: string;
   separatorColor: string;
-  boxShadow: string
+  boxShadow: string;
+  setShouldReloadAPI: StateChangerB;
 }
 
 interface AlertsModalProps {

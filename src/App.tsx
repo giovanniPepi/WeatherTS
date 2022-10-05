@@ -5,14 +5,9 @@ import React, {
   useRef,
   useState
 } from 'react';
-import RealTimeData from './components/RealTimeData';
-import getWeatherAPI from './functions/getWeatherAPI';
 import type { IWeatherData } from '../interfaces';
-import getGeoAPI from './functions/getGEOApi';
-//import MinutelyData from './components/MinutelyData';
-// import HourlyData from './components/HourlyData';
-// import DailyData from './components/DailyData';
 import { motion } from 'framer-motion';
+import getWeatherAPI from './functions/getWeatherAPI';
 import dataFormatter from './functions/dataFormatter';
 import Loading from './icons/Loading';
 import Search from './icons/Search';
@@ -20,6 +15,8 @@ import getWeatherBackground from './functions/getWeatherBackground';
 import isNight from './functions/isNight';
 import getDaysToRender from './functions/getDaysToRender';
 import getHoursToRender from './functions/getHoursToRender';
+import LoadingAbsolute from './icons/LoadingAbsolute';
+import getGeoAPI from './functions/getGEOApi';
 
 const App: React.FC = () => {
   //state
@@ -66,6 +63,9 @@ const App: React.FC = () => {
   const [updateRealTime, setUpdateRealTime] = useState(0);
   const [updateHourly, setUpdateHourlyTime] = useState(0);
 
+  // API reloading without F5'ing
+  const [shouldReloadAPI, setShouldReloadAPI] = useState(false);
+
   //REF
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -80,6 +80,10 @@ const App: React.FC = () => {
     () => import('./components/DailyData')
   );
 
+  const RealTimeData = React.lazy(
+    () => import('./components/RealTimeData')
+  );
+
   //https://devtrium.com/posts/react-typescript-events
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setLocation(e.target.value);
@@ -90,15 +94,14 @@ const App: React.FC = () => {
     e.preventDefault();
     setLoadingSearch(true);
     const newLoc = await getGeoAPI(location);
-    setLoadingSearch(false);
     console.log(newLoc);
-
     // avoids undefined
     if (newLoc) {
       setLatForApi(newLoc.lat);
       setLonForApi(newLoc.lon);
       setLocationForApi(newLoc.country);
       setLocationToShow(`${newLoc.name}, ${newLoc.country}`);
+      setLoadingSearch(false);
     }
   };
 
@@ -159,7 +162,7 @@ const App: React.FC = () => {
           setUIColor('#a3e635');
           setModalUIColor('rgb(59, 18, 146, 0.03)');
           setSvgColors('rgb(123, 81, 247)');
-          setSeparatorColor('rgb(163, 230, 53, 0.3');
+          setSeparatorColor('rgba(163, 230, 53, 0.3)');
           setBoxShadow('none');
           setUpdateRealTime((state) => state + 1);
         } else {
@@ -199,7 +202,7 @@ const App: React.FC = () => {
 
     // focus on input
     inputRef.current?.focus();
-  }, [latForAPI, locationForAPI, longForAPI, night]);
+  }, [latForAPI, locationForAPI, longForAPI, night, shouldReloadAPI]);
 
   return (
     <motion.div
@@ -266,8 +269,13 @@ const App: React.FC = () => {
           </button>
         </div>
 
-        {/*Loading SVG*/}
-        {loading ? <Loading /> : null}
+        <>
+          {/*Loading SVG*/}
+          {loading ? <Loading svgColors={svgColors} /> : null}
+          {loadingSearch ? (
+            <LoadingAbsolute svgColors={svgColors} />
+          ) : null}
+        </>
 
         <div
           className="hiddenSearch"
@@ -287,6 +295,7 @@ const App: React.FC = () => {
                 onChange={handleInputChange}
                 ref={inputRef}
               />
+
               <button
                 onClick={handleClick}
                 className="searchBtn"
@@ -294,29 +303,31 @@ const App: React.FC = () => {
               >
                 <Search svgColors={svgColors} />
               </button>
-              {loadingSearch ? <Loading /> : null}
             </form>
           </div>
         ) : null}
 
         {/* Conditional render so we wait for the API data*/}
         {showRealTimeModal ? (
-          <RealTimeData
-            apiData={apiData!}
-            locationToShow={locationToShow}
-            loading={loading}
-            night={night}
-            moonPhase={moonPhase}
-            svgColors={svgColors}
-            modalUIColor={modalUIColor}
-            key={updateRealTime}
-            separatorColor={separatorColor}
-            boxShadow={boxShadow}
-          />
+          <Suspense fallback={<Loading svgColors={svgColors} />}>
+            <RealTimeData
+              apiData={apiData!}
+              locationToShow={locationToShow}
+              loading={loading}
+              night={night}
+              moonPhase={moonPhase}
+              svgColors={svgColors}
+              modalUIColor={modalUIColor}
+              key={updateRealTime}
+              separatorColor={separatorColor}
+              boxShadow={boxShadow}
+              setShouldReloadAPI={setShouldReloadAPI}
+            />
+          </Suspense>
         ) : null}
 
         {showMinutelyModal ? (
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loading svgColors={svgColors} />}>
             <MinutelyData
               minuteData={apiData?.minutely}
               setShowMinutelyModal={setShowMinutelyModal}
@@ -330,7 +341,7 @@ const App: React.FC = () => {
         ) : null}
 
         {showHourlyModal ? (
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loading svgColors={svgColors} />}>
             <HourlyData
               hourlyData={apiData?.hourly}
               setShowHourlyModal={setShowHourlyModal}
@@ -347,7 +358,7 @@ const App: React.FC = () => {
         ) : null}
 
         {showDailyModal ? (
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loading svgColors={svgColors} />}>
             <DailyData
               dailyData={apiData?.daily}
               setShowDailyModal={setShowDailyModal}

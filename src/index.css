@@ -44,10 +44,6 @@ svg {
   width: 1.8rem;
   height: 1.8rem;
 }
-.loadingIcon {
-  height: 12rem;
-  width: 12rem;
-}
 ul,
 li {
   margin: 0;
@@ -66,18 +62,38 @@ svg:hover {
   transform: scale(1.1);
 }
 
+.loadingSvg,
+.loadingIcon .loadingSvgAbsolute,
+.loadingIconAbsolute {
+  width: 5rem;
+  height: 5rem;
+}
+.loadingSvg,
+.loadingIcon {
+  width: 5rem;
+  height: 5rem;
+  grid-row: 3/4;
+  grid-column: 2/4;
+}
+.loadingSvgAbsolute,
+.loadingIconAbsolute {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+}
+
+.ReloadSvg {
+  padding-top: 0.3rem;
+  padding-left: 0.3rem;
+  height: 1.3rem;
+  width: 1.3rem;
+}
+
 .NetworkErrorSvg {
   align-self: center;
 }
 .strong {
   font-weight: bold;
-}
-.loadingSvg {
-  position: absolute;
-  top: 45%;
-  left: 45%; /* 
-  grid-row: 2/3;
-  grid-column: 2/4; */
 }
 /* --------------- OVERLAY CONFIG----------- */
 
@@ -325,6 +341,7 @@ svg:hover {
   width: 1rem;
 }
 .dataTogglingArea {
+  position: relative;
   width: 60vw;
   grid-row: 1/2;
   display: flex;
@@ -382,9 +399,11 @@ input {
   display: flex;
   justify-content: center;
 }
+/*apply margin to compensate reloading svg size*/
 .tickingTime {
   display: flex;
   align-items: center;
+  margin-left: 1.3rem;
 }
 .twoDots {
   align-self: center;
@@ -495,6 +514,7 @@ input {
     margin-bottom: 1rem;
   }
   .dataTogglingArea {
+    position: relative;
     margin-top: 1rem;
     width: 85vw;
     align-items: center;
@@ -567,6 +587,14 @@ input {
   }
   .hiddenSearch {
     display: none;
+  }
+
+  .loadingSvgAbsolute,
+  .loadingIconAbsolute,
+  .loadingSvg,
+  .loadingIcon {
+    width: 2rem;
+    height: 2rem;
   }
 }
 /*---------------------------------------------end MOBILE */
