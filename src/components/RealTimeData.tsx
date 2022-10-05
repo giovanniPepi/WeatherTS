@@ -27,6 +27,9 @@ import NetworkError from 'src/icons/NetworkError';
 import AlertAnimation from 'src/functions/AlertAnimation';
 import Reload from 'src/icons/Reload';
 import ReloadSpinning from 'src/icons/ReloadSpinning';
+import useCollapse from 'react-collapsed';
+import More from 'src/icons/More';
+import Less from 'src/icons/Less';
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
@@ -49,6 +52,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   const [minutes, setMinutes] = useState<number>(0);
   const [hour, sethour] = useState<number>(0);
   const [showReloadSpinner, setShowReloadSpinner] = useState(false);
+  const { getCollapseProps, getToggleProps, isExpanded } =
+    useCollapse();
 
   useEffect(() => {
     const getRealTime = () => {
@@ -310,28 +315,47 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         className="separator"
         style={{ border: `1px solid ${separatorColor}` }}
       ></div>
-      <div className="realTimeDataDiv">
-        <DewPoint svgColors={svgColors} />
-        <div>{apiData.current.dew_point}</div>
-      </div>
-      <div
-        className="separator"
-        style={{ border: `1px solid ${separatorColor}` }}
-      ></div>
+      <>
+        <button {...getToggleProps()} className="moreInfoToggle">
+          {isExpanded ? (
+            <>
+              <div className="realTimeDataDiv moreToggler">
+                <Less svgColors={svgColors} />
+                <div className="moonTImings"></div>
+              </div>
+            </>
+          ) : (
+            <div className="realTimeDataDiv moreToggler">
+              <More svgColors={svgColors} />
+              <div className="moonTImings">Atmosphere</div>
+            </div>
+          )}
+        </button>
+        <section {...getCollapseProps()}>
+          <div className="realTimeDataDiv">
+            <DewPoint svgColors={svgColors} />
+            <div>{apiData.current.dew_point}</div>
+          </div>
+          <div
+            className="separator"
+            style={{ border: `1px solid ${separatorColor}` }}
+          ></div>
 
-      <div className="realTimeDataDiv">
-        <Pressure svgColors={svgColors} />
-        <div>{apiData.current.pressure}</div>
-      </div>
-      <div
-        className="separator"
-        style={{ border: `1px solid ${separatorColor}` }}
-      ></div>
+          <div className="realTimeDataDiv">
+            <Pressure svgColors={svgColors} />
+            <div>{apiData.current.pressure}</div>
+          </div>
+          <div
+            className="separator"
+            style={{ border: `1px solid ${separatorColor}` }}
+          ></div>
 
-      <div className="realTimeDataDiv">
-        <Visibility svgColors={svgColors} />
-        <div>{apiData.current.visibility}</div>
-      </div>
+          <div className="realTimeDataDiv">
+            <Visibility svgColors={svgColors} />
+            <div>{apiData.current.visibility}</div>
+          </div>
+        </section>
+      </>
       <div
         className="separator"
         style={{ border: `1px solid ${separatorColor}` }}

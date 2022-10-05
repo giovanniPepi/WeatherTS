@@ -433,6 +433,10 @@ input {
   height: 3rem;
   width: 3rem;
 }
+.MoreSvg,
+.LessSvg {
+  margin-left: -0.2rem;
+}
 .alertsOverlay {
   position: absolute;
   top: 0;
