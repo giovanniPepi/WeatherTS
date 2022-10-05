@@ -279,7 +279,6 @@ svg:hover {
 .realTimeDataDiv {
   display: flex;
   justify-content: space-between;
-
   align-items: center;
 }
 
@@ -331,6 +330,22 @@ svg:hover {
   backdrop-filter: var(--modalBlur);
   background-color: var(--strongAccentColor);
   box-shadow: var(--boxShadow);
+}
+.realTimeSubData {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+}
+.realTimeSubDataHolder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.3rem;
+}
+.realTimeSubDataSvg {
+  align-self: center;
 }
 .feelsLike {
   font-size: 0.8rem;

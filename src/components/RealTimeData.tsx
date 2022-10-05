@@ -315,13 +315,15 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       </UnmountClosed>
 
       <UnmountClosed isOpened={isOpenedSun}>
-        <div
-          onClick={() => {
-            setIsClosedSun((state) => !state);
-            setIsOpenedSun((state) => !state);
-          }}
-        >
-          <Less svgColors={svgColors} />
+        <div>
+          <div
+            onClick={() => {
+              setIsClosedSun((state) => !state);
+              setIsOpenedSun((state) => !state);
+            }}
+          >
+            <Less svgColors={svgColors} />
+          </div>
           <Tooltip
             title="Sunrise and sunset time"
             placement="right-start"
@@ -363,14 +365,16 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         ></div>
       </UnmountClosed>
       <UnmountClosed isOpened={isOpenedMoon}>
-        <div
-          onClick={() => {
-            setIsClosedMoon((state) => !state);
-            setIsOpenedMoon((state) => !state);
-          }}
-        >
-          <Less svgColors={svgColors} />
-
+        <div>
+          <div
+            onClick={() => {
+              setIsClosedMoon((state) => !state);
+              setIsOpenedMoon((state) => !state);
+            }}
+            className="realTimeSubDataSvg"
+          >
+            <Less svgColors={svgColors} />
+          </div>
           <Tooltip
             title="Moonrise and moonset time"
             placement="right-start"
@@ -418,8 +422,11 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
             setIsClosedAtmos((state) => !state);
             setIsOpenedAtmos((state) => !state);
           }}
+          className="realTimeSubDataSvg"
         >
           <Less svgColors={svgColors} />
+        </div>
+        <div className="realTimeSubDataHolder">
           <div className="realTimeDataDiv">
             <DewPoint svgColors={svgColors} />
             <div>{apiData.current.dew_point}</div>
