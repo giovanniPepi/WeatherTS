@@ -40,6 +40,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   loading,
   night,
   moonPhase,
+  UIColor,
   svgColors,
   modalUIColor,
   separatorColor,
@@ -124,7 +125,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         x: window.innerWidth
       }}
     >
-      <div className="dailyDt strong">
+      <div className="dailyDt strong" style={{ color: UIColor }}>
         <div>
           {loading ? null : <TitleAnimation title={locationToShow} />}
         </div>
@@ -287,51 +288,56 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         style={{ border: `1px solid ${separatorColor}` }}
       ></div>
 
-      <Tooltip title="Sunrise and sunset time" placement="left-start">
-        <div className="realTimeDataDiv">
-          <Sunny />
-          <div className="moonTimings">
-            <div>{apiData.current.sunrise}</div>
-            <div>{apiData.current.sunset}</div>
-          </div>
-        </div>
-      </Tooltip>
-      <div
-        className="separator"
-        style={{ border: `1px solid ${separatorColor}` }}
-      ></div>
-
-      <div className="realTimeDataDiv">
-        {getMoonPhase(
-          apiData.daily[0].moon_phase as number,
-          svgColors
-        )}
-        <div className="moonTimings">
-          <div>{apiData.daily[0].moonrise}</div>
-          <div>{apiData.daily[0].moonset}</div>
-        </div>
-      </div>
-      <div
-        className="separator"
-        style={{ border: `1px solid ${separatorColor}` }}
-      ></div>
       <>
         <button {...getToggleProps()} className="moreInfoToggle">
           {isExpanded ? (
             <>
               <div className="realTimeDataDiv moreToggler">
                 <Less svgColors={svgColors} />
-                <div className="moonTImings"></div>
+                <div className="moonTimings"></div>
               </div>
             </>
           ) : (
             <div className="realTimeDataDiv moreToggler">
               <More svgColors={svgColors} />
-              <div className="moonTImings">Atmosphere</div>
+              <div className="moonTimings" style={{ color: UIColor }}>
+                Atmosphere & Times
+              </div>
             </div>
           )}
         </button>
         <section {...getCollapseProps()}>
+          <Tooltip
+            title="Sunrise and sunset time"
+            placement="left-start"
+          >
+            <div className="realTimeDataDiv">
+              <Sunny />
+              <div className="moonTimings">
+                <div>{apiData.current.sunrise}</div>
+                <div>{apiData.current.sunset}</div>
+              </div>
+            </div>
+          </Tooltip>
+          <div
+            className="separator"
+            style={{ border: `1px solid ${separatorColor}` }}
+          ></div>
+
+          <div className="realTimeDataDiv">
+            {getMoonPhase(
+              apiData.daily[0].moon_phase as number,
+              svgColors
+            )}
+            <div className="moonTimings">
+              <div>{apiData.daily[0].moonrise}</div>
+              <div>{apiData.daily[0].moonset}</div>
+            </div>
+          </div>
+          <div
+            className="separator"
+            style={{ border: `1px solid ${separatorColor}` }}
+          ></div>
           <div className="realTimeDataDiv">
             <DewPoint svgColors={svgColors} />
             <div>{apiData.current.dew_point}</div>

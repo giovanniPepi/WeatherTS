@@ -169,6 +169,7 @@ interface RealTimeDataProps {
   night: boolean;
   moonPhase: number;
   svgColors: string;
+  UIColor: string;
   modalUIColor: string;
   separatorColor: string;
   boxShadow: string;

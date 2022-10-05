@@ -27,7 +27,7 @@ const Less: React.FC<ISvgColors> = ({ svgColors }) => {
   };
 
   return (
-    <Tooltip title="Moon phase: Full" placement="left-start">
+    <Tooltip title="Collapse section" placement="left-start">
       <motion.svg
         className="LessSvg"
         xmlns="http://www.w3.org/2000/svg"

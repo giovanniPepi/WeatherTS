@@ -435,7 +435,9 @@ input {
 }
 .MoreSvg,
 .LessSvg {
-  margin-left: -0.2rem;
+  margin-left: -0.3rem;
+  width: 2rem;
+  height: 2rem;
 }
 .alertsOverlay {
   position: absolute;

@@ -27,7 +27,7 @@ const More: React.FC<ISvgColors> = ({ svgColors }) => {
   };
 
   return (
-    <Tooltip title="Moon phase: Full" placement="left-start">
+    <Tooltip title="Expand section" placement="left-start">
       <motion.svg
         className="MoreSvg"
         xmlns="http://www.w3.org/2000/svg"
