@@ -8,7 +8,7 @@ import getUVSeverity from "./getUVSeverity";
 import getWindDir from "./getWindDir";
 
 const dataFormatter = (data: IWeatherData | undefined) => {
-
+  
   if (data?.current) {
 
       /*format to check UV*/ 
@@ -171,6 +171,9 @@ const dataFormatter = (data: IWeatherData | undefined) => {
     
     });
   }
+
+
+
 
   return data;  
 }
