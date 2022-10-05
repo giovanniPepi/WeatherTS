@@ -5,14 +5,9 @@ import React, {
   useRef,
   useState
 } from 'react';
-import RealTimeData from './components/RealTimeData';
-import getWeatherAPI from './functions/getWeatherAPI';
 import type { IWeatherData } from '../interfaces';
-import getGeoAPI from './functions/getGEOApi';
-//import MinutelyData from './components/MinutelyData';
-// import HourlyData from './components/HourlyData';
-// import DailyData from './components/DailyData';
 import { motion } from 'framer-motion';
+import getWeatherAPI from './functions/getWeatherAPI';
 import dataFormatter from './functions/dataFormatter';
 import Loading from './icons/Loading';
 import Search from './icons/Search';
@@ -21,6 +16,7 @@ import isNight from './functions/isNight';
 import getDaysToRender from './functions/getDaysToRender';
 import getHoursToRender from './functions/getHoursToRender';
 import LoadingAbsolute from './icons/LoadingAbsolute';
+import getGeoAPI from './functions/getGEOApi';
 
 const App: React.FC = () => {
   //state
@@ -82,6 +78,10 @@ const App: React.FC = () => {
   );
   const DailyData = React.lazy(
     () => import('./components/DailyData')
+  );
+
+  const RealTimeData = React.lazy(
+    () => import('./components/RealTimeData')
   );
 
   //https://devtrium.com/posts/react-typescript-events
@@ -309,19 +309,21 @@ const App: React.FC = () => {
 
         {/* Conditional render so we wait for the API data*/}
         {showRealTimeModal ? (
-          <RealTimeData
-            apiData={apiData!}
-            locationToShow={locationToShow}
-            loading={loading}
-            night={night}
-            moonPhase={moonPhase}
-            svgColors={svgColors}
-            modalUIColor={modalUIColor}
-            key={updateRealTime}
-            separatorColor={separatorColor}
-            boxShadow={boxShadow}
-            setShouldReloadAPI={setShouldReloadAPI}
-          />
+          <Suspense fallback={<Loading svgColors={svgColors} />}>
+            <RealTimeData
+              apiData={apiData!}
+              locationToShow={locationToShow}
+              loading={loading}
+              night={night}
+              moonPhase={moonPhase}
+              svgColors={svgColors}
+              modalUIColor={modalUIColor}
+              key={updateRealTime}
+              separatorColor={separatorColor}
+              boxShadow={boxShadow}
+              setShouldReloadAPI={setShouldReloadAPI}
+            />
+          </Suspense>
         ) : null}
 
         {showMinutelyModal ? (
