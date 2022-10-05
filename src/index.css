@@ -61,7 +61,9 @@ div {
 svg:hover {
   transform: scale(1.1);
 }
-
+.ReactCollapse--collapse {
+  transition: height 500ms;
+}
 .loadingSvg,
 .loadingIcon .loadingSvgAbsolute,
 .loadingIconAbsolute {
