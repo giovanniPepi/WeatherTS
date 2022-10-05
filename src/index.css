@@ -95,6 +95,9 @@ svg:hover {
 .strong {
   font-weight: bold;
 }
+.noRainMsg {
+  padding: var(--btnPadding);
+}
 /* --------------- OVERLAY CONFIG----------- */
 
 .minutely {
@@ -220,16 +223,15 @@ svg:hover {
   align-items: center;
 }
 .dailyDataModal {
-  height: 85vh;
-  max-height: 90vh;
+  height: 80vh;
+  max-height: 85vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  grid-row: 2/4;
+  grid-row: 1/4;
   grid-column: 2/4;
   display: flex;
-  gap: 2rem;
 }
 .PreviousSvg,
 .NextSvg {
@@ -417,16 +419,15 @@ input {
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .hourlyDataModal {
-  height: 85vh;
-  max-height: 90vh;
+  height: 80vh;
+  max-height: 85vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  grid-row: 2/4;
+  grid-row: 1/4;
   grid-column: 2/4;
   display: flex;
-  gap: 2rem;
 }
 .PreviousSvg,
 .NextSvg {
@@ -495,8 +496,9 @@ input {
   .app {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
   }
   .hourlyUl {
     display: grid;
@@ -547,7 +549,7 @@ input {
     text-align: center;
   }
   .dailyDataModal {
-    width: 85vw;
+    height: 70vh;
     max-height: 85vh;
     margin-top: 1rem;
   }
