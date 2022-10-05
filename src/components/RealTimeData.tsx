@@ -59,6 +59,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   const [isClosedSun, setIsClosedSun] = useState(true);
   const [isOpenedMoon, setIsOpenedMoon] = useState(false);
   const [isClosedMoon, setIsClosedMoon] = useState(true);
+  const [isOpenedAtmos, setIsOpenedAtmos] = useState(false);
+  const [isClosedAtmos, setIsClosedAtmos] = useState(true);
 
   useEffect(() => {
     const getRealTime = () => {
@@ -355,6 +357,10 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
             )}
           </div>
         </div>
+        <div
+          className="separator"
+          style={{ border: `1px solid ${separatorColor}` }}
+        ></div>
       </UnmountClosed>
       <UnmountClosed isOpened={isOpenedMoon}>
         <div
@@ -381,36 +387,70 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
             </div>
           </Tooltip>
         </div>
+        <div
+          className="separator"
+          style={{ border: `1px solid ${separatorColor}` }}
+        ></div>
       </UnmountClosed>
 
-      <div
-        className="separator"
-        style={{ border: `1px solid ${separatorColor}` }}
-      ></div>
-      <div className="realTimeDataDiv">
-        <DewPoint svgColors={svgColors} />
-        <div>{apiData.current.dew_point}</div>
-      </div>
-      <div
-        className="separator"
-        style={{ border: `1px solid ${separatorColor}` }}
-      ></div>
-      <div className="realTimeDataDiv">
-        <Pressure svgColors={svgColors} />
-        <div>{apiData.current.pressure}</div>
-      </div>
-      <div
-        className="separator"
-        style={{ border: `1px solid ${separatorColor}` }}
-      ></div>
-      <div className="realTimeDataDiv">
-        <Visibility svgColors={svgColors} />
-        <div>{apiData.current.visibility}</div>
-      </div>
-      <div
-        className="separator"
-        style={{ border: `1px solid ${separatorColor}` }}
-      ></div>
+      <UnmountClosed isOpened={isClosedAtmos}>
+        <div
+          className="realTimeDataDiv"
+          onClick={() => {
+            setIsClosedAtmos((state) => !state);
+            setIsOpenedAtmos((state) => !state);
+          }}
+        >
+          <More svgColors={svgColors} />
+          <div className="moonTimings">
+            <p>Atmospheric Info</p>
+          </div>
+        </div>
+        <div
+          className="separator"
+          style={{ border: `1px solid ${separatorColor}` }}
+        ></div>
+      </UnmountClosed>
+
+      <UnmountClosed isOpened={isOpenedAtmos}>
+        <div
+          onClick={() => {
+            setIsClosedAtmos((state) => !state);
+            setIsOpenedAtmos((state) => !state);
+          }}
+        >
+          <Less svgColors={svgColors} />
+          <div className="realTimeDataDiv">
+            <DewPoint svgColors={svgColors} />
+            <div>{apiData.current.dew_point}</div>
+          </div>
+
+          <div
+            className="separator"
+            style={{ border: `1px solid ${separatorColor}` }}
+          ></div>
+          <div className="realTimeDataDiv">
+            <Pressure svgColors={svgColors} />
+            <div>{apiData.current.pressure}</div>
+          </div>
+
+          <div
+            className="separator"
+            style={{ border: `1px solid ${separatorColor}` }}
+          ></div>
+
+          <div className="realTimeDataDiv">
+            <Visibility svgColors={svgColors} />
+            <div>{apiData.current.visibility}</div>
+          </div>
+
+          <div
+            className="separator"
+            style={{ border: `1px solid ${separatorColor}` }}
+          ></div>
+        </div>
+      </UnmountClosed>
+
       {apiData.alerts && showAlertsModal ? (
         <AlertsModal
           apiData={apiData}
