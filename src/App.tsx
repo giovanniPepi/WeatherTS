@@ -17,6 +17,7 @@ import getDaysToRender from './functions/getDaysToRender';
 import getHoursToRender from './functions/getHoursToRender';
 import LoadingAbsolute from './icons/LoadingAbsolute';
 import getGeoAPI from './functions/getGEOApi';
+import { analytics } from './functions/firebase';
 
 const App: React.FC = () => {
   //state
@@ -139,6 +140,9 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
+    // load GA
+    const ga = analytics;
+
     // calls weather API
     const getData = async (
       lat: number,

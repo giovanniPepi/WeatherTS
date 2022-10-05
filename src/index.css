@@ -548,20 +548,14 @@ input {
   .noRain > .strong {
     text-align: center;
   }
+  .hourlyDataModal,
   .dailyDataModal {
-    height: 70vh;
-    max-height: 85vh;
-    margin-top: 1rem;
-  }
-  .hourlyDataModal {
-    margin-top: 1rem;
-    max-height: 85vh;
+    max-height: 90vh;
     width: 85vw;
     display: flex;
     justify-content: center;
     align-items: center;
     max-height: 85vh;
-    grid-row: 3/4;
   }
 
   .dailyDt {
