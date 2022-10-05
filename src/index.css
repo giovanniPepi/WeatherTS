@@ -44,10 +44,6 @@ svg {
   width: 1.8rem;
   height: 1.8rem;
 }
-.loadingIcon {
-  height: 12rem;
-  width: 12rem;
-}
 ul,
 li {
   margin: 0;
@@ -65,8 +61,17 @@ div {
 svg:hover {
   transform: scale(1.1);
 }
+
+.loadingSvg,
+.loadingIcon {
+  width: 5rem;
+  height: 5rem;
+  grid-row: 3/4;
+  grid-column: 2/4;
+}
+
 .ReloadSvg {
-  padding-top: 0.35rem;
+  padding-top: 0.3rem;
   padding-left: 0.3rem;
   height: 1.3rem;
   width: 1.3rem;
@@ -77,13 +82,6 @@ svg:hover {
 }
 .strong {
   font-weight: bold;
-}
-.loadingSvg {
-  position: absolute;
-  top: 40%;
-  left: 40%; /*
-  grid-row: 2/3;
-  grid-column: 2/4; */
 }
 /* --------------- OVERLAY CONFIG----------- */
 
@@ -504,6 +502,7 @@ input {
     margin-bottom: 1rem;
   }
   .dataTogglingArea {
+    position: relative;
     margin-top: 1rem;
     width: 85vw;
     align-items: center;

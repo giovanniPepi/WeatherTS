@@ -120,6 +120,12 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
                 setShowReloadSpinner(true);
                 setShouldReloadAPI(true);
               }}
+              onTouchEnd={(e) => {
+                // prevents mobile keyboard from opening up
+                e.preventDefault();
+                setShowReloadSpinner(true);
+                setShouldReloadAPI(true);
+              }}
               className="apiReloader"
             >
               <Reload svgColors={svgColors} />

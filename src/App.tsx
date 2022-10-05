@@ -65,6 +65,7 @@ const App: React.FC = () => {
   // forces rerendering to apply themes
   const [updateRealTime, setUpdateRealTime] = useState(0);
   const [updateHourly, setUpdateHourlyTime] = useState(0);
+
   // API reloading without F5'ing
   const [shouldReloadAPI, setShouldReloadAPI] = useState(false);
 
@@ -270,8 +271,13 @@ const App: React.FC = () => {
           </button>
         </div>
 
-        {/*Loading SVG*/}
-        {loading ? <Loading /> : null}
+        <>
+          {' '}
+          {/*Loading SVG*/}
+          {console.log(svgColors)}
+          {loading ? <Loading svgColors={svgColors} /> : null}
+          {loadingSearch ? <Loading svgColors={svgColors} /> : null}
+        </>
 
         <div
           className="hiddenSearch"
@@ -291,6 +297,7 @@ const App: React.FC = () => {
                 onChange={handleInputChange}
                 ref={inputRef}
               />
+
               <button
                 onClick={handleClick}
                 className="searchBtn"
@@ -298,7 +305,6 @@ const App: React.FC = () => {
               >
                 <Search svgColors={svgColors} />
               </button>
-              {loadingSearch ? <Loading /> : null}
             </form>
           </div>
         ) : null}
@@ -321,7 +327,7 @@ const App: React.FC = () => {
         ) : null}
 
         {showMinutelyModal ? (
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loading svgColors={svgColors} />}>
             <MinutelyData
               minuteData={apiData?.minutely}
               setShowMinutelyModal={setShowMinutelyModal}
@@ -335,7 +341,7 @@ const App: React.FC = () => {
         ) : null}
 
         {showHourlyModal ? (
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loading svgColors={svgColors} />}>
             <HourlyData
               hourlyData={apiData?.hourly}
               setShowHourlyModal={setShowHourlyModal}
@@ -352,7 +358,7 @@ const App: React.FC = () => {
         ) : null}
 
         {showDailyModal ? (
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loading svgColors={svgColors} />}>
             <DailyData
               dailyData={apiData?.daily}
               setShowDailyModal={setShowDailyModal}

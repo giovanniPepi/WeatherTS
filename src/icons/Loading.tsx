@@ -1,11 +1,12 @@
 import { mdiLoading } from '@mdi/js';
 import Icon from '@mdi/react';
+import { ISvgColors } from 'interfaces';
 import { useState } from 'react';
 
-const Loading = () => {
+const Loading: React.FC<ISvgColors> = ({ svgColors }) => {
   const [iconInfo] = useState({
     path: mdiLoading,
-    color: 'lightblue',
+    color: svgColors,
     spin: 0.3
   });
 
