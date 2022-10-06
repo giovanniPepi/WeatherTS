@@ -165,6 +165,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         {loading ? null : (
           <WeatherDescAnimation
             title={apiData.current.weather[0].description}
+            UIColor={UIColor}
           />
         )}
       </div>
@@ -446,6 +447,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         <AlertsModal
           apiData={apiData}
           setShowAlertsModal={setShowAlertsModal}
+          UIColor={UIColor}
         />
       ) : null}
       {apiData.alerts ? (
@@ -460,6 +462,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
             <Alert />
             <AlertAnimation
               title={`${apiData.alerts[0].sender_name}`}
+              UIColor={UIColor}
             />
           </button>
         </Tooltip>

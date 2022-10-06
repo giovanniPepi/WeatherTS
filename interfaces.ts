@@ -178,7 +178,8 @@ interface RealTimeDataProps {
 
 interface AlertsModalProps {
   apiData: IWeatherData;
-  setShowAlertsModal: StateChanger
+  setShowAlertsModal: StateChanger;
+  UIColor: string;
 }
 
 interface ExtendedRealTimeDataProps {
@@ -201,6 +202,7 @@ interface Ititle {
 }
 interface ITitleAnimation {
   title: string;
+  UIColor: string;
 }
 
 interface ISvgColors {

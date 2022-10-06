@@ -326,7 +326,7 @@ svg:hover {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-  width: 30vw;
+  min-width: 35vw;
   padding: var(--divPadding);
   border-radius: var(--radius);
   backdrop-filter: var(--modalBlur);

@@ -94,13 +94,18 @@ const Wrapper = styled.div`
   }
 `;
 
-const AlertAnimation: React.FC<ITitleAnimation> = ({ title }) => {
+const AlertAnimation: React.FC<ITitleAnimation> = ({
+  title,
+  UIColor
+}) => {
   const splitArray = title.split('');
 
   return (
     <Wrapper>
       {splitArray.map((item: string, index: number) => (
-        <span key={index}>{item}</span>
+        <span key={index} style={{ color: UIColor }}>
+          {item}
+        </span>
       ))}
     </Wrapper>
   );

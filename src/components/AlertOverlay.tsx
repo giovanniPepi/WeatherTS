@@ -4,7 +4,8 @@ import { motion } from 'framer-motion';
 
 const AlertsModal: React.FC<AlertsModalProps> = ({
   apiData,
-  setShowAlertsModal
+  setShowAlertsModal,
+  UIColor
 }) => {
   const domNode = useClickOutside(() => {
     setShowAlertsModal(false);
@@ -23,7 +24,11 @@ const AlertsModal: React.FC<AlertsModalProps> = ({
         x: window.innerWidth
       }}
     >
-      <div className="alertsModal" ref={domNode}>
+      <div
+        className="alertsModal"
+        ref={domNode}
+        style={{ color: UIColor }}
+      >
         {apiData.alerts[0].description}
       </div>
     </motion.div>
