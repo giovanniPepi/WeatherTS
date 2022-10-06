@@ -15,7 +15,6 @@ import getWeatherBackground from './functions/getWeatherBackground';
 import isNight from './functions/isNight';
 import getDaysToRender from './functions/getDaysToRender';
 import getHoursToRender from './functions/getHoursToRender';
-import LoadingAbsolute from './icons/LoadingAbsolute';
 import getGeoAPI from './functions/getGEOApi';
 import { analytics } from './functions/firebase';
 import RealTimeData from './components/RealTimeData';
@@ -24,7 +23,6 @@ const App: React.FC = () => {
   //state
   const [apiData, setApiData] = useState<IWeatherData>();
   const [loading, setLoading] = useState(false);
-  // const [loadingSearch, setLoadingSearch] = useState(false);
   const [latForAPI, setLatForApi] = useState(-22.854103);
   const [longForAPI, setLonForApi] = useState(-47.048331);
   const [locationForAPI, setLocationForApi] =
@@ -375,14 +373,7 @@ const App: React.FC = () => {
           </Suspense>
         ) : null}
 
-        <>
-          {/*Loading SVG*/}
-          {loading ? <Loading svgColors={svgColors} /> : null}
-          {/* {loadingSearch ? (
-            <LoadingAbsolute svgColors={svgColors} />
-          ) : null}
- */}{' '}
-        </>
+        <>{loading ? <Loading svgColors={svgColors} /> : null}</>
       </main>
     </motion.div>
   );
