@@ -121,7 +121,12 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
     >
       <div className="dailyDt strong" style={{ color: UIColor }}>
         <div>
-          {loading ? null : <TitleAnimation title={locationToShow} />}
+          {loading ? null : (
+            <TitleAnimation
+              title={locationToShow}
+              UIColor={UIColor}
+            />
+          )}
         </div>
         <div className="tickingTime">
           {hour}
