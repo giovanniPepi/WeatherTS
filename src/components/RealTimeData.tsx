@@ -75,24 +75,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       };
     };
 
-    // updates API every 20 mins if open
-    const updateAPI = () => {
-      const updateInterval = setInterval(() => {
-        console.log(
-          '...updating api at ',
-          new Date().getHours(),
-          new Date().getMinutes()
-        );
-        setShouldReloadAPI(true);
-      }, 1200000);
-      return () => {
-        clearInterval(updateInterval);
-      };
-    };
-
     getRealTime();
-    updateAPI();
-  }, [apiData]);
+  }, [apiData, setShouldReloadAPI]);
 
   if (apiData === undefined) {
     return (
