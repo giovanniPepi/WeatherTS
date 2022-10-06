@@ -33,6 +33,11 @@ p {
   min-height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-items: center;
+  align-items: center;
 }
 
 button {
@@ -74,8 +79,6 @@ svg:hover {
 .loadingIcon {
   width: 5rem;
   height: 5rem;
-  grid-row: 3/4;
-  grid-column: 2/4;
 }
 .loadingSvgAbsolute,
 .loadingIconAbsolute {
@@ -101,18 +104,12 @@ svg:hover {
   padding: var(--btnPadding);
 }
 /* --------------- OVERLAY CONFIG----------- */
-
 .minutely {
   border-radius: var(--radius);
 }
-
 .loadingOverlay {
   background-color: rgba(250, 194, 167, 0.05);
 }
-
-/* --------------- END OVERLAY CONFIG----------- */
-
-/* ----------------------- HOME UI ELEMENTS */
 .alertBtnHome,
 .completInfoBtn {
   display: flex;
@@ -133,9 +130,6 @@ svg:hover {
 .sunnySvg {
   align-self: center;
 }
-/* ----------------------- END HOME UI ELEMENTS */
-
-/* ----------------- MINUTE OVERLAY*/
 .minutelyDataModal {
   min-width: 60vw;
   height: 85vh;
@@ -143,8 +137,6 @@ svg:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  grid-row: 2/4;
-  grid-column: 2/4;
   display: flex;
 }
 .noRain {
@@ -231,8 +223,6 @@ svg:hover {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  grid-row: 1/4;
-  grid-column: 2/4;
   display: flex;
 }
 .PreviousSvg,
@@ -302,18 +292,7 @@ svg:hover {
 
 /*---------------------------------------------DESKTOP */
 /* @media screen and (min-width: 750px) { */
-.app {
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 5vh 5vh 90vh;
-}
 .searchForm {
-  margin-top: 2.7rem;
-  grid-row: 2/3;
-  grid-column: 1/5;
-  width: 60vw;
   background-color: var(--strongAccentColor);
   backdrop-filter: var(--modalBlur);
   padding: var(--btnPadding);
@@ -321,12 +300,10 @@ svg:hover {
   box-shadow: var(--boxShadow);
 }
 .realTimeData {
-  grid-row: 3/4;
-  grid-column: 2/4;
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-  min-width: 35vw;
+  min-width: clamp(300px, 20vw, 30vw);
   padding: var(--divPadding);
   border-radius: var(--radius);
   backdrop-filter: var(--modalBlur);
@@ -359,16 +336,24 @@ svg:hover {
   height: 1rem;
   width: 1rem;
 }
-.dataTogglingArea {
+.headerContainer {
+  margin-top: 1rem;
   position: relative;
-  width: 60vw;
-  grid-row: 1/2;
   display: flex;
-  justify-content: space-around;
-  grid-column: 1/5;
+  min-width: 35vw;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+.dataTogglingArea {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.dataToggler {
   backdrop-filter: var(--modalBlur);
   padding: var(--btnPadding);
-  border-radius: 0 0 0.8rem 0.8rem;
+  border-radius: var(--radius);
   box-shadow: var(--boxShadow);
 }
 form {
@@ -442,8 +427,6 @@ input {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  grid-row: 1/4;
-  grid-column: 2/4;
   display: flex;
 }
 .PreviousSvg,
@@ -485,24 +468,6 @@ input {
   height: 4rem;
   width: 4rem;
 }
-/* } */
-/*------------------------------------------end DESKTOP */
-
-/*------------------------------------------INTERMEDIATE */
-/* @media screen and (min-width: 550px) and (max-width: 999px) {
-  .hourlyUl {
-    display: grid;
-    gap: 0.5rem;
-    max-width: 90vw;
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .dailyUl {
-    display: grid;
-    gap: 0.5rem;
-    grid-template-columns: repeat(2, 1fr);
-  }
-} */
-/*----------------------------------------end INTERMEDIATE */
 
 /*-----------------------------------------------MOBILE */
 @media screen and (max-width: 649px) {
@@ -604,10 +569,6 @@ input {
     align-items: center;
     width: 100%;
   }
-  .hiddenSearch {
-    display: none;
-  }
-
   .loadingSvgAbsolute,
   .loadingIconAbsolute,
   .loadingSvg,

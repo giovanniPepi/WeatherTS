@@ -24,7 +24,7 @@ const App: React.FC = () => {
   //state
   const [apiData, setApiData] = useState<IWeatherData>();
   const [loading, setLoading] = useState(false);
-  const [loadingSearch, setLoadingSearch] = useState(false);
+  // const [loadingSearch, setLoadingSearch] = useState(false);
   const [latForAPI, setLatForApi] = useState(-22.854103);
   const [longForAPI, setLonForApi] = useState(-47.048331);
   const [locationForAPI, setLocationForApi] =
@@ -90,7 +90,8 @@ const App: React.FC = () => {
   // updates APIData when clicking
   const handleClick = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setLoadingSearch(true);
+    setLoading(true);
+    // setLoadingSearch(true);
     const newLoc = await getGeoAPI(location);
     console.log(newLoc);
     // avoids undefined
@@ -99,7 +100,8 @@ const App: React.FC = () => {
       setLonForApi(newLoc.lon);
       setLocationForApi(newLoc.country);
       setLocationToShow(`${newLoc.name}, ${newLoc.country}`);
-      setLoadingSearch(false);
+      setLoading(false);
+      // setLoadingSearch(false);
     }
   };
 
@@ -226,87 +228,86 @@ const App: React.FC = () => {
           color: `${UIColor}`
         }}
       >
-        <div
-          className="dataTogglingArea"
-          style={{
-            backgroundColor: modalUIColor,
-            boxShadow: boxShadow
-          }}
-        >
-          <button
-            onClick={toggleRealTimeData}
-            onMouseEnter={toggleRealTimeData}
-            style={{
-              color: UIColor
-            }}
-            className="strong"
-          >
-            Home/Current
-          </button>
+        <div className="headerContainer">
+          <div className="dataTogglingArea">
+            <button
+              onClick={toggleRealTimeData}
+              onMouseEnter={toggleRealTimeData}
+              style={{
+                color: UIColor,
+                backgroundColor: modalUIColor,
+                boxShadow: boxShadow
+              }}
+              className="strong dataToggler"
+            >
+              Home/Current
+            </button>
 
-          <button
-            onClick={toggleMinuteData}
-            onMouseEnter={toggleMinuteData}
-            className="strong"
-            style={{ color: `${UIColor}` }}
-          >
-            Minutely
-          </button>
-          <button
-            onClick={toggleHourlyData}
-            onMouseEnter={toggleHourlyData}
-            style={{ color: `${UIColor}` }}
-            className="strong"
-          >
-            Hourly
-          </button>
-          <button
-            onClick={toggleDailyData}
-            onMouseEnter={toggleDailyData}
-            style={{ color: `${UIColor}` }}
-            className="strong"
-          >
-            Daily
-          </button>
-        </div>
-
-        <>
-          {/*Loading SVG*/}
-          {loading ? <Loading svgColors={svgColors} /> : null}
-          {loadingSearch ? (
-            <LoadingAbsolute svgColors={svgColors} />
-          ) : null}
-        </>
-
-        <div
-          className="hiddenSearch"
-          onMouseEnter={toggleRealTimeData}
-        ></div>
-        {showSearchModal ? (
-          <div
-            className="searchForm"
-            style={{
-              backgroundColor: modalUIColor,
-              boxShadow: boxShadow
-            }}
-          >
-            <form onSubmit={handleClick}>
-              <input
-                placeholder="Search a location..."
-                onChange={handleInputChange}
-                ref={inputRef}
-              />
-
-              <button
-                onClick={handleClick}
-                className="searchBtn"
-                key={updateRealTime}
-              >
-                <Search svgColors={svgColors} />
-              </button>
-            </form>
+            <button
+              onClick={toggleMinuteData}
+              onMouseEnter={toggleMinuteData}
+              className="strong dataToggler"
+              style={{
+                color: UIColor,
+                backgroundColor: modalUIColor,
+                boxShadow: boxShadow
+              }}
+            >
+              Minutely
+            </button>
+            <button
+              onClick={toggleHourlyData}
+              onMouseEnter={toggleHourlyData}
+              style={{
+                color: UIColor,
+                backgroundColor: modalUIColor,
+                boxShadow: boxShadow
+              }}
+              className="strong dataToggler"
+            >
+              Hourly
+            </button>
+            <button
+              onClick={toggleDailyData}
+              onMouseEnter={toggleDailyData}
+              style={{
+                color: UIColor,
+                backgroundColor: modalUIColor,
+                boxShadow: boxShadow
+              }}
+              className="strong dataToggler"
+            >
+              Daily
+            </button>
           </div>
-        ) : null}
+          <>
+            {showSearchModal ? (
+              <div
+                className="searchForm"
+                style={{
+                  backgroundColor: modalUIColor,
+                  boxShadow: boxShadow
+                }}
+              >
+                <form onSubmit={handleClick}>
+                  <input
+                    placeholder="Search a location..."
+                    onChange={handleInputChange}
+                    ref={inputRef}
+                  />
+
+                  <button
+                    onClick={handleClick}
+                    className="searchBtn"
+                    key={updateRealTime}
+                  >
+                    <Search svgColors={svgColors} />
+                  </button>
+                </form>
+              </div>
+            ) : null}
+          </>
+        </div>
 
         {/* Conditional render so we wait for the API data*/}
         {showRealTimeModal ? (
@@ -373,6 +374,15 @@ const App: React.FC = () => {
             />
           </Suspense>
         ) : null}
+
+        <>
+          {/*Loading SVG*/}
+          {loading ? <Loading svgColors={svgColors} /> : null}
+          {/* {loadingSearch ? (
+            <LoadingAbsolute svgColors={svgColors} />
+          ) : null}
+ */}{' '}
+        </>
       </main>
     </motion.div>
   );
