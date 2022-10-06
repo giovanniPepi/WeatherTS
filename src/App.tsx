@@ -140,9 +140,6 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    // load GA
-    const ga = analytics;
-
     // calls weather API
     const getData = async (
       lat: number,
@@ -197,12 +194,15 @@ const App: React.FC = () => {
       }
     };
 
+    // initial condition
+    getData(latForAPI, longForAPI, locationForAPI);
+
+    // load GA
+    const ga = analytics;
+
     setDaysToRender(getDaysToRender());
     setHoursToRender(getHoursToRender());
     setUpdateHourlyTime(updateHourly + 1);
-
-    // initial condition
-    getData(latForAPI, longForAPI, locationForAPI);
 
     // focus on input
     inputRef.current?.focus();

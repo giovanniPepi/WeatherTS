@@ -76,7 +76,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
     };
 
     getRealTime();
-  }, [apiData, setShouldReloadAPI]);
+  }, [apiData]);
 
   if (apiData === undefined) {
     return (
