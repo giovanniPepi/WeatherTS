@@ -303,6 +303,8 @@ const App: React.FC = () => {
           </div>
         ) : null}
 
+        <>{loading ? <Loading svgColors={svgColors} /> : null}</>
+
         {/* Conditional render so we wait for the API data*/}
         {showRealTimeModal ? (
           <RealTimeData
@@ -371,8 +373,6 @@ const App: React.FC = () => {
             />
           </Suspense>
         ) : null}
-
-        <>{loading ? <Loading svgColors={svgColors} /> : null}</>
       </main>
     </motion.div>
   );
