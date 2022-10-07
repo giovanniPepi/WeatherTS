@@ -101,12 +101,17 @@ const DailyData: React.FC<DailyProps> = ({
         x: window.innerWidth
       }}
     >
-      <div className="dailyMainTitle">Daily forecast</div>
-      <div className="dailyControlDiv">
+      <div className="dailyMainTitle">
         <button onClick={() => getPreviousDays()}>
           <Previous svgColors={svgColors} />
         </button>
+        <div>Daily forecast</div>
 
+        <button onClick={() => getNextDays()}>
+          <Next svgColors={svgColors} />
+        </button>
+      </div>
+      <div className="dailyControlDiv">
         <ul className="dailyUl">
           {renderedItems.map((day) => {
             return (
@@ -228,9 +233,6 @@ const DailyData: React.FC<DailyProps> = ({
             );
           })}
         </ul>
-        <button onClick={() => getNextDays()}>
-          <Next svgColors={svgColors} />
-        </button>
       </div>
     </motion.div>
   );
