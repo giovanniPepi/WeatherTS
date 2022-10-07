@@ -2,6 +2,7 @@ import { MinutelyProps } from 'interfaces';
 import { motion } from 'framer-motion';
 import Charts from './Charts';
 import NetworkError from 'src/icons/NetworkError';
+import '../css/Minutely.css';
 
 const MinutelyData: React.FC<MinutelyProps> = ({
   minuteData,

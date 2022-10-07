@@ -1,3 +1,4 @@
+import '../css/RealTimeData.css';
 import { RealTimeDataProps } from 'interfaces';
 import React, { useEffect, useState } from 'react';
 import Alert from 'src/icons/Alerts';

@@ -28,18 +28,6 @@ p {
   margin: 0;
   padding: 0;
 }
-.app {
-  position: relative;
-  min-height: 100vh;
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  justify-items: center;
-  align-items: center;
-}
-
 button {
   background: unset;
   border: none;
@@ -66,6 +54,18 @@ div {
 svg:hover {
   transform: scale(1.1);
 }
+.app {
+  position: relative;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-items: center;
+  align-items: center;
+}
+
 .ReactCollapse--collapse {
   transition: height 500ms;
 }
@@ -86,14 +86,6 @@ svg:hover {
   top: 15%;
   left: 50%;
 }
-
-.ReloadSvg {
-  padding-top: 0.3rem;
-  padding-left: 0.3rem;
-  height: 1.3rem;
-  width: 1.3rem;
-}
-
 .NetworkErrorSvg {
   align-self: center;
 }
@@ -102,10 +94,6 @@ svg:hover {
 }
 .noRainMsg {
   padding: var(--btnPadding);
-}
-/* --------------- OVERLAY CONFIG----------- */
-.minutely {
-  border-radius: var(--radius);
 }
 .loadingOverlay {
   background-color: rgba(250, 194, 167, 0.05);
@@ -120,35 +108,12 @@ svg:hover {
   padding: var(--btnPadding);
   border-radius: var(--radius);
 }
-.alertBtnHome {
-  margin-top: 0.5rem;
-}
 .logo {
   font-size: var(--biggerFont);
   font-weight: bold;
 }
 .sunnySvg {
   align-self: center;
-}
-.minutelyDataModal {
-  min-width: 60vw;
-  height: 85vh;
-  max-height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
-.noRain {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.CheckAllSvg {
-  height: 10rem;
-  width: 10rem;
 }
 
 /* ----------------- HOURLY OVERLAY*/
@@ -265,76 +230,12 @@ svg:hover {
   height: 0.8rem;
   width: 0.8rem;
 }
-/* ----------------- END DAILY OVERLAY*/
-/* ----------------- START REALTIME OVERLAY*/
-
-.realTimeDataDiv {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.windContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-}
-.windySvg {
-  align-self: center;
-}
-.showAlertsDiv {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-/* ----------------- END REALTIME OVERLAY*/
-
-/*---------------------------------------------DESKTOP */
-/* @media screen and (min-width: 750px) { */
 .searchForm {
   background-color: var(--strongAccentColor);
   backdrop-filter: var(--modalBlur);
   padding: var(--btnPadding);
   border-radius: var(--radius);
   box-shadow: var(--boxShadow);
-}
-.realTimeData {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  min-width: clamp(300px, 20vw, 30vw);
-  padding: var(--divPadding);
-  border-radius: var(--radius);
-  backdrop-filter: var(--modalBlur);
-  background-color: var(--strongAccentColor);
-  box-shadow: var(--boxShadow);
-}
-.realTimeSubData {
-  margin-top: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.2rem;
-}
-.realTimeSubDataHolder {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.3rem;
-}
-.realTimeSubDataSvg {
-  align-self: center;
-}
-.feelsLike {
-  font-size: 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.feelsLike > svg {
-  height: 1rem;
-  width: 1rem;
 }
 .headerContainer {
   margin-top: 1rem;
@@ -376,6 +277,7 @@ input {
   all: unset;
   width: 100%;
 }
+/*same for all modals*/
 .minutelyDataModal,
 .hourlyDataModal,
 .dailyDataModal,
@@ -384,10 +286,6 @@ input {
   border-radius: var(--radius);
   backdrop-filter: var(--modalBlur);
   background-color: var(--strongAccentColor);
-}
-.windContainerHome {
-  display: flex;
-  justify-content: space-between;
 }
 .hourlyUl {
   display: grid;
@@ -412,10 +310,6 @@ input {
 .twoDots {
   align-self: center;
 }
-.dailyDt {
-  font-size: var(--biggerFont);
-  flex-direction: column;
-}
 .hourlyUl {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -428,6 +322,11 @@ input {
   justify-content: space-evenly;
   align-items: center;
   display: flex;
+}
+
+.dailyDt {
+  font-size: var(--biggerFont);
+  flex-direction: column;
 }
 .PreviousSvg,
 .NextSvg {
@@ -498,11 +397,6 @@ input {
     height: 2.2rem;
     width: 2.2rem;
   }
-  .realTimeData {
-    width: 70vw;
-    max-height: 90vh;
-    margin-bottom: 1rem;
-  }
   .dataTogglingArea {
     position: relative;
     margin-top: 1rem;
@@ -518,11 +412,6 @@ input {
   }
   input {
     font-size: 0.8rem;
-  }
-  .minutelyDataModal {
-    max-width: 80vw;
-    margin-top: 1rem;
-    height: 75vh;
   }
   .noRain {
     padding: var(--btnPadding);
@@ -576,17 +465,4 @@ input {
     width: 2rem;
     height: 2rem;
   }
-}
-/*---------------------------------------------end MOBILE */
-
-/* ----------------------- HOVERING */
-.realTimeDataDiv > div > *:hover {
-  transform: scale(1.1);
-}
-.realTimeDataDiv > div:hover {
-  transform: scale(1.1);
-}
-.tickingTime:hover,
-.dailyDt:hover {
-  transform: scale(1.1);
 }

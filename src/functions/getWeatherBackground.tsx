@@ -1,6 +1,6 @@
 import { ICurrentWeatherArray } from 'interfaces';
 import clearDayBg from '../img/day/clearDayBg.webp';
-import clearNightBg from '../img/night/clearNightBg.png';
+import clearNightBg from '../img/night/clearNightBg.webp';
 import cloudsDayBg from '../img/day/cloudsDayBg.webp';
 import cloudsNightBg from '../img/night/cloudsNightBg.webp';
 import rainDayBg from '../img/day/rainDayBg.webp';

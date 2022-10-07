@@ -55,9 +55,7 @@ const Charts: React.FC<MinutelyChartProps> = ({
               datasets: [
                 {
                   label: 'Rain volume, mm ',
-
                   data: pptArray,
-
                   backgroundColor: ['#6d28d9'],
                   borderColor: ['#a78bfa'],
                   borderWidth: 0.8,
@@ -70,7 +68,6 @@ const Charts: React.FC<MinutelyChartProps> = ({
               scales: {
                 y: {
                   beginAtZero: true,
-
                   grid: {
                     display: false
                   }
