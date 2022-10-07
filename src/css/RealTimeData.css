@@ -147,10 +147,6 @@
 .twoDots {
   align-self: center;
 }
-.searchTogglerOpened,
-.searchTogglerClosed {
-  transition: height 700ms;
-}
 @media screen and (max-width: 649px) {
   .realTimeData {
     margin-bottom: 1rem;
