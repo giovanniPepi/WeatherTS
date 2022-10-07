@@ -27,6 +27,17 @@
   justify-content: center;
   gap: 0.3rem;
 }
+.titleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.searchReloadDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .realTimeSubDataSvg {
   align-self: center;
 }
@@ -135,6 +146,10 @@
 }
 .twoDots {
   align-self: center;
+}
+.searchTogglerOpened,
+.searchTogglerClosed {
+  transition: height 700ms;
 }
 @media screen and (max-width: 649px) {
   .realTimeData {

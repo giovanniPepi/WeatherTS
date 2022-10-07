@@ -129,14 +129,17 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       <div className="dailyDt strong" style={{ color: UIColor }}>
         <div className="titleContainer">
           {loading ? null : (
-            <TitleAnimation title={locationToShow} UIColor={UIColor} />
+            <>
+              <TitleAnimation title={locationToShow} UIColor={UIColor} />
+              <div className="tickingTime">
+                {hour}
+                <TickingOneSecond />
+                {minutes}
+              </div>
+            </>
           )}
         </div>
-        <div className="tickingTime">
-          {hour}
-          <TickingOneSecond />
-          {minutes}
-
+        <div className="searchReloadDiv">
           {showReloadSpinner ? (
             <ReloadSpinning svgColors={svgColors} />
           ) : (

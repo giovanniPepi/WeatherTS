@@ -265,7 +265,13 @@ const App: React.FC = () => {
           <>
             {showSearchModal ? (
               <>
-                <UnmountClosed isOpened={isOpenedSearch}>
+                <UnmountClosed
+                  isOpened={isOpenedSearch}
+                  theme={{
+                    collapse: 'searchTogglerClosed',
+                    content: 'searchTogglerOpened'
+                  }}
+                >
                   <div
                     className="searchForm"
                     style={{
