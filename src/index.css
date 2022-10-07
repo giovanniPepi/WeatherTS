@@ -231,6 +231,7 @@ svg:hover {
   width: 0.8rem;
 }
 .searchForm {
+  width: 30vw;
   background-color: var(--strongAccentColor);
   backdrop-filter: var(--modalBlur);
   padding: var(--btnPadding);
@@ -244,6 +245,7 @@ svg:hover {
   min-width: 35vw;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
 }
 .dataTogglingArea {
@@ -261,12 +263,9 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  padding: 0.4rem;
   height: 1.3rem;
   border-radius: 0.5rem;
   border: none;
-  padding: 0.2rem 0.2rem 0.3rem 0.2rem;
 }
 .SearchSvg {
   margin-top: 0.5rem;
@@ -368,28 +367,27 @@ input {
   .headerContainer {
     position: relative;
     display: flex;
-    max-width: 70vw;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    width: clamp(280px, 19vw, 29vw);
+    width: 80vw;
   }
   .dataTogglingArea {
-    width: clamp(280px, 19vw, 29vw);
     position: relative;
-    margin-top: 1rem;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    gap: 0.3rem;
-    padding: var(--btnPadding);
+    justify-content: center;
+    gap: 0.5rem;
   }
   .searchForm {
-    width: clamp(280px, 19vw, 29vw);
-    margin: unset;
-    margin-bottom: 0.5rem;
-    padding: var(--btnPadding);
+    width: 50vw;
+  }
+  form {
+  }
+  form > input {
+  }
+  .dataToggler {
   }
   .hourlyUl {
     display: grid;
