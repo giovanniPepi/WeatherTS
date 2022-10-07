@@ -31,9 +31,7 @@ const DailyData: React.FC<DailyProps> = ({
 }) => {
   //state
   const [index, setIndex] = useState(daysToRender);
-  const [renderedItems, setRenderedItems] = useState<DailyArray>(
-    dailyData!
-  );
+  const [renderedItems, setRenderedItems] = useState<DailyArray>(dailyData!);
   const [start, setStart] = useState(0);
 
   const getNextDays = () => {
@@ -83,8 +81,7 @@ const DailyData: React.FC<DailyProps> = ({
       >
         <NetworkError svgColors={svgColors} />
         <div>
-          Couldn't get API data. Check your connection or try again
-          later.
+          Couldn't get API data. Check your connection or try again later.
         </div>
       </motion.div>
     );
@@ -115,7 +112,7 @@ const DailyData: React.FC<DailyProps> = ({
             return (
               <li key={v4()} className="dailyContainer">
                 <div className="dailyDt">
-                  <div>{day.dt}</div>
+                  <div className="dailyDtTitle">{day.dt}</div>
                 </div>
                 <div
                   className="separator"

@@ -210,96 +210,98 @@ const App: React.FC = () => {
           color: `${UIColor}`
         }}
       >
-        <div className="headerContainer">
-          <div className="dataTogglingArea">
-            <button
-              onClick={toggleRealTimeData}
-              onMouseEnter={toggleRealTimeData}
-              style={{
-                color: UIColor,
-                backgroundColor: modalUIColor,
-                boxShadow: boxShadow
-              }}
-              className="strong dataToggler"
-            >
-              Home/Current
-            </button>
+        {apiData ? (
+          <div className="headerContainer">
+            <div className="dataTogglingArea">
+              <button
+                onClick={toggleRealTimeData}
+                onMouseEnter={toggleRealTimeData}
+                style={{
+                  color: UIColor,
+                  backgroundColor: modalUIColor,
+                  boxShadow: boxShadow
+                }}
+                className="strong dataToggler"
+              >
+                Home/Current
+              </button>
 
-            <button
-              onClick={toggleMinuteData}
-              onMouseEnter={toggleMinuteData}
-              className="strong dataToggler"
-              style={{
-                color: UIColor,
-                backgroundColor: modalUIColor,
-                boxShadow: boxShadow
-              }}
-            >
-              Minutely
-            </button>
-            <button
-              onClick={toggleHourlyData}
-              onMouseEnter={toggleHourlyData}
-              style={{
-                color: UIColor,
-                backgroundColor: modalUIColor,
-                boxShadow: boxShadow
-              }}
-              className="strong dataToggler"
-            >
-              Hourly
-            </button>
-            <button
-              onClick={toggleDailyData}
-              onMouseEnter={toggleDailyData}
-              style={{
-                color: UIColor,
-                backgroundColor: modalUIColor,
-                boxShadow: boxShadow
-              }}
-              className="strong dataToggler"
-            >
-              Daily
-            </button>
-          </div>
-          <>
-            {showSearchModal ? (
-              <>
-                <UnmountClosed
-                  isOpened={isOpenedSearch}
-                  theme={{
-                    collapse: 'searchTogglerClosed',
-                    content: 'searchTogglerOpened'
-                  }}
-                >
-                  <div
-                    className="searchForm"
-                    style={{
-                      backgroundColor: modalUIColor,
-                      boxShadow: boxShadow
+              <button
+                onClick={toggleMinuteData}
+                onMouseEnter={toggleMinuteData}
+                className="strong dataToggler"
+                style={{
+                  color: UIColor,
+                  backgroundColor: modalUIColor,
+                  boxShadow: boxShadow
+                }}
+              >
+                Minutely
+              </button>
+              <button
+                onClick={toggleHourlyData}
+                onMouseEnter={toggleHourlyData}
+                style={{
+                  color: UIColor,
+                  backgroundColor: modalUIColor,
+                  boxShadow: boxShadow
+                }}
+                className="strong dataToggler"
+              >
+                Hourly
+              </button>
+              <button
+                onClick={toggleDailyData}
+                onMouseEnter={toggleDailyData}
+                style={{
+                  color: UIColor,
+                  backgroundColor: modalUIColor,
+                  boxShadow: boxShadow
+                }}
+                className="strong dataToggler"
+              >
+                Daily
+              </button>
+            </div>
+            <>
+              {showSearchModal ? (
+                <>
+                  <UnmountClosed
+                    isOpened={isOpenedSearch}
+                    theme={{
+                      collapse: 'searchTogglerClosed',
+                      content: 'searchTogglerOpened'
                     }}
                   >
-                    <form onSubmit={handleClick}>
-                      <input
-                        placeholder="Search a location..."
-                        onChange={handleInputChange}
-                        ref={inputRef}
-                      />
+                    <div
+                      className="searchForm"
+                      style={{
+                        backgroundColor: modalUIColor,
+                        boxShadow: boxShadow
+                      }}
+                    >
+                      <form onSubmit={handleClick}>
+                        <input
+                          placeholder="Search a location..."
+                          onChange={handleInputChange}
+                          ref={inputRef}
+                        />
 
-                      <button
-                        onClick={handleClick}
-                        className="searchBtn"
-                        key={updateRealTime}
-                      >
-                        <Search svgColors={svgColors} />
-                      </button>
-                    </form>
-                  </div>
-                </UnmountClosed>
-              </>
-            ) : null}
-          </>
-        </div>
+                        <button
+                          onClick={handleClick}
+                          className="searchBtn"
+                          key={updateRealTime}
+                        >
+                          <Search svgColors={svgColors} />
+                        </button>
+                      </form>
+                    </div>
+                  </UnmountClosed>
+                </>
+              ) : null}
+            </>
+          </div>
+        ) : null}
 
         {/* Conditional render so we wait for the API data*/}
         {showRealTimeModal ? (

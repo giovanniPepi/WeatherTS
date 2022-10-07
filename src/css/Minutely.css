@@ -25,7 +25,7 @@
   padding: var(--divPadding);
 }
 
-@media screen and (max-width: 649px) {
+@media screen and (max-width: 950px) {
   .minutelyDataModal {
     max-width: 85vw;
     margin-top: 1rem;

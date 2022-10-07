@@ -193,7 +193,7 @@ form {
   height: 2rem;
 }
 /*-----------------------------------------------MOBILE */
-@media screen and (max-width: 649px) {
+@media screen and (max-width: 950px) {
   svg {
     height: 1.4rem;
     width: 1.4rem;
@@ -203,7 +203,7 @@ form {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
   }
   .headerContainer {
     position: relative;
