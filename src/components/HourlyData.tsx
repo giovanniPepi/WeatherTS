@@ -1,3 +1,4 @@
+import '../css/HourlyData.css';
 import { v4 } from 'uuid';
 import { HourlyArray, HourlyProps } from 'interfaces';
 import { motion } from 'framer-motion';
@@ -39,8 +40,7 @@ const HourlyData: React.FC<HourlyProps> = ({
 
   const getPreviousHours = () => {
     if (start < index - hoursToRender) setStart(0);
-    if (index < start || index < hoursToRender)
-      setIndex(hoursToRender);
+    if (index < start || index < hoursToRender) setIndex(hoursToRender);
     if (index > hoursToRender || start > 0) {
       setStart(start - hoursToRender);
       setIndex(index - hoursToRender);
@@ -76,8 +76,7 @@ const HourlyData: React.FC<HourlyProps> = ({
       >
         <NetworkError svgColors={svgColors} />
         <div>
-          Couldn't get API data. Check your connection or try again
-          later.
+          Couldn't get API data. Check your connection or try again later.
         </div>
       </motion.div>
     );
@@ -97,46 +96,47 @@ const HourlyData: React.FC<HourlyProps> = ({
         x: window.innerWidth
       }}
     >
-      <div className="hourlyMainTitle">Hourly Forecast</div>
-      <div className="hourlyControlDiv">
+      <div className="hourlyMainTitle">
         <button onClick={() => getPreviousHours()}>
           <Previous svgColors={svgColors} />
         </button>
-        <ul className="hourlyUl">
-          {renderedItems.map((hour) => {
-            return (
-              <li key={v4()} className="hourlyContainer">
-                <div className="hourlyDt">{hour.dt[1]}</div>
-
-                <div className="hourlyDataDiv">
-                  {getWeatherIcon(
-                    hour.weather[0].main,
-                    getForecastHourNight(hour.dt[0] as number),
-                    moonPhase,
-                    svgColors
-                  )}
-                  <div>{hour.weather[0].main}</div>
-                </div>
-                <div className="hourlyDataDiv">
-                  <Temperature svgColors={svgColors} />
-                  {hour.temp}
-                </div>
-                <div className="hourlyDataDiv">
-                  <Humidity svgColors={svgColors} /> {hour.humidity}
-                </div>
-                {typeof hour.uvi === 'string' ? (
-                  <div className="hourlyDataDiv">
-                    <UVI svgColors={svgColors} /> {hour.uvi}
-                  </div>
-                ) : null}
-              </li>
-            );
-          })}
-        </ul>
+        <div>Hourly Forecast</div>
         <button onClick={() => getNextHours()}>
           <Next svgColors={svgColors} />
         </button>
       </div>
+      <ul className="hourlyUl">
+        {renderedItems.map((hour) => {
+          return (
+            <li key={v4()} className="hourlyContainer">
+              <div className="hourlyDt">{hour.dt[1]}</div>
+
+              <div className="hourlyDataDiv minorHourly">
+                {getWeatherIcon(
+                  hour.weather[0].main,
+                  getForecastHourNight(hour.dt[0] as number),
+                  moonPhase,
+                  svgColors
+                )}
+                <div>{hour.weather[0].main}</div>
+              </div>
+              <div className="hourlyDataDiv minorHourly">
+                <Temperature svgColors={svgColors} />
+                {hour.temp}
+              </div>
+              <div className="hourlyDataDiv minorHourly">
+                <Humidity svgColors={svgColors} /> {hour.humidity}
+              </div>
+              {typeof hour.uvi === 'string' ? (
+                <div className="hourlyDataDiv">
+                  <UVI svgColors={svgColors} />
+                  <div className=" uvHourly">{hour.uvi}</div>
+                </div>
+              ) : null}
+            </li>
+          );
+        })}
+      </ul>
     </motion.div>
   );
 };

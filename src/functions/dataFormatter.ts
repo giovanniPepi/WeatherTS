@@ -74,7 +74,6 @@ const dataFormatter = (data: IWeatherData | undefined) => {
       hour.feels_like = `${(hour.feels_like as number).toFixed(1)} ºC`;
 
       /*only return UV at day*/ 
-      if (exactHour >= 5 && exactHour <= 19)
         hour.uvi = `${(hour.uvi as number).toFixed(0)} ${getUVSeverity
           (hour.uvi as number)}`;
       
