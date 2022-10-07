@@ -153,7 +153,7 @@
   .realTimeData {
     margin-bottom: 1rem;
     min-width: unset;
-    width: 76vw;
+    min-width: 82vw;
   }
   .alertBtnHome {
     display: flex;

@@ -206,13 +206,14 @@ form {
     gap: 2rem;
   }
   .headerContainer {
+    margin-top: 0.5rem;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    width: 80vw;
+    min-width: 80vw;
   }
   .dataTogglingArea {
     position: relative;

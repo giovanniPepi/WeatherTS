@@ -11,7 +11,7 @@
     "explorer": "^0.0.5",
     "file-loader": "^6.2.0",
     "firebase": "^9.11.0",
-    "framer-motion": "^7.5.2",
+    "framer-motion": "^7.5.3",
     "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",
     "react-collapse": "^5.1.1",
