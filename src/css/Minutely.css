@@ -2,8 +2,8 @@
   border-radius: var(--radius);
 }
 .minutelyDataModal {
-  min-width: 60vw;
-  height: 85vh;
+  min-width: 50vw;
+  height: 80vh;
   max-height: 90vh;
   display: flex;
   align-items: center;
@@ -20,6 +20,9 @@
 .CheckAllSvg {
   height: 10rem;
   width: 10rem;
+}
+.chart {
+  padding: var(--divPadding);
 }
 
 @media screen and (max-width: 649px) {

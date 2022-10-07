@@ -146,11 +146,10 @@ input {
   gap: 2rem;
 }
 .dataToggler {
-  backdrop-filter: var(--modalBlur);
+  backdrop-filter: blur(100px);
   padding: var(--btnPadding);
   border-radius: var(--radius);
   box-shadow: var(--boxShadow);
-  border: 1px solid var(--accentColor);
 }
 .searchForm {
   background-color: var(--strongAccentColor);
