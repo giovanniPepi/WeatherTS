@@ -1,15 +1,15 @@
 .dailyDataModal {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   display: flex;
   padding: 1rem 0.5rem 2rem 0.5rem;
 }
 .dailyUl {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
-  grid-template-columns: repeat(3, 1fr);
 }
 .dailyContainer {
   box-shadow: var(--boxShadow);
@@ -38,6 +38,7 @@
 }
 .dailyControlDiv {
   display: flex;
+  max-width: 70vw;
 }
 .dailyDataDiv {
   display: flex;
