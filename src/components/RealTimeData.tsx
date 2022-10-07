@@ -374,18 +374,18 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           >
             <Less svgColors={svgColors} />
           </div>
-          <Tooltip title="Moonrise and moonset time" placement="right-start">
-            <div className="realTimeDataDiv">
-              {getMoonPhase(
-                apiData.daily[0].moon_phase as number,
-                svgColors
-              )}
+          <div className="realTimeDataDiv">
+            {getMoonPhase(apiData.daily[0].moon_phase as number, svgColors)}
+            <Tooltip
+              title="Moonrise and moonset time"
+              placement="right-start"
+            >
               <div className="moonTimings">
                 <div>{apiData.daily[0].moonrise}</div>
                 <div>{apiData.daily[0].moonset}</div>
               </div>
-            </div>
-          </Tooltip>
+            </Tooltip>
+          </div>
         </div>
         <div
           className="separator"
@@ -423,29 +423,44 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           <Less svgColors={svgColors} />
         </div>
         <div className="realTimeSubDataHolder">
-          <div className="realTimeDataDiv">
-            <DewPoint svgColors={svgColors} />
-            <div>{apiData.current.dew_point}</div>
-          </div>
+          <Tooltip
+            title="Atmospheric temperature (varying according to pressure and humidity) below which water droplets begin to condense and dew can form"
+            placement="bottom"
+          >
+            <div className="realTimeDataDiv">
+              <DewPoint svgColors={svgColors} />
+              <div>{apiData.current.dew_point}</div>
+            </div>
+          </Tooltip>
 
           <div
             className="separator"
             style={{ border: `1px solid ${separatorColor}` }}
           ></div>
-          <div className="realTimeDataDiv">
-            <Pressure svgColors={svgColors} />
-            <div>{apiData.current.pressure}</div>
-          </div>
+
+          <Tooltip
+            title="Atmospheric pressure on the sea level"
+            placement="bottom"
+          >
+            <div className="realTimeDataDiv">
+              <Pressure svgColors={svgColors} />
+              <div>{apiData.current.pressure}</div>
+            </div>
+          </Tooltip>
 
           <div
             className="separator"
             style={{ border: `1px solid ${separatorColor}` }}
           ></div>
-
-          <div className="realTimeDataDiv">
-            <Visibility svgColors={svgColors} />
-            <div>{apiData.current.visibility}</div>
-          </div>
+          <Tooltip
+            title="Average visibility. The maximum value of the visibility is 10km"
+            placement="bottom"
+          >
+            <div className="realTimeDataDiv">
+              <Visibility svgColors={svgColors} />
+              <div>{apiData.current.visibility}</div>
+            </div>
+          </Tooltip>
 
           <div
             className="separator"

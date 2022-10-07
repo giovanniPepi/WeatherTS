@@ -17,6 +17,7 @@ import Rain from 'src/icons/Rain';
 import Percent from 'src/icons/Percent';
 import NetworkError from 'src/icons/NetworkError';
 import { Tooltip } from '@material-ui/core';
+import TitleAnimation from 'src/functions/TitleAnimation';
 
 const DailyData: React.FC<DailyProps> = ({
   dailyData,
@@ -27,7 +28,8 @@ const DailyData: React.FC<DailyProps> = ({
   modalUIColor,
   separatorColor,
   daysToRender,
-  boxShadow
+  boxShadow,
+  UIColor
 }) => {
   //state
   const [index, setIndex] = useState(daysToRender);
@@ -131,7 +133,10 @@ const DailyData: React.FC<DailyProps> = ({
                     day.moon_phase as number,
                     svgColors
                   )}
-                  {day.weather[0].description}
+                  <TitleAnimation
+                    title={day.weather[0].description}
+                    UIColor={UIColor}
+                  />
                 </div>
                 <div
                   className="separator"

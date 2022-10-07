@@ -11,6 +11,7 @@ import Next from 'src/icons/Next';
 import Previous from 'src/icons/Previous';
 import NetworkError from 'src/icons/NetworkError';
 import getForecastHourNight from 'src/functions/getForecastHourNight';
+import TitleAnimation from 'src/functions/TitleAnimation';
 
 const HourlyData: React.FC<HourlyProps> = ({
   hourlyData,
@@ -20,7 +21,8 @@ const HourlyData: React.FC<HourlyProps> = ({
   svgColors,
   modalUIColor,
   hoursToRender,
-  boxShadow
+  boxShadow,
+  UIColor
 }) => {
   //state
   const [index, setIndex] = useState(hoursToRender);
@@ -123,7 +125,10 @@ const HourlyData: React.FC<HourlyProps> = ({
                   moonPhase,
                   svgColors
                 )}
-                <div>{hour.weather[0].main}</div>
+                <TitleAnimation
+                  title={hour.weather[0].main}
+                  UIColor={UIColor}
+                />
               </div>
               <div className="hourlyDataDiv minorHourly">
                 <Temperature svgColors={svgColors} />
