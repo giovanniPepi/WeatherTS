@@ -50,9 +50,6 @@
   height: 1.3rem;
   width: 1.3rem;
 }
-.alertBtnHome {
-  margin-top: 0.5rem;
-}
 .realTimeDataDiv > div > *:hover {
   transform: scale(1.1);
 }
@@ -113,14 +110,16 @@
   flex-direction: column;
   align-items: flex-end;
 }
+/*margin to space from separator*/
+.alertBtnHome {
+  margin-top: 0.5rem;
+}
 .alertBtnHome,
 .completInfoBtn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border: 1px solid var(--accentColor);
-  padding: var(--btnPadding);
   border-radius: var(--radius);
 }
 /*apply margin to compensate reloading svg size*/
@@ -132,11 +131,14 @@
 .twoDots {
   align-self: center;
 }
-
 @media screen and (max-width: 649px) {
   .realTimeData {
     margin-bottom: 1rem;
     min-width: unset;
     width: 76vw;
+  }
+  .alertBtnHome {
+    display: flex;
+    flex-direction: column;
   }
 }
