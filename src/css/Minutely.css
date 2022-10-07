@@ -29,8 +29,7 @@
   .minutelyDataModal {
     max-width: 85vw;
     margin-top: 1rem;
-    height: 75vh;
-    padding: 1rem;
+    height: 60vh;
   }
   .chart {
     max-width: 65vw;
