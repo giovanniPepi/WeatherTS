@@ -1,8 +1,9 @@
 import { MinutelyProps } from 'interfaces';
 import { motion } from 'framer-motion';
-import Charts from './Charts';
 import NetworkError from 'src/icons/NetworkError';
 import '../css/Minutely.css';
+import React, { Suspense } from 'react';
+import Loading from 'src/icons/Loading';
 
 const MinutelyData: React.FC<MinutelyProps> = ({
   minuteData,
@@ -32,12 +33,13 @@ const MinutelyData: React.FC<MinutelyProps> = ({
       >
         <NetworkError svgColors={svgColors} />
         <div>
-          Couldn't get API data. Check your connection or try again
-          later.
+          Couldn't get API data. Check your connection or try again later.
         </div>
       </motion.div>
     );
   }
+
+  const Charts = React.lazy(() => import('./Charts'));
 
   return (
     <motion.div
@@ -53,7 +55,9 @@ const MinutelyData: React.FC<MinutelyProps> = ({
         x: window.innerWidth
       }}
     >
-      <Charts minuteData={minuteData} UIColor={UIColor} />
+      <Suspense fallback={<Loading svgColors={svgColors} />}>
+        <Charts minuteData={minuteData} UIColor={UIColor} />
+      </Suspense>
     </motion.div>
   );
 };
