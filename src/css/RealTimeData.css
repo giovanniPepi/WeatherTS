@@ -77,6 +77,18 @@
   display: flex;
   justify-content: space-between;
 }
+.alertsOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(1, 1, 1, 0.75);
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius);
+  justify-content: center;
+}
 .alertsModal {
   padding: var(--divPadding);
   border-radius: var(--radius);
@@ -87,9 +99,38 @@
   align-items: center;
   backdrop-filter: blur(50px);
 }
+.alertsModal {
+  display: flex;
+  justify-content: center;
+}
 .alertsModal > :nth-child(1) {
   height: 4rem;
   width: 4rem;
+}
+.moonTimings {
+  font-size: var(--smallerFont);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.alertBtnHome,
+.completInfoBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--accentColor);
+  padding: var(--btnPadding);
+  border-radius: var(--radius);
+}
+/*apply margin to compensate reloading svg size*/
+.tickingTime {
+  display: flex;
+  align-items: center;
+  margin-left: 1.3rem;
+}
+.twoDots {
+  align-self: center;
 }
 
 @media screen and (max-width: 649px) {

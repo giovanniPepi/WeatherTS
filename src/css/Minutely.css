@@ -32,4 +32,13 @@
   .chart {
     max-width: 65vw;
   }
+  .noRain {
+    padding: var(--btnPadding);
+  }
+  .noRain > .strong {
+    text-align: center;
+  }
+  .noRainMsg {
+    padding: var(--btnPadding);
+  }
 }

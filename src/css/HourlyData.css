@@ -1,0 +1,80 @@
+.hourlyContainer {
+  border-radius: var(--radius);
+  padding: var(--divPadding);
+  width: 11vw;
+  height: 26vh;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  gap: 0.2rem;
+  box-shadow: var(--boxShadow);
+}
+.hourlyUl {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(8, 1fr);
+}
+.hourlyDt {
+  text-align: center;
+}
+.hourlyControlDiv {
+  display: flex;
+}
+.hourlyDataDiv {
+  display: flex;
+  justify-content: space-between;
+}
+.hourlyMainTitle {
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  padding: var(--btnPadding);
+}
+.hourlyUl {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.hourlyDataModal {
+  height: 80vh;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  display: flex;
+}
+
+@media screen and (max-width: 649px) {
+  .hourlyUl {
+    display: grid;
+    gap: 0.3rem;
+    max-width: 90vw;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hourlyDataModal {
+    max-height: 90vh;
+    width: 85vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 85vh;
+  }
+  .hourlyContainer {
+    width: 50vw;
+  }
+  .hourlyUl {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .hourlyControlDiv {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+}

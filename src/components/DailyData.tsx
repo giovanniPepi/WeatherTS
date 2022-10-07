@@ -1,3 +1,4 @@
+import '../css/DailyData.css';
 import { v4 } from 'uuid';
 import { DailyArray, DailyProps } from 'interfaces';
 import { motion } from 'framer-motion';
