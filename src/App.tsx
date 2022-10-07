@@ -18,6 +18,7 @@ import getHoursToRender from './functions/getHoursToRender';
 import getGeoAPI from './functions/getGEOApi';
 import { analytics } from './functions/firebase';
 import RealTimeData from './components/RealTimeData';
+import { UnmountClosed } from 'react-collapse';
 
 const App: React.FC = () => {
   //state
@@ -25,18 +26,14 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [latForAPI, setLatForApi] = useState(-22.854103);
   const [longForAPI, setLonForApi] = useState(-47.048331);
-  const [locationForAPI, setLocationForApi] =
-    useState('Campinas, BR');
+  const [locationForAPI, setLocationForApi] = useState('Campinas, BR');
   const [location, setLocation] = useState<string>('');
   // the concatenated location returned by the GEO Api
   const [locationToShow, setLocationToShow] =
     useState<string>('Campinas, BR');
-  const [showMinutelyModal, setShowMinutelyModal] =
-    useState<Boolean>(false);
-  const [showHourlyModal, setShowHourlyModal] =
-    useState<Boolean>(false);
-  const [showDailyModal, setShowDailyModal] =
-    useState<Boolean>(false);
+  const [showMinutelyModal, setShowMinutelyModal] = useState<Boolean>(false);
+  const [showHourlyModal, setShowHourlyModal] = useState<Boolean>(false);
+  const [showDailyModal, setShowDailyModal] = useState<Boolean>(false);
   const [showRealTimeModal, setShowRealTimeModal] = useState(true);
   const [showSearchModal, setShowSearchModal] = useState(true);
   // GUI changers
@@ -53,32 +50,26 @@ const App: React.FC = () => {
   const [boxShadow, setBoxShadow] =
     useState(`rgba(24, 32, 79, 0.25) 0px 20px 20px, 
     rgba(255, 255, 255, 0.3) 0px 0px 0px 0.1px inset`);
-
   const [svgColors, setSvgColors] = useState('#f2a708');
   // Updates number of info per screen size
   const [daysToRender, setDaysToRender] = useState(0);
   const [hoursToRender, setHoursToRender] = useState(0);
-
   // forces rerendering to apply themes
   const [updateRealTime, setUpdateRealTime] = useState(0);
   const [updateHourly, setUpdateHourlyTime] = useState(0);
-
   // API reloading without F5'ing
   const [shouldReloadAPI, setShouldReloadAPI] = useState(false);
+  // togglers
+  const [isOpenedSearch, setIsOpenedSearch] = useState(false);
+  const [isClosedSearch, setIsClosedSearch] = useState(true);
 
   //REF
   const inputRef = useRef<HTMLInputElement>(null);
 
   // code splitting
-  const MinutelyData = React.lazy(
-    () => import('./components/MinutelyData')
-  );
-  const HourlyData = React.lazy(
-    () => import('./components/HourlyData')
-  );
-  const DailyData = React.lazy(
-    () => import('./components/DailyData')
-  );
+  const MinutelyData = React.lazy(() => import('./components/MinutelyData'));
+  const HourlyData = React.lazy(() => import('./components/HourlyData'));
+  const DailyData = React.lazy(() => import('./components/DailyData'));
 
   //https://devtrium.com/posts/react-typescript-events
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -138,11 +129,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     // calls weather API
-    const getData = async (
-      lat: number,
-      lon: number,
-      country: string
-    ) => {
+    const getData = async (lat: number, lon: number, country: string) => {
       try {
         setLoading(true);
 
@@ -175,10 +162,7 @@ const App: React.FC = () => {
         }
 
         // changes background:
-        const bg = getWeatherBackground(
-          data?.current.weather[0],
-          night
-        );
+        const bg = getWeatherBackground(data?.current.weather[0], night);
         setBackgroundImg(bg);
 
         //finally, sets API data for other components
@@ -280,29 +264,33 @@ const App: React.FC = () => {
           </div>
           <>
             {showSearchModal ? (
-              <div
-                className="searchForm"
-                style={{
-                  backgroundColor: modalUIColor,
-                  boxShadow: boxShadow
-                }}
-              >
-                <form onSubmit={handleClick}>
-                  <input
-                    placeholder="Search a location..."
-                    onChange={handleInputChange}
-                    ref={inputRef}
-                  />
-
-                  <button
-                    onClick={handleClick}
-                    className="searchBtn"
-                    key={updateRealTime}
+              <>
+                <UnmountClosed isOpened={isOpenedSearch}>
+                  <div
+                    className="searchForm"
+                    style={{
+                      backgroundColor: modalUIColor,
+                      boxShadow: boxShadow
+                    }}
                   >
-                    <Search svgColors={svgColors} />
-                  </button>
-                </form>
-              </div>
+                    <form onSubmit={handleClick}>
+                      <input
+                        placeholder="Search a location..."
+                        onChange={handleInputChange}
+                        ref={inputRef}
+                      />
+
+                      <button
+                        onClick={handleClick}
+                        className="searchBtn"
+                        key={updateRealTime}
+                      >
+                        <Search svgColors={svgColors} />
+                      </button>
+                    </form>
+                  </div>
+                </UnmountClosed>
+              </>
             ) : null}
           </>
         </div>
@@ -322,6 +310,9 @@ const App: React.FC = () => {
             separatorColor={separatorColor}
             boxShadow={boxShadow}
             setShouldReloadAPI={setShouldReloadAPI}
+            setIsClosedSearch={setIsClosedSearch}
+            setIsOpenedSearch={setIsOpenedSearch}
+            isClosedSearch={isClosedSearch}
           />
         ) : null}
 

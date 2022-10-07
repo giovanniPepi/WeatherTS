@@ -31,6 +31,7 @@ import ReloadSpinning from 'src/icons/ReloadSpinning';
 import More from 'src/icons/More';
 import Less from 'src/icons/Less';
 import { UnmountClosed } from 'react-collapse';
+import Search from 'src/icons/Search';
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
@@ -46,11 +47,13 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   modalUIColor,
   separatorColor,
   boxShadow,
-  setShouldReloadAPI
+  setShouldReloadAPI,
+  isClosedSearch,
+  setIsClosedSearch,
+  setIsOpenedSearch
 }) => {
   //state
-  const [showAlertsModal, setShowAlertsModal] =
-    useState<Boolean>(false);
+  const [showAlertsModal, setShowAlertsModal] = useState<Boolean>(false);
   const [minutes, setMinutes] = useState<number>(0);
   const [hour, sethour] = useState<number>(0);
   const [showReloadSpinner, setShowReloadSpinner] = useState(false);
@@ -99,8 +102,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       >
         <NetworkError svgColors={svgColors} />
         <div>
-          Couldn't get API data. Check your connection or try again
-          later.
+          Couldn't get API data. Check your connection or try again later.
         </div>
       </motion.div>
     );
@@ -119,14 +121,15 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         opacity: 0,
         x: window.innerWidth
       }}
+      onMouseEnter={() => {
+        setIsOpenedSearch(false);
+        setIsClosedSearch(true);
+      }}
     >
       <div className="dailyDt strong" style={{ color: UIColor }}>
-        <div>
+        <div className="titleContainer">
           {loading ? null : (
-            <TitleAnimation
-              title={locationToShow}
-              UIColor={UIColor}
-            />
+            <TitleAnimation title={locationToShow} UIColor={UIColor} />
           )}
         </div>
         <div className="tickingTime">
@@ -154,6 +157,17 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
               <Reload svgColors={svgColors} />
             </button>
           )}
+
+          {/*serach toggler*/}
+          <UnmountClosed isOpened={isClosedSearch}>
+            <div
+              onClick={() => {
+                setIsOpenedSearch((state) => !state);
+              }}
+            >
+              <Search svgColors={svgColors} />
+            </div>
+          </UnmountClosed>
         </div>
       </div>
       <div
@@ -294,10 +308,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           }}
         >
           <More svgColors={svgColors} />
-          <Tooltip
-            title="Sunrise and sunset time"
-            placement="left-start"
-          >
+          <Tooltip title="Sunrise and sunset time" placement="left-start">
             <div className="moonTimings">
               <Sunny />
             </div>
@@ -315,10 +326,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           >
             <Less svgColors={svgColors} />
           </div>
-          <Tooltip
-            title="Sunrise and sunset time"
-            placement="right-start"
-          >
+          <Tooltip title="Sunrise and sunset time" placement="right-start">
             <div className="realTimeDataDiv">
               <Sunny />
               <div className="moonTimings">
@@ -344,10 +352,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         >
           <More svgColors={svgColors} />
           <div className="moonTimings">
-            {getMoonPhase(
-              apiData.daily[0].moon_phase as number,
-              svgColors
-            )}
+            {getMoonPhase(apiData.daily[0].moon_phase as number, svgColors)}
           </div>
         </div>
         <div
@@ -366,10 +371,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           >
             <Less svgColors={svgColors} />
           </div>
-          <Tooltip
-            title="Moonrise and moonset time"
-            placement="right-start"
-          >
+          <Tooltip title="Moonrise and moonset time" placement="right-start">
             <div className="realTimeDataDiv">
               {getMoonPhase(
                 apiData.daily[0].moon_phase as number,

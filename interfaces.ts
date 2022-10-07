@@ -174,6 +174,9 @@ interface RealTimeDataProps {
   separatorColor: string;
   boxShadow: string;
   setShouldReloadAPI: StateChangerB;
+  isClosedSearch: boolean,
+  setIsClosedSearch: StateChangerB,
+  setIsOpenedSearch: StateChangerB;
 }
 
 interface AlertsModalProps {
