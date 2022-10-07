@@ -48,6 +48,11 @@ const HourlyData: React.FC<HourlyProps> = ({
   };
 
   const getItemsToRender = () => {
+    if (!hourlyData) {
+      console.log('error in hourlydata');
+      return;
+    }
+
     const newRender: HourlyArray = hourlyData!.slice(start, index);
     setRenderedItems(newRender);
   };

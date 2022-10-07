@@ -49,35 +49,31 @@
 }
 
 @media screen and (max-width: 950px) {
-  .hourlyUl {
-    display: grid;
-    gap: 0.3rem;
-    max-width: 90vw;
-    grid-template-columns: repeat(2, 1fr);
-  }
   .hourlyDataModal {
-    max-height: 90vh;
-    width: 85vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-height: 85vh;
-  }
-  .hourlyContainer {
-    width: 50vw;
+    padding: 0.8rem 0.8rem 1.5rem 0.8rem;
   }
   .hourlyUl {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
   }
-  .hourlyControlDiv {
-    align-self: center;
+  .hourlyContainer {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+    flex-direction: column;
+    height: unset;
+    padding: var(--divPadding);
+    gap: 0.8rem;
+  }
+  .hourlyDt {
+    min-width: 60vw;
+    width: unset;
+  }
+  .hourlyDataDiv {
+    min-width: 50vw;
+    height: 3vh;
+    width: unset;
+    gap: 0.5rem;
+  }
+  .minorHourly {
+    width: unset;
   }
 }
