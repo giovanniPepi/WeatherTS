@@ -351,22 +351,6 @@ input {
   border-radius: var(--radius);
   justify-content: center;
 }
-/*Text style for the alerts*/
-.alertsModal {
-  min-width: 80vw;
-  padding: var(--divPadding);
-  border-radius: var(--radius);
-  border: 1px solid var(--accentColor);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(50px);
-}
-.alertsModal > :nth-child(1) {
-  height: 4rem;
-  width: 4rem;
-}
 
 /*-----------------------------------------------MOBILE */
 @media screen and (max-width: 649px) {
@@ -380,6 +364,32 @@ input {
     justify-content: flex-start;
     align-items: center;
     gap: 1rem;
+  }
+  .headerContainer {
+    position: relative;
+    display: flex;
+    max-width: 70vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: clamp(280px, 19vw, 29vw);
+  }
+  .dataTogglingArea {
+    width: clamp(280px, 19vw, 29vw);
+    position: relative;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 0.3rem;
+    padding: var(--btnPadding);
+  }
+  .searchForm {
+    width: clamp(280px, 19vw, 29vw);
+    margin: unset;
+    margin-bottom: 0.5rem;
+    padding: var(--btnPadding);
   }
   .hourlyUl {
     display: grid;
@@ -396,19 +406,6 @@ input {
   .NextSvg {
     height: 2.2rem;
     width: 2.2rem;
-  }
-  .dataTogglingArea {
-    position: relative;
-    margin-top: 1rem;
-    width: 85vw;
-    align-items: center;
-    justify-content: center;
-  }
-  .searchForm {
-    margin: unset;
-    margin-bottom: 0.5rem;
-    padding: var(--btnPadding);
-    width: 85vw;
   }
   input {
     font-size: 0.8rem;

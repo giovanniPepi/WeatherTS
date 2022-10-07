@@ -77,11 +77,26 @@
   display: flex;
   justify-content: space-between;
 }
+.alertsModal {
+  min-width: 80vw;
+  padding: var(--divPadding);
+  border-radius: var(--radius);
+  border: 1px solid var(--accentColor);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(50px);
+}
+.alertsModal > :nth-child(1) {
+  height: 4rem;
+  width: 4rem;
+}
 
 @media screen and (max-width: 649px) {
   .realTimeData {
-    width: 70vw;
-    max-height: 90vh;
     margin-bottom: 1rem;
+    min-width: unset;
+    max-width: clamp(300px, 20vw, 30vw);
   }
 }
