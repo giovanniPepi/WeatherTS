@@ -121,10 +121,6 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         opacity: 0,
         x: window.innerWidth
       }}
-      onMouseEnter={() => {
-        setIsOpenedSearch(false);
-        setIsClosedSearch(true);
-      }}
     >
       <div className="dailyDt strong" style={{ color: UIColor }}>
         <div className="titleContainer">

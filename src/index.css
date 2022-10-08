@@ -78,6 +78,15 @@ input {
   align-items: center;
   gap: 1rem;
 }
+.locationNotFound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  backdrop-filter: var(--modalBlur);
+  padding: var(--divPadding);
+  border-radius: var(--radius);
+}
 .separator {
   width: 100%;
   border: 1px solid black;

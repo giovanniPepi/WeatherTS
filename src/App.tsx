@@ -19,6 +19,7 @@ import getGeoAPI from './functions/getGEOApi';
 import { analytics } from './functions/firebase';
 import RealTimeData from './components/RealTimeData';
 import { UnmountClosed } from 'react-collapse';
+import NetworkError from './icons/NetworkError';
 
 const App: React.FC = () => {
   //state
@@ -62,6 +63,7 @@ const App: React.FC = () => {
   // togglers
   const [isOpenedSearch, setIsOpenedSearch] = useState(false);
   const [isClosedSearch, setIsClosedSearch] = useState(true);
+  const [showNotFound, setShowNotFound] = useState(false);
 
   //REF
   const inputRef = useRef<HTMLInputElement>(null);
@@ -80,7 +82,6 @@ const App: React.FC = () => {
   const handleClick = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     setLoading(true);
-    // setLoadingSearch(true);
     const newLoc = await getGeoAPI(location);
     console.log(newLoc);
     // avoids undefined
@@ -90,7 +91,13 @@ const App: React.FC = () => {
       setLocationForApi(newLoc.country);
       setLocationToShow(`${newLoc.name}, ${newLoc.country}`);
       setLoading(false);
-      // setLoadingSearch(false);
+      setShowNotFound(false);
+      //closes search modal
+      setIsOpenedSearch(false);
+      setIsClosedSearch(true);
+    } else {
+      setLoading(false);
+      setShowNotFound(true);
     }
   };
 
@@ -101,6 +108,7 @@ const App: React.FC = () => {
     setShowHourlyModal(false);
     setShowDailyModal(false);
     setShowSearchModal(false);
+    setShowNotFound(false);
   };
 
   const toggleHourlyData = () => {
@@ -109,6 +117,7 @@ const App: React.FC = () => {
     setShowRealTimeModal(false);
     setShowDailyModal(false);
     setShowSearchModal(false);
+    setShowNotFound(false);
   };
 
   const toggleDailyData = () => {
@@ -117,6 +126,7 @@ const App: React.FC = () => {
     setShowMinutelyModal(false);
     setShowRealTimeModal(false);
     setShowSearchModal(false);
+    setShowNotFound(false);
   };
 
   const toggleRealTimeData = () => {
@@ -304,6 +314,17 @@ const App: React.FC = () => {
         ) : null}
 
         <>{loading ? <Loading svgColors={svgColors} /> : null}</>
+        <>
+          {showNotFound ? (
+            <div
+              className="locationNotFound"
+              style={{ backgroundColor: modalUIColor, color: UIColor }}
+            >
+              <NetworkError svgColors={svgColors} />
+              <div>Location not found, please try again!</div>
+            </div>
+          ) : null}
+        </>
 
         {/* Conditional render so we wait for the API data*/}
         {showRealTimeModal ? (
