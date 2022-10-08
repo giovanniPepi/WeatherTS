@@ -213,14 +213,15 @@ form {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    min-width: 80vw;
+    min-width: clamp(80vw, 650px, 90vw);
   }
   .dataTogglingArea {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 0.5rem;
+    width: 100%;
   }
   .searchForm {
     width: 50vw;
