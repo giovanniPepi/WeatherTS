@@ -1,28 +1,21 @@
-import React, {
-  ChangeEvent,
-  Suspense,
-  useEffect,
-  useRef,
-  useState
-} from 'react';
+import React, { ChangeEvent, Suspense, useEffect, useState } from 'react';
 import type { IWeatherData } from '../interfaces';
 import { motion } from 'framer-motion';
 import getWeatherAPI from './functions/getWeatherAPI';
 import dataFormatter from './functions/dataFormatter';
-import Loading from './icons/Loading';
-import Search from './icons/Search';
-import getWeatherBackground from './functions/getWeatherBackground';
-import isNight from './functions/isNight';
 import getDaysToRender from './functions/getDaysToRender';
 import getHoursToRender from './functions/getHoursToRender';
+import isNight from './functions/isNight';
 import getGeoAPI from './functions/getGEOApi';
 import { analytics } from './functions/firebase';
+import getWeatherBackground from './functions/getWeatherBackground';
+import Loading from './icons/Loading';
+import Search from './icons/Search';
 import RealTimeData from './components/RealTimeData';
 import { UnmountClosed } from 'react-collapse';
 import NetworkError from './icons/NetworkError';
 
 const App: React.FC = () => {
-  //state
   const [apiData, setApiData] = useState<IWeatherData>();
   const [loading, setLoading] = useState(false);
   const [latForAPI, setLatForApi] = useState(-22.854103);
@@ -64,9 +57,6 @@ const App: React.FC = () => {
   const [isOpenedSearch, setIsOpenedSearch] = useState(false);
   const [isClosedSearch, setIsClosedSearch] = useState(true);
   const [showNotFound, setShowNotFound] = useState(false);
-
-  //REF
-  const inputRef = useRef<HTMLInputElement>(null);
 
   // code splitting
   const MinutelyData = React.lazy(() => import('./components/MinutelyData'));
@@ -194,9 +184,6 @@ const App: React.FC = () => {
     setDaysToRender(getDaysToRender());
     setHoursToRender(getHoursToRender());
     setUpdateHourlyTime(updateHourly + 1);
-
-    // focus on input
-    inputRef.current?.focus();
   }, [latForAPI, locationForAPI, longForAPI, night, shouldReloadAPI]);
 
   return (
@@ -294,9 +281,10 @@ const App: React.FC = () => {
                         <input
                           placeholder="Search a location..."
                           onChange={handleInputChange}
-                          ref={inputRef}
+                          ref={(input) => {
+                            input && input.focus();
+                          }}
                         />
-
                         <button
                           onClick={handleClick}
                           className="searchBtn"
