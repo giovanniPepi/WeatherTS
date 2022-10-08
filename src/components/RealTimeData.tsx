@@ -35,7 +35,6 @@ import Search from 'src/icons/Search';
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
-
 const RealTimeData: React.FC<RealTimeDataProps> = ({
   apiData,
   locationToShow,
@@ -94,7 +93,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         animate={{
           opacity: 1
         }}
-        transition={{ duration: 2 }}
+        transition={{ duration: 0.8 }}
         exit={{
           opacity: 0,
           x: window.innerWidth
@@ -116,7 +115,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
       animate={{
         opacity: 1
       }}
-      transition={{ duration: 2 }}
+      transition={{ duration: 1 }}
       exit={{
         opacity: 0,
         x: window.innerWidth

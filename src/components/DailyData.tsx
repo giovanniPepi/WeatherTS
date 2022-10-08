@@ -97,7 +97,7 @@ const DailyData: React.FC<DailyProps> = ({
       animate={{
         opacity: 1
       }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.8 }}
       exit={{
         opacity: 0,
         x: window.innerWidth
@@ -160,15 +160,17 @@ const DailyData: React.FC<DailyProps> = ({
                 <div className="dailyDataDiv">
                   <Temperature svgColors={svgColors} />
                   <div className="tempContainer">
+                    <div>Max {day.temp.max}</div>
+                    <div>Min {day.temp.min}</div>
+                  </div>
+                  <div className="tempContainer">
                     {day.temp.morn ? (
                       <div>Morning {day.temp.morn}</div>
                     ) : null}
-                    {day.temp.eve ? (
-                      <div>Evening: {day.temp.eve}</div>
-                    ) : null}
+                    {day.temp.eve ? <div>Evening {day.temp.eve}</div> : null}
                     {day.temp.night ? (
                       <div className="tempHolder">
-                        <div>Night: {day.temp.night}</div>
+                        <div>Night {day.temp.night}</div>
                       </div>
                     ) : null}
                   </div>

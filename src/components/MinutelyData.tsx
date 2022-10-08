@@ -25,7 +25,7 @@ const MinutelyData: React.FC<MinutelyProps> = ({
           backgroundColor: modalUIColor,
           boxShadow: boxShadow
         }}
-        transition={{ duration: 2 }}
+        transition={{ duration: 0.8 }}
         exit={{
           opacity: 0,
           x: window.innerWidth

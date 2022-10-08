@@ -3,20 +3,14 @@ const isNight = (timezone: string): boolean => {
   
   if (!timezone) return false;
 
-  console.log(timezone);
-  
   const localHour = new Date(
     new Date().toLocaleString('en-US', { timeZone: `${timezone}` })
   );
   const hours = localHour.getHours();
-
       
   // night boolean check
-  const condition = hours >= 18 || hours <= 5;
-  
-  const night = condition;
+  const condition = hours >= 18 || hours <= 5;  
 
-  // console.log(night, hours);
-  return night;
+  return condition;
 };
 export default isNight;

@@ -205,7 +205,7 @@ const App: React.FC = () => {
       animate={{
         opacity: 1
       }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.5 }}
       exit={{
         opacity: 0,
         x: window.innerWidth

@@ -24,12 +24,8 @@ const AlertsModal: React.FC<AlertsModalProps> = ({
         x: window.innerWidth
       }}
     >
-      <div
-        className="alertsModal"
-        ref={domNode}
-        style={{ color: UIColor }}
-      >
-        {apiData.alerts[0].description}
+      <div className="alertsModal" ref={domNode} style={{ color: UIColor }}>
+        {apiData.alerts![0].description}
       </div>
     </motion.div>
   );

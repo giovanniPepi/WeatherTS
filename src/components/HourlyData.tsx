@@ -75,7 +75,7 @@ const HourlyData: React.FC<HourlyProps> = ({
         animate={{
           opacity: 1
         }}
-        transition={{ duration: 2 }}
+        transition={{ duration: 0.8 }}
         exit={{
           opacity: 0,
           x: window.innerWidth

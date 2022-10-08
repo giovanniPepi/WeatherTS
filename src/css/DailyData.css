@@ -74,7 +74,7 @@
     justify-content: center;
     align-items: center;
     padding: 1rem 1rem 2rem 1rem;
-    min-width: 82vw;
+    min-width: 80vw;
   }
   .dailyUl {
     display: flex;
@@ -87,10 +87,14 @@
     justify-content: center;
     font-size: 1.1rem;
   }
+  .dailyContainer {
+    min-width: 70vw;
+  }
   .dailyDtTitle {
     width: 55vw;
   }
   .dailyControlDiv {
+    max-width: unset;
     align-self: center;
     display: flex;
     align-items: center;
