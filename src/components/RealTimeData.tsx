@@ -74,7 +74,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         setMinutes(currentMinute as number);
       }, 1000);
       return () => {
-        clearInterval(myInterval);
+        clearInterval(myIntervalfavicon.ico);
       };
     };
 
