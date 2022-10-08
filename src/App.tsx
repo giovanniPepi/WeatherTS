@@ -19,7 +19,7 @@ const App: React.FC = () => {
   const [apiData, setApiData] = useState<IWeatherData>();
   const [loading, setLoading] = useState(false);
   // formatted location to get data
-  const [locationForAPI, setLocationForApi] = useState({
+  const [locationForAPI, setLocationForAPI] = useState({
     lat: -22.854103,
     lon: -47.048331,
     country: 'BR'
@@ -86,7 +86,7 @@ const App: React.FC = () => {
     console.log(newLoc);
     // avoids undefined
     if (newLoc) {
-      setLocationForApi({
+      setLocationForAPI({
         lat: newLoc.lat,
         lon: newLoc.lon,
         country: newLoc.country
@@ -190,13 +190,8 @@ const App: React.FC = () => {
       }
     };
 
-    const initObj = {
-      lat: -22.854103,
-      lon: -47.048331,
-      country: 'BR'
-    };
     // initial condition
-    getData(initObj);
+    getData(locationForAPI);
 
     // load GA
     const ga = analytics;
