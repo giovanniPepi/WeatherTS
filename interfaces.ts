@@ -9,7 +9,7 @@ interface IWeatherData {
   minutely: Minutely;
   hourly: HourlyArray;
   daily: Daily;
-  alerts: Ialerts[];
+  alerts: Ialerts[] | undefined;
 }
 
 interface Ialerts {
@@ -22,29 +22,29 @@ interface Ialerts {
 }
 
 interface IWeatherDataCurrent {
-  clouds: number | string;
-  dew_point: number | string;
   dt: number | string;
-  feels_like: number | string;
-  humidity: number | string;
-  pressure: number | string;
-  rain: rainObj | undefined; 
-  snow: rainObj | undefined;
   sunrise: number | string;
   sunset: number | string;
   temp: number | string;
+  feels_like: number | string;
+  pressure: number | string;
+  humidity: number | string;
+  dew_point: number | string;
   uvi: number | string;
+  clouds: number | string;
   visibility: number | string;
-  weather: CurrentWeather;
   wind_deg: number | string;
   wind_speed: number | string;
+  rain: rainObj | undefined; 
+  snow: rainObj | undefined;
+  weather: CurrentWeather;
 }
 
 interface ICurrentWeatherArray {
-  description: string;
-  icon: string;
   id: number;
   main: string;
+  description: string;
+  icon: string;
 }
 
 interface IFeelsLikeDaily {
@@ -55,56 +55,49 @@ interface IFeelsLikeDaily {
 }
  interface ITempDaily {
   day: number | string;
+  min: number| string;
+  max: number| string;  
   night: number| string;
   eve: number| string; 
-   morn: number| string;
-   min: number| string;
-   max: number| string;
+  morn: number| string;
  }
 
 interface IDailyWeather {
-  clouds: number | string;
-  dew_point: number| string;
   dt: number| string;
-  feels_like: IFeelsLikeDaily;
-  humidity: number| string;
-  pressure: number| string;
-  moon_phase: number| string;
-  moonrise: number| string;
-  moonset: number| string;
   sunrise: number| string;
   sunset: number| string;
+  moonrise: number| string;
+  moonset: number| string;
+  moon_phase: number| string;
   temp: ITempDaily;
-  uvi: number | string;
-  visibility: number;
-  weather: CurrentWeather;
-  wind_deg: number | string;
+  feels_like: IFeelsLikeDaily;
+  pressure: number| string;
+  humidity: number| string;
+  dew_point: number| string;
   wind_speed: number| string;
+  wind_deg: number | string;
   wind_gust: number | string;
-  rain: number | string;
-  snow: number | string;
+  weather: CurrentWeather;
+  clouds: number | string;
   pop: number | string;
-
-
+  uvi: number | string;
 }
 
 interface IHourlyWeather {
-  clouds: number| string;
-  dew_point: number| string;
-  dt: (string | number)[] ;
-  feels_like: number| string;
-  humidity: number| string;
-  pop: number| string;
-  pressure: number| string;
+  dt: (string | number)[];
   temp: number| string;
+  feels_like: number| string;
+  pressure: number| string;
+  humidity: number| string;
+  dew_point: number| string;
   uvi: number | string;
+  clouds: number| string;
   visibility: number| string;
-  weather: CurrentWeather;
+  wind_speed: number | string;
   wind_deg: number| string;
   wind_gust: number| string;
-  wind_speed: number | string;
-  rain: rainObj | undefined; 
-  snow: rainObj | undefined;
+  weather: CurrentWeather;
+  pop: number| string;
 
 }
 
@@ -211,6 +204,7 @@ interface ITitleAnimation {
 interface ISvgColors {
   svgColors: string;
 }
+
 
 type CurrentWeather = ICurrentWeatherArray[];
 type Daily = IDailyWeather[];

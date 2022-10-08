@@ -34,7 +34,9 @@ const App: React.FC = () => {
   const [showRealTimeModal, setShowRealTimeModal] = useState(true);
   const [showSearchModal, setShowSearchModal] = useState(true);
   // GUI changers
-  const [backgroundImg, setBackgroundImg] = useState();
+  const [backgroundImg, setBackgroundImg] = useState(`linear-gradient(
+    rgba(55, 6, 135, 0.75),
+    rgba(109, 40, 217, 0.18))`);
   const [night, setNight] = useState(false);
   const [moonPhase, setMoonPhase] = useState(0);
   const [UIColor, setUIColor] = useState('rgb(255, 255, 255)');

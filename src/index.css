@@ -68,6 +68,10 @@ input {
   gap: 2rem;
   justify-content: flex-start;
   align-items: center;
+  background-image: linear-gradient(
+    rgba(55, 6, 135, 0.75),
+    rgba(109, 40, 217, 0.18)
+  );
 }
 .headerContainer {
   margin-top: 1rem;

@@ -43,7 +43,6 @@ const dataFormatter = (data: IWeatherData | undefined) => {
       if (data.current.rain["3h"])
         data.current.rain["3h"] = `${data.current.rain["3h"]} mm`;
     }
-
     if (data.current.snow) {
       data.current.snow["1h"] = `${data.current.snow["1h"]} mm`;
       if (data.current.snow["3h"])
@@ -59,24 +58,19 @@ const dataFormatter = (data: IWeatherData | undefined) => {
   if (data?.hourly) {
 
     data.hourly.forEach((hour) => {
-
       /*format to check UV*/ 
       const exactHour = new Date(hour.dt as unknown as number * 1000).getHours();
       
       hour.dt = [hour.dt as unknown as number, `${getFormattedDate(hour.dt as unknown as number)} ${getExactHours(hour.dt as unknown as number)}`];
-
-      hour.weather[0]['description'] = `${capitalizeFirst(hour.weather[0]['description'] as string)}`;
-      
+      hour.weather[0]['description'] = `${capitalizeFirst(hour.weather[0]['description'] as string)}`;      
       hour.pop = `${(hour.pop as number * 100).toFixed(0)}%`
-
       hour.humidity = `${(hour.humidity as number).toFixed(0)} %`;
       hour.temp = `${(hour.temp as number).toFixed(1)} ºC`;
       hour.feels_like = `${(hour.feels_like as number).toFixed(1)} ºC`;
 
       /*only return UV at day*/ 
         hour.uvi = `${(hour.uvi as number).toFixed(0)} ${getUVSeverity
-          (hour.uvi as number)}`;
-      
+          (hour.uvi as number)}`;     
       hour.dew_point = `${hour.dew_point} ºC`;
       hour.visibility = `${(hour.visibility as number) / 1000} km`;
       hour.pressure = `${hour.pressure} hPa`;
@@ -91,23 +85,15 @@ const dataFormatter = (data: IWeatherData | undefined) => {
       hour.wind_gust = `${convertToKm(
         hour.wind_gust as number
       )} km/h`;
-
-      if (hour.rain) {
-        hour.rain["1h"] = `${hour.rain["1h"]} mm`;
-        if (hour.rain["3h"])
-          hour.rain["3h"] = `${hour.rain["3h"]} mm`;
-      }
     })
 
   }
   if (data?.daily) {
       data.daily.forEach(day => {
         day.dt = `${getFormattedDate(day.dt as number)}`;
-        day.humidity = `${(day.humidity as number).toFixed(0)} %`;
-        day.rain = `${day.rain as number} mm`
-        day.snow = `${day.snow as number} mm`
-
-        // temp obj        
+        day.humidity = `${(day.humidity as number).toFixed(0)} %`;      
+        
+        // temp obj
         const temps = Object.values(day.temp);
         const formattedTemps: string[] = []
         temps.forEach((temp) => {
@@ -124,38 +110,18 @@ const dataFormatter = (data: IWeatherData | undefined) => {
         }
         day.temp = newTempObj;
 
-        const feelsLike = Object.values(day.feels_like);
-        const formattedFeelsLike: string[] = []
-        feelsLike.forEach((feel) => {
-          // fix to 1 decimal and add ºC
-          formattedFeelsLike.push(`${(feel as number).toFixed(1)} ºC`);
-        })
-        const newFeelsLikeObj = {
-          day: formattedFeelsLike[0],
-          min: formattedFeelsLike[1],
-          max: formattedFeelsLike[2],
-          night: formattedFeelsLike[3],
-          eve: formattedFeelsLike[4],
-          morn: formattedFeelsLike[5]
-        }
-        day.feels_like = newFeelsLikeObj;
-
         // capitalize first
         day.weather[0]["description"] = `${capitalizeFirst(day.weather[0]["description"] as string)}`;
 
  day.uvi = `${(day.uvi as number).toFixed(0)} ${getUVSeverity
-          (day.uvi as number)}`;
-
-        day.dew_point = `${day.dew_point} ºC`;
+        (day.uvi as number)}`;
 
         day.sunrise = `${getExactHours(
-          day.sunrise as number
+        day.sunrise as number
         )}`;
         day.sunset = `${getExactHours(day.sunset as number)}`;
-        day.pressure = `${day.pressure} hPa`;
         day.clouds = `${day.clouds} %`;
         day.pop = `${(day.pop as number * 100).toFixed(0)} %`;
-
         day.wind_deg = `${getWindDir(
           day.wind_deg as number
         )}`;
@@ -166,8 +132,7 @@ const dataFormatter = (data: IWeatherData | undefined) => {
           day.wind_gust as number
     )} km/h`;
         day.moonrise = `${getExactHours(day.moonrise as number)}`;
-        day.moonset = `${getExactHours(day.moonset as number)}`;
-    
+        day.moonset = `${getExactHours(day.moonset as number)}`;    
     });
   }
 

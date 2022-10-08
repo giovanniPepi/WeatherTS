@@ -2,6 +2,8 @@
 const isNight = (timezone: string): boolean => {
   
   if (!timezone) return false;
+
+  console.log(timezone);
   
   const localHour = new Date(
     new Date().toLocaleString('en-US', { timeZone: `${timezone}` })
