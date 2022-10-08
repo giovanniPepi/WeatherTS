@@ -1,5 +1,4 @@
-const getDaysToRender = (): number => {
-  const screenWidth = window.screen.availWidth;
+const getDaysToRender = (screenWidth: number): number => {
   let daysToRender = 0;
 
   if (screenWidth < 950) daysToRender = 1;

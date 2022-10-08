@@ -1,5 +1,4 @@
-const getHoursToRender = (): number => {
-  const screenWidth = window.screen.availWidth;
+const getHoursToRender = (screenWidth: number): number => {
   let HoursToRender = 0;
 
   if (screenWidth < 950) HoursToRender = 2;

@@ -63,10 +63,15 @@ const App: React.FC = () => {
   const [isClosedSearch, setIsClosedSearch] = useState(true);
   const [showNotFound, setShowNotFound] = useState(false);
 
+  const [screenWidth, setScreenWidth] = useState(0);
+
   // code splitting
   const MinutelyData = React.lazy(() => import('./components/MinutelyData'));
   const HourlyData = React.lazy(() => import('./components/HourlyData'));
   const DailyData = React.lazy(() => import('./components/DailyData'));
+
+  if (screenWidth !== window.screen.width)
+    setScreenWidth(window.screen.availWidth);
 
   //https://devtrium.com/posts/react-typescript-events
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -168,7 +173,11 @@ const App: React.FC = () => {
           setUpdateRealTime((state) => state + 1);
         }
         // changes background:
-        const bg = getWeatherBackground(data?.current.weather[0], night);
+        const bg = getWeatherBackground(
+          data?.current.weather[0],
+          night,
+          screenWidth
+        );
         setBackgroundImg(bg);
 
         //finally, sets API data for other components
@@ -192,8 +201,10 @@ const App: React.FC = () => {
     // load GA
     const ga = analytics;
 
-    setDaysToRender(getDaysToRender());
-    setHoursToRender(getHoursToRender());
+    // update size to show in daily/hourly modal
+    // force rerender
+    setDaysToRender(getDaysToRender(screenWidth));
+    setHoursToRender(getHoursToRender(screenWidth));
     setUpdateHourlyTime(updateHourly + 1);
   }, [locationForAPI, night, shouldReloadAPI]);
 
@@ -372,7 +383,7 @@ const App: React.FC = () => {
               moonPhase={moonPhase}
               svgColors={svgColors}
               hoursToRender={hoursToRender}
-              key={updateHourly}
+              /* key={updateHourly} */
               boxShadow={boxShadow}
             />
           </Suspense>
