@@ -1,7 +1,11 @@
 import { IWeatherData } from "interfaces";
 
-const getWeatherAPI = async (lat: number, lon: number, country: string): Promise<IWeatherData | undefined> => {
-    console.log('Weather API call');
+const getWeatherAPI = async(locationObj: { lat?: number; lon?: number; country?: string; }): Promise<IWeatherData | undefined> => {
+  console.log('Weather API call', locationObj);
+  
+  const lat = locationObj.lat;
+  const lon = locationObj.lon
+  const country = locationObj.country
   
   if (country === 'BR') {
     try {

@@ -18,9 +18,12 @@ import NetworkError from './icons/NetworkError';
 const App: React.FC = () => {
   const [apiData, setApiData] = useState<IWeatherData>();
   const [loading, setLoading] = useState(false);
-  const [latForAPI, setLatForApi] = useState(-22.854103);
-  const [longForAPI, setLonForApi] = useState(-47.048331);
-  const [locationForAPI, setLocationForApi] = useState('Campinas, BR');
+  // formatted location to get data
+  const [locationForAPI, setLocationForApi] = useState({
+    lat: -22.854103,
+    lon: -47.048331,
+    country: 'BR'
+  });
   const [location, setLocation] = useState<string>('');
   // the concatenated location returned by the GEO Api
   const [locationToShow, setLocationToShow] =
@@ -76,9 +79,11 @@ const App: React.FC = () => {
     console.log(newLoc);
     // avoids undefined
     if (newLoc) {
-      setLatForApi(newLoc.lat);
-      setLonForApi(newLoc.lon);
-      setLocationForApi(newLoc.country);
+      setLocationForApi({
+        lat: newLoc.lat,
+        lon: newLoc.lon,
+        country: newLoc.country
+      });
       setLocationToShow(`${newLoc.name}, ${newLoc.country}`);
       setLoading(false);
       setShowNotFound(false);
@@ -90,7 +95,6 @@ const App: React.FC = () => {
       setShowNotFound(true);
     }
   };
-
   // toggles - handle open/closing modals
   const toggleMinuteData = () => {
     setShowMinutelyModal(true);
@@ -100,7 +104,6 @@ const App: React.FC = () => {
     setShowSearchModal(false);
     setShowNotFound(false);
   };
-
   const toggleHourlyData = () => {
     setShowHourlyModal(true);
     setShowMinutelyModal(false);
@@ -109,7 +112,6 @@ const App: React.FC = () => {
     setShowSearchModal(false);
     setShowNotFound(false);
   };
-
   const toggleDailyData = () => {
     setShowDailyModal(true);
     setShowHourlyModal(false);
@@ -118,7 +120,6 @@ const App: React.FC = () => {
     setShowSearchModal(false);
     setShowNotFound(false);
   };
-
   const toggleRealTimeData = () => {
     setShowRealTimeModal(true);
     setShowDailyModal(false);
@@ -129,11 +130,15 @@ const App: React.FC = () => {
 
   useEffect(() => {
     // calls weather API
-    const getData = async (lat: number, lon: number, country: string) => {
+    const getData = async (locationForAPI: {
+      lat?: number;
+      lon?: number;
+      country?: string;
+    }) => {
       try {
         setLoading(true);
 
-        const data = await getWeatherAPI(lat, lon, country);
+        const data = await getWeatherAPI(locationForAPI);
         console.log(data);
 
         // sets night based in timezone
@@ -160,7 +165,6 @@ const App: React.FC = () => {
     rgba(255, 255, 255, 0.3) 0px 0px 0px 0.1px inset`);
           setUpdateRealTime((state) => state + 1);
         }
-
         // changes background:
         const bg = getWeatherBackground(data?.current.weather[0], night);
         setBackgroundImg(bg);
@@ -175,8 +179,13 @@ const App: React.FC = () => {
       }
     };
 
+    const initObj = {
+      lat: -22.854103,
+      lon: -47.048331,
+      country: 'BR'
+    };
     // initial condition
-    getData(latForAPI, longForAPI, locationForAPI);
+    getData(initObj);
 
     // load GA
     const ga = analytics;
@@ -184,7 +193,7 @@ const App: React.FC = () => {
     setDaysToRender(getDaysToRender());
     setHoursToRender(getHoursToRender());
     setUpdateHourlyTime(updateHourly + 1);
-  }, [latForAPI, locationForAPI, longForAPI, night, shouldReloadAPI]);
+  }, [locationForAPI, night, shouldReloadAPI]);
 
   return (
     <motion.div
@@ -301,6 +310,7 @@ const App: React.FC = () => {
           </div>
         ) : null}
 
+        {/*Loading icon area*/}
         <>{loading ? <Loading svgColors={svgColors} /> : null}</>
         <>
           {showNotFound ? (
