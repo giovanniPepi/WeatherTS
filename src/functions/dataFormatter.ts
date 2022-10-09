@@ -49,12 +49,6 @@ const dataFormatter = (data: IWeatherData | undefined) => {
         data.current.snow["3h"] = `${data.current.snow["3h"]} mm`;
     }
   }
-  if (data?.minutely) {
-    data.minutely.forEach((minute) => {
-      minute.dt = `${getExactHours(minute.dt as number)}`
-      minute.precipitation = `${minute.precipitation} mm`
-    })
-  }
   if (data?.hourly) {
 
     data.hourly.forEach((hour) => {

@@ -10,6 +10,22 @@
   background-color: var(--strongAccentColor);
   box-shadow: var(--boxShadow);
 }
+.weatherDescRain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+.accumulatedRain {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+}
+.accumulatedRain > .RainSvg {
+  width: 0.7rem;
+  height: 0.7rem;
+}
 .realTimeDataDiv {
   display: flex;
   justify-content: space-between;

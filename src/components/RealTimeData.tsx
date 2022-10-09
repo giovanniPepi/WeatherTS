@@ -49,7 +49,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   setShouldReloadAPI,
   isClosedSearch,
   setIsClosedSearch,
-  setIsOpenedSearch
+  setIsOpenedSearch,
+  minuterain
 }) => {
   //state
   const [showAlertsModal, setShowAlertsModal] = useState<Boolean>(false);
@@ -181,10 +182,16 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           svgColors
         )}
         {loading ? null : (
-          <WeatherDescAnimation
-            title={apiData.current.weather[0].description}
-            UIColor={UIColor}
-          />
+          <div className="weatherDescRain">
+            <WeatherDescAnimation
+              title={apiData.current.weather[0].description}
+              UIColor={UIColor}
+            />
+            <div className="accumulatedRain">
+              <Rain svgColors={svgColors} />{' '}
+              <div>{`${minuterain.toFixed(2)} mm/h`}</div>
+            </div>
+          </div>
         )}
       </div>
       <div

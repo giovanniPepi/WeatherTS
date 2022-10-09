@@ -14,6 +14,7 @@ import Search from './icons/Search';
 import RealTimeData from './components/RealTimeData';
 import { UnmountClosed } from 'react-collapse';
 import NetworkError from './icons/NetworkError';
+import getMinutelyRain from './functions/getMinutelyRain';
 
 const App: React.FC = () => {
   const [apiData, setApiData] = useState<IWeatherData>();
@@ -28,7 +29,7 @@ const App: React.FC = () => {
   // the concatenated location returned by the GEO Api
   const [locationToShow, setLocationToShow] =
     useState<string>('Campinas, BR');
-  const [showMinutelyModal, setShowMinutelyModal] = useState<Boolean>(false);
+  const [minuteRain, setMinuteRain] = useState(0);
   const [showHourlyModal, setShowHourlyModal] = useState<Boolean>(false);
   const [showDailyModal, setShowDailyModal] = useState<Boolean>(false);
   const [showRealTimeModal, setShowRealTimeModal] = useState(true);
@@ -66,7 +67,6 @@ const App: React.FC = () => {
   const [screenWidth, setScreenWidth] = useState(0);
 
   // code splitting
-  const MinutelyData = React.lazy(() => import('./components/MinutelyData'));
   const HourlyData = React.lazy(() => import('./components/HourlyData'));
   const DailyData = React.lazy(() => import('./components/DailyData'));
 
@@ -103,17 +103,8 @@ const App: React.FC = () => {
     }
   };
   // toggles - handle open/closing modals
-  const toggleMinuteData = () => {
-    setShowMinutelyModal(true);
-    setShowRealTimeModal(false);
-    setShowHourlyModal(false);
-    setShowDailyModal(false);
-    setShowSearchModal(false);
-    setShowNotFound(false);
-  };
   const toggleHourlyData = () => {
     setShowHourlyModal(true);
-    setShowMinutelyModal(false);
     setShowRealTimeModal(false);
     setShowDailyModal(false);
     setShowSearchModal(false);
@@ -122,7 +113,6 @@ const App: React.FC = () => {
   const toggleDailyData = () => {
     setShowDailyModal(true);
     setShowHourlyModal(false);
-    setShowMinutelyModal(false);
     setShowRealTimeModal(false);
     setShowSearchModal(false);
     setShowNotFound(false);
@@ -131,7 +121,6 @@ const App: React.FC = () => {
     setShowRealTimeModal(true);
     setShowDailyModal(false);
     setShowHourlyModal(false);
-    setShowMinutelyModal(false);
     setShowSearchModal(true);
   };
 
@@ -182,6 +171,8 @@ const App: React.FC = () => {
 
         //finally, sets API data for other components
         setApiData(dataFormatter(data));
+
+        setMinuteRain(getMinutelyRain(data?.minutely));
 
         // end loading
         setLoading(false);
@@ -240,18 +231,6 @@ const App: React.FC = () => {
                 Home/Current
               </button>
 
-              <button
-                onClick={toggleMinuteData}
-                onMouseEnter={toggleMinuteData}
-                className="strong dataToggler"
-                style={{
-                  color: UIColor,
-                  backgroundColor: modalUIColor,
-                  boxShadow: boxShadow
-                }}
-              >
-                Minutely
-              </button>
               <button
                 onClick={toggleHourlyData}
                 onMouseEnter={toggleHourlyData}
@@ -350,21 +329,8 @@ const App: React.FC = () => {
             setIsClosedSearch={setIsClosedSearch}
             setIsOpenedSearch={setIsOpenedSearch}
             isClosedSearch={isClosedSearch}
+            minuterain={minuteRain}
           />
-        ) : null}
-
-        {showMinutelyModal ? (
-          <Suspense fallback={<Loading svgColors={svgColors} />}>
-            <MinutelyData
-              minuteData={apiData?.minutely}
-              setShowMinutelyModal={setShowMinutelyModal}
-              night={night}
-              UIColor={UIColor}
-              modalUIColor={modalUIColor}
-              svgColors={svgColors}
-              boxShadow={boxShadow}
-            />
-          </Suspense>
         ) : null}
 
         {showHourlyModal ? (

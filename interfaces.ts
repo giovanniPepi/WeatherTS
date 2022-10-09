@@ -115,21 +115,6 @@ interface Iminutely {
   precipitation: number | string;
 }
 
-interface MinutelyProps {
-  minuteData: Minutely | undefined;
-  setShowMinutelyModal: StateChanger;
-  night: boolean;
-  UIColor: string;
-  modalUIColor: string;
-  svgColors: string;
-  boxShadow: string;
-}
-
-interface MinutelyChartProps {
-  minuteData: Minutely;
-  UIColor: string
-}
-
 interface HourlyProps {
   hourlyData: HourlyArray | undefined;
   setShowHourlyModal: StateChanger;
@@ -170,6 +155,7 @@ interface RealTimeDataProps {
   isClosedSearch: boolean,
   setIsClosedSearch: StateChangerB,
   setIsOpenedSearch: StateChangerB;
+  minuterain: number;
 }
 
 interface AlertsModalProps {
@@ -208,7 +194,7 @@ interface ISvgColors {
 
 type CurrentWeather = ICurrentWeatherArray[];
 type Daily = IDailyWeather[];
-type Minutely = Iminutely[];
+type Minutely = Iminutely[] | undefined;
 type HourlyArray = IHourlyWeather[];
 type DailyArray = IDailyWeather[];
 type StateChanger = Dispatch<SetStateAction<Boolean>>;
@@ -216,8 +202,7 @@ type StateChangerB = Dispatch<SetStateAction<boolean>>;
 
 export type {
   IWeatherData,
-  MinutelyProps,
   HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps
-, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, MinutelyChartProps, HourlyArray, DailyArray, Ititle, ITitleAnimation, ICurrentWeatherArray, ISvgColors
+, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, HourlyArray, DailyArray, Ititle, ITitleAnimation, ICurrentWeatherArray, ISvgColors, Minutely
 }  
 
