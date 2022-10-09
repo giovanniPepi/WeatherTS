@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { LazyMotion, m } from 'framer-motion';
 import { ISvgColors } from 'interfaces';
 
 const Previous: React.FC<ISvgColors> = ({ svgColors }) => {
@@ -25,22 +25,27 @@ const Previous: React.FC<ISvgColors> = ({ svgColors }) => {
     }
   };
 
+  const loadFeatures = () =>
+    import('../functions/features.js').then((res) => res.default);
+
   return (
-    <motion.svg
-      className="PreviousSvg"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      variants={svgVariants}
-      initial="hidden"
-      animate="visible"
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-    >
-      <motion.path
-        d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"
-        variants={pathVariants}
-      />
-    </motion.svg>
+    <LazyMotion features={loadFeatures}>
+      <m.svg
+        className="PreviousSvg"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        variants={svgVariants}
+        initial="hidden"
+        animate="visible"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <m.path
+          d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"
+          variants={pathVariants}
+        />
+      </m.svg>
+    </LazyMotion>
   );
 };
 
