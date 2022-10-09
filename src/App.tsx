@@ -1,6 +1,6 @@
 import React, { ChangeEvent, Suspense, useEffect, useState } from 'react';
 import type { IWeatherData } from '../interfaces';
-import { motion } from 'framer-motion';
+import { LazyMotion, m } from 'framer-motion';
 import getWeatherAPI from './functions/getWeatherAPI';
 import dataFormatter from './functions/dataFormatter';
 import getDaysToRender from './functions/getDaysToRender';
@@ -124,6 +124,10 @@ const App: React.FC = () => {
     setShowSearchModal(true);
   };
 
+  // lazy load framer-motion
+  const loadFeatures = () =>
+    import('./functions/features.js').then((res) => res.default);
+
   useEffect(() => {
     // calls weather API
     const getData = async (locationForAPI: {
@@ -195,179 +199,181 @@ const App: React.FC = () => {
   }, [locationForAPI, night, shouldReloadAPI]);
 
   return (
-    <motion.div
-      className="home"
-      /* style={{ backgroundImage: `url(${backgroundImg}) ` }} */
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1
-      }}
-      transition={{ duration: 0.5 }}
-      exit={{
-        opacity: 0,
-        x: window.innerWidth
-      }}
-    >
-      <main
-        className="app"
-        style={{
-          backgroundImage: `url(${backgroundImg}`,
-          color: `${UIColor}`
+    <LazyMotion features={loadFeatures}>
+      <m.div
+        className="home"
+        /* style={{ backgroundImage: `url(${backgroundImg}) ` }} */
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1
+        }}
+        transition={{ duration: 0.5 }}
+        exit={{
+          opacity: 0,
+          x: window.innerWidth
         }}
       >
-        {apiData ? (
-          <div className="headerContainer">
-            <div className="dataTogglingArea">
-              <button
-                onClick={toggleRealTimeData}
-                onMouseEnter={toggleRealTimeData}
-                style={{
-                  color: UIColor,
-                  backgroundColor: modalUIColor,
-                  boxShadow: boxShadow
-                }}
-                className="strong dataToggler"
-              >
-                Home/Current
-              </button>
+        <main
+          className="app"
+          style={{
+            backgroundImage: `url(${backgroundImg}`,
+            color: `${UIColor}`
+          }}
+        >
+          {apiData ? (
+            <div className="headerContainer">
+              <div className="dataTogglingArea">
+                <button
+                  onClick={toggleRealTimeData}
+                  onMouseEnter={toggleRealTimeData}
+                  style={{
+                    color: UIColor,
+                    backgroundColor: modalUIColor,
+                    boxShadow: boxShadow
+                  }}
+                  className="strong dataToggler"
+                >
+                  Home/Current
+                </button>
 
-              <button
-                onClick={toggleHourlyData}
-                onMouseEnter={toggleHourlyData}
-                style={{
-                  color: UIColor,
-                  backgroundColor: modalUIColor,
-                  boxShadow: boxShadow
-                }}
-                className="strong dataToggler"
-              >
-                Hourly
-              </button>
-              <button
-                onClick={toggleDailyData}
-                onMouseEnter={toggleDailyData}
-                style={{
-                  color: UIColor,
-                  backgroundColor: modalUIColor,
-                  boxShadow: boxShadow
-                }}
-                className="strong dataToggler"
-              >
-                Daily
-              </button>
-            </div>
-            <>
-              {showSearchModal ? (
-                <>
-                  <UnmountClosed
-                    isOpened={isOpenedSearch}
-                    theme={{
-                      collapse: 'searchTogglerClosed',
-                      content: 'searchTogglerOpened'
-                    }}
-                  >
-                    <div
-                      className="searchForm"
-                      style={{
-                        backgroundColor: modalUIColor,
-                        boxShadow: boxShadow
+                <button
+                  onClick={toggleHourlyData}
+                  onMouseEnter={toggleHourlyData}
+                  style={{
+                    color: UIColor,
+                    backgroundColor: modalUIColor,
+                    boxShadow: boxShadow
+                  }}
+                  className="strong dataToggler"
+                >
+                  Hourly
+                </button>
+                <button
+                  onClick={toggleDailyData}
+                  onMouseEnter={toggleDailyData}
+                  style={{
+                    color: UIColor,
+                    backgroundColor: modalUIColor,
+                    boxShadow: boxShadow
+                  }}
+                  className="strong dataToggler"
+                >
+                  Daily
+                </button>
+              </div>
+              <>
+                {showSearchModal ? (
+                  <>
+                    <UnmountClosed
+                      isOpened={isOpenedSearch}
+                      theme={{
+                        collapse: 'searchTogglerClosed',
+                        content: 'searchTogglerOpened'
                       }}
                     >
-                      <form onSubmit={handleClick}>
-                        <input
-                          placeholder="Search a location..."
-                          onChange={handleInputChange}
-                          ref={(input) => {
-                            input && input.focus();
-                          }}
-                        />
-                        <button
-                          onClick={handleClick}
-                          className="searchBtn"
-                          key={updateRealTime}
-                        >
-                          <Search svgColors={svgColors} />
-                        </button>
-                      </form>
-                    </div>
-                  </UnmountClosed>
-                </>
-              ) : null}
-            </>
-          </div>
-        ) : null}
-
-        {/*Loading icon area*/}
-        <>{loading ? <Loading svgColors={svgColors} /> : null}</>
-        <>
-          {showNotFound ? (
-            <div
-              className="locationNotFound"
-              style={{ backgroundColor: modalUIColor, color: UIColor }}
-            >
-              <NetworkError svgColors={svgColors} />
-              <div>Location not found, please try again!</div>
+                      <div
+                        className="searchForm"
+                        style={{
+                          backgroundColor: modalUIColor,
+                          boxShadow: boxShadow
+                        }}
+                      >
+                        <form onSubmit={handleClick}>
+                          <input
+                            placeholder="Search a location..."
+                            onChange={handleInputChange}
+                            ref={(input) => {
+                              input && input.focus();
+                            }}
+                          />
+                          <button
+                            onClick={handleClick}
+                            className="searchBtn"
+                            key={updateRealTime}
+                          >
+                            <Search svgColors={svgColors} />
+                          </button>
+                        </form>
+                      </div>
+                    </UnmountClosed>
+                  </>
+                ) : null}
+              </>
             </div>
           ) : null}
-        </>
 
-        {/* Conditional render so we wait for the API data*/}
-        {showRealTimeModal ? (
-          <RealTimeData
-            apiData={apiData!}
-            locationToShow={locationToShow}
-            loading={loading}
-            night={night}
-            moonPhase={moonPhase}
-            svgColors={svgColors}
-            UIColor={UIColor}
-            modalUIColor={modalUIColor}
-            key={updateRealTime}
-            separatorColor={separatorColor}
-            boxShadow={boxShadow}
-            setShouldReloadAPI={setShouldReloadAPI}
-            setIsClosedSearch={setIsClosedSearch}
-            setIsOpenedSearch={setIsOpenedSearch}
-            isClosedSearch={isClosedSearch}
-            minuterain={minuteRain}
-          />
-        ) : null}
+          {/*Loading icon area*/}
+          <>{loading ? <Loading svgColors={svgColors} /> : null}</>
+          <>
+            {showNotFound ? (
+              <div
+                className="locationNotFound"
+                style={{ backgroundColor: modalUIColor, color: UIColor }}
+              >
+                <NetworkError svgColors={svgColors} />
+                <div>Location not found, please try again!</div>
+              </div>
+            ) : null}
+          </>
 
-        {showHourlyModal ? (
-          <Suspense fallback={<Loading svgColors={svgColors} />}>
-            <HourlyData
-              hourlyData={apiData?.hourly}
-              setShowHourlyModal={setShowHourlyModal}
+          {/* Conditional render so we wait for the API data*/}
+          {showRealTimeModal ? (
+            <RealTimeData
+              apiData={apiData!}
+              locationToShow={locationToShow}
+              loading={loading}
               night={night}
-              UIColor={UIColor}
-              modalUIColor={modalUIColor}
               moonPhase={moonPhase}
               svgColors={svgColors}
-              hoursToRender={hoursToRender}
-              /* key={updateHourly} */
-              boxShadow={boxShadow}
-            />
-          </Suspense>
-        ) : null}
-
-        {showDailyModal ? (
-          <Suspense fallback={<Loading svgColors={svgColors} />}>
-            <DailyData
-              dailyData={apiData?.daily}
-              setShowDailyModal={setShowDailyModal}
-              night={night}
               UIColor={UIColor}
               modalUIColor={modalUIColor}
-              moonPhase={moonPhase}
-              svgColors={svgColors}
+              key={updateRealTime}
               separatorColor={separatorColor}
-              daysToRender={daysToRender}
               boxShadow={boxShadow}
+              setShouldReloadAPI={setShouldReloadAPI}
+              setIsClosedSearch={setIsClosedSearch}
+              setIsOpenedSearch={setIsOpenedSearch}
+              isClosedSearch={isClosedSearch}
+              minuterain={minuteRain}
             />
-          </Suspense>
-        ) : null}
-      </main>
-    </motion.div>
+          ) : null}
+
+          {showHourlyModal ? (
+            <Suspense fallback={<Loading svgColors={svgColors} />}>
+              <HourlyData
+                hourlyData={apiData?.hourly}
+                setShowHourlyModal={setShowHourlyModal}
+                night={night}
+                UIColor={UIColor}
+                modalUIColor={modalUIColor}
+                moonPhase={moonPhase}
+                svgColors={svgColors}
+                hoursToRender={hoursToRender}
+                /* key={updateHourly} */
+                boxShadow={boxShadow}
+              />
+            </Suspense>
+          ) : null}
+
+          {showDailyModal ? (
+            <Suspense fallback={<Loading svgColors={svgColors} />}>
+              <DailyData
+                dailyData={apiData?.daily}
+                setShowDailyModal={setShowDailyModal}
+                night={night}
+                UIColor={UIColor}
+                modalUIColor={modalUIColor}
+                moonPhase={moonPhase}
+                svgColors={svgColors}
+                separatorColor={separatorColor}
+                daysToRender={daysToRender}
+                boxShadow={boxShadow}
+              />
+            </Suspense>
+          ) : null}
+        </main>
+      </m.div>
+    </LazyMotion>
   );
 };
 

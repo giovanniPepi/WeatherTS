@@ -1,7 +1,7 @@
 import '../css/DailyData.css';
 import { v4 } from 'uuid';
 import { DailyArray, DailyProps } from 'interfaces';
-import { motion } from 'framer-motion';
+import { LazyMotion, m } from 'framer-motion';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
 import { useEffect, useState } from 'react';
 import Temperature from 'src/icons/Temperature';
@@ -54,6 +54,9 @@ const DailyData: React.FC<DailyProps> = ({
     }
   };
 
+  const loadFeatures = () =>
+    import('../functions/features.js').then((res) => res.default);
+
   useEffect(() => {
     const getItemsToRender = () => {
       const newRender: DailyArray = dailyData!.slice(start, index);
@@ -65,183 +68,189 @@ const DailyData: React.FC<DailyProps> = ({
 
   if (dailyData === undefined) {
     return (
-      <motion.div
-        className="realTimeData"
+      <LazyMotion features={loadFeatures}>
+        <m.div
+          className="realTimeData"
+          initial={{ opacity: 0 }}
+          style={{
+            backgroundColor: modalUIColor,
+            boxShadow: boxShadow
+          }}
+          animate={{
+            opacity: 1
+          }}
+          transition={{ duration: 2 }}
+          exit={{
+            opacity: 0,
+            x: window.innerWidth
+          }}
+        >
+          <NetworkError svgColors={svgColors} />
+          <div>
+            Couldn't get API data. Check your connection or try again later.
+          </div>
+        </m.div>
+      </LazyMotion>
+    );
+  }
+
+  return (
+    <LazyMotion features={loadFeatures}>
+      <m.div
+        className="dailyDataModal"
         initial={{ opacity: 0 }}
-        style={{
-          backgroundColor: modalUIColor,
-          boxShadow: boxShadow
-        }}
+        style={{ backgroundColor: modalUIColor, boxShadow: boxShadow }}
         animate={{
           opacity: 1
         }}
-        transition={{ duration: 2 }}
+        transition={{ duration: 0.8 }}
         exit={{
           opacity: 0,
           x: window.innerWidth
         }}
       >
-        <NetworkError svgColors={svgColors} />
-        <div>
-          Couldn't get API data. Check your connection or try again later.
+        <div className="dailyMainTitle">
+          <button onClick={() => getPreviousDays()}>
+            <Previous svgColors={svgColors} />
+          </button>
+          <div>Daily forecast</div>
+
+          <button onClick={() => getNextDays()}>
+            <Next svgColors={svgColors} />
+          </button>
         </div>
-      </motion.div>
-    );
-  }
-
-  return (
-    <motion.div
-      className="dailyDataModal"
-      initial={{ opacity: 0 }}
-      style={{ backgroundColor: modalUIColor, boxShadow: boxShadow }}
-      animate={{
-        opacity: 1
-      }}
-      transition={{ duration: 0.8 }}
-      exit={{
-        opacity: 0,
-        x: window.innerWidth
-      }}
-    >
-      <div className="dailyMainTitle">
-        <button onClick={() => getPreviousDays()}>
-          <Previous svgColors={svgColors} />
-        </button>
-        <div>Daily forecast</div>
-
-        <button onClick={() => getNextDays()}>
-          <Next svgColors={svgColors} />
-        </button>
-      </div>
-      <div className="dailyControlDiv">
-        <ul className="dailyUl">
-          {renderedItems.map((day) => {
-            return (
-              <li key={v4()} className="dailyContainer">
-                <div className="dailyDt">
-                  <div className="dailyDtTitle">{day.dt}</div>
-                </div>
-                <div
-                  className="separator"
-                  style={{ border: `1px solid ${separatorColor}` }}
-                ></div>
-
-                <div className="dailyDataDiv">
-                  {getWeatherIcon(
-                    day.weather[0].main,
-                    false,
-                    day.moon_phase as number,
-                    svgColors
-                  )}
-                  <TitleAnimation
-                    title={day.weather[0].description}
-                    UIColor={UIColor}
-                  />
-                </div>
-                <div
-                  className="separator"
-                  style={{ border: `1px solid ${separatorColor}` }}
-                ></div>
-
-                <div className="dailyDataDiv">
-                  <Tooltip title="Rain probability">
-                    <div className="rainPercentContainer">
-                      <Rain svgColors={svgColors} />
-                      <Percent svgColors={svgColors} />
-                    </div>
-                  </Tooltip>
-                  {day.pop}
-                </div>
-                <div
-                  className="separator"
-                  style={{ border: `1px solid ${separatorColor}` }}
-                ></div>
-
-                <div className="dailyDataDiv">
-                  <Temperature svgColors={svgColors} />
-                  <div className="tempContainer">
-                    <div>Max {day.temp.max}</div>
-                    <div>Min {day.temp.min}</div>
+        <div className="dailyControlDiv">
+          <ul className="dailyUl">
+            {renderedItems.map((day) => {
+              return (
+                <li key={v4()} className="dailyContainer">
+                  <div className="dailyDt">
+                    <div className="dailyDtTitle">{day.dt}</div>
                   </div>
-                  <div className="tempContainer">
-                    {day.temp.morn ? (
-                      <div>Morning {day.temp.morn}</div>
-                    ) : null}
-                    {day.temp.eve ? <div>Evening {day.temp.eve}</div> : null}
-                    {day.temp.night ? (
-                      <div className="tempHolder">
-                        <div>Night {day.temp.night}</div>
+                  <div
+                    className="separator"
+                    style={{ border: `1px solid ${separatorColor}` }}
+                  ></div>
+
+                  <div className="dailyDataDiv">
+                    {getWeatherIcon(
+                      day.weather[0].main,
+                      false,
+                      day.moon_phase as number,
+                      svgColors
+                    )}
+                    <TitleAnimation
+                      title={day.weather[0].description}
+                      UIColor={UIColor}
+                    />
+                  </div>
+                  <div
+                    className="separator"
+                    style={{ border: `1px solid ${separatorColor}` }}
+                  ></div>
+
+                  <div className="dailyDataDiv">
+                    <Tooltip title="Rain probability">
+                      <div className="rainPercentContainer">
+                        <Rain svgColors={svgColors} />
+                        <Percent svgColors={svgColors} />
                       </div>
-                    ) : null}
+                    </Tooltip>
+                    {day.pop}
                   </div>
-                </div>
-                <div
-                  className="separator"
-                  style={{ border: `1px solid ${separatorColor}` }}
-                ></div>
+                  <div
+                    className="separator"
+                    style={{ border: `1px solid ${separatorColor}` }}
+                  ></div>
 
-                <div className="dailyDataDiv">
-                  <Humidity svgColors={svgColors} /> {day.humidity}
-                </div>
-                <div
-                  className="separator"
-                  style={{ border: `1px solid ${separatorColor}` }}
-                ></div>
-
-                <div className="dailyDataDiv">
-                  <Clouds svgColors={svgColors} /> {day.clouds}
-                </div>
-
-                <div
-                  className="separator"
-                  style={{ border: `1px solid ${separatorColor}` }}
-                ></div>
-
-                <div className="dailyDataDiv">
-                  <UVI svgColors={svgColors} /> {day.uvi}
-                </div>
-                <div
-                  className="separator"
-                  style={{ border: `1px solid ${separatorColor}` }}
-                ></div>
-                <div className="dailyDataDiv">
-                  <Windy svgColors={svgColors} />
-                  <div className="moonTimings">
-                    <div>Wind deg {day.wind_deg}</div>
-                    <div>Wind gust {day.wind_gust}</div>
-                    <div>Wind speed {day.wind_speed}</div>
+                  <div className="dailyDataDiv">
+                    <Temperature svgColors={svgColors} />
+                    <div className="tempContainer">
+                      <div>Max {day.temp.max}</div>
+                      <div>Min {day.temp.min}</div>
+                    </div>
+                    <div className="tempContainer">
+                      {day.temp.morn ? (
+                        <div>Morning {day.temp.morn}</div>
+                      ) : null}
+                      {day.temp.eve ? (
+                        <div>Evening {day.temp.eve}</div>
+                      ) : null}
+                      {day.temp.night ? (
+                        <div className="tempHolder">
+                          <div>Night {day.temp.night}</div>
+                        </div>
+                      ) : null}
+                    </div>
                   </div>
-                </div>
-                <div
-                  className="separator"
-                  style={{ border: `1px solid ${separatorColor}` }}
-                ></div>
+                  <div
+                    className="separator"
+                    style={{ border: `1px solid ${separatorColor}` }}
+                  ></div>
 
-                <div className="dailyDataDiv">
-                  <Sunny />
-                  <div className="moonTimings">
-                    <div>Sunrise {day.sunrise}</div>
-                    <div>Sunset {day.sunset}</div>
+                  <div className="dailyDataDiv">
+                    <Humidity svgColors={svgColors} /> {day.humidity}
                   </div>
-                </div>
-                <div
-                  className="separator"
-                  style={{ border: `1px solid ${separatorColor}` }}
-                ></div>
+                  <div
+                    className="separator"
+                    style={{ border: `1px solid ${separatorColor}` }}
+                  ></div>
 
-                <div className="dailyDataDiv">
-                  {getMoonPhase(day.moon_phase as number, svgColors)}
-                  <div className="moonTimings">
-                    <div>Moonrise {day.moonrise}</div>
-                    <div>Moonset {day.moonset}</div>
+                  <div className="dailyDataDiv">
+                    <Clouds svgColors={svgColors} /> {day.clouds}
                   </div>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </motion.div>
+
+                  <div
+                    className="separator"
+                    style={{ border: `1px solid ${separatorColor}` }}
+                  ></div>
+
+                  <div className="dailyDataDiv">
+                    <UVI svgColors={svgColors} /> {day.uvi}
+                  </div>
+                  <div
+                    className="separator"
+                    style={{ border: `1px solid ${separatorColor}` }}
+                  ></div>
+                  <div className="dailyDataDiv">
+                    <Windy svgColors={svgColors} />
+                    <div className="moonTimings">
+                      <div>Wind deg {day.wind_deg}</div>
+                      <div>Wind gust {day.wind_gust}</div>
+                      <div>Wind speed {day.wind_speed}</div>
+                    </div>
+                  </div>
+                  <div
+                    className="separator"
+                    style={{ border: `1px solid ${separatorColor}` }}
+                  ></div>
+
+                  <div className="dailyDataDiv">
+                    <Sunny />
+                    <div className="moonTimings">
+                      <div>Sunrise {day.sunrise}</div>
+                      <div>Sunset {day.sunset}</div>
+                    </div>
+                  </div>
+                  <div
+                    className="separator"
+                    style={{ border: `1px solid ${separatorColor}` }}
+                  ></div>
+
+                  <div className="dailyDataDiv">
+                    {getMoonPhase(day.moon_phase as number, svgColors)}
+                    <div className="moonTimings">
+                      <div>Moonrise {day.moonrise}</div>
+                      <div>Moonset {day.moonset}</div>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </m.div>
+    </LazyMotion>
   );
 };
 

@@ -1,7 +1,7 @@
 import '../css/HourlyData.css';
 import { v4 } from 'uuid';
 import { HourlyArray, HourlyProps } from 'interfaces';
-import { motion } from 'framer-motion';
+import { LazyMotion, m } from 'framer-motion';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
 import Temperature from 'src/icons/Temperature';
 import Humidity from 'src/icons/Humidity';
@@ -59,95 +59,102 @@ const HourlyData: React.FC<HourlyProps> = ({
     setRenderedItems(newRender);
   };
 
+  const loadFeatures = () =>
+    import('../functions/features.js').then((res) => res.default);
+
   useEffect(() => {
     getItemsToRender();
   }, [hourlyData, index, start, hoursToRender]);
 
   if (hourlyData === undefined) {
     return (
-      <motion.div
-        className="realTimeData"
+      <LazyMotion features={loadFeatures}>
+        <m.div
+          className="realTimeData"
+          initial={{ opacity: 0 }}
+          style={{
+            backgroundColor: modalUIColor,
+            boxShadow: boxShadow
+          }}
+          animate={{
+            opacity: 1
+          }}
+          transition={{ duration: 0.8 }}
+          exit={{
+            opacity: 0,
+            x: window.innerWidth
+          }}
+        >
+          <NetworkError svgColors={svgColors} />
+          <div>
+            Couldn't get API data. Check your connection or try again later.
+          </div>
+        </m.div>
+      </LazyMotion>
+    );
+  }
+
+  return (
+    <LazyMotion features={loadFeatures}>
+      <m.div
+        className="hourlyDataModal"
         initial={{ opacity: 0 }}
-        style={{
-          backgroundColor: modalUIColor,
-          boxShadow: boxShadow
-        }}
+        style={{ backgroundColor: modalUIColor }}
         animate={{
           opacity: 1
         }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.5 }}
         exit={{
           opacity: 0,
           x: window.innerWidth
         }}
       >
-        <NetworkError svgColors={svgColors} />
-        <div>
-          Couldn't get API data. Check your connection or try again later.
+        <div className="hourlyMainTitle">
+          <button onClick={() => getPreviousHours()}>
+            <Previous svgColors={svgColors} />
+          </button>
+          <div>Hourly Forecast</div>
+          <button onClick={() => getNextHours()}>
+            <Next svgColors={svgColors} />
+          </button>
         </div>
-      </motion.div>
-    );
-  }
+        <ul className="hourlyUl">
+          {renderedItems.map((hour) => {
+            return (
+              <li key={v4()} className="hourlyContainer">
+                <div className="hourlyDt">{hour.dt[1]}</div>
 
-  return (
-    <motion.div
-      className="hourlyDataModal"
-      initial={{ opacity: 0 }}
-      style={{ backgroundColor: modalUIColor }}
-      animate={{
-        opacity: 1
-      }}
-      transition={{ duration: 0.5 }}
-      exit={{
-        opacity: 0,
-        x: window.innerWidth
-      }}
-    >
-      <div className="hourlyMainTitle">
-        <button onClick={() => getPreviousHours()}>
-          <Previous svgColors={svgColors} />
-        </button>
-        <div>Hourly Forecast</div>
-        <button onClick={() => getNextHours()}>
-          <Next svgColors={svgColors} />
-        </button>
-      </div>
-      <ul className="hourlyUl">
-        {renderedItems.map((hour) => {
-          return (
-            <li key={v4()} className="hourlyContainer">
-              <div className="hourlyDt">{hour.dt[1]}</div>
-
-              <div className="hourlyDataDiv minorHourly">
-                {getWeatherIcon(
-                  hour.weather[0].main,
-                  getForecastHourNight(hour.dt[0] as number),
-                  moonPhase,
-                  svgColors
-                )}
-                <TitleAnimation
-                  title={hour.weather[0].main}
-                  UIColor={UIColor}
-                />
-              </div>
-              <div className="hourlyDataDiv minorHourly">
-                <Temperature svgColors={svgColors} />
-                {hour.temp}
-              </div>
-              <div className="hourlyDataDiv minorHourly">
-                <Humidity svgColors={svgColors} /> {hour.humidity}
-              </div>
-              {typeof hour.uvi === 'string' ? (
-                <div className="hourlyDataDiv">
-                  <UVI svgColors={svgColors} />
-                  <div className=" uvHourly">{hour.uvi}</div>
+                <div className="hourlyDataDiv minorHourly">
+                  {getWeatherIcon(
+                    hour.weather[0].main,
+                    getForecastHourNight(hour.dt[0] as number),
+                    moonPhase,
+                    svgColors
+                  )}
+                  <TitleAnimation
+                    title={hour.weather[0].main}
+                    UIColor={UIColor}
+                  />
                 </div>
-              ) : null}
-            </li>
-          );
-        })}
-      </ul>
-    </motion.div>
+                <div className="hourlyDataDiv minorHourly">
+                  <Temperature svgColors={svgColors} />
+                  {hour.temp}
+                </div>
+                <div className="hourlyDataDiv minorHourly">
+                  <Humidity svgColors={svgColors} /> {hour.humidity}
+                </div>
+                {typeof hour.uvi === 'string' ? (
+                  <div className="hourlyDataDiv">
+                    <UVI svgColors={svgColors} />
+                    <div className=" uvHourly">{hour.uvi}</div>
+                  </div>
+                ) : null}
+              </li>
+            );
+          })}
+        </ul>
+      </m.div>
+    </LazyMotion>
   );
 };
 
