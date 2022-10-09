@@ -12,12 +12,16 @@
     "file-loader": "^6.2.0",
     "firebase": "^9.11.0",
     "framer-motion": "^7.5.3",
+    "frappe-charts": "^1.6.2",
     "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",
     "react-collapse": "^5.1.1",
     "react-dom": "^18.2.0",
+    "react-frappe-charts": "^4.1.0",
     "react-scripts": "5.0.1",
-    "source-map": "^0.7.4"
+    "source-map": "^0.7.4",
+    "uplot": "^1.6.22",
+    "uplot-react": "^1.1.1"
   },
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",

@@ -1,14 +1,17 @@
 import { MinutelyChartProps } from 'interfaces';
-import { Chart as ChartJS, registerables } from 'chart.js';
+import {
+  Chart as ChartJS,
+  LinearScale,
+  CategoryScale,
+  BarElement,
+  Tooltip
+} from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { useEffect, useState } from 'react';
 import CheckAll from 'src/icons/CheckAll';
-ChartJS.register(...registerables);
+ChartJS.register(LinearScale, CategoryScale, BarElement, Tooltip);
 
-const Charts: React.FC<MinutelyChartProps> = ({
-  minuteData,
-  UIColor
-}) => {
+const Charts: React.FC<MinutelyChartProps> = ({ minuteData, UIColor }) => {
   //state
   const [hasRainValue, setHasRainValue] = useState(false);
 
@@ -36,9 +39,7 @@ const Charts: React.FC<MinutelyChartProps> = ({
 
   useEffect(() => {
     // checks if there is any rain value
-    const condition: undefined | number = pptArray.find(
-      (e) => e !== 0
-    );
+    const condition: undefined | number = pptArray.find((e) => e !== 0);
     if (condition) setHasRainValue(true);
     else setHasRainValue(false);
   }, [hasRainValue, pptArray]);
@@ -85,8 +86,7 @@ const Charts: React.FC<MinutelyChartProps> = ({
         <div className="noRain">
           <CheckAll />
           <div className="noRainMsg strong">
-            Currently there is no rain forecast for the next 60
-            minutes
+            Currently there is no rain forecast for the next 60 minutes
           </div>
         </div>
       )}
