@@ -17,6 +17,7 @@ import Percent from 'src/icons/Percent';
 import NetworkError from 'src/icons/NetworkError';
 import Tooltip from '@material-ui/core/Tooltip';
 import TitleAnimation from 'src/functions/TitleAnimation';
+import Separator from './Separator';
 
 const DailyData: React.FC<DailyProps> = ({
   dailyData,
@@ -140,10 +141,6 @@ const DailyData: React.FC<DailyProps> = ({
                       </div>
                     </div>
                   </div>
-                  <div
-                    className="separator"
-                    style={{ border: `1px solid ${separatorColor}` }}
-                  ></div>
 
                   <div className="dailyDataDiv">
                     {getWeatherIcon(
@@ -158,10 +155,7 @@ const DailyData: React.FC<DailyProps> = ({
                     />
                   </div>
 
-                  <div
-                    className="separator"
-                    style={{ border: `1px solid ${separatorColor}` }}
-                  ></div>
+                  <Separator separatorColor={separatorColor} />
 
                   <div className="dailyDataDiv">
                     <Temperature svgColors={svgColors} />
@@ -180,25 +174,20 @@ const DailyData: React.FC<DailyProps> = ({
                     </div>
                   </div>
 
-                  <div
-                    className="separator"
-                    style={{ border: `1px solid ${separatorColor}` }}
-                  ></div>
+                  <Separator separatorColor={separatorColor} />
 
                   <div className="dailyDataDiv">
                     <Humidity svgColors={svgColors} /> {day.humidity}
                   </div>
-                  <div
-                    className="separator"
-                    style={{ border: `1px solid ${separatorColor}` }}
-                  ></div>
+
+                  <Separator separatorColor={separatorColor} />
+
                   <div className="dailyDataDiv">
                     <UVI svgColors={svgColors} /> {day.uvi}
                   </div>
-                  <div
-                    className="separator"
-                    style={{ border: `1px solid ${separatorColor}` }}
-                  ></div>
+
+                  <Separator separatorColor={separatorColor} />
+
                   <div className="dailyDataDiv">
                     <Windy svgColors={svgColors} />
                     <div className="moonTimings">
@@ -207,10 +196,8 @@ const DailyData: React.FC<DailyProps> = ({
                       <div>Wind speed {day.wind_speed}</div>
                     </div>
                   </div>
-                  <div
-                    className="separator"
-                    style={{ border: `1px solid ${separatorColor}` }}
-                  ></div>
+
+                  <Separator separatorColor={separatorColor} />
 
                   <div className="dailyDataDiv">
                     <Sunny />
@@ -219,10 +206,8 @@ const DailyData: React.FC<DailyProps> = ({
                       <div>Sunset {day.sunset}</div>
                     </div>
                   </div>
-                  <div
-                    className="separator"
-                    style={{ border: `1px solid ${separatorColor}` }}
-                  ></div>
+
+                  <Separator separatorColor={separatorColor} />
 
                   <div className="dailyDataDiv">
                     {getMoonPhase(day.moon_phase as number, svgColors)}

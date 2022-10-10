@@ -219,46 +219,43 @@ const App: React.FC = () => {
           }}
         >
           {apiData ? (
-            <div className="headerContainer">
-              <div className="dataTogglingArea">
-                <button
-                  onClick={toggleRealTimeData}
-                  onMouseEnter={toggleRealTimeData}
-                  style={{
-                    color: UIColor,
-                    backgroundColor: modalUIColor,
-                    boxShadow: boxShadow
-                  }}
-                  className="strong dataToggler"
-                >
-                  Home - Current
-                </button>
+            <div
+              className="dataTogglingArea"
+              style={{ backgroundColor: modalUIColor }}
+            >
+              <button
+                onClick={toggleRealTimeData}
+                onMouseEnter={toggleRealTimeData}
+                style={{
+                  color: UIColor
+                }}
+                className="strong dataToggler"
+              >
+                Home - Current
+              </button>
+              <div>|</div>
+              <button
+                onClick={toggleHourlyData}
+                onMouseEnter={toggleHourlyData}
+                style={{
+                  color: UIColor
+                }}
+                className="strong dataToggler"
+              >
+                Hourly
+              </button>
+              <div>|</div>
 
-                <button
-                  onClick={toggleHourlyData}
-                  onMouseEnter={toggleHourlyData}
-                  style={{
-                    color: UIColor,
-                    backgroundColor: modalUIColor,
-                    boxShadow: boxShadow
-                  }}
-                  className="strong dataToggler"
-                >
-                  Hourly
-                </button>
-                <button
-                  onClick={toggleDailyData}
-                  onMouseEnter={toggleDailyData}
-                  style={{
-                    color: UIColor,
-                    backgroundColor: modalUIColor,
-                    boxShadow: boxShadow
-                  }}
-                  className="strong dataToggler"
-                >
-                  Daily
-                </button>
-              </div>
+              <button
+                onClick={toggleDailyData}
+                onMouseEnter={toggleDailyData}
+                style={{
+                  color: UIColor
+                }}
+                className="strong dataToggler"
+              >
+                Daily
+              </button>
             </div>
           ) : null}
 

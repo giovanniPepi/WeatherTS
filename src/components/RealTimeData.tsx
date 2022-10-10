@@ -32,6 +32,7 @@ import Less from 'src/icons/Less';
 import { UnmountClosed } from 'react-collapse';
 import Search from 'src/icons/Search';
 import Loading from 'src/icons/Loading';
+import Separator from './Separator';
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
@@ -227,7 +228,6 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
             </div>
           </div>
         </div>
-
         <>
           {showSearchModal ? (
             <>
@@ -262,41 +262,31 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
             </>
           ) : null}
         </>
-        <div
-          className="separator"
-          style={{ border: `1px solid ${separatorColor}` }}
-        ></div>
+        <Separator separatorColor={separatorColor} />
 
         <div className="realTimeDataDiv">
           <Humidity svgColors={svgColors} />
           <div>{apiData.current.humidity}</div>
         </div>
-        <div
-          className="separator"
-          style={{ border: `1px solid ${separatorColor}` }}
-        ></div>
+        <Separator separatorColor={separatorColor} />
+
         {typeof apiData.current.uvi === 'string' ? (
           <>
             <div className="realTimeDataDiv">
               <UVI svgColors={svgColors} />
               <div>{apiData.current.uvi}</div>
             </div>
-            <div
-              className="separator"
-              style={{ border: `1px solid ${separatorColor}` }}
-            ></div>
+
+            <Separator separatorColor={separatorColor} />
           </>
         ) : null}
         <div className="realTimeDataDiv">
           <Clouds svgColors={svgColors} />
           <div>{apiData.current.clouds}</div>
         </div>
-        <div
-          className="separator"
-          style={{ border: `1px solid ${separatorColor}` }}
-        ></div>
-        {/* conditional rendering for rain and snow */}
+        <Separator separatorColor={separatorColor} />
 
+        {/* conditional rendering for rain and snow */}
         {apiData.current.snow ? (
           <>
             <div className="realTimeDataDiv">
@@ -315,10 +305,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
               </div>
             </div>
 
-            <div
-              className="separator"
-              style={{ border: `1px solid ${separatorColor}` }}
-            ></div>
+            <Separator separatorColor={separatorColor} />
           </>
         ) : null}
         <div className="realTimeDataDiv">
@@ -328,15 +315,11 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
             <div>{apiData.current.wind_deg as number}</div>
           </div>
         </div>
-        <div
-          className="separator"
-          style={{ border: `1px solid ${separatorColor}` }}
-        ></div>
+        <Separator separatorColor={separatorColor} />
 
         <div className="realTimeDataDiv moreToggler">
           <div className="moonTimings" style={{ color: UIColor }}></div>
         </div>
-
         <UnmountClosed isOpened={isClosedSun}>
           <div
             className="realTimeDataDiv moreToggler"
@@ -353,7 +336,6 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
             </Tooltip>
           </div>
         </UnmountClosed>
-
         <UnmountClosed isOpened={isOpenedSun}>
           <div>
             <div
@@ -375,10 +357,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
             </Tooltip>
           </div>
         </UnmountClosed>
-        <div
-          className="separator"
-          style={{ border: `1px solid ${separatorColor}` }}
-        ></div>
+        <Separator separatorColor={separatorColor} />
 
         <UnmountClosed isOpened={isClosedMoon}>
           <div
@@ -396,10 +375,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
               )}
             </div>
           </div>
-          <div
-            className="separator"
-            style={{ border: `1px solid ${separatorColor}` }}
-          ></div>
+          <Separator separatorColor={separatorColor} />
         </UnmountClosed>
         <UnmountClosed isOpened={isOpenedMoon}>
           <div>
@@ -428,12 +404,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
               </Tooltip>
             </div>
           </div>
-          <div
-            className="separator"
-            style={{ border: `1px solid ${separatorColor}` }}
-          ></div>
+          <Separator separatorColor={separatorColor} />
         </UnmountClosed>
-
         <UnmountClosed isOpened={isClosedAtmos}>
           <div
             className="realTimeDataDiv"
@@ -447,12 +419,9 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
               <p>Atmospheric Info</p>
             </div>
           </div>
-          <div
-            className="separator"
-            style={{ border: `1px solid ${separatorColor}` }}
-          ></div>
-        </UnmountClosed>
 
+          <Separator separatorColor={separatorColor} />
+        </UnmountClosed>
         <UnmountClosed isOpened={isOpenedAtmos}>
           <div
             onClick={() => {
@@ -473,11 +442,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
                 <div>{apiData.current.dew_point}</div>
               </div>
             </Tooltip>
-
-            <div
-              className="separator"
-              style={{ border: `1px solid ${separatorColor}` }}
-            ></div>
+            <Separator separatorColor={separatorColor} />
 
             <Tooltip
               title="Atmospheric pressure on the sea level"
@@ -489,10 +454,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
               </div>
             </Tooltip>
 
-            <div
-              className="separator"
-              style={{ border: `1px solid ${separatorColor}` }}
-            ></div>
+            <Separator separatorColor={separatorColor} />
+
             <Tooltip
               title="Average visibility. The maximum value of the visibility is 10km"
               placement="bottom"
@@ -503,13 +466,9 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
               </div>
             </Tooltip>
 
-            <div
-              className="separator"
-              style={{ border: `1px solid ${separatorColor}` }}
-            ></div>
+            <Separator separatorColor={separatorColor} />
           </div>
         </UnmountClosed>
-
         {apiData.alerts && showAlertsModal ? (
           <AlertsModal
             apiData={apiData}

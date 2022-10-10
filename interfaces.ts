@@ -176,6 +176,10 @@ interface ExtendedRealTimeDataProps {
   setShowExtendedCurrentWeather: StateChangerB;
 }
 
+interface ISeparator {
+  separatorColor: string
+}
+
 interface rainObj {
   '1h': number | string | undefined;
   '3h': number | string | undefined;
@@ -209,6 +213,6 @@ type StateChangerB = Dispatch<SetStateAction<boolean>>;
 export type {
   IWeatherData,
   HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps
-, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, HourlyArray, DailyArray, Ititle, ITitleAnimation, ICurrentWeatherArray, ISvgColors, Minutely
+, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, HourlyArray, DailyArray, Ititle, ITitleAnimation, ICurrentWeatherArray, ISvgColors, Minutely, ISeparator
 }  
 

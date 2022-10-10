@@ -93,8 +93,7 @@ input {
 }
 .separator {
   width: 100%;
-  border: 1px solid black;
-  border-radius: 20%;
+  border-radius: 35%;
 }
 .strong {
   font-weight: bold;
@@ -143,15 +142,15 @@ input {
   height: 0.8rem;
 }
 .dataTogglingArea {
+  position: relative;
   display: flex;
   justify-content: space-between;
-  gap: 2rem;
-}
-.dataToggler {
+  align-items: center;
   backdrop-filter: blur(100px);
   padding: var(--btnPadding);
   border-radius: var(--radius);
   box-shadow: var(--boxShadow);
+  min-width: 300px;
 }
 /*same for all modals*/
 .minutelyDataModal,
@@ -192,23 +191,10 @@ input {
     align-items: center;
     gap: 1rem;
   }
-  .headerContainer {
-    margin-top: 0.5rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    min-width: clamp(80vw, 650px, 90vw);
-  }
   .dataTogglingArea {
-    position: relative;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    width: 100%;
+    min-width: unset;
+    min-width: 76.5vw;
   }
   .PreviousSvg,
   .NextSvg {
