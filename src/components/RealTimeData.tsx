@@ -108,7 +108,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         }}
       >
         <NetworkError svgColors={svgColors} />
-        <div>
+        <div className="apiDataError">
           Couldn't get API data. Check your connection or try again later.
         </div>
       </m.div>
@@ -316,8 +316,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         <div className="realTimeDataDiv">
           <Windy svgColors={svgColors} />
           <div className="windContainer">
+            <div>{apiData.current.wind_speed as number}</div> -
             <div>{apiData.current.wind_deg as number}</div>
-            <div>{apiData.current.wind_speed as number}</div>
           </div>
         </div>
         <div

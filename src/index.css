@@ -106,8 +106,7 @@ input {
 
 /*SVGs*/
 .loadingSvg,
-.loadingIcon .loadingSvgAbsolute,
-.loadingIconAbsolute {
+.loadingIcon {
   width: 5rem;
   height: 5rem;
 }
@@ -115,12 +114,6 @@ input {
 .loadingIcon {
   width: 5rem;
   height: 5rem;
-}
-.loadingSvgAbsolute,
-.loadingIconAbsolute {
-  position: absolute;
-  top: 15%;
-  left: 50%;
 }
 .NetworkErrorSvg {
   align-self: center;
@@ -180,6 +173,9 @@ input {
   margin-left: -0.3rem;
   width: 2rem;
   height: 2rem;
+}
+.apiDataError {
+  max-width: 50vw;
 }
 /*-----------------------------------------------MOBILE */
 @media screen and (max-width: 950px) {

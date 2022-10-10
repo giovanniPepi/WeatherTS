@@ -4,7 +4,7 @@
   justify-content: center;
   gap: 0.25rem;
   min-width: clamp(300px, 20vw, 30vw);
-  padding: 0.7rem 0.7rem 1rem 0.7rem;
+  padding: 0.7rem 0.7rem 1.3rem 0.7rem;
   border-radius: var(--radius);
   backdrop-filter: var(--modalBlur);
   background-color: var(--strongAccentColor);
@@ -26,10 +26,6 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.2rem;
-}
-.weatherdescCont > svg {
-  height: 1.6rem;
-  width: 1.6rem;
 }
 .currentInfoCont {
   display: flex;
@@ -96,14 +92,14 @@
   align-items: center;
   justify-content: center;
   align-self: center;
-  gap: 0.1rem;
+  gap: 0.2rem;
   padding: var(--btnPadding);
 }
 .windContainer {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
+  gap: 0.2rem;
 }
 .windySvg {
   align-self: center;

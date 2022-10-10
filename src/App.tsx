@@ -11,7 +11,6 @@ import { analytics } from './functions/firebase';
 import getWeatherBackground from './functions/getWeatherBackground';
 import isLocalNight from './functions/isLocalNight';
 import Loading from './icons/Loading';
-import Search from './icons/Search';
 import RealTimeData from './components/RealTimeData';
 import { UnmountClosed } from 'react-collapse';
 import NetworkError from './icons/NetworkError';
@@ -275,7 +274,6 @@ const App: React.FC = () => {
             ) : null}
           </>
 
-          {/* Conditional render so we wait for the API data*/}
           {showRealTimeModal ? (
             <RealTimeData
               apiData={apiData!}
