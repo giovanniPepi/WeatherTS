@@ -20,9 +20,6 @@ import TitleAnimation from 'src/functions/TitleAnimation';
 
 const DailyData: React.FC<DailyProps> = ({
   dailyData,
-  setShowDailyModal,
-  night,
-  moonPhase,
   svgColors,
   modalUIColor,
   separatorColor,
@@ -126,11 +123,20 @@ const DailyData: React.FC<DailyProps> = ({
                   <div className="dailyDt">
                     <div className="dailyDtTitle">{day.dt}</div>
                     <div className="mainTempCont">
-                      <Temperature svgColors={svgColors} />
                       <div className="tempContainer">
-                        <div>
+                        <div className="rainProb">
+                          <Temperature svgColors={svgColors} />
                           {day.temp.min} / {day.temp.max}
                         </div>
+                      </div>
+                      <div className="rainProb rainPercent">
+                        <Tooltip title="Rain probability">
+                          <div className="rainPercentContainer">
+                            <Rain svgColors={svgColors} />
+                            <Percent svgColors={svgColors} />
+                          </div>
+                        </Tooltip>
+                        {day.pop}
                       </div>
                     </div>
                   </div>
@@ -150,13 +156,6 @@ const DailyData: React.FC<DailyProps> = ({
                       title={day.weather[0].description}
                       UIColor={UIColor}
                     />
-                    <Tooltip title="Rain probability">
-                      <div className="rainPercentContainer">
-                        <Rain svgColors={svgColors} />
-                        <Percent svgColors={svgColors} />
-                      </div>
-                    </Tooltip>
-                    {day.pop}
                   </div>
 
                   <div

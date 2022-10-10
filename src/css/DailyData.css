@@ -39,6 +39,18 @@
   justify-content: center;
   align-items: center;
 }
+.dailyDtTitle {
+  font-size: 1.4rem;
+}
+.rainProb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.2rem;
+}
+.rainPercent {
+  font-size: 1rem;
+}
 .dailyControlDiv {
   display: flex;
   max-width: 70vw;
@@ -71,6 +83,9 @@
 .mainTempCont {
   display: flex;
   align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
 }
 @media screen and (max-width: 950px) {
   .dailyDataModal {
@@ -78,7 +93,7 @@
     justify-content: center;
     align-items: center;
     padding: 1rem 1rem 2rem 1rem;
-    min-width: 75vw;
+    max-width: 85vw;
   }
   .dailyUl {
     display: flex;
