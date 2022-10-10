@@ -5,7 +5,6 @@ import Alert from 'src/icons/Alerts';
 import { LazyMotion, m } from 'framer-motion';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
 import getMoonPhase from 'src/functions/getMoonPhase';
-import Temperature from 'src/icons/Temperature';
 import FeelsLike from 'src/icons/FeelsLike';
 import Humidity from 'src/icons/Humidity';
 import Clouds from 'src/icons/Clouds';
@@ -148,6 +147,38 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
                 title={apiData.current.temp}
                 UIColor={UIColor}
               />
+              <div className="btnHolder">
+                <div className="searchReloadDiv">
+                  {showReloadSpinner ? (
+                    <ReloadSpinning svgColors={svgColors} />
+                  ) : (
+                    <button
+                      onClick={() => {
+                        setShowReloadSpinner(true);
+                        setShouldReloadAPI(true);
+                      }}
+                      onTouchEnd={(e) => {
+                        // prevents mobile keyboard from opening up
+                        e.preventDefault();
+
+                        setShowReloadSpinner(true);
+                        setShouldReloadAPI(true);
+                      }}
+                      className="apiReloader"
+                    >
+                      <Reload svgColors={svgColors} />
+                    </button>
+                  )}
+                </div>
+                <div
+                  onClick={() => {
+                    setIsOpenedSearch((state) => !state);
+                  }}
+                  className="searchReloadDiv"
+                >
+                  <Search svgColors={svgColors} />
+                </div>
+              </div>
             </div>
             <div className="currentInfoCont">
               <div className="feelsLike">
@@ -163,8 +194,10 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
                     </div>
                   </>
                 ) : null}
-                <FeelsLike svgColors={svgColors} />
-                {apiData.current.feels_like}
+                <div className="rainDiv">
+                  <FeelsLike svgColors={svgColors} />
+                  {apiData.current.feels_like}
+                </div>
               </div>
               {/*gets the weather icon through getMoonphase to return the correct phase if it's night */}
               <div className="weatherdescCont">
@@ -185,51 +218,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
               </div>
             </div>
           </div>
-          <div className="realTimeDataDiv">
-            <div className="searchReloadDiv">
-              {showReloadSpinner ? (
-                <ReloadSpinning svgColors={svgColors} />
-              ) : (
-                <button
-                  onClick={() => {
-                    setShowReloadSpinner(true);
-                    setShouldReloadAPI(true);
-                  }}
-                  onTouchEnd={(e) => {
-                    // prevents mobile keyboard from opening up
-                    e.preventDefault();
-
-                    setShowReloadSpinner(true);
-                    setShouldReloadAPI(true);
-                  }}
-                  className="apiReloader"
-                >
-                  <Reload svgColors={svgColors} />
-                </button>
-              )}
-            </div>
-
-            {/*search toggler*/}
-            <UnmountClosed isOpened={isClosedSearch}>
-              <div
-                onClick={() => {
-                  setIsOpenedSearch((state) => !state);
-                }}
-              >
-                <Search svgColors={svgColors} />
-              </div>
-            </UnmountClosed>
-          </div>
         </div>
-        <div
-          className="separator"
-          style={{ border: `1px solid ${separatorColor}` }}
-        ></div>
-
-        {/*      <div className="accumulatedRain">
-          <Rain svgColors={svgColors} />
-          <div>{`${minuterain.toFixed(2)} mm/h`}</div>
-        </div> */}
 
         <>
           {showSearchModal ? (
@@ -265,6 +254,10 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
             </>
           ) : null}
         </>
+        <div
+          className="separator"
+          style={{ border: `1px solid ${separatorColor}` }}
+        ></div>
 
         <div className="realTimeDataDiv">
           <Humidity svgColors={svgColors} />

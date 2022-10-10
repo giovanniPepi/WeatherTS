@@ -10,6 +10,11 @@
   background-color: var(--strongAccentColor);
   box-shadow: var(--boxShadow);
 }
+.dailyDtHolder {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
 .weatherDescRain {
   display: flex;
   flex-direction: column;
@@ -67,7 +72,15 @@
   align-items: center;
 }
 .currentTemp {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   font-size: 3rem;
+}
+.btnHolder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .searchReloadDiv {
   display: flex;
@@ -84,6 +97,7 @@
   justify-content: center;
   align-self: center;
   gap: 0.1rem;
+  padding: var(--btnPadding);
 }
 .windContainer {
   display: flex;
@@ -100,8 +114,6 @@
   align-items: center;
 }
 .ReloadSvg {
-  padding-top: 0.3rem;
-  padding-left: 0.3rem;
   height: 1.3rem;
   width: 1.3rem;
 }
@@ -116,7 +128,7 @@
   transform: scale(1.1);
 }
 .feelsLike {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-style: italic;
   display: flex;
   align-items: center;
@@ -212,7 +224,6 @@ form {
   border: none;
 }
 .SearchSvg {
-  margin-top: 0.5rem;
   width: 1.5rem;
   height: 1.5rem;
 }

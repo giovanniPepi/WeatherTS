@@ -16,8 +16,8 @@ const dataFormatter = (data: IWeatherData | undefined) => {
     data.current.weather[0]['description'] = `${capitalizeFirst(data.current.weather[0]['description'] as string)}`;
 
     data.current.humidity = `${(data?.current.humidity as number).toFixed(0)} %`;
-    data.current.temp = `${(data.current.temp as number).toFixed(1)} ºC`;
-    data.current.feels_like = `${(data.current.feels_like as number).toFixed(1)} ºC`;
+    data.current.temp = `${(data.current.temp as number).toFixed(0)} ºC`;
+    data.current.feels_like = `${(data.current.feels_like as number).toFixed(0)} ºC`;
 
     // return UV only at sunlight
     if (exactHour >= 5 && exactHour <= 19)        
