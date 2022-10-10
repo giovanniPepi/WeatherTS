@@ -146,7 +146,7 @@ const HourlyData: React.FC<HourlyProps> = ({
                 {typeof hour.uvi === 'string' ? (
                   <div className="hourlyDataDiv">
                     <UVI svgColors={svgColors} />
-                    <div className=" uvHourly">{hour.uvi}</div>
+                    <div className="uvHourly">{hour.uvi}</div>
                   </div>
                 ) : null}
               </li>

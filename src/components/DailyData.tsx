@@ -166,8 +166,9 @@ const DailyData: React.FC<DailyProps> = ({
                   <div className="dailyDataDiv">
                     <Temperature svgColors={svgColors} />
                     <div className="tempContainer">
-                      <div>Max {day.temp.max}</div>
-                      <div>Min {day.temp.min}</div>
+                      <div>
+                        {day.temp.min} / {day.temp.max}
+                      </div>
                     </div>
                     <div className="tempContainer">
                       {day.temp.morn ? (
@@ -195,16 +196,6 @@ const DailyData: React.FC<DailyProps> = ({
                     className="separator"
                     style={{ border: `1px solid ${separatorColor}` }}
                   ></div>
-
-                  <div className="dailyDataDiv">
-                    <Clouds svgColors={svgColors} /> {day.clouds}
-                  </div>
-
-                  <div
-                    className="separator"
-                    style={{ border: `1px solid ${separatorColor}` }}
-                  ></div>
-
                   <div className="dailyDataDiv">
                     <UVI svgColors={svgColors} /> {day.uvi}
                   </div>

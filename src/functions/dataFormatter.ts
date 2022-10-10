@@ -8,9 +8,8 @@ import getUVSeverity from "./getUVSeverity";
 import getWindDir from "./getWindDir";
 
 const dataFormatter = (data: IWeatherData | undefined) => {
-  
+ 
   if (data?.current) {
-
       /*format to check UV*/ 
     const exactHour = getHour(data.timezone);
     
@@ -50,43 +49,22 @@ const dataFormatter = (data: IWeatherData | undefined) => {
     }
   }
   if (data?.hourly) {
-
-    data.hourly.forEach((hour) => {
-      /*format to check UV*/ 
-      const exactHour = new Date(hour.dt as unknown as number * 1000).getHours();
-      
+    data.hourly.forEach((hour) => {    
       hour.dt = [hour.dt as unknown as number, `${getFormattedDate(hour.dt as unknown as number)} ${getExactHours(hour.dt as unknown as number)}`];
       hour.weather[0]['description'] = `${capitalizeFirst(hour.weather[0]['description'] as string)}`;      
       hour.pop = `${(hour.pop as number * 100).toFixed(0)}%`
       hour.humidity = `${(hour.humidity as number).toFixed(0)} %`;
       hour.temp = `${(hour.temp as number).toFixed(1)} ºC`;
-      hour.feels_like = `${(hour.feels_like as number).toFixed(1)} ºC`;
-
       /*only return UV at day*/ 
         hour.uvi = `${(hour.uvi as number).toFixed(0)} ${getUVSeverity
-          (hour.uvi as number)}`;     
-      hour.dew_point = `${hour.dew_point} ºC`;
-      hour.visibility = `${(hour.visibility as number) / 1000} km`;
-      hour.pressure = `${hour.pressure} hPa`;
+        (hour.uvi as number)}`;           
       hour.clouds = `${hour.clouds} %`;
-      hour.wind_deg = `${getWindDir(
-        hour.wind_deg as number
-      )}`;
-      hour.wind_speed = `${convertToKm(
-        hour.wind_speed as number
-      )} km/h`;
-
-      hour.wind_gust = `${convertToKm(
-        hour.wind_gust as number
-      )} km/h`;
     })
-
   }
   if (data?.daily) {
       data.daily.forEach(day => {
         day.dt = `${getFormattedDate(day.dt as number)}`;
         day.humidity = `${(day.humidity as number).toFixed(0)} %`;      
-        
         // temp obj
         const temps = Object.values(day.temp);
         const formattedTemps: string[] = []
@@ -103,13 +81,12 @@ const dataFormatter = (data: IWeatherData | undefined) => {
           morn: formattedTemps[5]
         }
         day.temp = newTempObj;
-
+        
         // capitalize first
         day.weather[0]["description"] = `${capitalizeFirst(day.weather[0]["description"] as string)}`;
 
- day.uvi = `${(day.uvi as number).toFixed(0)} ${getUVSeverity
+        day.uvi = `${(day.uvi as number).toFixed(0)} ${getUVSeverity
         (day.uvi as number)}`;
-
         day.sunrise = `${getExactHours(
         day.sunrise as number
         )}`;
@@ -129,10 +106,6 @@ const dataFormatter = (data: IWeatherData | undefined) => {
         day.moonset = `${getExactHours(day.moonset as number)}`;    
     });
   }
-
-
-
-
   return data;  
 }
 
