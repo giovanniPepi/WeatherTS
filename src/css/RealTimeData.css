@@ -47,8 +47,12 @@
 .titleContainer {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  font-size: 1.1rem;
+}
+.currentTemp {
+  font-size: 3rem;
 }
 .searchReloadDiv {
   display: flex;
@@ -96,7 +100,8 @@
   transform: scale(1.1);
 }
 .feelsLike {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  font-style: italic;
   display: flex;
   align-items: center;
   justify-content: center;

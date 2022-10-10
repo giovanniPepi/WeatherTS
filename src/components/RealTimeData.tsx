@@ -139,6 +139,29 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
               </>
             )}
           </div>
+          <div className="tempContainer">
+            <div className="currentTemp">{apiData.current.temp}</div>
+            <div className="feelsLike">
+              Feels like {apiData.current.feels_like}
+            </div>
+          </div>
+          <div className="realTimeDataDiv">
+            {/*gets the weather icon through getMoonphase to return the correct phase if it's night */}
+            {getWeatherIcon(
+              apiData.current.weather[0].main,
+              night,
+              moonPhase,
+              svgColors
+            )}
+            {loading ? null : (
+              <div className="weatherDescRain">
+                <WeatherDescAnimation
+                  title={apiData.current.weather[0].description}
+                  UIColor={UIColor}
+                />
+              </div>
+            )}
+          </div>
           <div className="searchReloadDiv">
             {showReloadSpinner ? (
               <ReloadSpinning svgColors={svgColors} />
@@ -177,45 +200,12 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           className="separator"
           style={{ border: `1px solid ${separatorColor}` }}
         ></div>
-        <div className="realTimeDataDiv">
-          {/*gets the weather icon through getMoonphase to return the correct phase if it's night */}
-          {getWeatherIcon(
-            apiData.current.weather[0].main,
-            night,
-            moonPhase,
-            svgColors
-          )}
-          {loading ? null : (
-            <div className="weatherDescRain">
-              <WeatherDescAnimation
-                title={apiData.current.weather[0].description}
-                UIColor={UIColor}
-              />
-              <div className="accumulatedRain">
-                <Rain svgColors={svgColors} />
-                <div>{`${minuterain.toFixed(2)} mm/h`}</div>
-              </div>
-            </div>
-          )}
-        </div>
-        <div
-          className="separator"
-          style={{ border: `1px solid ${separatorColor}` }}
-        ></div>
-        <div className="realTimeDataDiv">
-          <Temperature svgColors={svgColors} />
-          <div className="tempContainer">
-            {apiData.current.temp}
-            <div className="feelsLike">
-              <FeelsLike svgColors={svgColors} />
-              {apiData.current.feels_like}
-            </div>
-          </div>
-        </div>
-        <div
-          className="separator"
-          style={{ border: `1px solid ${separatorColor}` }}
-        ></div>
+
+        {/*      <div className="accumulatedRain">
+          <Rain svgColors={svgColors} />
+          <div>{`${minuterain.toFixed(2)} mm/h`}</div>
+        </div> */}
+
         <div className="realTimeDataDiv">
           <Humidity svgColors={svgColors} />
           <div>{apiData.current.humidity}</div>
