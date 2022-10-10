@@ -110,6 +110,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         <NetworkError svgColors={svgColors} />
         <div className="apiDataError">
           Couldn't get API data. Check your connection or try again later.
+          <div></div>
         </div>
       </m.div>
     );

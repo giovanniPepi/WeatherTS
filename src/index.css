@@ -175,7 +175,9 @@ input {
   height: 2rem;
 }
 .apiDataError {
+  align-self: center;
   max-width: 50vw;
+  text-align: center;
 }
 /*-----------------------------------------------MOBILE */
 @media screen and (max-width: 950px) {

@@ -23,7 +23,7 @@ const dataFormatter = (data: IWeatherData | undefined) => {
     if (exactHour >= 5 && exactHour <= 19)        
       data.current.uvi = `${(data.current.uvi as number).toFixed(0)} ${getUVSeverity(data.current.uvi as number)}`;        
 
-    data.current.dew_point = `${(data.current.dew_point as number).toFixed(1)} ºC`;
+    data.current.dew_point = `${(data.current.dew_point as number).toFixed(0)} ºC`;
     data.current.visibility = `${(data.current.visibility as number)/1000} km`;
     data.current.sunrise = `${getExactHours(
       data.current.sunrise as number
@@ -54,7 +54,7 @@ const dataFormatter = (data: IWeatherData | undefined) => {
       hour.weather[0]['description'] = `${capitalizeFirst(hour.weather[0]['description'] as string)}`;      
       hour.pop = `${(hour.pop as number * 100).toFixed(0)}%`
       hour.humidity = `${(hour.humidity as number).toFixed(0)} %`;
-      hour.temp = `${(hour.temp as number).toFixed(1)} ºC`;
+      hour.temp = `${(hour.temp as number).toFixed(0)} ºC`;
       /*only return UV at day*/ 
         hour.uvi = `${(hour.uvi as number).toFixed(0)} ${getUVSeverity
         (hour.uvi as number)}`;           
@@ -70,7 +70,7 @@ const dataFormatter = (data: IWeatherData | undefined) => {
         const formattedTemps: string[] = []
         temps.forEach((temp) => {
           // fix to 1 decimal
-          formattedTemps.push(`${(temp as number).toFixed(1)} ºC`);
+          formattedTemps.push(`${(temp as number).toFixed(0)} ºC`);
         })
         const newTempObj = {
           day: formattedTemps[0],

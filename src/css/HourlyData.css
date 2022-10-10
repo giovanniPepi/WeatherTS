@@ -4,6 +4,7 @@
   justify-content: flex-start;
   align-items: center;
   padding: 2rem 2rem 3rem 2rem;
+  text-align: center;
 }
 .hourlyUl {
   display: flex;
@@ -54,8 +55,9 @@
 
 @media screen and (max-width: 950px) {
   .hourlyDataModal {
-    padding: 1rem 1rem 2rem 1rem;
-    min-width: 75vw;
+    padding: 0.5rem 0.5rem 1rem 0.5rem;
+    width: 85vw;
+    font-size: 0.7rem;
   }
   .hourlyUl {
     display: flex;
@@ -63,20 +65,23 @@
   }
   .hourlyContainer {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     height: unset;
-    padding: var(--divPadding);
-    gap: 0.8rem;
+    padding: 0.3rem;
+    min-width: 80vw;
+    max-width: 80vw;
+    min-height: 8vh;
+    max-height: 8vh;
   }
   .hourlyDt {
-    min-width: 60vw;
     width: unset;
+    max-width: 5vw;
   }
   .hourlyDataDiv {
-    min-width: 50vw;
-    height: 3vh;
+    display: flex;
+    flex-direction: column;
     width: unset;
-    gap: 0.5rem;
   }
   .minorHourly {
     width: unset;
