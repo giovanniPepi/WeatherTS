@@ -119,8 +119,11 @@
 .realTimeDataDiv > div:hover {
   transform: scale(1.1);
 }
-.tickingTime:hover,
-.dailyDt:hover {
+.titleContainer:hover,
+.currentTemp:hover,
+.moonTimings:hover,
+.rainDiv:hover,
+.weatherdescCont:hover {
   transform: scale(1.1);
 }
 .feelsLike {
