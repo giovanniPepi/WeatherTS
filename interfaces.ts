@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 interface IWeatherData {
   lat: number;
@@ -156,6 +156,11 @@ interface RealTimeDataProps {
   setIsClosedSearch: StateChangerB,
   setIsOpenedSearch: StateChangerB;
   minuterain: number;
+  showSearchModal: boolean;
+  setShowSearchModal: StateChangerB;
+  isOpenedSearch: boolean;
+  handleClick: any;
+  handleInputChange: any; 
 }
 
 interface AlertsModalProps {

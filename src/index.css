@@ -103,10 +103,6 @@ input {
 .ReactCollapse--collapse {
   transition: height 500ms;
 }
-.searchTogglerOpened,
-.searchTogglerClosed {
-  transition: height 700ms;
-}
 
 /*SVGs*/
 .loadingSvg,
@@ -164,26 +160,6 @@ input {
   border-radius: var(--radius);
   box-shadow: var(--boxShadow);
 }
-.searchForm {
-  background-color: var(--strongAccentColor);
-  backdrop-filter: var(--modalBlur);
-  padding: var(--btnPadding);
-  border-radius: var(--radius);
-  box-shadow: var(--boxShadow);
-}
-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 1.3rem;
-  border-radius: 0.5rem;
-  border: none;
-}
-.SearchSvg {
-  margin-top: 0.5rem;
-  width: 1.5rem;
-  height: 1.5rem;
-}
 /*same for all modals*/
 .minutelyDataModal,
 .hourlyDataModal,
@@ -235,9 +211,6 @@ form {
     justify-content: space-between;
     gap: 0.5rem;
     width: 100%;
-  }
-  .searchForm {
-    width: 50vw;
   }
   .PreviousSvg,
   .NextSvg {

@@ -258,43 +258,6 @@ const App: React.FC = () => {
                   Daily
                 </button>
               </div>
-              <>
-                {showSearchModal ? (
-                  <>
-                    <UnmountClosed
-                      isOpened={isOpenedSearch}
-                      theme={{
-                        collapse: 'searchTogglerClosed',
-                        content: 'searchTogglerOpened'
-                      }}
-                    >
-                      <div
-                        className="searchForm"
-                        style={{
-                          backgroundColor: modalUIColor,
-                          boxShadow: boxShadow
-                        }}
-                      >
-                        <form onSubmit={handleClick}>
-                          <input
-                            placeholder="Search a location..."
-                            onChange={handleInputChange}
-                            ref={(input) => {
-                              input && input.focus();
-                            }}
-                          />
-                          <button
-                            onClick={handleClick}
-                            className="searchBtn"
-                          >
-                            <Search svgColors={svgColors} />
-                          </button>
-                        </form>
-                      </div>
-                    </UnmountClosed>
-                  </>
-                ) : null}
-              </>
             </div>
           ) : null}
 
@@ -330,6 +293,11 @@ const App: React.FC = () => {
               setIsOpenedSearch={setIsOpenedSearch}
               isClosedSearch={isClosedSearch}
               minuterain={minuteRain}
+              showSearchModal={showSearchModal}
+              isOpenedSearch={isOpenedSearch}
+              handleClick={handleClick}
+              setShowSearchModal={setShowSearchModal}
+              handleInputChange={handleInputChange}
             />
           ) : null}
 

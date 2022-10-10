@@ -50,7 +50,12 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   isClosedSearch,
   setIsClosedSearch,
   setIsOpenedSearch,
-  minuterain
+  minuterain,
+  showSearchModal,
+  isOpenedSearch,
+  handleClick,
+  setShowSearchModal,
+  handleInputChange
 }) => {
   //state
   const [showAlertsModal, setShowAlertsModal] = useState<Boolean>(false);
@@ -205,6 +210,41 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           <Rain svgColors={svgColors} />
           <div>{`${minuterain.toFixed(2)} mm/h`}</div>
         </div> */}
+
+        <>
+          {showSearchModal ? (
+            <>
+              <UnmountClosed
+                isOpened={isOpenedSearch}
+                theme={{
+                  collapse: 'searchTogglerClosed',
+                  content: 'searchTogglerOpened'
+                }}
+              >
+                <div
+                  className="searchForm"
+                  style={{
+                    backgroundColor: modalUIColor,
+                    boxShadow: boxShadow
+                  }}
+                >
+                  <form onSubmit={handleClick}>
+                    <input
+                      placeholder="Search a location..."
+                      onChange={handleInputChange}
+                      ref={(input) => {
+                        input && input.focus();
+                      }}
+                    />
+                    <button onClick={handleClick} className="searchBtn">
+                      <Search svgColors={svgColors} />
+                    </button>
+                  </form>
+                </div>
+              </UnmountClosed>
+            </>
+          ) : null}
+        </>
 
         <div className="realTimeDataDiv">
           <Humidity svgColors={svgColors} />

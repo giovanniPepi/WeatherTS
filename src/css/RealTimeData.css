@@ -170,6 +170,30 @@
 .twoDots {
   align-self: center;
 }
+.searchTogglerOpened,
+.searchTogglerClosed {
+  transition: height 700ms;
+}
+.searchForm {
+  background-color: var(--strongAccentColor);
+  backdrop-filter: var(--modalBlur);
+  padding: var(--btnPadding);
+  border-radius: var(--radius);
+  box-shadow: var(--boxShadow);
+}
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1.3rem;
+  border-radius: 0.5rem;
+  border: none;
+}
+.SearchSvg {
+  margin-top: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
 @media screen and (max-width: 649px) {
   .realTimeData {
     margin-bottom: 1rem;
