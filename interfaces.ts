@@ -188,7 +188,7 @@ interface Ititle {
   time: string;
 }
 interface ITitleAnimation {
-  title: string;
+  title: string | number;
   UIColor: string;
 }
 

@@ -192,7 +192,7 @@ input {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
   }
   .headerContainer {
     margin-top: 0.5rem;

@@ -134,62 +134,82 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
         <div className="dailyDt strong" style={{ color: UIColor }}>
           <div className="titleContainer">
             {loading ? null : (
-              <>
-                <TitleAnimation title={locationToShow} UIColor={UIColor} />
+              <div className="cityInfo">
+                {locationToShow}
                 <div className="tickingTime">
-                  {hour}
-                  <TickingOneSecond />
-                  {minutes}
+                  {hour} <TickingOneSecond /> {minutes}
                 </div>
-              </>
-            )}
-          </div>
-          <div className="tempContainer homeTempContainer">
-            <div className="currentTemp">{apiData.current.temp}</div>
-            <div className="feelsLike">
-              Feels like {apiData.current.feels_like}
-            </div>
-          </div>
-          <div className="realTimeDataDiv weatherDescDiv">
-            {/*gets the weather icon through getMoonphase to return the correct phase if it's night */}
-            {getWeatherIcon(
-              apiData.current.weather[0].main,
-              night,
-              moonPhase,
-              svgColors
-            )}
-            {loading ? null : (
-              <div className="weatherDescRain">
-                <WeatherDescAnimation
-                  title={apiData.current.weather[0].description}
-                  UIColor={UIColor}
-                />
               </div>
             )}
           </div>
-          <div className="searchReloadDiv">
-            {showReloadSpinner ? (
-              <ReloadSpinning svgColors={svgColors} />
-            ) : (
-              <button
-                onClick={() => {
-                  setShowReloadSpinner(true);
-                  setShouldReloadAPI(true);
-                }}
-                onTouchEnd={(e) => {
-                  // prevents mobile keyboard from opening up
-                  e.preventDefault();
+          <div className="tempContainer homeTempContainer">
+            <div className="currentTemp">
+              <TitleAnimation
+                title={apiData.current.temp}
+                UIColor={UIColor}
+              />
+            </div>
+            <div className="currentInfoCont">
+              <div className="feelsLike">
+                {apiData.current.rain ? (
+                  <>
+                    <div className="moonTimings">
+                      <Tooltip title="Rain volume" placement="left-start">
+                        <div className="rainDiv">
+                          <Rain svgColors={svgColors} />
+                          {apiData.current.rain['1h']}/h
+                        </div>
+                      </Tooltip>
+                    </div>
+                  </>
+                ) : null}
+                <FeelsLike svgColors={svgColors} />
+                {apiData.current.feels_like}
+              </div>
+              {/*gets the weather icon through getMoonphase to return the correct phase if it's night */}
+              <div className="weatherdescCont">
+                {getWeatherIcon(
+                  apiData.current.weather[0].main,
+                  night,
+                  moonPhase,
+                  svgColors
+                )}
+                {loading ? null : (
+                  <div className="weatherDescRain">
+                    <WeatherDescAnimation
+                      title={apiData.current.weather[0].description}
+                      UIColor={UIColor}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="realTimeDataDiv">
+            <div className="searchReloadDiv">
+              {showReloadSpinner ? (
+                <ReloadSpinning svgColors={svgColors} />
+              ) : (
+                <button
+                  onClick={() => {
+                    setShowReloadSpinner(true);
+                    setShouldReloadAPI(true);
+                  }}
+                  onTouchEnd={(e) => {
+                    // prevents mobile keyboard from opening up
+                    e.preventDefault();
 
-                  setShowReloadSpinner(true);
-                  setShouldReloadAPI(true);
-                }}
-                className="apiReloader"
-              >
-                <Reload svgColors={svgColors} />
-              </button>
-            )}
+                    setShowReloadSpinner(true);
+                    setShouldReloadAPI(true);
+                  }}
+                  className="apiReloader"
+                >
+                  <Reload svgColors={svgColors} />
+                </button>
+              )}
+            </div>
 
-            {/*serach toggler*/}
+            {/*search toggler*/}
             <UnmountClosed isOpened={isClosedSearch}>
               <div
                 onClick={() => {
@@ -275,29 +295,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           style={{ border: `1px solid ${separatorColor}` }}
         ></div>
         {/* conditional rendering for rain and snow */}
-        {apiData.current.rain ? (
-          <>
-            <div className="realTimeDataDiv">
-              <Rain svgColors={svgColors} />
-              <div className="moonTimings">
-                <Tooltip title="Rain volume" placement="left-start">
-                  <div>{apiData.current.rain['1h']} - last hour</div>
-                </Tooltip>
-                <Tooltip title="Rain volume" placement="left-start">
-                  <div>
-                    {apiData.current.rain['3h']
-                      ? `${apiData.current.rain['3h']} - last 3 hours`
-                      : null}
-                  </div>
-                </Tooltip>
-              </div>
-            </div>
-            <div
-              className="separator"
-              style={{ border: `1px solid ${separatorColor}` }}
-            ></div>
-          </>
-        ) : null}
+
         {apiData.current.snow ? (
           <>
             <div className="realTimeDataDiv">
