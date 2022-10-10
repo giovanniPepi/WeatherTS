@@ -13,12 +13,7 @@ const Reload: React.FC<ISvgColors> = ({ svgColors }) => {
   const { path, color, spin } = iconInfo;
 
   return (
-    <Icon
-      path={path}
-      color={color}
-      spin={spin}
-      className="ReloadSvg"
-    />
+    <Icon path={path} color={color} spin={spin} className="ReloadSvg" />
   );
 };
 

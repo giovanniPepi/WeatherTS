@@ -1,4 +1,4 @@
-import { Tooltip } from '@material-ui/core';
+import Tooltip from '@material-ui/core/Tooltip';
 import { LazyMotion, m } from 'framer-motion';
 import { ISvgColors } from 'interfaces';
 

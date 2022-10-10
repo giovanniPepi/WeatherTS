@@ -1,4 +1,4 @@
-import { Tooltip } from '@material-ui/core';
+import Tooltip from '@material-ui/core/Tooltip';
 import { mdiTurbine } from '@mdi/js';
 import Icon from '@mdi/react';
 import { ISvgColors } from 'interfaces';
@@ -16,12 +16,7 @@ const Windy: React.FC<ISvgColors> = ({ svgColors }) => {
 
   return (
     <Tooltip title="Wind info" placement="left-start">
-      <Icon
-        path={path}
-        color={color}
-        spin={spin}
-        className="windySvg"
-      />
+      <Icon path={path} color={color} spin={spin} className="windySvg" />
     </Tooltip>
   );
 };

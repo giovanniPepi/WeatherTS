@@ -16,7 +16,7 @@ import Windy from 'src/icons/Windy';
 import Rain from 'src/icons/Rain';
 import Percent from 'src/icons/Percent';
 import NetworkError from 'src/icons/NetworkError';
-import { Tooltip } from '@material-ui/core';
+import Tooltip from '@material-ui/core/Tooltip';
 import TitleAnimation from 'src/functions/TitleAnimation';
 
 const DailyData: React.FC<DailyProps> = ({
