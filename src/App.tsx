@@ -15,6 +15,7 @@ import RealTimeData from './components/RealTimeData';
 import { UnmountClosed } from 'react-collapse';
 import NetworkError from './icons/NetworkError';
 import getMinutelyRain from './functions/getMinutelyRain';
+import isLocalNight from './functions/isLocalNight';
 
 const App: React.FC = () => {
   const [apiData, setApiData] = useState<IWeatherData>();
@@ -25,11 +26,12 @@ const App: React.FC = () => {
     lon: -47.048331,
     country: 'BR'
   });
-  const [location, setLocation] = useState<string>('');
   // the concatenated location returned by the GEO Api
   const [locationToShow, setLocationToShow] =
     useState<string>('Campinas, BR');
+  const [GEOAPIlocation, setGEOAPILocation] = useState<string>('');
   const [minuteRain, setMinuteRain] = useState(0);
+  //modal togglers
   const [showHourlyModal, setShowHourlyModal] = useState<Boolean>(false);
   const [showDailyModal, setShowDailyModal] = useState<Boolean>(false);
   const [showRealTimeModal, setShowRealTimeModal] = useState(true);
@@ -38,7 +40,8 @@ const App: React.FC = () => {
   const [backgroundImg, setBackgroundImg] = useState(`linear-gradient(
     rgba(55, 6, 135, 0.75),
     rgba(109, 40, 217, 0.18))`);
-  const [night, setNight] = useState(false);
+  // sets night in local time before the first API call to reduce guessing
+  const [night, setNight] = useState(isLocalNight());
   const [moonPhase, setMoonPhase] = useState(0);
   const [UIColor, setUIColor] = useState('rgb(255, 255, 255)');
   const [modalUIColor, setModalUIColor] = useState(
@@ -75,14 +78,14 @@ const App: React.FC = () => {
 
   //https://devtrium.com/posts/react-typescript-events
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setLocation(e.target.value);
+    setGEOAPILocation(e.target.value);
   };
 
   // updates APIData when clicking
   const handleClick = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     setLoading(true);
-    const newLoc = await getGeoAPI(location);
+    const newLoc = await getGeoAPI(GEOAPIlocation);
     console.log(newLoc);
     // avoids undefined
     if (newLoc) {

@@ -192,7 +192,7 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
                 UIColor={UIColor}
               />
               <div className="accumulatedRain">
-                <Rain svgColors={svgColors} />{' '}
+                <Rain svgColors={svgColors} />
                 <div>{`${minuterain.toFixed(2)} mm/h`}</div>
               </div>
             </div>
