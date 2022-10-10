@@ -34,8 +34,7 @@ const getWeatherAPI = async(locationObj: { lat?: number; lon?: number; country?:
     return receivedData;
   } catch (error) {
     console.log(error);
-    }
-  
+    }  
 
     
   //return await getInitialAPIData();

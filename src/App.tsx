@@ -7,7 +7,6 @@ import getDaysToRender from './functions/getDaysToRender';
 import getHoursToRender from './functions/getHoursToRender';
 import isNight from './functions/isNight';
 import getGeoAPI from './functions/getGEOApi';
-import { analytics } from './functions/firebase';
 import getWeatherBackground from './functions/getWeatherBackground';
 import isLocalNight from './functions/isLocalNight';
 import Loading from './icons/Loading';
@@ -35,6 +34,7 @@ const App: React.FC = () => {
   const [backgroundImg, setBackgroundImg] = useState(`linear-gradient(
     rgba(55, 6, 135, 0.75),
     rgba(109, 40, 217, 0.18))`);
+
   // sets night in local time before the first API call to reduce guessing
   const [night, setNight] = useState(isLocalNight());
   const [moonPhase, setMoonPhase] = useState(0);
@@ -49,9 +49,11 @@ const App: React.FC = () => {
     useState(`rgba(24, 32, 79, 0.25) 0px 20px 20px, 
     rgba(255, 255, 255, 0.3) 0px 0px 0px 0.1px inset`);
   const [svgColors, setSvgColors] = useState('#f2a708');
+
   // Updates number of info per screen size
   const [daysToRender, setDaysToRender] = useState(0);
   const [hoursToRender, setHoursToRender] = useState(0);
+
   // API reloading without F5'ing
   const [shouldReloadAPI, setShouldReloadAPI] = useState(false);
   // togglers
@@ -156,6 +158,7 @@ const App: React.FC = () => {
           setBoxShadow(`rgba(24, 32, 79, 0.25) 0px 20px 20px, 
     rgba(255, 255, 255, 0.3) 0px 0px 0px 0.1px inset`);
         }
+
         // changes background:
         const bg = getWeatherBackground(
           data?.current.weather[0],
@@ -177,9 +180,6 @@ const App: React.FC = () => {
 
     // initial condition
     getData(locationForAPI);
-
-    // load GA
-    const ga = analytics;
 
     // update size to show in daily/hourly modal
     setDaysToRender(getDaysToRender(screenWidth));

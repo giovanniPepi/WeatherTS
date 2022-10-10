@@ -6,7 +6,6 @@ interface IWeatherData {
   timezone: string;
   timezone_offset: number;
   current: IWeatherDataCurrent;
-  minutely: Minutely;
   hourly: HourlyArray;
   daily: Daily;
   alerts: Ialerts[] | undefined;
@@ -110,10 +109,6 @@ interface IGeoApiCall  {
 
 }
 
-interface Iminutely {
-  dt: number | string;
-  precipitation: number | string;
-}
 
 interface HourlyProps {
   hourlyData: HourlyArray | undefined;
@@ -155,7 +150,6 @@ interface RealTimeDataProps {
   isClosedSearch: boolean,
   setIsClosedSearch: StateChangerB,
   setIsOpenedSearch: StateChangerB;
-  minuterain: number;
   isOpenedSearch: boolean;
   handleClick: any;
   handleInputChange: any; 
@@ -202,7 +196,6 @@ interface ISvgColors {
 
 type CurrentWeather = ICurrentWeatherArray[];
 type Daily = IDailyWeather[];
-type Minutely = Iminutely[] | undefined;
 type HourlyArray = IHourlyWeather[];
 type DailyArray = IDailyWeather[];
 type StateChanger = Dispatch<SetStateAction<Boolean>>;
@@ -211,6 +204,6 @@ type StateChangerB = Dispatch<SetStateAction<boolean>>;
 export type {
   IWeatherData,
   HourlyProps, DailyProps, IGeoApiCall, RealTimeDataProps
-, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, HourlyArray, DailyArray, Ititle, ITitleAnimation, ICurrentWeatherArray, ISvgColors, Minutely, ISeparator
+, ExtendedRealTimeDataProps, NightProps, AlertsModalProps, HourlyArray, DailyArray, Ititle, ITitleAnimation, ICurrentWeatherArray, ISvgColors, ISeparator
 }  
 
