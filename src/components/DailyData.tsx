@@ -38,7 +38,7 @@ const DailyData: React.FC<DailyProps> = ({
   const getNextDays = () => {
     if (start > index || start > index - daysToRender) setStart(0);
     if (index > 8) setIndex(8);
-    if (index < 8 || start < 8 - daysToRender) {
+    if (index < 8 || start < daysToRender) {
       setIndex(index + daysToRender);
       setStart(start + daysToRender);
     }
@@ -125,6 +125,14 @@ const DailyData: React.FC<DailyProps> = ({
                 <li key={nanoid()} className="dailyContainer">
                   <div className="dailyDt">
                     <div className="dailyDtTitle">{day.dt}</div>
+                    <div className="mainTempCont">
+                      <Temperature svgColors={svgColors} />
+                      <div className="tempContainer">
+                        <div>
+                          {day.temp.min} / {day.temp.max}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div
                     className="separator"
@@ -142,13 +150,6 @@ const DailyData: React.FC<DailyProps> = ({
                       title={day.weather[0].description}
                       UIColor={UIColor}
                     />
-                  </div>
-                  <div
-                    className="separator"
-                    style={{ border: `1px solid ${separatorColor}` }}
-                  ></div>
-
-                  <div className="dailyDataDiv">
                     <Tooltip title="Rain probability">
                       <div className="rainPercentContainer">
                         <Rain svgColors={svgColors} />
@@ -157,6 +158,7 @@ const DailyData: React.FC<DailyProps> = ({
                     </Tooltip>
                     {day.pop}
                   </div>
+
                   <div
                     className="separator"
                     style={{ border: `1px solid ${separatorColor}` }}
@@ -164,11 +166,6 @@ const DailyData: React.FC<DailyProps> = ({
 
                   <div className="dailyDataDiv">
                     <Temperature svgColors={svgColors} />
-                    <div className="tempContainer">
-                      <div>
-                        {day.temp.min} / {day.temp.max}
-                      </div>
-                    </div>
                     <div className="tempContainer">
                       {day.temp.morn ? (
                         <div>Morning {day.temp.morn}</div>
@@ -183,6 +180,7 @@ const DailyData: React.FC<DailyProps> = ({
                       ) : null}
                     </div>
                   </div>
+
                   <div
                     className="separator"
                     style={{ border: `1px solid ${separatorColor}` }}

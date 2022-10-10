@@ -74,7 +74,6 @@ const getWeatherBackground = (
       }
     }
   } else if (screenWidth <= 500) {
-    console.log('small device detected');
     if (!night) {
       switch (weatherArray?.main) {
         case 'Clouds':

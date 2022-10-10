@@ -32,9 +32,12 @@ const HourlyData: React.FC<HourlyProps> = ({
   const [start, setStart] = useState(0);
 
   const getNextHours = () => {
-    if (start > index || start > index - hoursToRender) setStart(40);
-    if (index > 48) setIndex(48);
+    if (start > index || start > index - hoursToRender) {
+      console.log('fuck1');
+      setStart(48 - hoursToRender);
+    }
     if (index < 48 || start < 48 - hoursToRender) {
+      console.log('fuck3');
       setIndex(index + hoursToRender);
       setStart(start + hoursToRender);
     }

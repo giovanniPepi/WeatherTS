@@ -68,6 +68,10 @@
   height: 0.8rem;
   width: 0.8rem;
 }
+.mainTempCont {
+  display: flex;
+  align-items: center;
+}
 @media screen and (max-width: 950px) {
   .dailyDataModal {
     display: flex;
