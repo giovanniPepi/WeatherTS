@@ -109,11 +109,6 @@ input {
   width: 5rem;
   height: 5rem;
 }
-.loadingSvg,
-.loadingIcon {
-  width: 5rem;
-  height: 5rem;
-}
 .NetworkErrorSvg {
   align-self: center;
 }

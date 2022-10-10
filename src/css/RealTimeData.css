@@ -9,6 +9,7 @@
   backdrop-filter: var(--modalBlur);
   background-color: var(--strongAccentColor);
   box-shadow: var(--boxShadow);
+  background-color: yellow;
 }
 .dailyDtHolder {
   display: flex;

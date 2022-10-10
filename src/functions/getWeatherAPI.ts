@@ -35,7 +35,10 @@ const getWeatherAPI = async(locationObj: { lat?: number; lon?: number; country?:
   } catch (error) {
     console.log(error);
     }
-  // return getInitialAPIData();
+  
+
+    
+  //return await getInitialAPIData();
 }
 
 export default getWeatherAPI;

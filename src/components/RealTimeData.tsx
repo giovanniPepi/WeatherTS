@@ -89,33 +89,35 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
 
   if (apiData === undefined) {
     return (
-      <m.div
-        className="realTimeData"
-        initial={{ opacity: 0 }}
-        style={{
-          backgroundColor: modalUIColor,
-          boxShadow: boxShadow
-        }}
-        animate={{
-          opacity: 1
-        }}
-        transition={{ duration: 0.8 }}
-        exit={{
-          opacity: 0,
-          x: window.innerWidth
-        }}
-      >
+      <>
         {firstRender ? null : (
-          <>
-            <NetworkError svgColors={svgColors} />
-            <div className="apiDataError">
-              Couldn't get API data. Check your connection or try again
-              later.
-              <div></div>
-            </div>
-          </>
+          <m.div
+            className="realTimeData"
+            initial={{ opacity: 0 }}
+            style={{
+              backgroundColor: modalUIColor,
+              boxShadow: boxShadow
+            }}
+            animate={{
+              opacity: 1
+            }}
+            transition={{ duration: 0.8 }}
+            exit={{
+              opacity: 0,
+              x: window.innerWidth
+            }}
+          >
+            <>
+              <NetworkError svgColors={svgColors} />
+              <div className="apiDataError">
+                Couldn't get API data. Check your connection or try again
+                later.
+                <div></div>
+              </div>
+            </>
+          </m.div>
         )}
-      </m.div>
+      </>
     );
   }
 

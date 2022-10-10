@@ -1,6 +1,13 @@
 import { IWeatherData } from 'interfaces';
 
-const getInitialAPIData = (): IWeatherData => {
+const getInitialAPIData = async(): IWeatherData => {
+  
+ function delay(n){
+    return new Promise(function(resolve){
+        setTimeout(resolve,n*1000);
+    });
+}
+
   const initialObj = {
     lat: 0,
     lon: 0,
@@ -83,8 +90,11 @@ const getInitialAPIData = (): IWeatherData => {
     ],
     alerts: undefined
   };
+ await delay(2)  
 
   return initialObj;
+
+
 };
 
 export default getInitialAPIData;

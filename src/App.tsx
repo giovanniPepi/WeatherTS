@@ -11,10 +11,9 @@ import { analytics } from './functions/firebase';
 import getWeatherBackground from './functions/getWeatherBackground';
 import isLocalNight from './functions/isLocalNight';
 import Loading from './icons/Loading';
-import RealTimeData from './components/RealTimeData';
-import { UnmountClosed } from 'react-collapse';
 import NetworkError from './icons/NetworkError';
 import getMinutelyRain from './functions/getMinutelyRain';
+import RealTimeData from './components/RealTimeData';
 
 const App: React.FC = () => {
   const [apiData, setApiData] = useState<IWeatherData>();
@@ -187,7 +186,6 @@ const App: React.FC = () => {
     const ga = analytics;
 
     // update size to show in daily/hourly modal
-    // force rerender
     setDaysToRender(getDaysToRender(screenWidth));
     setHoursToRender(getHoursToRender(screenWidth));
   }, [locationForAPI, night, shouldReloadAPI]);
@@ -282,11 +280,11 @@ const App: React.FC = () => {
               separatorColor={separatorColor}
               boxShadow={boxShadow}
               setShouldReloadAPI={setShouldReloadAPI}
-              setIsClosedSearch={setIsClosedSearch}
-              setIsOpenedSearch={setIsOpenedSearch}
               isClosedSearch={isClosedSearch}
-              minuterain={minuteRain}
+              setIsClosedSearch={setIsClosedSearch}
               isOpenedSearch={isOpenedSearch}
+              setIsOpenedSearch={setIsOpenedSearch}
+              minuterain={minuteRain}
               handleClick={handleClick}
               handleInputChange={handleInputChange}
               firstRender={firstRender}
