@@ -31,6 +31,7 @@ import More from 'src/icons/More';
 import Less from 'src/icons/Less';
 import { UnmountClosed } from 'react-collapse';
 import Search from 'src/icons/Search';
+import Loading from 'src/icons/Loading';
 
 // dealing with objects as props, they must have their own interface:
 //https://dev.to/mconner89/passing-props-in-react-using-typescript-20lm
@@ -54,7 +55,8 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   isOpenedSearch,
   handleClick,
   setShowSearchModal,
-  handleInputChange
+  handleInputChange,
+  firstRender
 }) => {
   //state
   const [showAlertsModal, setShowAlertsModal] = useState<Boolean>(false);
@@ -107,11 +109,16 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           x: window.innerWidth
         }}
       >
-        <NetworkError svgColors={svgColors} />
-        <div className="apiDataError">
-          Couldn't get API data. Check your connection or try again later.
-          <div></div>
-        </div>
+        {firstRender ? null : (
+          <>
+            <NetworkError svgColors={svgColors} />
+            <div className="apiDataError">
+              Couldn't get API data. Check your connection or try again
+              later.
+              <div></div>
+            </div>
+          </>
+        )}
       </m.div>
     );
   }

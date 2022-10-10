@@ -161,6 +161,7 @@ interface RealTimeDataProps {
   isOpenedSearch: boolean;
   handleClick: any;
   handleInputChange: any; 
+  firstRender: boolean;
 }
 
 interface AlertsModalProps {

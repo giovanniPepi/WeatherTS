@@ -64,6 +64,7 @@ const App: React.FC = () => {
   const [showNotFound, setShowNotFound] = useState(false);
 
   const [screenWidth, setScreenWidth] = useState(0);
+  const [firstRender, setFirstRender] = useState(true);
 
   // code splitting
   const HourlyData = React.lazy(() => import('./components/HourlyData'));
@@ -176,6 +177,7 @@ const App: React.FC = () => {
         setMinuteRain(getMinutelyRain(data?.minutely));
 
         // end loading
+        setFirstRender(false);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -296,6 +298,7 @@ const App: React.FC = () => {
               handleClick={handleClick}
               setShowSearchModal={setShowSearchModal}
               handleInputChange={handleInputChange}
+              firstRender={firstRender}
             />
           ) : null}
 
