@@ -9,13 +9,13 @@ import isNight from './functions/isNight';
 import getGeoAPI from './functions/getGEOApi';
 import { analytics } from './functions/firebase';
 import getWeatherBackground from './functions/getWeatherBackground';
+import isLocalNight from './functions/isLocalNight';
 import Loading from './icons/Loading';
 import Search from './icons/Search';
 import RealTimeData from './components/RealTimeData';
 import { UnmountClosed } from 'react-collapse';
 import NetworkError from './icons/NetworkError';
 import getMinutelyRain from './functions/getMinutelyRain';
-import isLocalNight from './functions/isLocalNight';
 
 const App: React.FC = () => {
   const [apiData, setApiData] = useState<IWeatherData>();
@@ -70,7 +70,7 @@ const App: React.FC = () => {
   const HourlyData = React.lazy(() => import('./components/HourlyData'));
   const DailyData = React.lazy(() => import('./components/DailyData'));
 
-  if (screenWidth !== window.screen.width)
+  if (screenWidth !== window.screen.availWidth)
     setScreenWidth(window.screen.availWidth);
 
   //https://devtrium.com/posts/react-typescript-events
@@ -230,7 +230,7 @@ const App: React.FC = () => {
                   }}
                   className="strong dataToggler"
                 >
-                  Home/Current
+                  Home - Current
                 </button>
 
                 <button

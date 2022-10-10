@@ -1,5 +1,5 @@
 import '../css/HourlyData.css';
-import { v4 } from 'uuid';
+import { nanoid } from 'nanoid';
 import { HourlyArray, HourlyProps } from 'interfaces';
 import { LazyMotion, m } from 'framer-motion';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
@@ -121,7 +121,7 @@ const HourlyData: React.FC<HourlyProps> = ({
         <ul className="hourlyUl">
           {renderedItems.map((hour) => {
             return (
-              <li key={v4()} className="hourlyContainer">
+              <li key={nanoid()} className="hourlyContainer">
                 <div className="hourlyDt">{hour.dt[1]}</div>
 
                 <div className="hourlyDataDiv minorHourly">

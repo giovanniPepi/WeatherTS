@@ -1,5 +1,5 @@
 import '../css/DailyData.css';
-import { v4 } from 'uuid';
+import { nanoid } from 'nanoid';
 import { DailyArray, DailyProps } from 'interfaces';
 import { LazyMotion, m } from 'framer-motion';
 import getWeatherIcon from 'src/functions/getWeatherIcon';
@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import Temperature from 'src/icons/Temperature';
 import Humidity from 'src/icons/Humidity';
 import UVI from 'src/icons/UVI';
-import Clouds from 'src/icons/Clouds';
 import Previous from 'src/icons/Previous';
 import Next from 'src/icons/Next';
 import getMoonPhase from 'src/functions/getMoonPhase';
@@ -123,7 +122,7 @@ const DailyData: React.FC<DailyProps> = ({
           <ul className="dailyUl">
             {renderedItems.map((day) => {
               return (
-                <li key={v4()} className="dailyContainer">
+                <li key={nanoid()} className="dailyContainer">
                   <div className="dailyDt">
                     <div className="dailyDtTitle">{day.dt}</div>
                   </div>
