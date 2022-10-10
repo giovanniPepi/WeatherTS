@@ -12,7 +12,6 @@ import getWeatherBackground from './functions/getWeatherBackground';
 import isLocalNight from './functions/isLocalNight';
 import Loading from './icons/Loading';
 import NetworkError from './icons/NetworkError';
-import getMinutelyRain from './functions/getMinutelyRain';
 import RealTimeData from './components/RealTimeData';
 
 const App: React.FC = () => {
@@ -28,7 +27,6 @@ const App: React.FC = () => {
   const [locationToShow, setLocationToShow] =
     useState<string>('Campinas, BR');
   const [GEOAPIlocation, setGEOAPILocation] = useState<string>('');
-  const [minuteRain, setMinuteRain] = useState(0);
   //modal togglers
   const [showHourlyModal, setShowHourlyModal] = useState<Boolean>(false);
   const [showDailyModal, setShowDailyModal] = useState<Boolean>(false);
@@ -169,8 +167,6 @@ const App: React.FC = () => {
         //finally, sets API data for other components
         setApiData(dataFormatter(data));
 
-        setMinuteRain(getMinutelyRain(data?.minutely));
-
         // end loading
         setFirstRender(false);
         setLoading(false);
@@ -284,7 +280,6 @@ const App: React.FC = () => {
               setIsClosedSearch={setIsClosedSearch}
               isOpenedSearch={isOpenedSearch}
               setIsOpenedSearch={setIsOpenedSearch}
-              minuterain={minuteRain}
               handleClick={handleClick}
               handleInputChange={handleInputChange}
               firstRender={firstRender}
