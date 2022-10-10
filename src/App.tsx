@@ -57,9 +57,6 @@ const App: React.FC = () => {
   // Updates number of info per screen size
   const [daysToRender, setDaysToRender] = useState(0);
   const [hoursToRender, setHoursToRender] = useState(0);
-  // forces rerendering to apply themes
-  const [updateRealTime, setUpdateRealTime] = useState(0);
-  const [updateHourly, setUpdateHourlyTime] = useState(0);
   // API reloading without F5'ing
   const [shouldReloadAPI, setShouldReloadAPI] = useState(false);
   // togglers
@@ -157,7 +154,6 @@ const App: React.FC = () => {
           setSvgColors('rgb(123, 81, 247)');
           setSeparatorColor('rgba(163, 230, 53, 0.3)');
           setBoxShadow('none');
-          setUpdateRealTime((state) => state + 1);
         } else {
           // resets to initial state
           setUIColor('rgb(255, 255, 255)');
@@ -166,7 +162,6 @@ const App: React.FC = () => {
           setSeparatorColor('rgba(55, 6, 135, 0.75)');
           setBoxShadow(`rgba(24, 32, 79, 0.25) 0px 20px 20px, 
     rgba(255, 255, 255, 0.3) 0px 0px 0px 0.1px inset`);
-          setUpdateRealTime((state) => state + 1);
         }
         // changes background:
         const bg = getWeatherBackground(
@@ -198,7 +193,6 @@ const App: React.FC = () => {
     // force rerender
     setDaysToRender(getDaysToRender(screenWidth));
     setHoursToRender(getHoursToRender(screenWidth));
-    setUpdateHourlyTime(updateHourly + 1);
   }, [locationForAPI, night, shouldReloadAPI]);
 
   return (
@@ -292,7 +286,6 @@ const App: React.FC = () => {
                           <button
                             onClick={handleClick}
                             className="searchBtn"
-                            key={updateRealTime}
                           >
                             <Search svgColors={svgColors} />
                           </button>
@@ -330,7 +323,6 @@ const App: React.FC = () => {
               svgColors={svgColors}
               UIColor={UIColor}
               modalUIColor={modalUIColor}
-              key={updateRealTime}
               separatorColor={separatorColor}
               boxShadow={boxShadow}
               setShouldReloadAPI={setShouldReloadAPI}
@@ -352,7 +344,6 @@ const App: React.FC = () => {
                 moonPhase={moonPhase}
                 svgColors={svgColors}
                 hoursToRender={hoursToRender}
-                /* key={updateHourly} */
                 boxShadow={boxShadow}
               />
             </Suspense>
