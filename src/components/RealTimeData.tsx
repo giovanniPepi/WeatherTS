@@ -144,13 +144,13 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
               </>
             )}
           </div>
-          <div className="tempContainer">
+          <div className="tempContainer homeTempContainer">
             <div className="currentTemp">{apiData.current.temp}</div>
             <div className="feelsLike">
               Feels like {apiData.current.feels_like}
             </div>
           </div>
-          <div className="realTimeDataDiv">
+          <div className="realTimeDataDiv weatherDescDiv">
             {/*gets the weather icon through getMoonphase to return the correct phase if it's night */}
             {getWeatherIcon(
               apiData.current.weather[0].main,

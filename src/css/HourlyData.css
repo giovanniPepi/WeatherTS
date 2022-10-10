@@ -51,7 +51,7 @@
 @media screen and (max-width: 950px) {
   .hourlyDataModal {
     padding: 1rem 1rem 2rem 1rem;
-    min-width: 80vw;
+    min-width: 75vw;
   }
   .hourlyUl {
     display: flex;

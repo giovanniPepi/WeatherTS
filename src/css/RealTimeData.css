@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.2rem;
+  gap: 0.25rem;
   min-width: clamp(300px, 20vw, 30vw);
   padding: 1rem 1rem 1.5rem 1rem;
   border-radius: var(--radius);
@@ -36,7 +36,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.2rem;
+  gap: 0.15rem;
 }
 .realTimeSubDataHolder {
   display: flex;
@@ -68,6 +68,7 @@
   align-items: center;
   justify-content: center;
   align-self: center;
+  gap: 0.2rem;
 }
 .windContainer {
   display: flex;
@@ -194,11 +195,21 @@ form {
   width: 1.5rem;
   height: 1.5rem;
 }
+.homeTempContainer {
+  align-items: center;
+}
+.weatherDescDiv {
+  gap: 0.8rem;
+}
+.weatherDescDiv > svg {
+  width: 2.8rem;
+  height: 2.8rem;
+}
 @media screen and (max-width: 649px) {
   .realTimeData {
     margin-bottom: 1rem;
     min-width: unset;
-    min-width: 82vw;
+    min-width: 75vw;
   }
   .alertBtnHome {
     display: flex;
