@@ -34,7 +34,6 @@ const App: React.FC = () => {
   const [showHourlyModal, setShowHourlyModal] = useState<Boolean>(false);
   const [showDailyModal, setShowDailyModal] = useState<Boolean>(false);
   const [showRealTimeModal, setShowRealTimeModal] = useState(true);
-  const [showSearchModal, setShowSearchModal] = useState(true);
   // GUI changers
   const [backgroundImg, setBackgroundImg] = useState(`linear-gradient(
     rgba(55, 6, 135, 0.75),
@@ -107,21 +106,18 @@ const App: React.FC = () => {
     setShowHourlyModal(true);
     setShowRealTimeModal(false);
     setShowDailyModal(false);
-    setShowSearchModal(false);
     setShowNotFound(false);
   };
   const toggleDailyData = () => {
     setShowDailyModal(true);
     setShowHourlyModal(false);
     setShowRealTimeModal(false);
-    setShowSearchModal(false);
     setShowNotFound(false);
   };
   const toggleRealTimeData = () => {
     setShowRealTimeModal(true);
     setShowDailyModal(false);
     setShowHourlyModal(false);
-    setShowSearchModal(true);
   };
 
   // lazy load framer-motion
@@ -290,10 +286,8 @@ const App: React.FC = () => {
               setIsOpenedSearch={setIsOpenedSearch}
               isClosedSearch={isClosedSearch}
               minuterain={minuteRain}
-              showSearchModal={showSearchModal}
               isOpenedSearch={isOpenedSearch}
               handleClick={handleClick}
-              setShowSearchModal={setShowSearchModal}
               handleInputChange={handleInputChange}
               firstRender={firstRender}
             />

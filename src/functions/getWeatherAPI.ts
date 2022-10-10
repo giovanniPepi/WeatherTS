@@ -4,7 +4,7 @@ import getInitialAPIData from "./getInitialApiData";
 const getWeatherAPI = async(locationObj: { lat?: number; lon?: number; country?: string; }): Promise<IWeatherData | undefined> => {
   console.log('Weather API call', locationObj);
   
-  /* const lat = locationObj.lat;
+   const lat = locationObj.lat;
   const lon = locationObj.lon
   const country = locationObj.country
   
@@ -35,8 +35,7 @@ const getWeatherAPI = async(locationObj: { lat?: number; lon?: number; country?:
   } catch (error) {
     console.log(error);
     }
-   */
-  return getInitialAPIData();
+  // return getInitialAPIData();
 }
 
 export default getWeatherAPI;

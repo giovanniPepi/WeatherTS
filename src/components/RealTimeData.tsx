@@ -48,14 +48,9 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   separatorColor,
   boxShadow,
   setShouldReloadAPI,
-  isClosedSearch,
-  setIsClosedSearch,
   setIsOpenedSearch,
-  minuterain,
-  showSearchModal,
   isOpenedSearch,
   handleClick,
-  setShowSearchModal,
   handleInputChange,
   firstRender
 }) => {
@@ -229,38 +224,36 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
           </div>
         </div>
         <>
-          {showSearchModal ? (
-            <>
-              <UnmountClosed
-                isOpened={isOpenedSearch}
-                theme={{
-                  collapse: 'searchTogglerClosed',
-                  content: 'searchTogglerOpened'
+          <>
+            <UnmountClosed
+              isOpened={isOpenedSearch}
+              theme={{
+                collapse: 'searchTogglerClosed',
+                content: 'searchTogglerOpened'
+              }}
+            >
+              <div
+                className="searchForm"
+                style={{
+                  backgroundColor: modalUIColor,
+                  boxShadow: boxShadow
                 }}
               >
-                <div
-                  className="searchForm"
-                  style={{
-                    backgroundColor: modalUIColor,
-                    boxShadow: boxShadow
-                  }}
-                >
-                  <form onSubmit={handleClick}>
-                    <input
-                      placeholder="Search a location..."
-                      onChange={handleInputChange}
-                      ref={(input) => {
-                        input && input.focus();
-                      }}
-                    />
-                    <button onClick={handleClick} className="searchBtn">
-                      <Search svgColors={svgColors} />
-                    </button>
-                  </form>
-                </div>
-              </UnmountClosed>
-            </>
-          ) : null}
+                <form onSubmit={handleClick}>
+                  <input
+                    placeholder="Search a location..."
+                    onChange={handleInputChange}
+                    ref={(input) => {
+                      input && input.focus();
+                    }}
+                  />
+                  <button onClick={handleClick} className="searchBtn">
+                    <Search svgColors={svgColors} />
+                  </button>
+                </form>
+              </div>
+            </UnmountClosed>
+          </>
         </>
         <Separator separatorColor={separatorColor} />
 
