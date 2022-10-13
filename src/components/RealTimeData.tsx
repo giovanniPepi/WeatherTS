@@ -26,12 +26,10 @@ import WeatherDescAnimation from 'src/functions/WeatherDescAnimation';
 import NetworkError from 'src/icons/NetworkError';
 import AlertAnimation from 'src/functions/AlertAnimation';
 import Reload from 'src/icons/Reload';
-import ReloadSpinning from 'src/icons/ReloadSpinning';
 import More from 'src/icons/More';
 import Less from 'src/icons/Less';
 import { UnmountClosed } from 'react-collapse';
 import Search from 'src/icons/Search';
-import Loading from 'src/icons/Loading';
 import Separator from './Separator';
 
 // dealing with objects as props, they must have their own interface:
@@ -58,7 +56,6 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
   const [showAlertsModal, setShowAlertsModal] = useState<Boolean>(false);
   const [minutes, setMinutes] = useState<number>(0);
   const [hour, sethour] = useState<number>(0);
-  const [showReloadSpinner, setShowReloadSpinner] = useState(false);
 
   // react-collapse
   const [isOpenedSun, setIsOpenedSun] = useState(false);
@@ -155,26 +152,19 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
               />
               <div className="btnHolder">
                 <div className="searchReloadDiv">
-                  {showReloadSpinner ? (
-                    <ReloadSpinning svgColors={svgColors} />
-                  ) : (
-                    <button
-                      onClick={() => {
-                        setShowReloadSpinner(true);
-                        setShouldReloadAPI(true);
-                      }}
-                      onTouchEnd={(e) => {
-                        // prevents mobile keyboard from opening up
-                        e.preventDefault();
-
-                        setShowReloadSpinner(true);
-                        setShouldReloadAPI(true);
-                      }}
-                      className="apiReloader"
-                    >
-                      <Reload svgColors={svgColors} />
-                    </button>
-                  )}
+                  <button
+                    onClick={() => {
+                      setShouldReloadAPI(true);
+                    }}
+                    onTouchEnd={(e) => {
+                      // prevents mobile keyboard from opening up
+                      e.preventDefault();
+                      setShouldReloadAPI(true);
+                    }}
+                    className="apiReloader"
+                  >
+                    <Reload svgColors={svgColors} />
+                  </button>
                 </div>
                 <div
                   onClick={() => {
