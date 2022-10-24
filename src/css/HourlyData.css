@@ -34,7 +34,7 @@
   display: flex;
   align-content: center;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.5rem;
 }
 .minorHourly {
   min-width: 10vw;

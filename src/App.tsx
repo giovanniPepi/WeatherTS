@@ -221,7 +221,7 @@ const App: React.FC = () => {
                 }}
                 className="strong dataToggler"
               >
-                Home - Current
+                Current
               </button>
               <div>|</div>
               <button
