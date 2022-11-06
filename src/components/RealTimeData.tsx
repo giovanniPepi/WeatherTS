@@ -70,17 +70,11 @@ const RealTimeData: React.FC<RealTimeDataProps> = ({
 
   useEffect(() => {
     const getRealTime = () => {
-      const myInterval = setInterval(() => {
-        const currentMinute = getMinute(apiData?.timezone);
-        const currentHour = getHour(apiData?.timezone);
-        sethour(currentHour as number);
-        setMinutes(currentMinute as number);
-      }, 1000);
-      return () => {
-        clearInterval(myInterval);
-      };
+      const currentMinute = getMinute(apiData?.timezone);
+      const currentHour = getHour(apiData?.timezone);
+      sethour(currentHour as number);
+      setMinutes(currentMinute as number);
     };
-
     getRealTime();
   }, [apiData]);
 
